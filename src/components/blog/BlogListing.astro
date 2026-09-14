@@ -1,0 +1,61 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { BlogTagSlug } from '~/lib/blog-tags';
+import { getAuthor, minutesToRead } from '~/lib/content';
+import FeaturedPost from './FeaturedPost.astro';
+import NewsletterBand from './NewsletterBand.astro';
+import PostCard from './PostCard.astro';
+import TagChips from './TagChips.astro';
+
+interface Props {
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  posts: CollectionEntry<'blog'>[];
+  currentTag: BlogTagSlug | 'all';
+  availableTags: readonly BlogTagSlug[];
+  featureFirst: boolean;
+}
+
+const { eyebrow, heading, intro, posts, currentTag, availableTags, featureFirst } = Astro.props;
+const [first, ...rest] = posts;
+const featured = featureFirst ? first : undefined;
+const gridPosts = featureFirst ? rest : posts;
+const featuredAuthor = featured ? await getAuthor(featured) : undefined;
+---
+
+<header class="container-page grid gap-4 pt-14 pb-8 md:grid-cols-2 md:items-end md:gap-20 md:pt-[88px] md:pb-12">
+  <div class="flex flex-col gap-3.5 md:gap-[18px]">
+    <p class="eyebrow text-amber-deep">{eyebrow}</p>
+    <h1 class="text-[40px] leading-[1.02] tracking-display md:text-[52px] xl:text-[64px] xl:leading-none">
+      {heading}
+    </h1>
+  </div>
+  <p class="max-w-[520px] text-[17px] leading-[1.6] text-text-2 md:text-lg">{intro}</p>
+</header>
+
+<div class="container-page pb-8 md:pb-10">
+  <TagChips current={currentTag} available={availableTags} />
+</div>
+
+{featured && featuredAuthor && (
+  <section aria-label="Featured post" class="container-page pb-12 md:pb-[72px]">
+    <FeaturedPost post={featured} author={featuredAuthor} minutes={minutesToRead(featured)} />
+  </section>
+)}
+
+{gridPosts.length > 0 && (
+  <section aria-label="More posts" class="container-page pb-16 md:pb-24">
+    <div class="grid gap-x-7 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+      {gridPosts.map((post) => (
+        <PostCard post={post} minutes={minutesToRead(post)} headingLevel={featured ? 'h3' : 'h2'} />
+      ))}
+    </div>
+  </section>
+)}
+
+{posts.length === 0 && (
+  <p class="container-page pb-16 text-text-2 md:pb-24">No posts yet. Check back soon.</p>
+)}
+
+<NewsletterBand />

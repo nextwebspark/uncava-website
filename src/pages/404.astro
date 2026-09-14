@@ -1,0 +1,47 @@
+---
+import ButtonLink from '~/components/site/ButtonLink.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { staticPages } from '~/lib/pages';
+
+const page = staticPages.notFound;
+
+const destinations = [
+  { href: '/docs', label: 'Docs', body: 'How to run a mandate in Uncava.' },
+  { href: '/blog', label: 'Blog', body: 'Field notes on executive search.' },
+  { href: '/security', label: 'Security', body: 'How Uncava keeps a search confidential.' },
+];
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  ogTitle={page.ogTitle}
+  canonical={page.path}
+  noindex={page.noindex}
+>
+  <section class="container-page flex flex-col gap-6 pt-16 pb-20 md:pt-28 md:pb-32">
+    <p class="eyebrow text-amber-deep">404</p>
+    <h1 class="max-w-[760px] text-[40px] leading-[1.04] tracking-display md:text-[64px] md:leading-[1.02]">
+      This page isn’t on the map.
+    </h1>
+    <p class="max-w-[560px] text-[17px] leading-[1.6] text-text-2 md:text-lg">
+      The page you were looking for does not exist or has moved.
+    </p>
+    <div class="flex flex-col gap-3 sm:flex-row">
+      <ButtonLink href="/">Back to the home page</ButtonLink>
+    </div>
+    <ul class="mt-6 grid gap-4 md:grid-cols-3">
+      {destinations.map((destination) => (
+        <li>
+          <a
+            href={destination.href}
+            class="flex h-full flex-col gap-1.5 rounded-[14px] border border-line bg-panel p-6 transition-colors hover:border-slate-line"
+          >
+            <span class="text-[17px] font-semibold">{destination.label}</span>
+            <span class="text-[15px] text-text-2">{destination.body}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

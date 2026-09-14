@@ -1,0 +1,47 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const stages = [
+  { count: 48, label: 'In universe', accent: false },
+  { count: 12, label: 'Shortlisted', accent: true },
+  { count: 9, label: 'Declined', accent: false },
+];
+---
+
+<div
+  class:list={[
+    'flex flex-col gap-2 rounded-[14px] border border-ink-line bg-ink-2/94 px-4 py-3.5 shadow-float backdrop-blur-sm lg:gap-3 lg:bg-ink-2/92 lg:py-4',
+    className,
+  ]}
+  aria-hidden="true"
+>
+  <span class="eyebrow text-d-text-3 lg:hidden">Mandate · Group CFO – Energy</span>
+  <div class="hidden flex-col gap-[3px] lg:flex">
+    <span class="eyebrow text-[10.5px] text-d-text-3">Mandate</span>
+    <span class="text-sm font-medium text-d-text">Group CFO – Energy</span>
+  </div>
+  <div class="hidden h-1.5 gap-0.5 overflow-hidden rounded-[3px] lg:flex">
+    <span class="flex-[48] bg-graphite-3"></span>
+    <span class="flex-[12] bg-amber"></span>
+    <span class="flex-[9] bg-declined"></span>
+  </div>
+  <div class="grid grid-cols-3 gap-2 lg:gap-1.5">
+    {stages.map((stage) => (
+      <div class="flex flex-col lg:gap-px">
+        <span
+          class:list={[
+            'text-xl font-semibold lg:text-lg',
+            stage.accent ? 'text-amber' : 'text-d-text',
+          ]}
+        >
+          {stage.count}
+        </span>
+        <span class="text-[13px] text-d-text-3 lg:text-[11px]">{stage.label}</span>
+      </div>
+    ))}
+  </div>
+</div>

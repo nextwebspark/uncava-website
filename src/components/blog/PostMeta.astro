@@ -1,0 +1,18 @@
+---
+interface Props {
+  date: Date;
+  minutes: number;
+  class?: string;
+}
+
+const { date, minutes, class: className } = Astro.props;
+const formatted = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(date);
+---
+
+<span class:list={['font-mono text-[13px] text-text-3', className]}>
+  <time datetime={date.toISOString()}>{formatted}</time> · {minutes} min read
+</span>

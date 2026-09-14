@@ -1,0 +1,70 @@
+---
+import LegalLayout, { type LegalSection } from '~/layouts/LegalLayout.astro';
+import { staticPages } from '~/lib/pages';
+
+const sections: LegalSection[] = [
+  {
+    id: 'agreement',
+    heading: 'Agreement to these terms',
+    placeholder: '[Who the terms apply to and how they are accepted.]',
+  },
+  {
+    id: 'the-service',
+    heading: 'The service',
+    placeholder: '[Description of the Uncava website and application covered by these terms.]',
+  },
+  {
+    id: 'accounts',
+    heading: 'Accounts and workspaces',
+    placeholder: '[Account, workspace and invitation responsibilities.]',
+  },
+  {
+    id: 'customer-data',
+    heading: 'Customer data',
+    placeholder: '[Ownership and processing of data customers put into Uncava.]',
+  },
+  {
+    id: 'acceptable-use',
+    heading: 'Acceptable use',
+    placeholder: '[What users may and may not do with the service.]',
+  },
+  {
+    id: 'fees',
+    heading: 'Fees and payment',
+    placeholder: '[Commercial terms, or a reference to the order form.]',
+  },
+  {
+    id: 'confidentiality',
+    heading: 'Confidentiality',
+    placeholder: '[Confidentiality obligations of each party.]',
+  },
+  {
+    id: 'intellectual-property',
+    heading: 'Intellectual property',
+    placeholder: '[Ownership of the service and feedback.]',
+  },
+  {
+    id: 'warranties',
+    heading: 'Warranties and disclaimers',
+    placeholder: '[Warranties given and disclaimed.]',
+  },
+  {
+    id: 'liability',
+    heading: 'Limitation of liability',
+    placeholder: '[Liability caps and exclusions.]',
+  },
+  {
+    id: 'termination',
+    heading: 'Term and termination',
+    placeholder: '[Duration, termination rights and effect of termination.]',
+  },
+  {
+    id: 'governing-law',
+    heading: 'Governing law',
+    placeholder: '[Governing law and jurisdiction.]',
+  },
+  { id: 'contact', heading: 'Contact', placeholder: '[Legal contact address.]' },
+];
+---
+
+<LegalLayout page={staticPages.terms} sections={sections} />

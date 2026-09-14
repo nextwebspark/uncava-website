@@ -1,0 +1,180 @@
+---
+import BrandMark from '~/components/site/BrandMark.astro';
+import Icon from '~/components/site/Icon.astro';
+import FeatureCard from './FeatureCard.astro';
+
+const mappings = [
+  { header: 'Full Name', field: '→ Name', custom: false },
+  { header: 'Co.', field: '→ Company', custom: false },
+  { header: 'Notice period', field: '+ Custom column', custom: true },
+];
+
+const mapDots: readonly (readonly [number, number])[] = [
+  [40, 40],
+  [52, 46],
+  [64, 40],
+  [58, 58],
+  [70, 70],
+  [82, 82],
+  [150, 34],
+  [162, 28],
+  [174, 34],
+  [168, 46],
+  [180, 58],
+  [186, 76],
+  [240, 40],
+  [252, 52],
+  [264, 64],
+  [276, 82],
+];
+---
+
+<section
+  id="features"
+  aria-labelledby="features-title"
+  class="container-page flex flex-col gap-[22px] pb-16 md:gap-14 md:pb-32"
+>
+  <div class="flex max-w-[760px] flex-col gap-4">
+    <p class="eyebrow hidden text-amber-deep md:block">Research, without the busywork</p>
+    <h2
+      id="features-title"
+      class="text-[30px] leading-[1.08] tracking-[-0.035em] md:text-[44px] md:leading-[1.04] md:tracking-heading xl:text-[52px]"
+    >
+      Built for the way researchers actually work.
+    </h2>
+  </div>
+
+  <ul class="grid gap-3.5 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
+    <li class="relative grid gap-8 overflow-hidden rounded-2xl bg-ink p-6 text-d-text md:col-span-2 md:min-h-[380px] md:grid-cols-2 md:rounded-[18px] md:p-9">
+      <div class="flex flex-col justify-end gap-2.5 md:gap-3.5">
+        <span class="hidden size-10 place-items-center rounded-[10px] border border-ink-line text-amber md:grid">
+          <Icon name="capture" size={20} strokeWidth={1.7} />
+        </span>
+        <h3 class="text-xl leading-[1.25] tracking-title md:text-[26px] md:leading-[1.2] md:tracking-[-0.025em]">
+          Capture from the page you’re reading.
+        </h3>
+        <p class="text-[15px] leading-[1.55] text-d-text-2 md:leading-[1.6]">
+          The Uncava Capture extension files a company or an executive straight into the mandate —
+          no copy, no paste, no second tab.
+        </p>
+      </div>
+      <div class="relative hidden md:block" aria-hidden="true">
+        <div class="absolute inset-0 -right-[60px] -bottom-[60px] flex flex-col gap-2.5 rounded-xl border border-ink-line bg-ink-2 p-4">
+          <div class="flex gap-1.5">
+            <span class="size-2 rounded-full bg-graphite-3"></span>
+            <span class="size-2 rounded-full bg-graphite-3"></span>
+            <span class="size-2 rounded-full bg-graphite-3"></span>
+          </div>
+          <span class="h-2.5 w-3/5 rounded-[5px] bg-graphite-2"></span>
+          <span class="h-2 w-[85%] rounded bg-graphite-1"></span>
+          <span class="h-2 w-[72%] rounded bg-graphite-1"></span>
+          <div class="mt-2 flex w-[230px] flex-col gap-2.5 self-end rounded-xl bg-paper p-3.5 text-text shadow-[0_20px_40px_rgb(0_0_0/0.45)]">
+            <div class="flex items-center gap-2">
+              <BrandMark size={20} />
+              <span class="text-[12.5px] font-semibold">Capture executive</span>
+            </div>
+            <div class="text-[13px] font-medium">Mads Holm</div>
+            <div class="-mt-2 text-xs text-text-3">CFO · Baltic Offshore Wind</div>
+            <div class="rounded-[7px] border border-line px-[9px] py-1.5 text-xs font-medium text-text-2">
+              Group CFO – Energy Division
+            </div>
+            <span class="rounded-[7px] bg-amber p-2 text-center text-[12.5px] font-semibold text-on-amber">
+              Add to mandate
+            </span>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <FeatureCard
+      title="Import a spreadsheet, safely."
+      body="Columns are matched for you and confirmed by a person before anything is written. When AI helps, it sees your headers — never the people in them."
+    >
+      <div class="grid grid-cols-2 gap-2 font-mono text-[10.5px] font-medium tracking-[0.06em] text-text-2 uppercase">
+        <span>Your header</span>
+        <span>Uncava field</span>
+      </div>
+      {mappings.map((row) => (
+        <div class="grid grid-cols-2 gap-2 font-mono text-[12.5px]">
+          <span class="text-text-2">{row.header}</span>
+          <span class:list={[row.custom ? 'text-amber-deep' : 'text-text']}>{row.field}</span>
+        </div>
+      ))}
+    </FeatureCard>
+
+    <FeatureCard
+      title="Briefs that write their first draft."
+      body="Seventeen role templates, and a reader that proposes fields from the client’s position description — each one yours to accept."
+    >
+      <div class="flex items-center justify-between">
+        <span class="text-[12.5px] font-medium">Role title</span>
+        <span class="font-mono text-[10.5px] font-medium text-green-text">From document · 94%</span>
+      </div>
+      <div class="rounded-[7px] border border-line bg-panel px-2.5 py-[7px] text-[13px]">
+        Group Chief Financial Officer
+      </div>
+      <div class="flex gap-1.5">
+        <span class="rounded-md bg-text px-2.5 py-[5px] text-[11.5px] font-semibold text-white">
+          Accept
+        </span>
+        <span class="rounded-md border border-line px-2.5 py-[5px] text-[11.5px] font-medium text-text-2">
+          Dismiss
+        </span>
+      </div>
+    </FeatureCard>
+
+    <FeatureCard
+      title="Bring the client in, on your terms."
+      body="Invite a hiring-company representative to the mandates they’re attached to. They follow progress; they never see anyone else’s search."
+    >
+      <div class="flex items-center gap-2.5">
+        <span class="grid size-7 place-items-center rounded-full bg-sky-tint text-[10.5px] font-semibold text-sky-hover">
+          EM
+        </span>
+        <div class="flex-1">
+          <div class="text-[12.5px] font-medium">Elena Marsh</div>
+          <div class="text-[11.5px] text-text-2">Client · Hartwell Group</div>
+        </div>
+        <span class="rounded-[5px] border border-line px-1.5 py-[3px] font-mono text-[10.5px] font-medium text-text-2">
+          View only
+        </span>
+      </div>
+      <div class="h-px bg-line"></div>
+      <div class="flex items-center gap-2 text-xs text-text-2">
+        <Icon name="lock" size={14} />
+        Sees their mandates. Edits nothing.
+      </div>
+    </FeatureCard>
+
+    <FeatureCard
+      title="A talent map, not a list."
+      body="Every company and executive pinned by city, grouped country by country — for the question every client asks first: where are they?"
+    >
+      <div class="visual-bleed relative h-[124px] overflow-hidden rounded-xl bg-ink">
+        <svg
+          width="100%"
+          height="124"
+          viewBox="0 0 320 124"
+          preserveAspectRatio="xMidYMid slice"
+          focusable="false"
+        >
+          <g fill="rgba(203,213,225,.18)">
+            {mapDots.map(([cx, cy]) => (
+              <circle cx={cx} cy={cy} r="1.4" />
+            ))}
+          </g>
+          <g fill="none" stroke="rgba(226,182,92,.55)" stroke-width="1">
+            <path d="M164 40 Q110 10 60 50"></path>
+            <path d="M164 40 Q220 20 262 66"></path>
+          </g>
+          <g fill="#e2b65c">
+            <circle cx="164" cy="40" r="4"></circle>
+            <circle cx="60" cy="50" r="3"></circle>
+            <circle cx="262" cy="66" r="3"></circle>
+            <circle cx="176" cy="54" r="2.5"></circle>
+          </g>
+        </svg>
+      </div>
+    </FeatureCard>
+  </ul>
+</section>

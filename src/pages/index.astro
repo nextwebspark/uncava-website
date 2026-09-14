@@ -1,0 +1,31 @@
+---
+import ClosingCta from '~/components/home/ClosingCta.astro';
+import CompaniesWindow from '~/components/home/CompaniesWindow.astro';
+import Features from '~/components/home/Features.astro';
+import Hero from '~/components/home/Hero.astro';
+import SecurityBand from '~/components/home/SecurityBand.astro';
+import Workflow from '~/components/home/Workflow.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { staticPages } from '~/lib/pages';
+import { organization, softwareApplication, webSite } from '~/lib/seo/jsonld';
+
+const page = staticPages.home;
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  ogTitle={page.ogTitle}
+  ogImagePath="/og-image.png"
+  ogImageAlt="Uncava — Executive search, mapped."
+  header="dark-overlay"
+  footer="full"
+  jsonLd={[organization(), webSite(), softwareApplication({ description: page.description })]}
+>
+  <Hero />
+  <Workflow />
+  <CompaniesWindow />
+  <Features />
+  <SecurityBand />
+  <ClosingCta />
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+import LegalLayout, { type LegalSection } from '~/layouts/LegalLayout.astro';
+import { staticPages } from '~/lib/pages';
+
+const sections: LegalSection[] = [
+  {
+    id: 'who-we-are',
+    heading: 'Who we are',
+    placeholder: '[Legal entity, registered address and data controller details.]',
+  },
+  {
+    id: 'what-we-collect',
+    heading: 'Information we collect',
+    placeholder:
+      '[Categories of personal data collected on uncava.com and in the Uncava application.]',
+  },
+  {
+    id: 'how-we-use-it',
+    heading: 'How we use information',
+    placeholder: '[Purposes of processing.]',
+  },
+  {
+    id: 'legal-bases',
+    heading: 'Legal bases',
+    placeholder: '[Legal bases relied on for each purpose.]',
+  },
+  {
+    id: 'sharing',
+    heading: 'Sharing and sub-processors',
+    placeholder: '[Who personal data is shared with, including sub-processors and AI providers.]',
+  },
+  {
+    id: 'transfers',
+    heading: 'International transfers',
+    placeholder: '[Transfer mechanisms, if data leaves its region of origin.]',
+  },
+  {
+    id: 'retention',
+    heading: 'Retention',
+    placeholder: '[How long each category of data is kept.]',
+  },
+  {
+    id: 'your-rights',
+    heading: 'Your rights',
+    placeholder: '[Data subject rights and how to exercise them.]',
+  },
+  {
+    id: 'cookies',
+    heading: 'Cookies and similar technologies',
+    placeholder: '[Cookies and local storage used by the website and the application.]',
+  },
+  {
+    id: 'contact',
+    heading: 'Contact',
+    placeholder: '[Privacy contact address and supervisory authority details.]',
+  },
+  {
+    id: 'changes',
+    heading: 'Changes to this policy',
+    placeholder: '[How changes are communicated.]',
+  },
+];
+---
+
+<LegalLayout page={staticPages.privacy} sections={sections} />

@@ -1,0 +1,80 @@
+/*
+ * Design tokens lifted from design/*.dc.html. Shared by the site (global.css) and the docs
+ * (docs.css), so a token changes in one place. --color-green-text darkens the mockups' green for
+ * WCAG AA at the 10.5px it is set in; the original stays for fills.
+ */
+@theme {
+  --color-ink: #0c0d0e;
+  --color-ink-2: #16171a;
+  --color-ink-3: #1d1f23;
+  --color-ink-line: #2a2a2e;
+  --color-graphite-1: #23262b;
+  --color-graphite-2: #2b2f36;
+  --color-graphite-3: #3a3d44;
+  --color-declined: #6b4f4f;
+
+  --color-paper: #f8f9fb;
+  --color-panel: #ffffff;
+  --color-panel-2: #f3f4f6;
+  --color-table-head: #fbfbfc;
+  --color-line: #e2e4e9;
+  --color-line-soft: #edeef2;
+  --color-slate-line: #cbd5e1;
+
+  --color-text: #111113;
+  --color-text-2: #475569;
+  --color-text-3: #64748b;
+  --color-prose: #2b3441;
+  --color-d-text: #f8fafc;
+  --color-d-text-2: #cbd5e1;
+  --color-d-text-3: #94a3b8;
+
+  --color-amber: #e2b65c;
+  --color-amber-hover: #ebc676;
+  --color-amber-deep: #8a6424;
+  --color-amber-dim: rgb(226 182 92 / 0.14);
+  --color-amber-ink: #6b4f1d;
+  --color-on-amber: #1a1712;
+  --color-sky: #2563eb;
+  --color-sky-hover: #1d4ed8;
+  --color-sky-dim: rgb(37 99 235 / 0.08);
+  --color-sky-ink: #1e3a8a;
+  --color-sky-tint: #dbeafe;
+  --color-green: #059669;
+  --color-green-text: #047857;
+  --color-red: #dc2626;
+
+  --color-mark-tile: #16181c;
+  --color-mark-glyph: #f4f5f7;
+
+  --font-sans: 'Geist Variable', 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --tracking-display: -0.045em;
+  --tracking-heading: -0.04em;
+  --tracking-title: -0.02em;
+  --tracking-eyebrow: 0.08em;
+  --tracking-wordmark: 0.3em;
+
+  --shadow-float: 0 24px 60px rgb(0 0 0 / 0.5);
+  --shadow-window: 0 1px 0 rgb(15 23 42 / 0.03), 0 40px 80px -30px rgb(15 23 42 / 0.22);
+  --shadow-form: 0 40px 80px -40px rgb(15 23 42 / 0.25);
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+}
+
+/* The app's wordmark: medium weight, uppercase, wide tracking, never title-case bold. */
+@utility wordmark {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wordmark);
+  text-transform: uppercase;
+  line-height: 1;
+}
