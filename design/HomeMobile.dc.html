@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#0c0d0e;--ink2:#16171a;--ink-line:#2a2a2e;--paper:#f8f9fb;--panel:#ffffff;--panel2:#f3f4f6;--line:#e2e4e9;--line-soft:#edeef2;--text:#111113;--text2:#475569;--text3:#64748b;--d-text:#f8fafc;--d-text2:#cbd5e1;--d-text3:#94a3b8;--amber:#e2b65c;--amber-deep:#8a6424;--amber-dim:rgba(226,182,92,.14);--on-amber:#1a1712;--sky:#2563eb;--sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--text);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+    a{color:var(--sky);text-decoration:none}
+    a:hover{color:#1d4ed8}
+    h1,h2,h3,p{margin:0}
+    .eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+  </style>
+</helmet>
+<div style="width:390px;background:var(--paper)">
+  <section style="background:var(--ink);color:var(--d-text);position:relative;overflow:hidden;padding-bottom:40px">
+    <div style="position:absolute;inset:0;background:radial-gradient(380px 360px at 60% 70%,rgba(226,182,92,.12),transparent 70%)"></div>
+    <nav style="position:relative;display:flex;align-items:center;justify-content:space-between;padding:12px 16px 12px 20px;border-bottom:1px solid rgba(248,250,252,.06)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="width:28px;height:28px;border-radius:6px;background:#f4f5f7;color:#16181c;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="28" height="28" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
+        <span style="font:500 14px var(--sans);letter-spacing:.3em;text-transform:uppercase">Uncava</span>
+      </div>
+      <span style="width:44px;height:44px;display:grid;place-items:center;color:var(--d-text)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"></path></svg></span>
+    </nav>
+    <div style="position:relative;padding:36px 20px 0;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;align-items:center;gap:8px;align-self:flex-start;border:1px solid var(--ink-line);border-radius:999px;padding:6px 12px 6px 9px">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--amber)"></span>
+        <span class="eyebrow" style="color:var(--d-text2)">Executive search &amp; talent mapping</span>
+      </div>
+      <h1 style="font:600 44px/1.02 var(--sans);letter-spacing:-.045em">Map the whole market. <span style="color:var(--amber)">Present the right few.</span></h1>
+      <p style="font:400 17px/1.55 var(--sans);color:var(--d-text2)">Draft the brief, map every company and executive that matters, and bring the client into a shortlist they can trust.</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="#" style="text-align:center;background:var(--amber);color:var(--on-amber);font:600 16px var(--sans);padding:15px;border-radius:10px">Book a demo</a>
+        <a href="#" style="text-align:center;color:var(--d-text);font:500 16px var(--sans);padding:15px;border-radius:10px;border:1px solid var(--ink-line)">See how it works</a>
+      </div>
+    </div>
+    <div style="position:relative;height:330px;margin-top:12px">
+      <svg width="390" height="330" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet" style="position:absolute;left:0;top:0">
+        <defs><radialGradient id="msphere" cx="38%" cy="32%" r="75%"><stop offset="0%" stop-color="#23262b"></stop><stop offset="100%" stop-color="#0e0f11"></stop></radialGradient></defs>
+        <circle cx="300" cy="300" r="250" fill="url(#msphere)" stroke="#2a2a2e"></circle>
+        <g fill="none" stroke="rgba(248,250,252,.07)"><ellipse cx="300" cy="300" rx="85" ry="250"></ellipse><ellipse cx="300" cy="300" rx="160" ry="250"></ellipse><ellipse cx="300" cy="300" rx="220" ry="250"></ellipse><ellipse cx="300" cy="175" rx="216" ry="30"></ellipse><ellipse cx="300" cy="300" rx="250" ry="42"></ellipse><ellipse cx="300" cy="425" rx="216" ry="30"></ellipse></g>
+        <g fill="none" stroke="rgba(226,182,92,.6)" stroke-width="1.6"><path d="M322 166 Q240 120 172 212"></path><path d="M322 166 Q390 190 412 268"></path><path d="M322 166 Q450 230 470 340"></path><path d="M322 166 Q260 300 216 420"></path></g>
+        <g fill="#e2b65c"><circle cx="322" cy="166" r="7"></circle><circle cx="344" cy="176" r="5"></circle><circle cx="172" cy="212" r="6"></circle><circle cx="412" cy="268" r="5"></circle><circle cx="470" cy="340" r="6"></circle><circle cx="216" cy="420" r="5"></circle></g>
+      </svg>
+      <div style="position:absolute;left:20px;right:20px;bottom:-8px;background:rgba(22,23,26,.94);border:1px solid var(--ink-line);border-radius:14px;padding:14px 16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px"><span class="eyebrow" style="grid-column:1 / -1;color:var(--d-text3)">Mandate · Group CFO – Energy</span>
+        <div style="display:flex;flex-direction:column"><span style="font:600 20px var(--sans)">48</span><span style="font:400 13px var(--sans);color:var(--d-text3)">In universe</span></div>
+        <div style="display:flex;flex-direction:column"><span style="font:600 20px var(--sans);color:var(--amber)">12</span><span style="font:400 13px var(--sans);color:var(--d-text3)">Shortlisted</span></div>
+        <div style="display:flex;flex-direction:column"><span style="font:600 20px var(--sans)">9</span><span style="font:400 13px var(--sans);color:var(--d-text3)">Declined</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:72px 20px 56px;display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span class="eyebrow" style="color:var(--amber-deep)">The mandate, end to end</span>
+      <h2 style="font:600 34px/1.06 var(--sans);letter-spacing:-.04em">One workspace from brief to shortlist.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;border-top:1px solid var(--line)">
+      <div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:20px 0;border-bottom:1px solid var(--line)">
+        <span style="font:500 13px var(--mono);color:var(--amber-deep)">01</span>
+        <div style="display:flex;flex-direction:column;gap:6px"><h3 style="font:600 18px var(--sans);letter-spacing:-.02em">Start drafted, not blank.</h3><p style="font:400 15px/1.55 var(--sans);color:var(--text2)">The brief opens from a role template and reads the client’s position description.</p></div>
+      </div>
+      <div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:20px 0;border-bottom:1px solid var(--line)">
+        <span style="font:500 13px var(--mono);color:var(--amber-deep)">02</span>
+        <div style="display:flex;flex-direction:column;gap:6px"><h3 style="font:600 18px var(--sans);letter-spacing:-.02em">Search the whole market.</h3><p style="font:400 15px/1.55 var(--sans);color:var(--text2)">Filter 100,000+ companies by industry, size and geography.</p></div>
+      </div>
+      <div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:20px 0;border-bottom:1px solid var(--line)">
+        <span style="font:500 13px var(--mono);color:var(--amber-deep)">03</span>
+        <div style="display:flex;flex-direction:column;gap:6px"><h3 style="font:600 18px var(--sans);letter-spacing:-.02em">Put people on the map.</h3><p style="font:400 15px/1.55 var(--sans);color:var(--text2)">Typed in, imported from a spreadsheet, or captured from the browser.</p></div>
+      </div>
+      <div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:20px 0;border-bottom:1px solid var(--line)">
+        <span style="font:500 13px var(--mono);color:var(--amber-deep)">04</span>
+        <div style="display:flex;flex-direction:column;gap:6px"><h3 style="font:600 18px var(--sans);letter-spacing:-.02em">Decide, then show your work.</h3><p style="font:400 15px/1.55 var(--sans);color:var(--text2)">Shortlist or decline every company, and give the client a read-only seat.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 20px 64px;display:flex;flex-direction:column;gap:20px">
+    <h2 style="font:600 30px/1.08 var(--sans);letter-spacing:-.035em">See the market the way your client will.</h2>
+    <div style="background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 24px 50px -24px rgba(15,23,42,.25)">
+      <div style="display:flex;gap:6px;padding:12px;border-bottom:1px solid var(--line);overflow-x:auto">
+        <span style="font:500 13px var(--sans);padding:0 12px;min-height:44px;display:flex;align-items:center;flex:none;border-radius:8px;background:var(--text);color:#fff;white-space:nowrap">In universe 48</span>
+        <span style="font:500 13px var(--sans);padding:0 12px;min-height:44px;display:flex;align-items:center;flex:none;border-radius:8px;color:var(--text2);border:1px solid var(--line);white-space:nowrap">Shortlisted 12</span>
+        <span style="font:500 13px var(--sans);padding:0 12px;min-height:44px;display:flex;align-items:center;flex:none;border-radius:8px;color:var(--text2);border:1px solid var(--line);white-space:nowrap">Declined 9</span>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <div style="display:flex;align-items:center;gap:12px;padding:14px;border-bottom:1px solid var(--line-soft)"><span style="width:36px;height:36px;border-radius:9px;background:var(--panel2);border:1px solid var(--line);display:grid;place-items:center;font:600 12px var(--sans);color:var(--text2)">NW</span><div style="flex:1"><div style="font:500 15px var(--sans)">Lena Brandt</div><div style="font:400 13px var(--sans);color:var(--text3)">CFO · Nordwind Energie</div></div><span style="font:500 12px var(--sans);color:var(--amber-deep);background:var(--amber-dim);border-radius:6px;padding:3px 8px">Shortlisted</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:14px;border-bottom:1px solid var(--line-soft)"><span style="width:36px;height:36px;border-radius:9px;background:var(--panel2);border:1px solid var(--line);display:grid;place-items:center;font:600 12px var(--sans);color:var(--text2)">RH</span><div style="flex:1"><div style="font:500 15px var(--sans)">Anika Vogt</div><div style="font:400 13px var(--sans);color:var(--text3)">Group Finance Director · Rheinwerk</div></div></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:14px"><span style="width:36px;height:36px;border-radius:9px;background:var(--panel2);border:1px solid var(--line);display:grid;place-items:center;font:600 12px var(--sans);color:var(--text2)">SG</span><div style="flex:1"><div style="font:500 15px var(--sans)">Solaris Grid AG</div><div style="font:500 13px var(--sans);color:var(--sky)">+ Add executive</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 20px 64px;display:flex;flex-direction:column;gap:14px">
+    <h2 style="font:600 30px/1.08 var(--sans);letter-spacing:-.035em;margin-bottom:8px">Built for the way researchers actually work.</h2>
+    <div style="background:var(--ink);color:var(--d-text);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px">
+      <h3 style="font:600 20px/1.25 var(--sans);letter-spacing:-.02em">Capture from the page you’re reading.</h3>
+      <p style="font:400 15px/1.55 var(--sans);color:var(--d-text2)">The Uncava Capture extension files a company or executive straight into the mandate.</p>
+    </div>
+    <div style="background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px">
+      <h3 style="font:600 19px/1.25 var(--sans);letter-spacing:-.02em">Import a spreadsheet, safely.</h3>
+      <p style="font:400 15px/1.55 var(--sans);color:var(--text2)">AI sees your headers — never the people in them.</p>
+    </div>
+    <div style="background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px">
+      <h3 style="font:600 19px/1.25 var(--sans);letter-spacing:-.02em">Briefs that write their first draft.</h3>
+      <p style="font:400 15px/1.55 var(--sans);color:var(--text2)">Seventeen role templates and a reader for the client’s position description.</p>
+    </div>
+    <div style="background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px">
+      <h3 style="font:600 19px/1.25 var(--sans);letter-spacing:-.02em">Bring the client in, on your terms.</h3>
+      <p style="font:400 15px/1.55 var(--sans);color:var(--text2)">A read-only seat on the mandates they’re attached to.</p>
+    </div>
+    <div style="background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px">
+      <h3 style="font:600 19px/1.25 var(--sans);letter-spacing:-.02em">A talent map, not a list.</h3>
+      <p style="font:400 15px/1.55 var(--sans);color:var(--text2)">Every company and executive pinned by city, country by country.</p>
+    </div>
+  </section>
+
+  <section style="background:var(--ink);color:var(--d-text);padding:64px 20px;display:flex;flex-direction:column;gap:24px">
+    <span class="eyebrow" style="color:var(--amber)">Security</span>
+    <h2 style="font:600 34px/1.06 var(--sans);letter-spacing:-.04em;margin-top:-10px">Confidential by design.</h2>
+    <div style="display:flex;flex-direction:column;gap:1px;background:var(--ink-line);border:1px solid var(--ink-line);border-radius:14px;overflow:hidden">
+      <div style="background:var(--ink);padding:18px 20px;display:flex;flex-direction:column;gap:4px"><h3 style="font:600 16px var(--sans)">Isolated workspaces</h3><p style="font:400 14px/1.55 var(--sans);color:var(--d-text3)">Every read is scoped to your firm on the server.</p></div>
+      <div style="background:var(--ink);padding:18px 20px;display:flex;flex-direction:column;gap:4px"><h3 style="font:600 16px var(--sans)">Invitation-only</h3><p style="font:400 14px/1.55 var(--sans);color:var(--d-text3)">Every member arrives by invitation.</p></div>
+      <div style="background:var(--ink);padding:18px 20px;display:flex;flex-direction:column;gap:4px"><h3 style="font:600 16px var(--sans)">Read-only client seats</h3><p style="font:400 14px/1.55 var(--sans);color:var(--d-text3)">Clients see their own mandates and edit nothing.</p></div>
+      <div style="background:var(--ink);padding:18px 20px;display:flex;flex-direction:column;gap:4px"><h3 style="font:600 16px var(--sans)">Spreadsheets stay out of the model</h3><p style="font:400 14px/1.55 var(--sans);color:var(--d-text3)">AI sees spreadsheet headers, never cell values.</p></div>
+    </div>
+  </section>
+
+  <section style="padding:64px 20px;display:flex;flex-direction:column;gap:18px">
+    <h2 style="font:600 36px/1.04 var(--sans);letter-spacing:-.045em">Run your next mandate on Uncava.</h2>
+    <p style="font:400 16px/1.55 var(--sans);color:var(--text2)">Thirty minutes, one of your live searches, and a map at the end of it.</p>
+    <a href="#" style="text-align:center;background:var(--amber);color:var(--on-amber);font:600 16px var(--sans);padding:15px;border-radius:10px">Book a demo</a>
+  </section>
+
+  <footer style="border-top:1px solid var(--line);padding:36px 20px;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="width:26px;height:26px;border-radius:5.6px;background:#16181c;color:#f4f5f7;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="26" height="26" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
+      <span style="font:500 14px var(--sans);letter-spacing:.3em;text-transform:uppercase">Uncava</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px;font:400 15px var(--sans)">
+      <a href="#" style="color:var(--text2);min-height:44px;display:flex;align-items:center">Product</a><a href="#" style="color:var(--text2);min-height:44px;display:flex;align-items:center">Docs</a><a href="#" style="color:var(--text2);min-height:44px;display:flex;align-items:center">Blog</a><a href="#" style="color:var(--text2);min-height:44px;display:flex;align-items:center">Security</a><a href="#" style="color:var(--text2);min-height:44px;display:flex;align-items:center">Contact</a><a href="#" style="color:var(--text2);min-height:44px;display:flex;align-items:center">Privacy</a>
+    </div>
+    <span style="font:400 13px var(--sans);color:var(--text3)">© 2026 Uncava</span>
+  </footer>
+</div>
+</x-dc>
+</body>
+</html>

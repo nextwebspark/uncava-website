@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#0c0d0e;--ink2:#16171a;--ink-line:#2a2a2e;--paper:#f8f9fb;--panel:#ffffff;--panel2:#f3f4f6;--line:#e2e4e9;--line-soft:#edeef2;--text:#111113;--text2:#475569;--text3:#64748b;--d-text:#f8fafc;--d-text2:#cbd5e1;--d-text3:#94a3b8;--amber:#e2b65c;--amber-deep:#8a6424;--amber-dim:rgba(226,182,92,.14);--on-amber:#1a1712;--sky:#2563eb;--sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--text);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+    a{color:var(--sky);text-decoration:none}
+    a:hover{color:#1d4ed8;text-decoration:underline}
+    h1,h2,h3,p{margin:0}
+    .eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+    .nav-link{color:var(--text2);font:500 14px var(--sans)}
+    .nav-link:hover{color:var(--text);text-decoration:none}
+    .label{font:500 13.5px var(--sans);color:var(--text)}
+    .field{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:12px 14px;font:400 15px var(--sans);color:var(--text3);min-height:46px;display:flex;align-items:center}
+  </style>
+</helmet>
+<div style="width:1440px;background:var(--paper)">
+  <nav style="display:flex;align-items:center;justify-content:space-between;padding:20px 80px;border-bottom:1px solid var(--line);background:var(--panel)">
+    <div style="display:flex;align-items:center;gap:11px">
+      <span style="width:30px;height:30px;border-radius:6.5px;background:#16181c;color:#f4f5f7;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="30" height="30" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
+      <span style="font:500 15px var(--sans);letter-spacing:.3em;text-transform:uppercase">Uncava</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:34px">
+      <a class="nav-link" href="#">Product</a><a class="nav-link" href="#">Security</a><a class="nav-link" href="#">Docs</a><a class="nav-link" href="#">Blog</a><a class="nav-link" href="#" style="color:var(--text)">Contact</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <a class="nav-link" href="#" style="padding:9px 14px">Sign in</a>
+      <a href="#" style="background:var(--amber);color:var(--on-amber);font:600 14px var(--sans);padding:10px 18px;border-radius:8px;text-decoration:none">Book a demo</a>
+    </div>
+  </nav>
+
+  <section style="padding:96px 80px 120px;display:grid;grid-template-columns:minmax(0,1fr) 600px;gap:96px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:28px;padding-top:12px">
+      <span class="eyebrow" style="color:var(--amber-deep)">Book a demo</span>
+      <h1 style="font:600 60px/1.02 var(--sans);letter-spacing:-.045em;text-wrap:balance">See Uncava on one of your own mandates.</h1>
+      <p style="font:400 18px/1.6 var(--sans);color:var(--text2);max-width:520px">Bring a live search. We’ll build its brief, pull a first universe of companies and put it on a map — in the call, with you.</p>
+
+      <div style="display:flex;flex-direction:column;border-top:1px solid var(--line);margin-top:12px">
+        <div style="display:grid;grid-template-columns:48px 1fr;gap:8px;padding:22px 0;border-bottom:1px solid var(--line)">
+          <span style="font:500 13px var(--mono);color:var(--amber-deep);padding-top:3px">01</span>
+          <div style="display:flex;flex-direction:column;gap:4px"><h2 style="font:600 17px var(--sans)">A 30-minute call</h2><p style="font:400 15px/1.55 var(--sans);color:var(--text2)">A walkthrough on your search, not a slide deck.</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:48px 1fr;gap:8px;padding:22px 0;border-bottom:1px solid var(--line)">
+          <span style="font:500 13px var(--mono);color:var(--amber-deep);padding-top:3px">02</span>
+          <div style="display:flex;flex-direction:column;gap:4px"><h2 style="font:600 17px var(--sans)">Your mandate, mapped live</h2><p style="font:400 15px/1.55 var(--sans);color:var(--text2)">Brief, strategy and a first shortlist, built on screen.</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:48px 1fr;gap:8px;padding:22px 0;border-bottom:1px solid var(--line)">
+          <span style="font:500 13px var(--mono);color:var(--amber-deep);padding-top:3px">03</span>
+          <div style="display:flex;flex-direction:column;gap:4px"><h2 style="font:600 17px var(--sans)">A workspace for your team</h2><p style="font:400 15px/1.55 var(--sans);color:var(--text2)">If it fits, we set up your workspace and you invite your researchers.</p></div>
+        </div>
+      </div>
+
+      <p style="font:400 15px var(--sans);color:var(--text2)">Prefer email? Write to <a href="#">[hello@uncava.com]</a></p>
+    </div>
+
+    <form style="background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:40px;box-shadow:0 40px 80px -40px rgba(15,23,42,.25);display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <h2 style="font:600 24px var(--sans);letter-spacing:-.02em">Tell us about your search</h2>
+        <p style="font:400 14.5px var(--sans);color:var(--text3)">[Reply time, e.g. within one working day]</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+        <div style="display:flex;flex-direction:column;gap:7px"><span class="label">First name</span><span class="field"></span></div>
+        <div style="display:flex;flex-direction:column;gap:7px"><span class="label">Last name</span><span class="field"></span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px"><span class="label">Work email</span><span class="field">you@firm.com</span></div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+        <div style="display:flex;flex-direction:column;gap:7px"><span class="label">Firm</span><span class="field"></span></div>
+        <div style="display:flex;flex-direction:column;gap:7px"><span class="label">Team size</span><span class="field" style="justify-content:space-between">Select<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px"><span class="label">What are you searching for? <span style="color:var(--text3);font-weight:400">Optional</span></span><span class="field" style="min-height:112px;align-items:flex-start">e.g. a Group CFO for an energy business in DACH</span></div>
+      <div style="display:flex;gap:10px;align-items:flex-start;font:400 13.5px/1.5 var(--sans);color:var(--text2)">
+        <span style="flex:none;width:18px;height:18px;border-radius:5px;border:1.5px solid #cbd5e1;margin-top:1px"></span>
+        <span>We’ll use these details only to arrange your demo. See our <a href="#">privacy policy</a>.</span>
+      </div>
+      <span style="text-align:center;background:var(--amber);color:var(--on-amber);font:600 16px var(--sans);padding:15px;border-radius:10px">Book a demo</span>
+    </form>
+  </section>
+
+  <footer style="border-top:1px solid var(--line);padding:32px 80px;display:flex;justify-content:space-between;align-items:center;font:400 14px var(--sans);color:var(--text3)">
+    <div style="display:flex;align-items:center;gap:10px;color:var(--text)">
+      <span style="width:24px;height:24px;border-radius:5.2px;background:#16181c;color:#f4f5f7;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="24" height="24" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
+      <span style="font:500 13px var(--sans);letter-spacing:.3em;text-transform:uppercase">Uncava</span>
+    </div>
+    <div style="display:flex;gap:28px"><a href="#" style="color:var(--text3)">Docs</a><a href="#" style="color:var(--text3)">Blog</a><a href="#" style="color:var(--text3)">Security</a><a href="#" style="color:var(--text3)">Privacy</a><a href="#" style="color:var(--text3)">Terms</a></div>
+    <span>© 2026 Uncava</span>
+  </footer>
+</div>
+</x-dc>
+</body>
+</html>
