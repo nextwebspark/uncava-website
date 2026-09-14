@@ -1,0 +1,11 @@
+{
+  "extends": "astro/tsconfigs/strictest",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist", "node_modules", "design", "brand", "public"],
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./src/*"]
+    },
+    "allowImportingTsExtensions": true
+  }
+}
