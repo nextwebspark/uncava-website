@@ -1,0 +1,83 @@
+/*
+ * Design tokens: the UNCAVA palette (app.uncava.com's --u-* tokens), as drawn in design/*.dc.html.
+ * Shared by the site (global.css) and the docs (docs.css), so a token changes in one place.
+ * Two values are darkened from the app's for WCAG AA at the small sizes this site sets them in:
+ * --color-text-3 (4.49 → 4.69 on paper) and --color-green-text; the originals stay for fills.
+ * --color-accent is the fill that takes white text; --color-d-accent is the accent on dark grounds.
+ */
+@theme {
+  --color-ink: #08090b;
+  --color-ink-2: #0e1013;
+  --color-ink-3: #15181d;
+  --color-ink-line: rgb(255 255 255 / 0.07);
+  --color-graphite-1: #1d2128;
+  --color-graphite-2: #2b2f36;
+  --color-graphite-3: #3a3d44;
+  --color-declined: #6b4f4f;
+
+  --color-paper: #f7f8fa;
+  --color-panel: #ffffff;
+  --color-panel-2: #eceff3;
+  --color-table-head: #fbfbfc;
+  --color-line: rgb(3 7 18 / 0.09);
+  --color-line-soft: rgb(3 7 18 / 0.06);
+  --color-slate-line: rgb(3 7 18 / 0.16);
+
+  --color-text: #0b0d12;
+  --color-text-2: #4c5462;
+  --color-text-3: #687080;
+  --color-prose: #2b3441;
+  --color-d-text: #f4f6f8;
+  --color-d-text-2: #a6adbb;
+  --color-d-text-3: #7c8493;
+
+  --color-accent: #4a56d6;
+  --color-accent-hover: #3a46c4;
+  --color-accent-deep: #4a56d6;
+  --color-accent-dim: rgb(74 86 214 / 0.09);
+  --color-accent-tint: #e4e8f6;
+  --color-accent-ink: #2e3878;
+  --color-on-accent: #ffffff;
+  --color-d-accent: #6e79f2;
+  --color-d-accent-dim: rgb(110 121 242 / 0.14);
+  --color-signal: #a8602f;
+  --color-signal-dim: rgb(168 96 47 / 0.1);
+  --color-signal-ink: #7a4119;
+  --color-green: #0f9d6b;
+  --color-green-text: #0a7550;
+  --color-red: #d93a45;
+
+  --color-mark-tile: #16181c;
+  --color-mark-glyph: #f4f5f7;
+
+  --font-sans: 'Geist Variable', 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --tracking-display: -0.045em;
+  --tracking-heading: -0.04em;
+  --tracking-title: -0.02em;
+  --tracking-eyebrow: 0.08em;
+  --tracking-wordmark: 0.3em;
+
+  --shadow-float: 0 24px 60px rgb(0 0 0 / 0.5);
+  --shadow-window: 0 1px 0 rgb(15 23 42 / 0.03), 0 40px 80px -30px rgb(15 23 42 / 0.22);
+  --shadow-form: 0 40px 80px -40px rgb(15 23 42 / 0.25);
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+}
+
+/* The app's wordmark: medium weight, uppercase, wide tracking, never title-case bold. */
+@utility wordmark {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wordmark);
+  text-transform: uppercase;
+  line-height: 1;
+}

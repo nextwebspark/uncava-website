@@ -1,0 +1,266 @@
+---
+import BrandMark from '~/components/site/BrandMark.astro';
+import Icon from '~/components/site/Icon.astro';
+
+type Stage = 'Shortlisted' | 'In universe';
+
+interface GridRow {
+  company: string;
+  repeatsCompany?: boolean;
+  hq: string;
+  employees: string;
+  executive: string | null;
+  title: string;
+  source: 'Strategy' | 'Capture' | 'Import' | 'Manual';
+  stage: Stage;
+}
+
+const rows: GridRow[] = [
+  {
+    company: 'Nordwind Energie',
+    hq: 'Hamburg, DE',
+    employees: '4,200',
+    executive: 'Lena Brandt',
+    title: 'Chief Financial Officer',
+    source: 'Strategy',
+    stage: 'Shortlisted',
+  },
+  {
+    company: 'Nordwind Energie',
+    repeatsCompany: true,
+    hq: 'Hamburg, DE',
+    employees: '4,200',
+    executive: 'Jonas Keller',
+    title: 'VP Finance',
+    source: 'Capture',
+    stage: 'Shortlisted',
+  },
+  {
+    company: 'Rheinwerk Power',
+    hq: 'Essen, DE',
+    employees: '11,800',
+    executive: 'Anika Vogt',
+    title: 'Group Finance Director',
+    source: 'Import',
+    stage: 'In universe',
+  },
+  {
+    company: 'Solaris Grid AG',
+    hq: 'Zürich, CH',
+    employees: '2,650',
+    executive: null,
+    title: '—',
+    source: 'Strategy',
+    stage: 'In universe',
+  },
+  {
+    company: 'Baltic Offshore Wind',
+    hq: 'Copenhagen, DK',
+    employees: '1,900',
+    executive: 'Mads Holm',
+    title: 'CFO',
+    source: 'Manual',
+    stage: 'In universe',
+  },
+  {
+    company: 'Alpenstrom Holding',
+    hq: 'Vienna, AT',
+    employees: '6,300',
+    executive: 'Katharina Leitner',
+    title: 'Deputy CFO',
+    source: 'Strategy',
+    stage: 'In universe',
+  },
+  {
+    company: 'Meridian Utilities',
+    hq: 'Amsterdam, NL',
+    employees: '8,050',
+    executive: 'Sophie de Vries',
+    title: 'CFO',
+    source: 'Import',
+    stage: 'In universe',
+  },
+];
+
+const mobileRows = [
+  {
+    initials: 'NW',
+    primary: 'Lena Brandt',
+    secondary: 'CFO · Nordwind Energie',
+    stage: 'Shortlisted' as Stage | null,
+  },
+  {
+    initials: 'RH',
+    primary: 'Anika Vogt',
+    secondary: 'Group Finance Director · Rheinwerk',
+    stage: null,
+  },
+  { initials: 'SG', primary: 'Solaris Grid AG', secondary: null, stage: null },
+];
+
+const stages = [
+  { label: 'In universe', count: 48, current: true },
+  { label: 'Shortlisted', count: 12, current: false },
+  { label: 'Declined', count: 9, current: false },
+];
+
+const headers = ['Company', 'HQ', 'Employees', 'Executive', 'Title', 'Source', 'Stage'];
+---
+
+<section
+  id="companies"
+  aria-labelledby="companies-title"
+  class="container-page flex flex-col gap-5 pb-16 md:items-center md:gap-12 md:pb-32"
+>
+  <div class="flex flex-col gap-4 md:items-center md:text-center">
+    <p class="eyebrow hidden text-accent-deep md:block">Companies</p>
+    <h2
+      id="companies-title"
+      class="max-w-[820px] text-[30px] leading-[1.08] tracking-[-0.035em] md:text-[44px] md:leading-[1.04] md:tracking-heading xl:text-[52px]"
+    >
+      See the market the way your client will.
+    </h2>
+    <p class="hidden max-w-[620px] text-lg leading-[1.6] text-text-2 md:block">
+      A company with three executives is three lines. A company with none keeps its slot. Switch to
+      the map when geography is the question.
+    </p>
+  </div>
+
+  <figure class="w-full max-w-[1280px] overflow-hidden rounded-2xl border border-line bg-panel shadow-[0_24px_50px_-24px_rgb(15_23_42/0.25)] md:rounded-[18px] md:shadow-window">
+    <figcaption class="sr-only">
+      An example Companies screen for a Group CFO mandate: each row is an executive at a company,
+      and a company with no executives keeps an Add executive slot.
+    </figcaption>
+
+    <div
+      class="hidden flex-wrap items-center justify-between gap-4 border-b border-line px-5 py-4 md:flex"
+      aria-hidden="true"
+    >
+      <div class="flex items-center gap-3.5">
+        <BrandMark size={26} />
+        <div class="flex flex-col">
+          <span class="text-sm font-semibold">Group CFO – Energy Division</span>
+          <span class="text-xs text-text-3">Companies</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-1 rounded-[9px] border border-line bg-panel-2 p-[3px]">
+        {stages.map((stage) => (
+          <span
+            class:list={[
+              'rounded-md px-3 py-1.5 text-[13px] font-medium',
+              stage.current ? 'bg-panel shadow-[0_1px_2px_rgb(15_23_42/0.08)]' : 'text-text-2',
+            ]}
+          >
+            {stage.label}{' '}
+            <span class:list={[stage.current ? 'text-text-3' : 'text-text-2']}>{stage.count}</span>
+          </span>
+        ))}
+      </div>
+      <div class="flex items-center gap-2.5">
+        <div class="flex w-[220px] items-center gap-2 rounded-lg border border-line px-[11px] py-[7px] text-[13px] text-text-3">
+          <Icon name="search" size={15} />
+          Search companies
+        </div>
+        <div class="flex overflow-hidden rounded-lg border border-line text-[13px] font-medium">
+          <span class="bg-text px-3 py-[7px] text-white">Table</span>
+          <span class="px-3 py-[7px] text-text-2">Map</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden overflow-x-auto md:block">
+      <table class="w-full min-w-[1080px] border-collapse text-left">
+        <thead>
+          <tr class="bg-table-head">
+            <th class="w-9 border-b border-line px-3.5 py-2.5">
+              <span class="sr-only">Selected</span>
+            </th>
+            {headers.map((header) => (
+              <th class="border-b border-line px-3.5 py-2.5 font-mono text-[11px] font-medium tracking-[0.06em] text-text-3 uppercase">
+                {header}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody class="text-[13px] whitespace-nowrap text-text-2">
+          {rows.map((row) => (
+            <tr class="border-b border-line-soft last:border-b-0">
+              <td class="px-3.5 py-[11px]">
+                <span class="block size-[15px] rounded-[4px] border-[1.5px] border-slate-line" />
+              </td>
+              <td
+                class:list={[
+                  'px-3.5 py-[11px]',
+                  row.repeatsCompany ? 'text-text-3' : 'font-medium text-text',
+                ]}
+              >
+                {row.company}
+              </td>
+              <td class="px-3.5 py-[11px]">{row.hq}</td>
+              <td class="px-3.5 py-[11px]">{row.employees}</td>
+              <td class="px-3.5 py-[11px] text-text">
+                {row.executive ?? (
+                  <span class="inline-flex items-center gap-1.5 font-medium text-accent">
+                    <Icon name="plus" size={13} strokeWidth={2} />
+                    Add executive
+                  </span>
+                )}
+              </td>
+              <td class="px-3.5 py-[11px]">{row.title}</td>
+              <td class="px-3.5 py-[11px]">{row.source}</td>
+              <td class="px-3.5 py-[11px]">
+                <span
+                  class:list={[
+                    'rounded-md px-2 py-[3px] text-[11.5px] font-medium',
+                    row.stage === 'Shortlisted'
+                      ? 'bg-accent-dim text-accent-deep'
+                      : 'bg-panel-2 text-text-2',
+                  ]}
+                >
+                  {row.stage}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="md:hidden">
+      <div class="flex gap-1.5 overflow-x-auto border-b border-line p-3" aria-hidden="true">
+        {stages.map((stage) => (
+          <span
+            class:list={[
+              'flex min-h-11 flex-none items-center rounded-lg px-3 text-[13px] font-medium whitespace-nowrap',
+              stage.current ? 'bg-text text-white' : 'border border-line text-text-2',
+            ]}
+          >
+            {stage.label} {stage.count}
+          </span>
+        ))}
+      </div>
+      <ul>
+        {mobileRows.map((row) => (
+          <li class="flex items-center gap-3 border-b border-line-soft p-3.5 last:border-b-0">
+            <span class="grid size-9 flex-none place-items-center rounded-[9px] border border-line bg-panel-2 text-xs font-semibold text-text-2">
+              {row.initials}
+            </span>
+            <div class="min-w-0 flex-1">
+              <div class="text-[15px] font-medium">{row.primary}</div>
+              {row.secondary ? (
+                <div class="text-[13px] text-text-3">{row.secondary}</div>
+              ) : (
+                <div class="text-[13px] font-medium text-accent">+ Add executive</div>
+              )}
+            </div>
+            {row.stage && (
+              <span class="rounded-md bg-accent-dim px-2 py-[3px] text-xs font-medium text-accent-deep">
+                {row.stage}
+              </span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </figure>
+</section>

@@ -1,0 +1,43 @@
+---
+const endpoint = import.meta.env.PUBLIC_NEWSLETTER_FORM_ENDPOINT;
+---
+
+<section aria-labelledby="newsletter-title" class="container-page pb-16 md:pb-24">
+  <div class="grid grid-cols-[minmax(0,1fr)] items-center gap-6 rounded-[20px] bg-ink p-6 text-d-text sm:p-10 md:gap-12 lg:grid-cols-2 lg:p-14">
+    <div class="flex flex-col gap-3">
+      <h2
+        id="newsletter-title"
+        class="text-[28px] leading-[1.1] tracking-[-0.035em] md:text-[34px]"
+      >
+        New field notes, in your inbox.
+      </h2>
+      <p class="text-base leading-[1.6] text-d-text-2">Methods, not marketing.</p>
+    </div>
+    {endpoint ? (
+      <form action={endpoint} method="post" class="flex flex-col gap-2.5 sm:flex-row">
+        <label for="newsletter-email" class="sr-only">
+          Work email
+        </label>
+        <input
+          id="newsletter-email"
+          name="email"
+          type="email"
+          required
+          autocomplete="email"
+          placeholder="you@firm.com"
+          class="min-h-12 flex-1 rounded-[10px] border border-ink-line bg-ink-2 px-4 text-[15px] text-d-text placeholder:text-d-text-3"
+        />
+        <button
+          type="submit"
+          class="min-h-12 rounded-[10px] bg-accent px-[22px] text-[15px] font-semibold text-on-accent hover:bg-accent-hover"
+        >
+          Subscribe
+        </button>
+      </form>
+    ) : (
+      <p class="rounded-[10px] border border-ink-line bg-ink-2 px-4 py-3.5 text-[15px] text-d-text-3">
+        [Newsletter signup — provider not yet connected]
+      </p>
+    )}
+  </div>
+</section>

@@ -1,0 +1,261 @@
+@layer base, starlight, theme, components, utilities;
+
+@import '@astrojs/starlight-tailwind';
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+@import './theme.css';
+
+@source not '../../design';
+@source not '../../brand';
+
+/* Unlayered so it wins over starlight-tailwind's utilities-layer variable mapping. */
+:root {
+  --sl-font: var(--font-sans);
+  --sl-font-mono: var(--font-mono);
+  --sl-nav-height: 4rem;
+  --sl-sidebar-width: 17.5rem;
+  --sl-content-width: 45rem;
+  --sl-text-h1: 2.625rem;
+  --sl-text-h2: 1.625rem;
+  --sl-text-h3: 1.25rem;
+
+  --sl-color-white: var(--color-d-text);
+  --sl-color-gray-1: var(--color-d-text-2);
+  --sl-color-gray-2: var(--color-d-text-2);
+  --sl-color-gray-3: var(--color-d-text-3);
+  --sl-color-gray-4: #4c5462;
+  --sl-color-gray-5: var(--color-ink-line);
+  --sl-color-gray-6: var(--color-ink-2);
+  --sl-color-black: var(--color-ink);
+  --sl-color-accent-low: #1e2440;
+  --sl-color-accent: var(--color-d-accent);
+  --sl-color-accent-high: #a3a9fa;
+  --uc-sidebar-current-bg: var(--color-d-accent-dim);
+  --uc-steps-marker: var(--color-d-text);
+  --uc-steps-marker-text: var(--color-ink);
+  --uc-table-head: var(--color-ink-2);
+}
+
+:root[data-theme='light'] {
+  --sl-color-white: var(--color-text);
+  --sl-color-gray-1: var(--color-prose);
+  --sl-color-gray-2: var(--color-text-2);
+  --sl-color-gray-3: var(--color-text-3);
+  --sl-color-gray-4: #a6adbb;
+  --sl-color-gray-5: var(--color-line);
+  --sl-color-gray-6: var(--color-line-soft);
+  --sl-color-gray-7: var(--color-panel-2);
+  --sl-color-black: var(--color-panel);
+  --sl-color-accent-low: var(--color-accent-tint);
+  --sl-color-accent: var(--color-accent);
+  --sl-color-accent-high: var(--color-accent-ink);
+  --sl-color-bg-nav: var(--color-panel);
+  --sl-color-bg-sidebar: var(--color-panel);
+  --sl-color-hairline: var(--color-line);
+  --sl-color-hairline-shade: var(--color-line);
+  --uc-sidebar-current-bg: var(--color-accent-dim);
+  --uc-steps-marker: var(--color-text);
+  --uc-steps-marker-text: var(--color-panel);
+  --uc-table-head: var(--color-paper);
+}
+
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+h1#_top {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+h1#_top {
+  letter-spacing: var(--tracking-heading);
+  line-height: 1.1;
+}
+
+.sl-markdown-content {
+  font-size: 1.03125rem;
+  line-height: 1.72;
+}
+
+.sl-markdown-content p:first-child {
+  font-size: 1.1875rem;
+  color: var(--sl-color-gray-2);
+}
+
+.sl-markdown-content code:not(pre code) {
+  font-size: 0.84em;
+  background: var(--sl-color-gray-7, var(--sl-color-gray-6));
+  border: 1px solid var(--sl-color-gray-6);
+  border-radius: 5px;
+  padding: 1px 6px;
+  color: var(--sl-color-white);
+}
+
+/* Sidebar, per design/Docs.dc.html: bold group labels, soft rounded links, accent-tinted current page. */
+.sidebar-content .large {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--sl-color-white);
+}
+
+.sidebar-content a {
+  border-radius: 7px;
+  font-size: 0.875rem;
+  color: var(--sl-color-gray-2);
+}
+
+.sidebar-content a:hover {
+  background: var(--sl-color-gray-6);
+  color: var(--sl-color-white);
+}
+
+.sidebar-content a[aria-current='page'],
+.sidebar-content a[aria-current='page']:hover,
+.sidebar-content a[aria-current='page']:focus {
+  background: var(--uc-sidebar-current-bg);
+  color: var(--sl-color-white);
+  font-weight: 500;
+}
+
+/* Right-hand table of contents. */
+starlight-toc h2 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--sl-color-gray-3);
+}
+
+starlight-toc a {
+  font-size: 0.875rem;
+  color: var(--sl-color-gray-3);
+}
+
+starlight-toc a[aria-current='true'] {
+  color: var(--sl-color-white);
+  font-weight: 500;
+}
+
+/* Every ordered list in the docs is a sequence of steps: numbered discs, the last one accent. */
+.sl-markdown-content ol:not(:where(.not-content *)) {
+  list-style: none;
+  counter-reset: uc-step;
+  padding-inline-start: 0;
+}
+
+.sl-markdown-content ol:not(:where(.not-content *)) > li {
+  counter-increment: uc-step;
+  position: relative;
+  padding-inline-start: 3.25rem;
+  padding-bottom: 1.375rem;
+  margin: 0;
+  color: var(--sl-color-gray-2);
+}
+
+.sl-markdown-content ol:not(:where(.not-content *)) > li::before {
+  content: counter(uc-step);
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font: 600 13px/1 var(--font-mono);
+  background: var(--uc-steps-marker);
+  color: var(--uc-steps-marker-text);
+}
+
+.sl-markdown-content ol:not(:where(.not-content *)) > li:last-child::before {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.sl-markdown-content ol:not(:where(.not-content *)) > li > strong:first-child {
+  display: block;
+  font-size: 1.03125rem;
+  font-weight: 600;
+  color: var(--sl-color-white);
+}
+
+/* Tables, per the design's mapping table. */
+.sl-markdown-content table:not(:where(.not-content *)) {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.sl-markdown-content :is(th, td):not(:where(.not-content *)) {
+  border-bottom: 1px solid var(--sl-color-gray-6);
+  padding: 0.75rem 0.875rem;
+  font-size: 0.90625rem;
+}
+
+.sl-markdown-content th:not(:where(.not-content *)) {
+  font: 500 11.5px var(--font-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-3);
+  background: var(--uc-table-head);
+  border-bottom-color: var(--sl-color-gray-5);
+}
+
+.sl-markdown-content tr:last-child td:not(:where(.not-content *)) {
+  border-bottom: none;
+}
+
+.sl-markdown-content .table-wrap {
+  overflow-x: auto;
+}
+
+/* Asides: note is the design's accent "Before you start", caution its signal "taken as written". */
+.starlight-aside {
+  border-radius: 12px;
+  border-inline-start-width: 1px;
+  border-style: solid;
+  padding: 1rem 1.125rem;
+}
+
+:root[data-theme='light'] .starlight-aside--note {
+  --sl-color-asides-text-accent: var(--color-accent-ink);
+  --sl-color-asides-border: rgb(74 86 214 / 0.2);
+  background: var(--color-accent-dim);
+  color: var(--color-accent-ink);
+}
+
+:root[data-theme='light'] .starlight-aside--caution {
+  --sl-color-asides-text-accent: var(--color-signal-ink);
+  --sl-color-asides-border: rgb(168 96 47 / 0.3);
+  background: var(--color-signal-dim);
+  color: var(--color-signal-ink);
+}
+
+.starlight-aside__title {
+  font-size: 0.90625rem;
+  font-weight: 600;
+}
+
+/* Previous / next cards. */
+.pagination-links a {
+  border-radius: 12px;
+  box-shadow: none;
+  border-color: var(--sl-color-gray-5);
+}
+
+.pagination-links a:hover {
+  border-color: var(--sl-color-gray-4);
+}
+
+.pagination-links .link-title {
+  font-size: 0.96875rem;
+  font-weight: 600;
+  color: var(--sl-color-white);
+}

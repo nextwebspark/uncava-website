@@ -1,0 +1,51 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import BlogListing from '~/components/blog/BlogListing.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { BLOG_TAGS, BLOG_TAG_SLUGS } from '~/lib/blog-tags';
+import { getPublishedPosts } from '~/lib/content';
+import { breadcrumbList } from '~/lib/seo/jsonld';
+
+export const getStaticPaths = (async () => {
+  const posts = await getPublishedPosts();
+  const availableTags = BLOG_TAG_SLUGS.filter((slug) =>
+    posts.some((post) => post.data.tags.includes(slug)),
+  );
+
+  return BLOG_TAGS.filter((tag) => availableTags.includes(tag.slug)).map((tag) => ({
+    params: { tag: tag.slug },
+    props: {
+      tag,
+      availableTags,
+      posts: posts.filter((post) => post.data.tags.includes(tag.slug)),
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { tag, availableTags, posts } = Astro.props;
+const description = `Field notes on executive search from Uncava, filed under ${tag.label.toLowerCase()}: methods for research teams and consultants.`;
+---
+
+<BaseLayout
+  title={`${tag.label} — Blog`}
+  description={description}
+  ogTitle={tag.label}
+  jsonLd={[
+    breadcrumbList([
+      { name: 'Blog', path: '/blog' },
+      { name: tag.label, path: `/blog/tag/${tag.slug}` },
+    ]),
+  ]}
+>
+  <BlogListing
+    eyebrow="Blog"
+    heading={tag.label}
+    intro={description}
+    posts={posts}
+    currentTag={tag.slug}
+    availableTags={availableTags}
+    featureFirst={false}
+  />
+</BaseLayout>

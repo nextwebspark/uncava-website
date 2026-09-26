@@ -1,0 +1,18 @@
+---
+import BrandMark from '~/components/site/BrandMark.astro';
+---
+
+<a href="/docs" class="docs-title flex items-center gap-2.5" aria-label="Uncava Docs home">
+  <BrandMark size={28} tone="dark" class="dark:hidden" />
+  <BrandMark size={28} tone="light" class="hidden dark:block" />
+  <span class="wordmark text-sm text-(--sl-color-white)">Uncava</span>
+  <span class="rounded-md border border-(--sl-color-gray-5) px-[7px] py-0.5 font-mono text-xs font-medium text-(--sl-color-gray-3)">
+    Docs
+  </span>
+</a>
+
+<style>
+  .docs-title {
+    text-decoration: none;
+  }
+</style>

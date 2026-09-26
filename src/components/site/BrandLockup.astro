@@ -1,0 +1,25 @@
+---
+import { site } from '~/lib/site';
+import BrandMark from './BrandMark.astro';
+
+interface Props {
+  tone?: 'dark' | 'light';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  class?: string;
+}
+
+const { tone = 'dark', size = 'md', href = '/', class: className } = Astro.props;
+
+const markSize = { sm: 24, md: 28, lg: 30 }[size];
+const textSize = { sm: 'text-[13px]', md: 'text-sm', lg: 'text-sm lg:text-[15px]' }[size];
+---
+
+<a
+  href={href}
+  class:list={['flex items-center gap-2.5', className]}
+  aria-label={`${site.name} home`}
+>
+  <BrandMark size={markSize} tone={tone} />
+  <span class:list={['wordmark', textSize]}>{site.name}</span>
+</a>

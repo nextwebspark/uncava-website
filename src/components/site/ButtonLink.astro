@@ -1,0 +1,48 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Variant = 'accent' | 'ink' | 'outline-dark' | 'outline-light';
+type Size = 'sm' | 'md';
+
+interface Props extends HTMLAttributes<'a'> {
+  href: string;
+  variant?: Variant;
+  size?: Size;
+  block?: boolean;
+}
+
+const {
+  href,
+  variant = 'accent',
+  size = 'md',
+  block = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const variants: Record<Variant, string> = {
+  accent: 'bg-accent text-on-accent font-semibold hover:bg-accent-hover',
+  ink: 'bg-text text-white font-semibold hover:bg-ink-3',
+  'outline-dark': 'border border-ink-line text-d-text font-medium hover:border-graphite-3',
+  'outline-light': 'border border-line bg-panel text-text font-medium hover:border-slate-line',
+};
+
+const sizes: Record<Size, string> = {
+  sm: 'rounded-lg px-[18px] py-2.5 text-sm',
+  md: 'rounded-[10px] px-[22px] py-3.5 text-[15px]',
+};
+---
+
+<a
+  href={href}
+  class:list={[
+    'inline-flex items-center justify-center gap-2 whitespace-nowrap no-underline transition-colors',
+    variants[variant],
+    sizes[size],
+    block && 'w-full',
+    className,
+  ]}
+  {...rest}
+>
+  <slot />
+</a>

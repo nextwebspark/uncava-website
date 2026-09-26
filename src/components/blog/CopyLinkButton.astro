@@ -1,0 +1,33 @@
+---
+import Icon from '~/components/site/Icon.astro';
+
+interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+---
+
+<button
+  type="button"
+  data-copy-link={url}
+  hidden
+  class="grid size-[38px] place-items-center rounded-[9px] border border-line text-text-2 transition-colors hover:border-slate-line hover:text-text"
+>
+  <span class="sr-only" data-copy-label>
+    Copy link
+  </span>
+  <Icon name="link" />
+</button>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-copy-link]')) {
+    if (!navigator.clipboard) continue;
+    button.hidden = false;
+    button.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(button.dataset.copyLink ?? location.href);
+      const label = button.querySelector('[data-copy-label]');
+      if (label) label.textContent = 'Link copied';
+    });
+  }
+</script>

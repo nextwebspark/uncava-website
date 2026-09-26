@@ -1,0 +1,110 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const dots: readonly (readonly [number, number])[] = [
+  [300, 150],
+  [312, 142],
+  [324, 150],
+  [336, 142],
+  [348, 150],
+  [288, 162],
+  [300, 174],
+  [360, 174],
+  [372, 186],
+  [336, 198],
+  [348, 210],
+  [384, 222],
+  [396, 234],
+  [420, 258],
+  [432, 282],
+  [444, 306],
+  [456, 330],
+  [480, 354],
+  [150, 186],
+  [162, 198],
+  [174, 210],
+  [138, 222],
+  [186, 234],
+  [174, 258],
+  [198, 282],
+  [210, 330],
+  [222, 366],
+  [210, 402],
+  [228, 438],
+  [216, 474],
+  [324, 306],
+  [336, 342],
+  [348, 378],
+  [336, 414],
+  [360, 438],
+];
+
+const arcs = [
+  'M322 166 Q240 120 172 212',
+  'M322 166 Q390 190 412 268',
+  'M322 166 Q450 230 470 340',
+  'M322 166 Q260 300 216 420',
+];
+
+const pins: readonly (readonly [number, number, number])[] = [
+  [322, 166, 5],
+  [344, 176, 3.5],
+  [336, 190, 3],
+  [306, 182, 3],
+  [172, 212, 4],
+  [412, 268, 3.5],
+  [470, 340, 4],
+  [216, 420, 3.5],
+];
+---
+
+<svg
+  viewBox="0 0 600 600"
+  preserveAspectRatio="xMidYMid meet"
+  class={className}
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    <radialGradient id="hero-sphere" cx="38%" cy="32%" r="75%">
+      <stop offset="0%" stop-color="#1d2128"></stop>
+      <stop offset="100%" stop-color="#08090b"></stop>
+    </radialGradient>
+    <linearGradient id="hero-arc" x1="0" x2="1">
+      <stop offset="0%" stop-color="#6e79f2" stop-opacity=".1"></stop>
+      <stop offset="100%" stop-color="#6e79f2" stop-opacity=".9"></stop>
+    </linearGradient>
+  </defs>
+  <circle cx="300" cy="300" r="250" fill="url(#hero-sphere)" stroke="#2b2b2d"></circle>
+  <g fill="none" stroke="rgba(244,246,248,.07)" stroke-width="1">
+    <ellipse cx="300" cy="300" rx="85" ry="250"></ellipse>
+    <ellipse cx="300" cy="300" rx="160" ry="250"></ellipse>
+    <ellipse cx="300" cy="300" rx="220" ry="250"></ellipse>
+    <line x1="300" y1="50" x2="300" y2="550"></line>
+    <ellipse cx="300" cy="84" rx="125" ry="15"></ellipse>
+    <ellipse cx="300" cy="175" rx="216" ry="30"></ellipse>
+    <ellipse cx="300" cy="300" rx="250" ry="42"></ellipse>
+    <ellipse cx="300" cy="425" rx="216" ry="30"></ellipse>
+    <ellipse cx="300" cy="516" rx="125" ry="15"></ellipse>
+  </g>
+  <g fill="rgba(166,173,187,.22)">
+    {dots.map(([cx, cy]) => (
+      <circle cx={cx} cy={cy} r="1.6" />
+    ))}
+  </g>
+  <g fill="none" stroke="url(#hero-arc)" stroke-width="1.4">
+    {arcs.map((d) => (
+      <path d={d} />
+    ))}
+  </g>
+  <g fill="#6e79f2">
+    <circle cx="322" cy="166" r="14" opacity=".18"></circle>
+    {pins.map(([cx, cy, r]) => (
+      <circle cx={cx} cy={cy} r={r} />
+    ))}
+  </g>
+</svg>

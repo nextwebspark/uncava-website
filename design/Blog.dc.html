@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#08090b;--ink2:#0e1013;--ink-line:#2b2b2d;--paper:#f7f8fa;--panel:#ffffff;--panel2:#eceff3;--line:#e8e9ea;--line-soft:#f0f0f1;--text:#0b0d12;--text2:#4c5462;--text3:#687080;--d-text:#f4f6f8;--d-text2:#a6adbb;--d-text3:#7c8493;--accent:#4a56d6;--accent-deep:#4a56d6;--accent-dim:rgba(74,86,214,.09);--on-accent:#ffffff;--d-accent:#6e79f2;--signal:#a8602f;--signal-dim:rgba(168,96,47,.1);--link:#4a56d6;--sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--text);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    a:hover{color:var(--link)}
+    h1,h2,h3,p{margin:0}
+    .eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+    .nav-link{color:var(--text2);font:500 14px var(--sans)}
+    .nav-link:hover{color:var(--text)}
+    .chip{font:500 13.5px var(--sans);padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--text2)}
+    .card-title{font:600 20px/1.3 var(--sans);letter-spacing:-.02em;text-wrap:balance}
+    .meta{font:400 13px var(--mono);color:var(--text3)}
+  </style>
+</helmet>
+<div style="width:1440px;background:var(--paper)">
+  <nav style="display:flex;align-items:center;justify-content:space-between;padding:20px 80px;border-bottom:1px solid var(--line);background:var(--panel)">
+    <div style="display:flex;align-items:center;gap:11px">
+      <span style="width:30px;height:30px;border-radius:6.5px;background:#16181c;color:#f4f5f7;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="30" height="30" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
+      <span style="font:500 15px var(--sans);letter-spacing:.3em;text-transform:uppercase">Uncava</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:34px">
+      <a class="nav-link" href="#">Product</a><a class="nav-link" href="#">Security</a><a class="nav-link" href="#">Docs</a><a class="nav-link" href="#" style="color:var(--text)">Blog</a><a class="nav-link" href="#">Contact</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <a class="nav-link" href="#" style="padding:9px 14px">Sign in</a>
+      <a href="#" style="background:var(--accent);color:var(--on-accent);font:600 14px var(--sans);padding:10px 18px;border-radius:8px">Book a demo</a>
+    </div>
+  </nav>
+
+  <header style="padding:88px 80px 48px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:80px;align-items:end">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <span class="eyebrow" style="color:var(--accent-deep)">Blog</span>
+      <h1 style="font:600 64px/1.0 var(--sans);letter-spacing:-.045em">Field notes on executive search.</h1>
+    </div>
+    <p style="font:400 18px/1.6 var(--sans);color:var(--text2);max-width:520px">How research teams map markets, make decisions about companies, and keep clients close to the search — and what we’re building to help.</p>
+  </header>
+
+  <div style="padding:0 80px 40px;display:flex;gap:8px">
+    <span class="chip" style="background:var(--text);color:#fff;border-color:var(--text)">All</span>
+    <span class="chip">Market mapping</span>
+    <span class="chip">Research craft</span>
+    <span class="chip">Client delivery</span>
+    <span class="chip">Product</span>
+  </div>
+
+  <section style="padding:0 80px 72px">
+    <a href="#" style="display:grid;grid-template-columns:760px 1fr;background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden">
+      <div style="height:420px;background:var(--ink);position:relative;overflow:hidden">
+        <div style="position:absolute;inset:0;background:radial-gradient(420px 320px at 60% 50%,rgba(110,121,242,.16),transparent 70%)"></div>
+        <svg width="760" height="420" viewBox="0 0 760 420" style="position:absolute;inset:0">
+          <g fill="none" stroke="rgba(244,246,248,.08)"><circle cx="400" cy="230" r="200"></circle><ellipse cx="400" cy="230" rx="70" ry="200"></ellipse><ellipse cx="400" cy="230" rx="135" ry="200"></ellipse><ellipse cx="400" cy="230" rx="200" ry="34"></ellipse><ellipse cx="400" cy="130" rx="172" ry="24"></ellipse><ellipse cx="400" cy="330" rx="172" ry="24"></ellipse></g>
+          <g fill="none" stroke="rgba(110,121,242,.65)" stroke-width="1.4"><path d="M420 140 Q340 90 280 170"></path><path d="M420 140 Q520 170 540 250"></path><path d="M420 140 Q380 260 330 320"></path></g>
+          <g fill="#6e79f2"><circle cx="420" cy="140" r="6"></circle><circle cx="280" cy="170" r="4"></circle><circle cx="540" cy="250" r="4"></circle><circle cx="330" cy="320" r="4"></circle><circle cx="440" cy="152" r="3"></circle></g>
+        </svg>
+      </div>
+      <div style="padding:48px;display:flex;flex-direction:column;justify-content:space-between;gap:24px">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:center;gap:10px"><span style="font:500 12px var(--sans);color:var(--accent-deep);background:var(--accent-dim);border-radius:6px;padding:4px 9px">Market mapping</span><span class="meta">Featured</span></div>
+          <h2 style="font:600 36px/1.12 var(--sans);letter-spacing:-.035em;text-wrap:balance">How to map an executive market before the kickoff call</h2>
+          <p style="font:400 16.5px/1.6 var(--sans);color:var(--text2)">A mandate is won or lost in its first week. A practical method for turning a role title into a defensible universe of companies and people — before the client asks.</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="width:36px;height:36px;border-radius:50%;background:var(--panel2);border:1px solid var(--line)"></span>
+          <div style="display:flex;flex-direction:column"><span style="font:500 14px var(--sans)">[Author name]</span><span class="meta">[Date] · 8 min read</span></div>
+        </div>
+      </div>
+    </a>
+  </section>
+
+  <section style="padding:0 80px 96px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 28px">
+    <a href="#" style="display:flex;flex-direction:column;gap:16px">
+      <div style="height:220px;border-radius:14px;background:var(--panel2);border:1px solid var(--line);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:34px 30px;align-items:end">
+        <span style="height:70%;border-radius:8px;background:#fff;border:1px solid var(--line)"></span>
+        <span style="height:38%;border-radius:8px;background:var(--accent-dim);border:1px solid rgba(74,86,214,.4)"></span>
+        <span style="height:22%;border-radius:8px;border:1px dashed #d7d7d9"></span>
+      </div>
+      <span class="meta">Research craft · 6 min</span>
+      <h3 class="card-title">In universe, shortlisted, declined: why every company deserves a decision</h3>
+      <p style="font:400 15px/1.6 var(--sans);color:var(--text2)">A declined company is research, not waste. Recording the no is what makes the yes defensible.</p>
+    </a>
+    <a href="#" style="display:flex;flex-direction:column;gap:16px">
+      <div style="height:220px;border-radius:14px;background:var(--ink);display:grid;place-items:center">
+        <svg width="220" height="150" viewBox="0 0 220 150" fill="none"><path d="M110 44V64M60 64H160M60 64V82M160 64V82" stroke="#3a3d44" stroke-width="1.4"></path><rect x="70" y="14" width="80" height="30" rx="7" stroke="#6e79f2" stroke-width="1.6"></rect><rect x="24" y="82" width="72" height="28" rx="7" stroke="#3a3d44"></rect><rect x="124" y="82" width="72" height="28" rx="7" stroke="#3a3d44"></rect></svg>
+      </div>
+      <span class="meta">Client delivery · 7 min</span>
+      <h3 class="card-title">Writing a position brief the client will actually sign off</h3>
+      <p style="font:400 15px/1.6 var(--sans);color:var(--text2)">Mandate context, reporting lines, compensation and assessment criteria — in the order a client reads them.</p>
+    </a>
+    <a href="#" style="display:flex;flex-direction:column;gap:16px">
+      <div style="height:220px;border-radius:14px;background:var(--panel2);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:10px;padding:0 36px;font:400 13px var(--mono)">
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">Full Name</span><span>→ Name</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">Co.</span><span>→ Company</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">Base (EUR)</span><span>→ Compensation</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">Notice</span><span style="color:var(--accent-deep)">+ Custom column</span></div>
+      </div>
+      <span class="meta">Product · 5 min</span>
+      <h3 class="card-title">Your research spreadsheet is a map waiting to happen</h3>
+      <p style="font:400 15px/1.6 var(--sans);color:var(--text2)">Bring years of candidate lists into a mandate without retyping them — and without sending names to a model.</p>
+    </a>
+    <a href="#" style="display:flex;flex-direction:column;gap:16px">
+      <div style="height:220px;border-radius:14px;background:var(--ink);position:relative;overflow:hidden">
+        <svg width="100%" height="220" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice"><g fill="rgba(166,173,187,.2)"><circle cx="80" cy="70" r="2"></circle><circle cx="96" cy="80" r="2"></circle><circle cx="112" cy="70" r="2"></circle><circle cx="104" cy="96" r="2"></circle><circle cx="120" cy="116" r="2"></circle><circle cx="190" cy="60" r="2"></circle><circle cx="206" cy="52" r="2"></circle><circle cx="222" cy="62" r="2"></circle><circle cx="214" cy="84" r="2"></circle><circle cx="230" cy="110" r="2"></circle><circle cx="300" cy="70" r="2"></circle><circle cx="316" cy="90" r="2"></circle><circle cx="332" cy="116" r="2"></circle></g><g fill="none" stroke="rgba(110,121,242,.6)"><path d="M210 64 Q150 20 100 80"></path><path d="M210 64 Q280 40 320 96"></path></g><g fill="#6e79f2"><circle cx="210" cy="64" r="5"></circle><circle cx="100" cy="80" r="4"></circle><circle cx="320" cy="96" r="4"></circle></g></svg>
+      </div>
+      <span class="meta">Market mapping · 6 min</span>
+      <h3 class="card-title">“Where are they?” Answering the client’s first question with a map</h3>
+      <p style="font:400 15px/1.6 var(--sans);color:var(--text2)">Geography shapes relocation, compensation and pool size. Show it before you’re asked.</p>
+    </a>
+    <a href="#" style="display:flex;flex-direction:column;gap:16px">
+      <div style="height:220px;border-radius:14px;background:var(--panel2);border:1px solid var(--line);display:grid;place-items:center">
+        <div style="width:220px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;box-shadow:0 16px 30px -18px rgba(15,23,42,.3)">
+          <span style="font:600 12.5px var(--sans)">Capture executive</span>
+          <span style="height:7px;width:70%;border-radius:4px;background:#d7d7d9"></span>
+          <span style="height:7px;width:50%;border-radius:4px;background:#e8e9ea"></span>
+          <span style="text-align:center;font:600 12px var(--sans);background:var(--accent);color:var(--on-accent);border-radius:7px;padding:7px;margin-top:4px">Add to mandate</span>
+        </div>
+      </div>
+      <span class="meta">Product · 4 min</span>
+      <h3 class="card-title">Capturing research without breaking your flow</h3>
+      <p style="font:400 15px/1.6 var(--sans);color:var(--text2)">One click from the profile you’re reading to the mandate you’re running.</p>
+    </a>
+    <a href="#" style="display:flex;flex-direction:column;gap:16px">
+      <div style="height:220px;border-radius:14px;background:var(--ink);display:grid;place-items:center;color:#f4f6f8">
+        <svg viewBox="86 86 340 340" width="140" height="140" fill="currentColor" stroke="currentColor" opacity=".35"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg>
+      </div>
+      <span class="meta">Client delivery · 5 min</span>
+      <h3 class="card-title">Giving clients visibility without giving away the search</h3>
+      <p style="font:400 15px/1.6 var(--sans);color:var(--text2)">What a hiring-company representative should see, what they shouldn’t, and why read-only matters.</p>
+    </a>
+  </section>
+
+  <section style="margin:0 80px 96px;background:var(--ink);color:var(--d-text);border-radius:20px;padding:56px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <h2 style="font:600 34px/1.1 var(--sans);letter-spacing:-.035em">New field notes, in your inbox.</h2>
+      <p style="font:400 16px/1.6 var(--sans);color:var(--d-text2)">Methods, not marketing.</p>
+    </div>
+    <div style="display:flex;gap:10px">
+      <div style="flex:1;border:1px solid var(--ink-line);background:var(--ink2);border-radius:10px;padding:14px 16px;font:400 15px var(--sans);color:var(--d-text3)">you@firm.com</div>
+      <span style="background:var(--accent);color:var(--on-accent);font:600 15px var(--sans);padding:14px 22px;border-radius:10px">Subscribe</span>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid var(--line);padding:32px 80px;display:flex;justify-content:space-between;align-items:center;font:400 14px var(--sans);color:var(--text3)">
+    <div style="display:flex;align-items:center;gap:10px;color:var(--text)">
+      <span style="width:24px;height:24px;border-radius:5.2px;background:#16181c;color:#f4f5f7;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="24" height="24" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
+      <span style="font:500 13px var(--sans);letter-spacing:.3em;text-transform:uppercase">Uncava</span>
+    </div>
+    <div style="display:flex;gap:28px"><a href="#">Docs</a><a href="#">Blog</a><a href="#">Security</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+    <span>© 2026 Uncava</span>
+  </footer>
+</div>
+</x-dc>
+</body>
+</html>

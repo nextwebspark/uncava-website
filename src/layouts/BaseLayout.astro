@@ -1,0 +1,50 @@
+---
+import geistLatin from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
+import Seo, { type SeoProps } from '~/components/seo/Seo.astro';
+import SiteFooter from '~/components/site/SiteFooter.astro';
+import SiteHeader from '~/components/site/SiteHeader.astro';
+import { site } from '~/lib/site';
+import '~/styles/global.css';
+
+interface Props extends SeoProps {
+  header?: 'light' | 'dark-overlay';
+  footer?: 'full' | 'compact';
+}
+
+const { header = 'light', footer = 'compact', ...seo } = Astro.props;
+---
+
+<!doctype html>
+<html lang={site.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href={geistLatin} as="font" type="font/woff2" crossorigin />
+    <Seo {...seo} />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${site.name} blog`}
+      href="/blog/rss.xml"
+    />
+    <slot name="head" />
+  </head>
+  <body class="flex min-h-dvh flex-col">
+    <a
+      href="#main"
+      class="sr-only z-50 rounded-lg bg-text px-4 py-2 text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+    >
+      Skip to content
+    </a>
+    <SiteHeader tone={header === 'light' ? 'light' : 'dark'} overlay={header === 'dark-overlay'} />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <SiteFooter variant={footer} />
+  </body>
+</html>

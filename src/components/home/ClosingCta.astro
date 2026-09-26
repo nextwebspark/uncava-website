@@ -1,0 +1,27 @@
+---
+import ButtonLink from '~/components/site/ButtonLink.astro';
+import { site } from '~/lib/site';
+---
+
+<section
+  aria-labelledby="cta-title"
+  class="container-page flex flex-col gap-[18px] py-16 md:items-center md:gap-8 md:py-32 md:text-center"
+>
+  <h2
+    id="cta-title"
+    class="max-w-[900px] text-4xl leading-[1.04] tracking-display md:text-[52px] md:leading-[1.02] xl:text-[64px]"
+  >
+    Run your next mandate on Uncava.
+  </h2>
+  <p class="max-w-[560px] text-base leading-[1.55] text-text-2 md:text-lg md:leading-[1.6]">
+    Thirty minutes, one of your live searches, and a map at the end of it.
+  </p>
+  <div class="flex flex-col gap-3 sm:flex-row">
+    <ButtonLink href="/contact" class="py-[15px] text-base sm:px-6 sm:py-3.5 sm:text-[15px]">
+      Book a demo
+    </ButtonLink>
+    <ButtonLink href={site.appUrl} variant="outline-light" class="hidden sm:inline-flex">
+      Sign in
+    </ButtonLink>
+  </div>
+</section>

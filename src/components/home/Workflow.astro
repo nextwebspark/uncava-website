@@ -1,0 +1,79 @@
+---
+import BriefOrgChart from './illustrations/BriefOrgChart.astro';
+import MapExecutives from './illustrations/MapExecutives.astro';
+import ShortlistColumns from './illustrations/ShortlistColumns.astro';
+import StrategyFilter from './illustrations/StrategyFilter.astro';
+
+const steps = [
+  {
+    number: '01',
+    name: 'Brief',
+    title: 'Start drafted, not blank.',
+    body: 'The brief opens from a role template, reads the client’s position description, and charts who the role reports to.',
+    Illustration: BriefOrgChart,
+  },
+  {
+    number: '02',
+    name: 'Strategy',
+    title: 'Search the whole market.',
+    body: 'Filter a universe of 100,000+ companies by industry, size and geography, and save the searches the mandate runs on.',
+    Illustration: StrategyFilter,
+  },
+  {
+    number: '03',
+    name: 'Map',
+    title: 'Put people on the map.',
+    body: 'Map the executives at every target — typed in, imported from a spreadsheet, or captured from the page you’re reading.',
+    Illustration: MapExecutives,
+  },
+  {
+    number: '04',
+    name: 'Shortlist',
+    title: 'Decide, then show your work.',
+    body: 'File every company in universe, shortlisted or declined — then give the client a read-only seat on the result.',
+    Illustration: ShortlistColumns,
+  },
+];
+---
+
+<section
+  id="workflow"
+  aria-labelledby="workflow-title"
+  class="container-page flex flex-col gap-7 pt-[72px] pb-14 md:gap-16 md:pt-32 md:pb-[120px]"
+>
+  <div class="grid gap-3 md:grid-cols-2 md:items-end md:gap-20">
+    <div class="flex flex-col gap-3 md:gap-[18px]">
+      <p class="eyebrow text-accent-deep">The mandate, end to end</p>
+      <h2
+        id="workflow-title"
+        class="text-[34px] leading-[1.06] tracking-heading md:text-[44px] md:leading-[1.04] xl:text-[52px]"
+      >
+        One workspace from brief to shortlist.
+      </h2>
+    </div>
+    <p class="hidden max-w-[520px] text-lg leading-[1.6] text-pretty text-text-2 md:block">
+      Search work lives in spreadsheets, browser tabs and inboxes. Uncava keeps a mandate in one
+      place, in the order a consultant actually works it.
+    </p>
+  </div>
+
+  <ol class="flex flex-col border-t border-line md:grid md:grid-cols-2 md:gap-5 md:border-t-0 xl:grid-cols-4">
+    {steps.map(({ number, name, title, body, Illustration }) => (
+      <li class="grid grid-cols-[44px_minmax(0,1fr)] gap-3 border-b border-line py-5 md:flex md:flex-col md:gap-0 md:overflow-hidden md:rounded-2xl md:border md:bg-panel md:py-0">
+        <div class="hidden h-[200px] place-items-center border-b border-line bg-panel-2 md:grid">
+          <Illustration />
+        </div>
+        <span class="font-mono text-[13px] font-medium text-accent-deep md:hidden">{number}</span>
+        <div class="flex flex-col gap-1.5 md:gap-2.5 md:p-6">
+          <span class="hidden font-mono text-xs font-medium text-text-3 md:block">
+            {number} · {name}
+          </span>
+          <h3 class="text-lg leading-[1.25] tracking-title md:text-xl">{title}</h3>
+          <p class="text-[15px] leading-[1.55] text-text-2 md:text-[14.5px] md:leading-[1.6]">
+            {body}
+          </p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>

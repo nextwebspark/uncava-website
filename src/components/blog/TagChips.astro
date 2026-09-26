@@ -1,0 +1,35 @@
+---
+import { BLOG_TAGS, type BlogTagSlug } from '~/lib/blog-tags';
+
+interface Props {
+  current: BlogTagSlug | 'all';
+  available: readonly BlogTagSlug[];
+}
+
+const { current, available } = Astro.props;
+
+const chips = [
+  { href: '/blog', label: 'All', key: 'all' as const },
+  ...BLOG_TAGS.filter((tag) => available.includes(tag.slug)).map((tag) => ({
+    href: `/blog/tag/${tag.slug}`,
+    label: tag.label,
+    key: tag.slug,
+  })),
+];
+---
+
+<nav aria-label="Blog topics" class="-mx-5 overflow-x-auto px-5 md:mx-0 md:px-0">
+  <ul class="flex gap-2">
+    {chips.map((chip) => (
+      <li class="flex-none">
+        <a
+          href={chip.href}
+          aria-current={chip.key === current ? 'page' : undefined}
+          class="inline-flex min-h-11 items-center rounded-full border border-line bg-panel px-3.5 text-[13.5px] font-medium whitespace-nowrap text-text-2 transition-colors hover:border-slate-line hover:text-text aria-[current=page]:border-text aria-[current=page]:bg-text aria-[current=page]:text-white md:min-h-9"
+        >
+          {chip.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
