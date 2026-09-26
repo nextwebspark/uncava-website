@@ -113,7 +113,7 @@ const headers = ['Company', 'HQ', 'Employees', 'Executive', 'Title', 'Source', '
   class="container-page flex flex-col gap-5 pb-16 md:items-center md:gap-12 md:pb-32"
 >
   <div class="flex flex-col gap-4 md:items-center md:text-center">
-    <p class="eyebrow hidden text-amber-deep md:block">Companies</p>
+    <p class="eyebrow hidden text-accent-deep md:block">Companies</p>
     <h2
       id="companies-title"
       class="max-w-[820px] text-[30px] leading-[1.08] tracking-[-0.035em] md:text-[44px] md:leading-[1.04] md:tracking-heading xl:text-[52px]"
@@ -200,7 +200,7 @@ const headers = ['Company', 'HQ', 'Employees', 'Executive', 'Title', 'Source', '
               <td class="px-3.5 py-[11px]">{row.employees}</td>
               <td class="px-3.5 py-[11px] text-text">
                 {row.executive ?? (
-                  <span class="inline-flex items-center gap-1.5 font-medium text-sky">
+                  <span class="inline-flex items-center gap-1.5 font-medium text-accent">
                     <Icon name="plus" size={13} strokeWidth={2} />
                     Add executive
                   </span>
@@ -213,7 +213,7 @@ const headers = ['Company', 'HQ', 'Employees', 'Executive', 'Title', 'Source', '
                   class:list={[
                     'rounded-md px-2 py-[3px] text-[11.5px] font-medium',
                     row.stage === 'Shortlisted'
-                      ? 'bg-amber-dim text-amber-deep'
+                      ? 'bg-accent-dim text-accent-deep'
                       : 'bg-panel-2 text-text-2',
                   ]}
                 >
@@ -250,11 +250,11 @@ const headers = ['Company', 'HQ', 'Employees', 'Executive', 'Title', 'Source', '
               {row.secondary ? (
                 <div class="text-[13px] text-text-3">{row.secondary}</div>
               ) : (
-                <div class="text-[13px] font-medium text-sky">+ Add executive</div>
+                <div class="text-[13px] font-medium text-accent">+ Add executive</div>
               )}
             </div>
             {row.stage && (
-              <span class="rounded-md bg-amber-dim px-2 py-[3px] text-xs font-medium text-amber-deep">
+              <span class="rounded-md bg-accent-dim px-2 py-[3px] text-xs font-medium text-accent-deep">
                 {row.stage}
               </span>
             )}

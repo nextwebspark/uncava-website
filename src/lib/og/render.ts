@@ -63,11 +63,11 @@ export async function renderOgImage(card: OgCard): Promise<Buffer> {
       flexDirection: 'column',
       justifyContent: 'space-between',
       padding: '80px 84px 76px',
-      backgroundColor: '#0c0d0e',
+      backgroundColor: '#08090b',
       backgroundImage:
-        'radial-gradient(circle at 100% 0%, rgba(226,182,92,0.16), rgba(12,13,14,0) 55%)',
+        'radial-gradient(circle at 100% 0%, rgba(110,121,242,0.16), rgba(8,9,11,0) 55%)',
       fontFamily: 'Geist',
-      color: '#f8fafc',
+      color: '#f4f6f8',
     },
     [
       el('div', { display: 'flex', alignItems: 'center', gap: 26 }, [
@@ -78,7 +78,7 @@ export async function renderOgImage(card: OgCard): Promise<Buffer> {
         }),
         el(
           'div',
-          { fontSize: 26, fontWeight: 500, letterSpacing: '0.3em', color: '#f8fafc' },
+          { fontSize: 26, fontWeight: 500, letterSpacing: '0.3em', color: '#f4f6f8' },
           'UNCAVA',
         ),
       ]),
@@ -96,17 +96,17 @@ export async function renderOgImage(card: OgCard): Promise<Buffer> {
         ),
         el(
           'div',
-          { fontSize: 27, fontWeight: 400, lineHeight: 1.45, color: '#cbd5e1', maxWidth: 960 },
+          { fontSize: 27, fontWeight: 400, lineHeight: 1.45, color: '#a6adbb', maxWidth: 960 },
           card.description,
         ),
       ]),
       el('div', { display: 'flex', alignItems: 'center', gap: 22 }, [
         el(
           'div',
-          { fontSize: 19, fontWeight: 500, letterSpacing: '0.16em', color: '#e2b65c' },
+          { fontSize: 19, fontWeight: 500, letterSpacing: '0.16em', color: '#6e79f2' },
           `UNCAVA.COM · ${card.section.toUpperCase()}`,
         ),
-        el('div', { flexGrow: 1, height: 1, backgroundColor: '#2a2a2e' }),
+        el('div', { flexGrow: 1, height: 1, backgroundColor: '#2b2b2d' }),
       ]),
     ],
   );

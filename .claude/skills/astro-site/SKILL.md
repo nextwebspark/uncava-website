@@ -68,7 +68,7 @@ Changing a schema means changing `public/admin/config.yml` in the same commit â€
 ## Tailwind v4 tokens
 
 Tokens live once in `src/styles/theme.css` inside `@theme` and are imported by both `global.css` (site)
-and `docs.css` (Starlight). Use `bg-ink`, `text-text-2`, `text-amber-deep`, `tracking-display`,
+and `docs.css` (Starlight). Use `bg-ink`, `text-text-2`, `text-accent-deep`, `tracking-display`,
 `eyebrow`, `wordmark`, `container-page`. Tailwind scans the whole repo, so `design/` and `brand/` are
 excluded with `@source not` â€” keep that when adding CSS entry points.
 
@@ -87,7 +87,7 @@ both sides agree. Internal links are written without a trailing slash: `/blog`, 
   `{ label, autogenerate }` form was removed in Starlight 0.39.
 - Starlight's own 404 is disabled; `src/pages/404.astro` serves every route.
 - Ordered lists in docs render as numbered steps (`docs.css`); asides `:::note` and `:::caution` are
-  the design's sky and amber callouts.
+  the design's accent and signal callouts.
 
 ## Adding a page
 

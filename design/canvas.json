@@ -8,7 +8,7 @@
     { "file": "Docs.dc.html", "title": "Docs", "x": 5110, "y": 0, "w": 1440, "h": 2050 }
   ],
   "annotations": [
-    { "id": "brief-notes", "x": 0, "y": -200, "w": 520, "text": "Uncava public site — first pass.\nBrand lifted from the app: Geist, amber #e2b65c, ink #0c0d0e, the rhombus-over-hexagon mark.\nCompany and executive names are fictional samples. Anything in [brackets] needs a real fact from you." }
+    { "id": "brief-notes", "x": 0, "y": -200, "w": 520, "text": "Uncava public site — first pass.\nBrand lifted from the app: Geist, the UNCAVA palette (accent #4a56d6, ink #08090b), the rhombus-over-hexagon mark.\nCompany and executive names are fictional samples. Anything in [brackets] needs a real fact from you." }
   ],
   "launch": { "view": "canvas" }
 }

@@ -4,7 +4,7 @@ export const site = {
   appUrl: 'https://app.uncava.com',
   locale: 'en',
   ogLocale: 'en_GB',
-  themeColor: '#0c0d0e',
+  themeColor: '#08090b',
   tagline: 'Executive search & talent mapping',
   description:
     'Uncava is the workspace where search consultants draft the brief, map every company and executive that matters, and bring the client into a shortlist.',

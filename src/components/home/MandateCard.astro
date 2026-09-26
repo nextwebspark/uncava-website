@@ -26,7 +26,7 @@ const stages = [
   </div>
   <div class="hidden h-1.5 gap-0.5 overflow-hidden rounded-[3px] lg:flex">
     <span class="flex-[48] bg-graphite-3"></span>
-    <span class="flex-[12] bg-amber"></span>
+    <span class="flex-[12] bg-d-accent"></span>
     <span class="flex-[9] bg-declined"></span>
   </div>
   <div class="grid grid-cols-3 gap-2 lg:gap-1.5">
@@ -35,7 +35,7 @@ const stages = [
         <span
           class:list={[
             'text-xl font-semibold lg:text-lg',
-            stage.accent ? 'text-amber' : 'text-d-text',
+            stage.accent ? 'text-d-accent' : 'text-d-text',
           ]}
         >
           {stage.count}

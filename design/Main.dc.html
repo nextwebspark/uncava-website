@@ -10,11 +10,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root{--ink:#0c0d0e;--ink2:#16171a;--ink3:#1d1f23;--ink-line:#2a2a2e;--paper:#f8f9fb;--panel:#ffffff;--panel2:#f3f4f6;--line:#e2e4e9;--line-soft:#edeef2;--text:#111113;--text2:#475569;--text3:#64748b;--d-text:#f8fafc;--d-text2:#cbd5e1;--d-text3:#94a3b8;--amber:#e2b65c;--amber-deep:#8a6424;--amber-dim:rgba(226,182,92,.14);--on-amber:#1a1712;--sky:#2563eb;--green:#059669;--red:#dc2626;--sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace}
+    :root{--ink:#08090b;--ink2:#0e1013;--ink3:#15181d;--ink-line:#2b2b2d;--paper:#f7f8fa;--panel:#ffffff;--panel2:#eceff3;--line:#e8e9ea;--line-soft:#f0f0f1;--text:#0b0d12;--text2:#4c5462;--text3:#687080;--d-text:#f4f6f8;--d-text2:#a6adbb;--d-text3:#7c8493;--accent:#4a56d6;--accent-deep:#4a56d6;--accent-dim:rgba(74,86,214,.09);--on-accent:#ffffff;--d-accent:#6e79f2;--signal:#a8602f;--signal-dim:rgba(168,96,47,.1);--link:#4a56d6;--green:#0f9d6b;--red:#d93a45;--sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace}
     *{box-sizing:border-box}
     body{margin:0;background:var(--paper);color:var(--text);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
-    a{color:var(--sky);text-decoration:none}
-    a:hover{color:#1d4ed8;text-decoration:underline}
+    a{color:var(--link);text-decoration:none}
+    a:hover{color:#3a46c4;text-decoration:underline}
     h1,h2,h3,p{margin:0}
     .eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
     .nav-link{color:var(--d-text2);font:500 14px var(--sans)}
@@ -32,10 +32,10 @@
 <div style="width:1440px;background:var(--paper)">
 
   <section style="background:var(--ink);color:var(--d-text);position:relative;overflow:hidden">
-    <div style="position:absolute;inset:0;background:radial-gradient(900px 520px at 78% 38%,rgba(226,182,92,.10),transparent 70%);pointer-events:none"></div>
-    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(248,250,252,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(248,250,252,.035) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(180deg,#000 0%,transparent 85%);-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 85%);pointer-events:none"></div>
+    <div style="position:absolute;inset:0;background:radial-gradient(900px 520px at 78% 38%,rgba(110,121,242,.10),transparent 70%);pointer-events:none"></div>
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(244,246,248,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(244,246,248,.035) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(180deg,#000 0%,transparent 85%);-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 85%);pointer-events:none"></div>
 
-    <nav style="position:relative;display:flex;align-items:center;justify-content:space-between;padding:22px 80px;border-bottom:1px solid rgba(248,250,252,.06)">
+    <nav style="position:relative;display:flex;align-items:center;justify-content:space-between;padding:22px 80px;border-bottom:1px solid rgba(244,246,248,.06)">
       <div style="display:flex;align-items:center;gap:11px">
         <span style="width:30px;height:30px;border-radius:6.5px;background:#f4f5f7;color:#16181c;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="30" height="30" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
         <span style="font:500 15px var(--sans);letter-spacing:.3em;text-transform:uppercase">Uncava</span>
@@ -49,20 +49,20 @@
       </div>
       <div style="display:flex;align-items:center;gap:12px">
         <a class="nav-link" href="#" style="padding:9px 14px">Sign in</a>
-        <a href="#" style="background:var(--amber);color:var(--on-amber);font:600 14px var(--sans);padding:10px 18px;border-radius:8px;text-decoration:none">Book a demo</a>
+        <a href="#" style="background:var(--accent);color:var(--on-accent);font:600 14px var(--sans);padding:10px 18px;border-radius:8px;text-decoration:none">Book a demo</a>
       </div>
     </nav>
 
     <div style="position:relative;display:grid;grid-template-columns:600px 1fr;gap:0;padding:0 0 0 80px;min-height:700px">
       <div style="display:flex;flex-direction:column;justify-content:center;gap:28px;padding:40px 0 96px">
-        <div class="rise" style="display:flex;align-items:center;gap:10px;align-self:flex-start;border:1px solid var(--ink-line);background:rgba(22,23,26,.7);border-radius:999px;padding:7px 14px 7px 10px">
-          <span style="width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(226,182,92,.18)"></span>
+        <div class="rise" style="display:flex;align-items:center;gap:10px;align-self:flex-start;border:1px solid var(--ink-line);background:rgba(14,16,19,.7);border-radius:999px;padding:7px 14px 7px 10px">
+          <span style="width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(110,121,242,.18)"></span>
           <span class="eyebrow" style="color:var(--d-text2)">Executive search &amp; talent mapping</span>
         </div>
-        <h1 class="rise" style="font:600 76px/1.0 var(--sans);letter-spacing:-.045em;text-wrap:balance;animation-delay:.06s">Map the whole market. <span style="color:var(--amber)">Present the right few.</span></h1>
+        <h1 class="rise" style="font:600 76px/1.0 var(--sans);letter-spacing:-.045em;text-wrap:balance;animation-delay:.06s">Map the whole market. <span style="color:var(--d-accent)">Present the right few.</span></h1>
         <p class="rise" style="font:400 19px/1.55 var(--sans);color:var(--d-text2);max-width:520px;text-wrap:pretty;animation-delay:.12s">Uncava is the workspace where search consultants draft the brief, map every company and executive that matters, and bring the client into a shortlist they can trust.</p>
         <div class="rise" style="display:flex;align-items:center;gap:12px;animation-delay:.18s">
-          <a href="#" style="background:var(--amber);color:var(--on-amber);font:600 15px var(--sans);padding:14px 22px;border-radius:10px;text-decoration:none">Book a demo</a>
+          <a href="#" style="background:var(--accent);color:var(--on-accent);font:600 15px var(--sans);padding:14px 22px;border-radius:10px;text-decoration:none">Book a demo</a>
           <a href="#" style="display:flex;align-items:center;gap:8px;color:var(--d-text);font:500 15px var(--sans);padding:14px 20px;border-radius:10px;border:1px solid var(--ink-line);text-decoration:none">See how it works <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a>
         </div>
         <div class="rise" style="display:flex;align-items:center;gap:10px;color:var(--d-text3);font:400 13px var(--sans);animation-delay:.24s">
@@ -75,16 +75,16 @@
         <svg width="700" height="700" viewBox="0 0 600 600" style="position:absolute;left:30px;top:10px">
           <defs>
             <radialGradient id="sphere" cx="38%" cy="32%" r="75%">
-              <stop offset="0%" stop-color="#23262b"></stop>
-              <stop offset="100%" stop-color="#0e0f11"></stop>
+              <stop offset="0%" stop-color="#1d2128"></stop>
+              <stop offset="100%" stop-color="#08090b"></stop>
             </radialGradient>
             <linearGradient id="arc" x1="0" x2="1">
-              <stop offset="0%" stop-color="#e2b65c" stop-opacity=".1"></stop>
-              <stop offset="100%" stop-color="#e2b65c" stop-opacity=".9"></stop>
+              <stop offset="0%" stop-color="#6e79f2" stop-opacity=".1"></stop>
+              <stop offset="100%" stop-color="#6e79f2" stop-opacity=".9"></stop>
             </linearGradient>
           </defs>
-          <circle cx="300" cy="300" r="250" fill="url(#sphere)" stroke="#2a2a2e"></circle>
-          <g fill="none" stroke="rgba(248,250,252,.07)" stroke-width="1">
+          <circle cx="300" cy="300" r="250" fill="url(#sphere)" stroke="#2b2b2d"></circle>
+          <g fill="none" stroke="rgba(244,246,248,.07)" stroke-width="1">
             <ellipse cx="300" cy="300" rx="85" ry="250"></ellipse>
             <ellipse cx="300" cy="300" rx="160" ry="250"></ellipse>
             <ellipse cx="300" cy="300" rx="220" ry="250"></ellipse>
@@ -95,7 +95,7 @@
             <ellipse cx="300" cy="425" rx="216" ry="30"></ellipse>
             <ellipse cx="300" cy="516" rx="125" ry="15"></ellipse>
           </g>
-          <g fill="rgba(203,213,225,.22)">
+          <g fill="rgba(166,173,187,.22)">
             <circle cx="300" cy="150" r="1.6"></circle><circle cx="312" cy="142" r="1.6"></circle><circle cx="324" cy="150" r="1.6"></circle><circle cx="336" cy="142" r="1.6"></circle><circle cx="348" cy="150" r="1.6"></circle><circle cx="288" cy="162" r="1.6"></circle><circle cx="300" cy="174" r="1.6"></circle><circle cx="360" cy="174" r="1.6"></circle><circle cx="372" cy="186" r="1.6"></circle><circle cx="336" cy="198" r="1.6"></circle><circle cx="348" cy="210" r="1.6"></circle><circle cx="384" cy="222" r="1.6"></circle><circle cx="396" cy="234" r="1.6"></circle><circle cx="420" cy="258" r="1.6"></circle><circle cx="432" cy="282" r="1.6"></circle><circle cx="444" cy="306" r="1.6"></circle><circle cx="456" cy="330" r="1.6"></circle><circle cx="480" cy="354" r="1.6"></circle>
             <circle cx="150" cy="186" r="1.6"></circle><circle cx="162" cy="198" r="1.6"></circle><circle cx="174" cy="210" r="1.6"></circle><circle cx="138" cy="222" r="1.6"></circle><circle cx="186" cy="234" r="1.6"></circle><circle cx="174" cy="258" r="1.6"></circle><circle cx="198" cy="282" r="1.6"></circle><circle cx="210" cy="330" r="1.6"></circle><circle cx="222" cy="366" r="1.6"></circle><circle cx="210" cy="402" r="1.6"></circle><circle cx="228" cy="438" r="1.6"></circle><circle cx="216" cy="474" r="1.6"></circle>
             <circle cx="324" cy="306" r="1.6"></circle><circle cx="336" cy="342" r="1.6"></circle><circle cx="348" cy="378" r="1.6"></circle><circle cx="336" cy="414" r="1.6"></circle><circle cx="360" cy="438" r="1.6"></circle>
@@ -106,8 +106,8 @@
             <path d="M322 166 Q450 230 470 340"></path>
             <path d="M322 166 Q260 300 216 420"></path>
           </g>
-          <g fill="#e2b65c">
-            <circle cx="322" cy="166" r="14" fill="#e2b65c" opacity=".18"></circle>
+          <g fill="#6e79f2">
+            <circle cx="322" cy="166" r="14" fill="#6e79f2" opacity=".18"></circle>
             <circle cx="322" cy="166" r="5"></circle>
             <circle cx="344" cy="176" r="3.5"></circle>
             <circle cx="336" cy="190" r="3"></circle>
@@ -119,19 +119,19 @@
           </g>
         </svg>
 
-        <div style="position:absolute;left:0;top:388px;width:300px;background:rgba(22,23,26,.92);backdrop-filter:blur(8px);border:1px solid var(--ink-line);border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.5);padding:16px">
+        <div style="position:absolute;left:0;top:388px;width:300px;background:rgba(14,16,19,.92);backdrop-filter:blur(8px);border:1px solid var(--ink-line);border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.5);padding:16px">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
             <span class="eyebrow" style="color:var(--d-text3);font-size:10.5px">Germany</span>
             <span style="font:500 11px var(--mono);color:var(--d-text3)">3 companies · 7 executives</span>
           </div>
           <div style="display:flex;flex-direction:column;gap:10px">
             <div style="display:flex;align-items:center;gap:10px">
-              <span style="width:28px;height:28px;border-radius:7px;background:#23262b;border:1px solid var(--ink-line);display:grid;place-items:center;font:600 11px var(--sans);color:var(--d-text2)">NW</span>
+              <span style="width:28px;height:28px;border-radius:7px;background:#1d2128;border:1px solid var(--ink-line);display:grid;place-items:center;font:600 11px var(--sans);color:var(--d-text2)">NW</span>
               <div style="flex:1;min-width:0">
                 <div style="font:500 13px var(--sans);color:var(--d-text)">Nordwind Energie</div>
                 <div style="font:400 11.5px var(--sans);color:var(--d-text3)">Hamburg · 4,200 employees</div>
               </div>
-              <span style="font:500 10.5px var(--mono);color:var(--on-amber);background:var(--amber);border-radius:5px;padding:3px 6px">Shortlisted</span>
+              <span style="font:500 10.5px var(--mono);color:var(--on-accent);background:var(--accent);border-radius:5px;padding:3px 6px">Shortlisted</span>
             </div>
             <div style="display:flex;flex-direction:column;gap:8px;margin-left:13px;padding-left:23px;border-left:1px solid var(--ink-line)">
               <div style="display:flex;align-items:center;gap:9px">
@@ -146,7 +146,7 @@
               </div>
             </div>
             <div style="display:flex;align-items:center;gap:10px">
-              <span style="width:28px;height:28px;border-radius:7px;background:#23262b;border:1px solid var(--ink-line);display:grid;place-items:center;font:600 11px var(--sans);color:var(--d-text2)">RH</span>
+              <span style="width:28px;height:28px;border-radius:7px;background:#1d2128;border:1px solid var(--ink-line);display:grid;place-items:center;font:600 11px var(--sans);color:var(--d-text2)">RH</span>
               <div style="flex:1;min-width:0">
                 <div style="font:500 13px var(--sans);color:var(--d-text)">Rheinwerk Power</div>
                 <div style="font:400 11.5px var(--sans);color:var(--d-text3)">Essen · 11,800 employees</div>
@@ -156,19 +156,19 @@
           </div>
         </div>
 
-        <div style="position:absolute;right:80px;top:92px;width:236px;background:rgba(22,23,26,.92);backdrop-filter:blur(8px);border:1px solid var(--ink-line);border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.5);padding:16px;display:flex;flex-direction:column;gap:12px">
+        <div style="position:absolute;right:80px;top:92px;width:236px;background:rgba(14,16,19,.92);backdrop-filter:blur(8px);border:1px solid var(--ink-line);border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.5);padding:16px;display:flex;flex-direction:column;gap:12px">
           <div style="display:flex;flex-direction:column;gap:3px">
             <span class="eyebrow" style="color:var(--d-text3);font-size:10.5px">Mandate</span>
             <span style="font:500 14px var(--sans);color:var(--d-text)">Group CFO – Energy</span>
           </div>
           <div style="display:flex;height:6px;border-radius:3px;overflow:hidden;gap:2px">
             <span style="flex:48;background:#3a3d44"></span>
-            <span style="flex:12;background:var(--amber)"></span>
+            <span style="flex:12;background:var(--accent)"></span>
             <span style="flex:9;background:#6b4f4f"></span>
           </div>
           <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px">
             <div style="display:flex;flex-direction:column;gap:1px"><span style="font:600 18px var(--sans);color:var(--d-text)">48</span><span style="font:400 11px var(--sans);color:var(--d-text3)">In universe</span></div>
-            <div style="display:flex;flex-direction:column;gap:1px"><span style="font:600 18px var(--sans);color:var(--amber)">12</span><span style="font:400 11px var(--sans);color:var(--d-text3)">Shortlisted</span></div>
+            <div style="display:flex;flex-direction:column;gap:1px"><span style="font:600 18px var(--sans);color:var(--d-accent)">12</span><span style="font:400 11px var(--sans);color:var(--d-text3)">Shortlisted</span></div>
             <div style="display:flex;flex-direction:column;gap:1px"><span style="font:600 18px var(--sans);color:var(--d-text)">9</span><span style="font:400 11px var(--sans);color:var(--d-text3)">Declined</span></div>
           </div>
         </div>
@@ -179,7 +179,7 @@
   <section style="padding:128px 80px 120px;display:flex;flex-direction:column;gap:64px">
     <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:80px;align-items:end">
       <div style="display:flex;flex-direction:column;gap:18px">
-        <span class="eyebrow" style="color:var(--amber-deep)">The mandate, end to end</span>
+        <span class="eyebrow" style="color:var(--accent-deep)">The mandate, end to end</span>
         <h2 style="font:600 52px/1.04 var(--sans);letter-spacing:-.04em;text-wrap:balance">One workspace from brief to shortlist.</h2>
       </div>
       <p style="font:400 18px/1.6 var(--sans);color:var(--text2);max-width:520px;text-wrap:pretty">Search work lives in spreadsheets, browser tabs and inboxes. Uncava keeps a mandate in one place, in the order a consultant actually works it.</p>
@@ -189,16 +189,16 @@
       <div style="background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
         <div style="height:200px;background:var(--panel2);border-bottom:1px solid var(--line);display:grid;place-items:center">
           <svg width="220" height="150" viewBox="0 0 220 150" fill="none">
-            <path d="M110 44V64M60 64H160M60 64V82M160 64V82M110 64V82" stroke="#cbd5e1" stroke-width="1.4"></path>
-            <rect x="70" y="14" width="80" height="30" rx="7" fill="#fff" stroke="#e2b65c" stroke-width="1.6"></rect>
-            <rect x="82" y="25" width="56" height="8" rx="4" fill="#e2b65c" opacity=".55"></rect>
-            <rect x="24" y="82" width="72" height="28" rx="7" fill="#fff" stroke="#e2e4e9"></rect>
-            <rect x="36" y="92" width="44" height="7" rx="3.5" fill="#cbd5e1"></rect>
-            <rect x="124" y="82" width="72" height="28" rx="7" fill="#fff" stroke="#e2e4e9"></rect>
-            <rect x="136" y="92" width="40" height="7" rx="3.5" fill="#cbd5e1"></rect>
+            <path d="M110 44V64M60 64H160M60 64V82M160 64V82M110 64V82" stroke="#d7d7d9" stroke-width="1.4"></path>
+            <rect x="70" y="14" width="80" height="30" rx="7" fill="#fff" stroke="#6e79f2" stroke-width="1.6"></rect>
+            <rect x="82" y="25" width="56" height="8" rx="4" fill="#6e79f2" opacity=".55"></rect>
+            <rect x="24" y="82" width="72" height="28" rx="7" fill="#fff" stroke="#e8e9ea"></rect>
+            <rect x="36" y="92" width="44" height="7" rx="3.5" fill="#d7d7d9"></rect>
+            <rect x="124" y="82" width="72" height="28" rx="7" fill="#fff" stroke="#e8e9ea"></rect>
+            <rect x="136" y="92" width="40" height="7" rx="3.5" fill="#d7d7d9"></rect>
             
-            <rect x="74" y="122" width="72" height="20" rx="6" fill="none" stroke="#cbd5e1" stroke-dasharray="3 3"></rect>
-            <path d="M110 110V122" stroke="#cbd5e1" stroke-width="1.4" stroke-dasharray="3 3"></path>
+            <rect x="74" y="122" width="72" height="20" rx="6" fill="none" stroke="#d7d7d9" stroke-dasharray="3 3"></rect>
+            <path d="M110 110V122" stroke="#d7d7d9" stroke-width="1.4" stroke-dasharray="3 3"></path>
           </svg>
         </div>
         <div style="padding:24px;display:flex;flex-direction:column;gap:10px">
@@ -213,12 +213,12 @@
           <div style="display:flex;gap:6px;flex-wrap:wrap">
             <span style="font:500 11px var(--sans);background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 9px;color:var(--text2)">Energy</span>
             <span style="font:500 11px var(--sans);background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 9px;color:var(--text2)">1,000–10,000</span>
-            <span style="font:500 11px var(--sans);background:var(--amber-dim);border:1px solid rgba(166,124,46,.35);border-radius:999px;padding:4px 9px;color:var(--amber-deep)">DACH</span>
+            <span style="font:500 11px var(--sans);background:var(--accent-dim);border:1px solid rgba(74,86,214,.35);border-radius:999px;padding:4px 9px;color:var(--accent-deep)">DACH</span>
           </div>
           <div style="background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden">
-            <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line-soft)"><span style="width:12px;height:12px;border-radius:3px;background:var(--text)"></span><span style="flex:1;height:6px;border-radius:3px;background:#cbd5e1"></span><span style="width:30px;height:6px;border-radius:3px;background:#e2e4e9"></span></div>
-            <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line-soft)"><span style="width:12px;height:12px;border-radius:3px;background:var(--text)"></span><span style="flex:1;height:6px;border-radius:3px;background:#cbd5e1"></span><span style="width:30px;height:6px;border-radius:3px;background:#e2e4e9"></span></div>
-            <div style="display:flex;align-items:center;gap:8px;padding:8px 10px"><span style="width:12px;height:12px;border-radius:3px;border:1.5px solid #cbd5e1"></span><span style="flex:1;height:6px;border-radius:3px;background:#e2e4e9"></span><span style="width:30px;height:6px;border-radius:3px;background:#e2e4e9"></span></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line-soft)"><span style="width:12px;height:12px;border-radius:3px;background:var(--text)"></span><span style="flex:1;height:6px;border-radius:3px;background:#d7d7d9"></span><span style="width:30px;height:6px;border-radius:3px;background:#e8e9ea"></span></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line-soft)"><span style="width:12px;height:12px;border-radius:3px;background:var(--text)"></span><span style="flex:1;height:6px;border-radius:3px;background:#d7d7d9"></span><span style="width:30px;height:6px;border-radius:3px;background:#e8e9ea"></span></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:8px 10px"><span style="width:12px;height:12px;border-radius:3px;border:1.5px solid #d7d7d9"></span><span style="flex:1;height:6px;border-radius:3px;background:#e8e9ea"></span><span style="width:30px;height:6px;border-radius:3px;background:#e8e9ea"></span></div>
           </div>
         </div>
         <div style="padding:24px;display:flex;flex-direction:column;gap:10px">
@@ -232,21 +232,21 @@
         <div style="height:200px;background:var(--panel2);border-bottom:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:8px;padding:0 26px">
           <div style="background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;align-items:center;gap:9px">
             <span style="width:24px;height:24px;border-radius:6px;background:var(--panel2);border:1px solid var(--line)"></span>
-            <span style="flex:1;height:7px;border-radius:4px;background:#cbd5e1"></span>
+            <span style="flex:1;height:7px;border-radius:4px;background:#d7d7d9"></span>
             <div style="display:flex">
-              <span style="width:22px;height:22px;border-radius:50%;background:#e2b65c;border:2px solid #fff"></span>
-              <span style="width:22px;height:22px;border-radius:50%;background:#94a3b8;border:2px solid #fff;margin-left:-7px"></span>
-              <span style="width:22px;height:22px;border-radius:50%;background:#cbd5e1;border:2px solid #fff;margin-left:-7px"></span>
+              <span style="width:22px;height:22px;border-radius:50%;background:#6e79f2;border:2px solid #fff"></span>
+              <span style="width:22px;height:22px;border-radius:50%;background:#7c8493;border:2px solid #fff;margin-left:-7px"></span>
+              <span style="width:22px;height:22px;border-radius:50%;background:#d7d7d9;border:2px solid #fff;margin-left:-7px"></span>
             </div>
           </div>
           <div style="background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;align-items:center;gap:9px">
             <span style="width:24px;height:24px;border-radius:6px;background:var(--panel2);border:1px solid var(--line)"></span>
-            <span style="flex:1;height:7px;border-radius:4px;background:#cbd5e1"></span>
+            <span style="flex:1;height:7px;border-radius:4px;background:#d7d7d9"></span>
             <div style="display:flex">
-              <span style="width:22px;height:22px;border-radius:50%;background:#94a3b8;border:2px solid #fff"></span>
+              <span style="width:22px;height:22px;border-radius:50%;background:#7c8493;border:2px solid #fff"></span>
             </div>
           </div>
-          <div style="border:1px dashed #cbd5e1;border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;color:var(--text3);font:500 11.5px var(--sans)">
+          <div style="border:1px dashed #d7d7d9;border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;color:var(--text3);font:500 11.5px var(--sans)">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Add executive
           </div>
         </div>
@@ -267,9 +267,9 @@
             <span style="height:22px;border-radius:6px;background:#fff;border:1px solid var(--line)"></span>
           </div>
           <div style="display:flex;flex-direction:column;gap:6px">
-            <span style="font:500 9.5px var(--mono);color:var(--amber-deep);text-transform:uppercase;letter-spacing:.06em">Shortlist</span>
-            <span style="height:22px;border-radius:6px;background:var(--amber-dim);border:1px solid rgba(166,124,46,.4)"></span>
-            <span style="height:22px;border-radius:6px;background:var(--amber-dim);border:1px solid rgba(166,124,46,.4)"></span>
+            <span style="font:500 9.5px var(--mono);color:var(--accent-deep);text-transform:uppercase;letter-spacing:.06em">Shortlist</span>
+            <span style="height:22px;border-radius:6px;background:var(--accent-dim);border:1px solid rgba(74,86,214,.4)"></span>
+            <span style="height:22px;border-radius:6px;background:var(--accent-dim);border:1px solid rgba(74,86,214,.4)"></span>
           </div>
           <div style="display:flex;flex-direction:column;gap:6px">
             <span style="font:500 9.5px var(--mono);color:var(--text3);text-transform:uppercase;letter-spacing:.06em">Declined</span>
@@ -287,7 +287,7 @@
 
   <section style="padding:0 80px 128px;display:flex;flex-direction:column;align-items:center;gap:48px">
     <div style="display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
-      <span class="eyebrow" style="color:var(--amber-deep)">Companies</span>
+      <span class="eyebrow" style="color:var(--accent-deep)">Companies</span>
       <h2 style="font:600 52px/1.04 var(--sans);letter-spacing:-.04em;max-width:820px;text-wrap:balance">See the market the way your client will.</h2>
       <p style="font:400 18px/1.6 var(--sans);color:var(--text2);max-width:620px">A company with three executives is three lines. A company with none keeps its slot. Switch to the map when geography is the question.</p>
     </div>
@@ -331,13 +331,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #cbd5e1"></span></td><td class="td" style="color:var(--text);font-weight:500">Nordwind Energie</td><td class="td">Hamburg, DE</td><td class="td">4,200</td><td class="td" style="color:var(--text)">Lena Brandt</td><td class="td">Chief Financial Officer</td><td class="td">Strategy</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--amber-deep);background:var(--amber-dim);border-radius:6px;padding:3px 8px">Shortlisted</span></td></tr>
-            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #cbd5e1"></span></td><td class="td" style="color:var(--text3)">Nordwind Energie</td><td class="td">Hamburg, DE</td><td class="td">4,200</td><td class="td" style="color:var(--text)">Jonas Keller</td><td class="td">VP Finance</td><td class="td">Capture</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--amber-deep);background:var(--amber-dim);border-radius:6px;padding:3px 8px">Shortlisted</span></td></tr>
-            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #cbd5e1"></span></td><td class="td" style="color:var(--text);font-weight:500">Rheinwerk Power</td><td class="td">Essen, DE</td><td class="td">11,800</td><td class="td" style="color:var(--text)">Anika Vogt</td><td class="td">Group Finance Director</td><td class="td">Import</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
-            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #cbd5e1"></span></td><td class="td" style="color:var(--text);font-weight:500">Solaris Grid AG</td><td class="td">Zürich, CH</td><td class="td">2,650</td><td class="td"><span style="display:inline-flex;align-items:center;gap:6px;color:var(--sky);font-weight:500"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Add executive</span></td><td class="td">—</td><td class="td">Strategy</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
-            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #cbd5e1"></span></td><td class="td" style="color:var(--text);font-weight:500">Baltic Offshore Wind</td><td class="td">Copenhagen, DK</td><td class="td">1,900</td><td class="td" style="color:var(--text)">Mads Holm</td><td class="td">CFO</td><td class="td">Manual</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
-            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #cbd5e1"></span></td><td class="td" style="color:var(--text);font-weight:500">Alpenstrom Holding</td><td class="td">Vienna, AT</td><td class="td">6,300</td><td class="td" style="color:var(--text)">Katharina Leitner</td><td class="td">Deputy CFO</td><td class="td">Strategy</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
-            <tr><td class="td" style="border-bottom:none"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #cbd5e1"></span></td><td class="td" style="color:var(--text);font-weight:500;border-bottom:none">Meridian Utilities</td><td class="td" style="border-bottom:none">Amsterdam, NL</td><td class="td" style="border-bottom:none">8,050</td><td class="td" style="color:var(--text);border-bottom:none">Sophie de Vries</td><td class="td" style="border-bottom:none">CFO</td><td class="td" style="border-bottom:none">Import</td><td class="td" style="border-bottom:none"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
+            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Nordwind Energie</td><td class="td">Hamburg, DE</td><td class="td">4,200</td><td class="td" style="color:var(--text)">Lena Brandt</td><td class="td">Chief Financial Officer</td><td class="td">Strategy</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--accent-deep);background:var(--accent-dim);border-radius:6px;padding:3px 8px">Shortlisted</span></td></tr>
+            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text3)">Nordwind Energie</td><td class="td">Hamburg, DE</td><td class="td">4,200</td><td class="td" style="color:var(--text)">Jonas Keller</td><td class="td">VP Finance</td><td class="td">Capture</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--accent-deep);background:var(--accent-dim);border-radius:6px;padding:3px 8px">Shortlisted</span></td></tr>
+            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Rheinwerk Power</td><td class="td">Essen, DE</td><td class="td">11,800</td><td class="td" style="color:var(--text)">Anika Vogt</td><td class="td">Group Finance Director</td><td class="td">Import</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
+            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Solaris Grid AG</td><td class="td">Zürich, CH</td><td class="td">2,650</td><td class="td"><span style="display:inline-flex;align-items:center;gap:6px;color:var(--link);font-weight:500"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Add executive</span></td><td class="td">—</td><td class="td">Strategy</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
+            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Baltic Offshore Wind</td><td class="td">Copenhagen, DK</td><td class="td">1,900</td><td class="td" style="color:var(--text)">Mads Holm</td><td class="td">CFO</td><td class="td">Manual</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
+            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Alpenstrom Holding</td><td class="td">Vienna, AT</td><td class="td">6,300</td><td class="td" style="color:var(--text)">Katharina Leitner</td><td class="td">Deputy CFO</td><td class="td">Strategy</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
+            <tr><td class="td" style="border-bottom:none"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500;border-bottom:none">Meridian Utilities</td><td class="td" style="border-bottom:none">Amsterdam, NL</td><td class="td" style="border-bottom:none">8,050</td><td class="td" style="color:var(--text);border-bottom:none">Sophie de Vries</td><td class="td" style="border-bottom:none">CFO</td><td class="td" style="border-bottom:none">Import</td><td class="td" style="border-bottom:none"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -346,24 +346,24 @@
 
   <section style="padding:0 80px 128px;display:flex;flex-direction:column;gap:56px">
     <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
-      <span class="eyebrow" style="color:var(--amber-deep)">Research, without the busywork</span>
+      <span class="eyebrow" style="color:var(--accent-deep)">Research, without the busywork</span>
       <h2 style="font:600 52px/1.04 var(--sans);letter-spacing:-.04em;text-wrap:balance">Built for the way researchers actually work.</h2>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
       <div style="grid-column:span 2;background:var(--ink);color:var(--d-text);border-radius:18px;padding:36px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;min-height:380px;position:relative;overflow:hidden">
         <div style="display:flex;flex-direction:column;gap:14px;justify-content:flex-end">
-          <span style="width:40px;height:40px;border-radius:10px;border:1px solid var(--ink-line);display:grid;place-items:center;color:var(--amber)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18"></path><path d="M12 13v5M9.5 15.5 12 18l2.5-2.5"></path></svg></span>
+          <span style="width:40px;height:40px;border-radius:10px;border:1px solid var(--ink-line);display:grid;place-items:center;color:var(--d-accent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18"></path><path d="M12 13v5M9.5 15.5 12 18l2.5-2.5"></path></svg></span>
           <h3 style="font:600 26px/1.2 var(--sans);letter-spacing:-.025em">Capture from the page you’re reading.</h3>
           <p style="font:400 15px/1.6 var(--sans);color:var(--d-text2)">The Uncava Capture extension files a company or an executive straight into the mandate — no copy, no paste, no second tab.</p>
         </div>
         <div style="position:relative">
-          <div style="position:absolute;inset:0 -60px -60px 0;background:#16171a;border:1px solid var(--ink-line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px">
+          <div style="position:absolute;inset:0 -60px -60px 0;background:#0e1013;border:1px solid var(--ink-line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px">
             <div style="display:flex;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#3a3d44"></span><span style="width:8px;height:8px;border-radius:50%;background:#3a3d44"></span><span style="width:8px;height:8px;border-radius:50%;background:#3a3d44"></span></div>
             <span style="height:10px;width:60%;border-radius:5px;background:#2b2f36"></span>
-            <span style="height:8px;width:85%;border-radius:4px;background:#23262b"></span>
-            <span style="height:8px;width:72%;border-radius:4px;background:#23262b"></span>
-            <div style="margin-top:8px;align-self:flex-end;width:230px;background:#f8f9fb;color:var(--text);border-radius:12px;padding:14px;box-shadow:0 20px 40px rgba(0,0,0,.45);display:flex;flex-direction:column;gap:10px">
+            <span style="height:8px;width:85%;border-radius:4px;background:#1d2128"></span>
+            <span style="height:8px;width:72%;border-radius:4px;background:#1d2128"></span>
+            <div style="margin-top:8px;align-self:flex-end;width:230px;background:#f7f8fa;color:var(--text);border-radius:12px;padding:14px;box-shadow:0 20px 40px rgba(0,0,0,.45);display:flex;flex-direction:column;gap:10px">
               <div style="display:flex;align-items:center;gap:8px">
                 <span style="width:20px;height:20px;border-radius:4.3px;background:#16181c;color:#f4f5f7;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="20" height="20" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
                 <span style="font:600 12.5px var(--sans)">Capture executive</span>
@@ -371,7 +371,7 @@
               <div style="font:500 13px var(--sans)">Mads Holm</div>
               <div style="font:400 12px var(--sans);color:var(--text3);margin-top:-8px">CFO · Baltic Offshore Wind</div>
               <div style="font:500 12px var(--sans);border:1px solid var(--line);border-radius:7px;padding:6px 9px;color:var(--text2)">Group CFO – Energy Division</div>
-              <span style="text-align:center;font:600 12.5px var(--sans);background:var(--amber);color:var(--on-amber);border-radius:7px;padding:8px">Add to mandate</span>
+              <span style="text-align:center;font:600 12.5px var(--sans);background:var(--accent);color:var(--on-accent);border-radius:7px;padding:8px">Add to mandate</span>
             </div>
           </div>
         </div>
@@ -382,7 +382,7 @@
           <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font:500 10.5px var(--mono);color:var(--text3);text-transform:uppercase;letter-spacing:.06em"><span>Your header</span><span>Uncava field</span></div>
           <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font:400 12.5px var(--mono)"><span style="color:var(--text2)">Full Name</span><span style="color:var(--text)">→ Name</span></div>
           <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font:400 12.5px var(--mono)"><span style="color:var(--text2)">Co.</span><span style="color:var(--text)">→ Company</span></div>
-          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font:400 12.5px var(--mono)"><span style="color:var(--text2)">Notice period</span><span style="color:var(--amber-deep)">+ Custom column</span></div>
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font:400 12.5px var(--mono)"><span style="color:var(--text2)">Notice period</span><span style="color:var(--accent-deep)">+ Custom column</span></div>
         </div>
         <div style="display:flex;flex-direction:column;gap:10px">
           <h3 style="font:600 22px/1.25 var(--sans);letter-spacing:-.02em">Import a spreadsheet, safely.</h3>
@@ -405,7 +405,7 @@
       <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:22px">
         <div style="display:flex;flex-direction:column;gap:8px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px">
           <div style="display:flex;align-items:center;gap:10px">
-            <span style="width:28px;height:28px;border-radius:50%;background:#dbeafe;display:grid;place-items:center;font:600 10.5px var(--sans);color:#1d4ed8">EM</span>
+            <span style="width:28px;height:28px;border-radius:50%;background:#dbeafe;display:grid;place-items:center;font:600 10.5px var(--sans);color:#3a46c4">EM</span>
             <div style="flex:1"><div style="font:500 12.5px var(--sans)">Elena Marsh</div><div style="font:400 11.5px var(--sans);color:var(--text3)">Client · Hartwell Group</div></div>
             <span style="font:500 10.5px var(--mono);color:var(--text2);border:1px solid var(--line);border-radius:5px;padding:3px 6px">View only</span>
           </div>
@@ -421,11 +421,11 @@
       <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:22px">
         <div style="position:relative;height:124px;background:var(--ink);border-radius:12px;overflow:hidden">
           <svg width="100%" height="124" viewBox="0 0 320 124" preserveAspectRatio="xMidYMid slice">
-            <g fill="rgba(203,213,225,.18)">
+            <g fill="rgba(166,173,187,.18)">
               <circle cx="40" cy="40" r="1.4"></circle><circle cx="52" cy="46" r="1.4"></circle><circle cx="64" cy="40" r="1.4"></circle><circle cx="58" cy="58" r="1.4"></circle><circle cx="70" cy="70" r="1.4"></circle><circle cx="82" cy="82" r="1.4"></circle><circle cx="150" cy="34" r="1.4"></circle><circle cx="162" cy="28" r="1.4"></circle><circle cx="174" cy="34" r="1.4"></circle><circle cx="168" cy="46" r="1.4"></circle><circle cx="180" cy="58" r="1.4"></circle><circle cx="186" cy="76" r="1.4"></circle><circle cx="240" cy="40" r="1.4"></circle><circle cx="252" cy="52" r="1.4"></circle><circle cx="264" cy="64" r="1.4"></circle><circle cx="276" cy="82" r="1.4"></circle>
             </g>
-            <g fill="none" stroke="rgba(226,182,92,.55)" stroke-width="1"><path d="M164 40 Q110 10 60 50"></path><path d="M164 40 Q220 20 262 66"></path></g>
-            <circle cx="164" cy="40" r="4" fill="#e2b65c"></circle><circle cx="60" cy="50" r="3" fill="#e2b65c"></circle><circle cx="262" cy="66" r="3" fill="#e2b65c"></circle><circle cx="176" cy="54" r="2.5" fill="#e2b65c"></circle>
+            <g fill="none" stroke="rgba(110,121,242,.55)" stroke-width="1"><path d="M164 40 Q110 10 60 50"></path><path d="M164 40 Q220 20 262 66"></path></g>
+            <circle cx="164" cy="40" r="4" fill="#6e79f2"></circle><circle cx="60" cy="50" r="3" fill="#6e79f2"></circle><circle cx="262" cy="66" r="3" fill="#6e79f2"></circle><circle cx="176" cy="54" r="2.5" fill="#6e79f2"></circle>
           </svg>
         </div>
         <div style="display:flex;flex-direction:column;gap:10px">
@@ -437,33 +437,33 @@
   </section>
 
   <section style="background:var(--ink);color:var(--d-text);padding:112px 80px;display:grid;grid-template-columns:480px 1fr;gap:96px;position:relative;overflow:hidden">
-    <div style="position:absolute;right:-120px;top:-120px;width:520px;height:520px;opacity:.06;color:#f8fafc">
+    <div style="position:absolute;right:-120px;top:-120px;width:520px;height:520px;opacity:.06;color:#f4f6f8">
       <svg viewBox="86 86 340 340" width="520" height="520" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg>
     </div>
     <div style="display:flex;flex-direction:column;gap:20px;position:relative">
-      <span class="eyebrow" style="color:var(--amber)">Security</span>
+      <span class="eyebrow" style="color:var(--d-accent)">Security</span>
       <h2 style="font:600 52px/1.04 var(--sans);letter-spacing:-.04em">Confidential by design.</h2>
       <p style="font:400 18px/1.6 var(--sans);color:var(--d-text2);text-wrap:pretty">Executive search runs on discretion. Uncava is built so the wrong person never sees a name.</p>
-      <a href="#" style="display:inline-flex;align-items:center;gap:8px;color:var(--amber);font:500 15px var(--sans);margin-top:8px">Read the security overview <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a>
+      <a href="#" style="display:inline-flex;align-items:center;gap:8px;color:var(--d-accent);font:500 15px var(--sans);margin-top:8px">Read the security overview <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--ink-line);border:1px solid var(--ink-line);border-radius:16px;overflow:hidden;position:relative">
       <div style="background:var(--ink);padding:32px;display:flex;flex-direction:column;gap:12px">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2b65c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6e79f2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>
         <h3 style="font:600 18px var(--sans)">Isolated workspaces</h3>
         <p style="font:400 14.5px/1.6 var(--sans);color:var(--d-text3)">Every read is scoped to your firm’s workspace on the server. Another firm’s data is never one bad link away.</p>
       </div>
       <div style="background:var(--ink);padding:32px;display:flex;flex-direction:column;gap:12px">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2b65c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6e79f2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
         <h3 style="font:600 18px var(--sans)">Invitation-only</h3>
         <p style="font:400 14.5px/1.6 var(--sans);color:var(--d-text3)">No one joins a workspace by signing up with the right email domain. Every member arrives by invitation.</p>
       </div>
       <div style="background:var(--ink);padding:32px;display:flex;flex-direction:column;gap:12px">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2b65c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6e79f2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
         <h3 style="font:600 18px var(--sans)">Read-only client seats</h3>
         <p style="font:400 14.5px/1.6 var(--sans);color:var(--d-text3)">Clients see only the mandates they’re attached to. Access is checked on every request, not remembered.</p>
       </div>
       <div style="background:var(--ink);padding:32px;display:flex;flex-direction:column;gap:12px">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2b65c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"></path><path d="M9 12h6"></path></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6e79f2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"></path><path d="M9 12h6"></path></svg>
         <h3 style="font:600 18px var(--sans)">Spreadsheets stay out of the model</h3>
         <p style="font:400 14.5px/1.6 var(--sans);color:var(--d-text3)">When AI helps map a spreadsheet it sees column headers and value shapes — never the names, salaries or notes in the cells.</p>
       </div>
@@ -474,7 +474,7 @@
     <h2 style="font:600 64px/1.02 var(--sans);letter-spacing:-.045em;max-width:900px;text-wrap:balance">Run your next mandate on Uncava.</h2>
     <p style="font:400 18px/1.6 var(--sans);color:var(--text2);max-width:560px">Thirty minutes, one of your live searches, and a map at the end of it.</p>
     <div style="display:flex;gap:12px">
-      <a href="#" style="background:var(--amber);color:var(--on-amber);font:600 15px var(--sans);padding:14px 24px;border-radius:10px;text-decoration:none">Book a demo</a>
+      <a href="#" style="background:var(--accent);color:var(--on-accent);font:600 15px var(--sans);padding:14px 24px;border-radius:10px;text-decoration:none">Book a demo</a>
       <a href="#" style="color:var(--text);font:500 15px var(--sans);padding:14px 22px;border-radius:10px;border:1px solid var(--line);background:var(--panel);text-decoration:none">Sign in</a>
     </div>
   </section>

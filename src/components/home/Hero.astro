@@ -16,7 +16,7 @@ import MarketCard from './MarketCard.astro';
   <div class="relative mx-auto grid max-w-[1440px] pb-10 lg:min-h-[700px] lg:grid-cols-[minmax(0,560px)_1fr] lg:pb-0 lg:pl-10 xl:grid-cols-[600px_1fr] xl:pl-20">
     <div class="flex flex-col gap-5 px-5 pt-9 md:px-10 lg:justify-center lg:gap-7 lg:px-0 lg:pt-10 lg:pb-24">
       <p class="flex items-center gap-2 self-start rounded-full border border-ink-line bg-ink-2/70 py-1.5 pr-3 pl-[9px] lg:gap-2.5 lg:py-[7px] lg:pr-3.5 lg:pl-2.5">
-        <span class="size-1.5 rounded-full bg-amber lg:size-[7px] lg:shadow-[0_0_0_4px_rgb(226_182_92/0.18)]"></span>
+        <span class="size-1.5 rounded-full bg-d-accent lg:size-[7px] lg:shadow-[0_0_0_4px_rgb(110_121_242/0.18)]"></span>
         <span class="eyebrow text-d-text-2">Executive search &amp; talent mapping</span>
       </p>
 
@@ -24,7 +24,7 @@ import MarketCard from './MarketCard.astro';
         id="hero-title"
         class="text-[44px] leading-[1.02] tracking-display md:text-6xl lg:text-[64px] lg:leading-none xl:text-[76px]"
       >
-        Map the whole market. <span class="text-amber">Present the right few.</span>
+        Map the whole market. <span class="text-d-accent">Present the right few.</span>
       </h1>
 
       <p class="max-w-[520px] text-[17px] leading-[1.55] text-pretty text-d-text-2 lg:text-[19px]">
@@ -67,7 +67,7 @@ import MarketCard from './MarketCard.astro';
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: radial-gradient(380px 360px at 60% 70%, rgb(226 182 92 / 0.12), transparent 70%);
+    background: radial-gradient(380px 360px at 60% 70%, rgb(110 121 242 / 0.12), transparent 70%);
   }
 
   .hero-grid {
@@ -75,15 +75,15 @@ import MarketCard from './MarketCard.astro';
     inset: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(rgb(248 250 252 / 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(248 250 252 / 0.035) 1px, transparent 1px);
+      linear-gradient(rgb(244 246 248 / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(244 246 248 / 0.035) 1px, transparent 1px);
     background-size: 72px 72px;
     mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
   }
 
   @media (width >= 64rem) {
     .hero-glow {
-      background: radial-gradient(900px 520px at 78% 38%, rgb(226 182 92 / 0.1), transparent 70%);
+      background: radial-gradient(900px 520px at 78% 38%, rgb(110 121 242 / 0.1), transparent 70%);
     }
   }
 </style>

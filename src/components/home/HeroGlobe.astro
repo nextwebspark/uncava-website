@@ -71,16 +71,16 @@ const pins: readonly (readonly [number, number, number])[] = [
 >
   <defs>
     <radialGradient id="hero-sphere" cx="38%" cy="32%" r="75%">
-      <stop offset="0%" stop-color="#23262b"></stop>
-      <stop offset="100%" stop-color="#0e0f11"></stop>
+      <stop offset="0%" stop-color="#1d2128"></stop>
+      <stop offset="100%" stop-color="#08090b"></stop>
     </radialGradient>
     <linearGradient id="hero-arc" x1="0" x2="1">
-      <stop offset="0%" stop-color="#e2b65c" stop-opacity=".1"></stop>
-      <stop offset="100%" stop-color="#e2b65c" stop-opacity=".9"></stop>
+      <stop offset="0%" stop-color="#6e79f2" stop-opacity=".1"></stop>
+      <stop offset="100%" stop-color="#6e79f2" stop-opacity=".9"></stop>
     </linearGradient>
   </defs>
-  <circle cx="300" cy="300" r="250" fill="url(#hero-sphere)" stroke="#2a2a2e"></circle>
-  <g fill="none" stroke="rgba(248,250,252,.07)" stroke-width="1">
+  <circle cx="300" cy="300" r="250" fill="url(#hero-sphere)" stroke="#2b2b2d"></circle>
+  <g fill="none" stroke="rgba(244,246,248,.07)" stroke-width="1">
     <ellipse cx="300" cy="300" rx="85" ry="250"></ellipse>
     <ellipse cx="300" cy="300" rx="160" ry="250"></ellipse>
     <ellipse cx="300" cy="300" rx="220" ry="250"></ellipse>
@@ -91,7 +91,7 @@ const pins: readonly (readonly [number, number, number])[] = [
     <ellipse cx="300" cy="425" rx="216" ry="30"></ellipse>
     <ellipse cx="300" cy="516" rx="125" ry="15"></ellipse>
   </g>
-  <g fill="rgba(203,213,225,.22)">
+  <g fill="rgba(166,173,187,.22)">
     {dots.map(([cx, cy]) => (
       <circle cx={cx} cy={cy} r="1.6" />
     ))}
@@ -101,7 +101,7 @@ const pins: readonly (readonly [number, number, number])[] = [
       <path d={d} />
     ))}
   </g>
-  <g fill="#e2b65c">
+  <g fill="#6e79f2">
     <circle cx="322" cy="166" r="14" opacity=".18"></circle>
     {pins.map(([cx, cy, r]) => (
       <circle cx={cx} cy={cy} r={r} />

@@ -30,7 +30,7 @@ const steps = [
 const teamSizes = ['Just me', '2–5 people', '6–20 people', '21–50 people', 'More than 50 people'];
 
 const field =
-  'min-h-[46px] w-full rounded-[9px] border border-line bg-panel px-3.5 py-3 text-[15px] text-text placeholder:text-text-3 focus:border-sky disabled:bg-panel-2';
+  'min-h-[46px] w-full rounded-[9px] border border-line bg-panel px-3.5 py-3 text-[15px] text-text placeholder:text-text-3 focus:border-accent disabled:bg-panel-2';
 const label = 'text-[13.5px] font-medium text-text';
 ---
 
@@ -42,7 +42,7 @@ const label = 'text-[13.5px] font-medium text-text';
 >
   <section class="container-page grid items-start gap-12 pt-12 pb-16 md:pt-24 md:pb-[120px] lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_600px] xl:gap-24">
     <div class="flex flex-col gap-6 md:gap-7 lg:pt-3">
-      <p class="eyebrow text-amber-deep">Book a demo</p>
+      <p class="eyebrow text-accent-deep">Book a demo</p>
       <h1 class="text-[40px] leading-[1.04] tracking-display md:text-5xl xl:text-[60px] xl:leading-[1.02]">
         See Uncava on one of your own mandates.
       </h1>
@@ -54,7 +54,7 @@ const label = 'text-[13.5px] font-medium text-text';
       <ol class="mt-3 flex flex-col border-t border-line">
         {steps.map((step) => (
           <li class="grid grid-cols-[48px_minmax(0,1fr)] gap-2 border-b border-line py-[22px]">
-            <span class="pt-[3px] font-mono text-[13px] font-medium text-amber-deep">
+            <span class="pt-[3px] font-mono text-[13px] font-medium text-accent-deep">
               {step.number}
             </span>
             <div class="flex flex-col gap-1">
@@ -72,7 +72,7 @@ const label = 'text-[13.5px] font-medium text-text';
             {site.contactEmail}
           </a>
         ) : (
-          <span class="text-sky">{site.contactEmail}</span>
+          <span class="text-accent">{site.contactEmail}</span>
         )}
       </p>
     </div>
@@ -200,7 +200,7 @@ const label = 'text-[13.5px] font-medium text-text';
       {endpoint ? (
         <button
           type="submit"
-          class="min-h-[52px] rounded-[10px] bg-amber px-4 text-base font-semibold text-on-amber transition-colors hover:bg-amber-hover"
+          class="min-h-[52px] rounded-[10px] bg-accent px-4 text-base font-semibold text-on-accent transition-colors hover:bg-accent-hover"
         >
           Book a demo
         </button>

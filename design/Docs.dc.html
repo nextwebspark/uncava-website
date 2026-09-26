@@ -10,11 +10,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root{--ink:#0c0d0e;--ink2:#16171a;--ink-line:#2a2a2e;--paper:#f8f9fb;--panel:#ffffff;--panel2:#f3f4f6;--line:#e2e4e9;--line-soft:#edeef2;--text:#111113;--text2:#475569;--text3:#64748b;--amber:#e2b65c;--amber-deep:#8a6424;--amber-dim:rgba(226,182,92,.14);--on-amber:#1a1712;--sky:#2563eb;--sky-dim:rgba(37,99,235,.08);--sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace}
+    :root{--ink:#08090b;--ink2:#0e1013;--ink-line:#2b2b2d;--paper:#f7f8fa;--panel:#ffffff;--panel2:#eceff3;--line:#e8e9ea;--line-soft:#f0f0f1;--text:#0b0d12;--text2:#4c5462;--text3:#687080;--accent:#4a56d6;--accent-deep:#4a56d6;--accent-dim:rgba(74,86,214,.09);--on-accent:#ffffff;--d-accent:#6e79f2;--signal:#a8602f;--signal-dim:rgba(168,96,47,.1);--link:#4a56d6;--link-dim:rgba(74,86,214,.08);--sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace}
     *{box-sizing:border-box}
     body{margin:0;background:var(--panel);color:var(--text);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
-    a{color:var(--sky);text-decoration:none}
-    a:hover{color:#1d4ed8;text-decoration:underline}
+    a{color:var(--link);text-decoration:none}
+    a:hover{color:#3a46c4;text-decoration:underline}
     h1,h2,h3,p{margin:0}
     .eyebrow{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
     .side-group{font:600 13px var(--sans);color:var(--text);padding:0 12px}
@@ -70,7 +70,7 @@
         <span class="side-group">Companies &amp; executives</span>
         <a class="side-link" href="#">The three stages</a>
         <a class="side-link" href="#">Add an executive</a>
-        <a class="side-link" href="#" style="background:var(--amber-dim);color:var(--text);font-weight:500">Import a spreadsheet</a>
+        <a class="side-link" href="#" style="background:var(--accent-dim);color:var(--text);font-weight:500">Import a spreadsheet</a>
         <a class="side-link" href="#">Custom columns</a>
         <a class="side-link" href="#">Talent map</a>
       </div>
@@ -92,9 +92,9 @@
         <h1 style="font:600 42px/1.1 var(--sans);letter-spacing:-.04em">Import a spreadsheet</h1>
         <p style="font-size:19px;color:var(--text2)">Bring a CSV or Excel file of people and companies into a mandate. Uncava maps your columns, you confirm, and nothing is written until you do.</p>
 
-        <div style="display:flex;gap:12px;background:var(--sky-dim);border:1px solid rgba(37,99,235,.2);border-radius:12px;padding:16px 18px">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8v.01"></path></svg>
-          <div style="display:flex;flex-direction:column;gap:4px"><span style="font:600 14.5px var(--sans);color:#1e3a8a">Before you start</span><span style="font:400 15px/1.6 var(--sans);color:#1e3a8a">You need a Lead or Researcher seat on the mandate. A file built from the downloadable template maps every column instantly, with no AI step.</span></div>
+        <div style="display:flex;gap:12px;background:var(--link-dim);border:1px solid rgba(74,86,214,.2);border-radius:12px;padding:16px 18px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4a56d6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8v.01"></path></svg>
+          <div style="display:flex;flex-direction:column;gap:4px"><span style="font:600 14.5px var(--sans);color:#2e3878">Before you start</span><span style="font:400 15px/1.6 var(--sans);color:#2e3878">You need a Lead or Researcher seat on the mandate. A file built from the downloadable template maps every column instantly, with no AI step.</span></div>
         </div>
 
         <h2>Steps</h2>
@@ -112,7 +112,7 @@
             <div style="display:flex;flex-direction:column;gap:4px;padding-top:3px"><span style="font:600 16.5px var(--sans)">Review the column mapping</span><span style="font:400 15.5px/1.65 var(--sans);color:var(--text2)">Every header is matched to a field. Change any match, or keep a header as a custom column.</span></div>
           </div>
           <div style="display:grid;grid-template-columns:36px 1fr;gap:16px">
-            <span style="width:30px;height:30px;border-radius:50%;background:var(--amber);color:var(--on-amber);display:grid;place-items:center;font:600 13px var(--mono)">4</span>
+            <span style="width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font:600 13px var(--mono)">4</span>
             <div style="display:flex;flex-direction:column;gap:4px;padding-top:3px"><span style="font:600 16.5px var(--sans)">Confirm the import</span><span style="font:400 15.5px/1.65 var(--sans);color:var(--text2)">Rows are written through the same checks as adding a company by hand, so duplicates are caught.</span></div>
           </div>
         </div>
@@ -126,14 +126,14 @@
               <tr><td class="td"><code>Full Name</code></td><td class="td" style="color:var(--text)">Name</td><td class="td">Known spelling</td></tr>
               <tr><td class="td"><code>Co.</code></td><td class="td" style="color:var(--text)">Company</td><td class="td">Known spelling</td></tr>
               <tr><td class="td"><code>Current role</code></td><td class="td" style="color:var(--text)">Title</td><td class="td">Model (header only)</td></tr>
-              <tr><td class="td" style="border-bottom:none"><code>Notice period</code></td><td class="td" style="border-bottom:none;color:var(--amber-deep)">New custom column</td><td class="td" style="border-bottom:none">No field covers it</td></tr>
+              <tr><td class="td" style="border-bottom:none"><code>Notice period</code></td><td class="td" style="border-bottom:none;color:var(--accent-deep)">New custom column</td><td class="td" style="border-bottom:none">No field covers it</td></tr>
             </tbody>
           </table>
         </div>
 
-        <div style="display:flex;gap:12px;background:var(--amber-dim);border:1px solid rgba(166,124,46,.3);border-radius:12px;padding:16px 18px">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a67c2e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M12 3 2 20h20Z"></path><path d="M12 10v4M12 17v.01"></path></svg>
-          <div style="display:flex;flex-direction:column;gap:4px"><span style="font:600 14.5px var(--sans);color:#6b4f1d">Imported rows are taken as written</span><span style="font:400 15px/1.6 var(--sans);color:#6b4f1d">An imported company is not matched against the market and an imported executive is not researched. Your file’s figures are what the mandate shows.</span></div>
+        <div style="display:flex;gap:12px;background:var(--signal-dim);border:1px solid rgba(168,96,47,.3);border-radius:12px;padding:16px 18px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a8602f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M12 3 2 20h20Z"></path><path d="M12 10v4M12 17v.01"></path></svg>
+          <div style="display:flex;flex-direction:column;gap:4px"><span style="font:600 14.5px var(--sans);color:#7a4119">Imported rows are taken as written</span><span style="font:400 15px/1.6 var(--sans);color:#7a4119">An imported company is not matched against the market and an imported executive is not researched. Your file’s figures are what the mandate shows.</span></div>
         </div>
 
         <h2>Custom columns</h2>

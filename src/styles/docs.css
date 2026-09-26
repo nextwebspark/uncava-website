@@ -25,14 +25,14 @@
   --sl-color-gray-1: var(--color-d-text-2);
   --sl-color-gray-2: var(--color-d-text-2);
   --sl-color-gray-3: var(--color-d-text-3);
-  --sl-color-gray-4: #64748b;
+  --sl-color-gray-4: #4c5462;
   --sl-color-gray-5: var(--color-ink-line);
   --sl-color-gray-6: var(--color-ink-2);
   --sl-color-black: var(--color-ink);
-  --sl-color-accent-low: #2a2419;
-  --sl-color-accent: var(--color-amber);
-  --sl-color-accent-high: #f3dca8;
-  --uc-sidebar-current-bg: rgb(226 182 92 / 0.14);
+  --sl-color-accent-low: #1e2440;
+  --sl-color-accent: var(--color-d-accent);
+  --sl-color-accent-high: #a3a9fa;
+  --uc-sidebar-current-bg: var(--color-d-accent-dim);
   --uc-steps-marker: var(--color-d-text);
   --uc-steps-marker-text: var(--color-ink);
   --uc-table-head: var(--color-ink-2);
@@ -43,19 +43,19 @@
   --sl-color-gray-1: var(--color-prose);
   --sl-color-gray-2: var(--color-text-2);
   --sl-color-gray-3: var(--color-text-3);
-  --sl-color-gray-4: #94a3b8;
+  --sl-color-gray-4: #a6adbb;
   --sl-color-gray-5: var(--color-line);
   --sl-color-gray-6: var(--color-line-soft);
   --sl-color-gray-7: var(--color-panel-2);
   --sl-color-black: var(--color-panel);
-  --sl-color-accent-low: var(--color-sky-tint);
-  --sl-color-accent: var(--color-sky);
-  --sl-color-accent-high: var(--color-sky-ink);
+  --sl-color-accent-low: var(--color-accent-tint);
+  --sl-color-accent: var(--color-accent);
+  --sl-color-accent-high: var(--color-accent-ink);
   --sl-color-bg-nav: var(--color-panel);
   --sl-color-bg-sidebar: var(--color-panel);
   --sl-color-hairline: var(--color-line);
   --sl-color-hairline-shade: var(--color-line);
-  --uc-sidebar-current-bg: var(--color-amber-dim);
+  --uc-sidebar-current-bg: var(--color-accent-dim);
   --uc-steps-marker: var(--color-text);
   --uc-steps-marker-text: var(--color-panel);
   --uc-table-head: var(--color-paper);
@@ -93,7 +93,7 @@ h1#_top {
   color: var(--sl-color-white);
 }
 
-/* Sidebar, per design/Docs.dc.html: bold group labels, soft rounded links, amber-tinted current page. */
+/* Sidebar, per design/Docs.dc.html: bold group labels, soft rounded links, accent-tinted current page. */
 .sidebar-content .large {
   font-size: 0.8125rem;
   font-weight: 600;
@@ -139,7 +139,7 @@ starlight-toc a[aria-current='true'] {
   font-weight: 500;
 }
 
-/* Every ordered list in the docs is a sequence of steps: numbered discs, the last one amber. */
+/* Every ordered list in the docs is a sequence of steps: numbered discs, the last one accent. */
 .sl-markdown-content ol:not(:where(.not-content *)) {
   list-style: none;
   counter-reset: uc-step;
@@ -171,8 +171,8 @@ starlight-toc a[aria-current='true'] {
 }
 
 .sl-markdown-content ol:not(:where(.not-content *)) > li:last-child::before {
-  background: var(--color-amber);
-  color: var(--color-on-amber);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
 }
 
 .sl-markdown-content ol:not(:where(.not-content *)) > li > strong:first-child {
@@ -216,7 +216,7 @@ starlight-toc a[aria-current='true'] {
   overflow-x: auto;
 }
 
-/* Asides: note is the design's sky "Before you start", caution its amber "taken as written". */
+/* Asides: note is the design's accent "Before you start", caution its signal "taken as written". */
 .starlight-aside {
   border-radius: 12px;
   border-inline-start-width: 1px;
@@ -225,17 +225,17 @@ starlight-toc a[aria-current='true'] {
 }
 
 :root[data-theme='light'] .starlight-aside--note {
-  --sl-color-asides-text-accent: var(--color-sky-ink);
-  --sl-color-asides-border: rgb(37 99 235 / 0.2);
-  background: var(--color-sky-dim);
-  color: var(--color-sky-ink);
+  --sl-color-asides-text-accent: var(--color-accent-ink);
+  --sl-color-asides-border: rgb(74 86 214 / 0.2);
+  background: var(--color-accent-dim);
+  color: var(--color-accent-ink);
 }
 
 :root[data-theme='light'] .starlight-aside--caution {
-  --sl-color-asides-text-accent: var(--color-amber-ink);
-  --sl-color-asides-border: rgb(166 124 46 / 0.3);
-  background: var(--color-amber-dim);
-  color: var(--color-amber-ink);
+  --sl-color-asides-text-accent: var(--color-signal-ink);
+  --sl-color-asides-border: rgb(168 96 47 / 0.3);
+  background: var(--color-signal-dim);
+  color: var(--color-signal-ink);
 }
 
 .starlight-aside__title {

@@ -35,7 +35,7 @@ const mapDots: readonly (readonly [number, number])[] = [
   class="container-page flex flex-col gap-[22px] pb-16 md:gap-14 md:pb-32"
 >
   <div class="flex max-w-[760px] flex-col gap-4">
-    <p class="eyebrow hidden text-amber-deep md:block">Research, without the busywork</p>
+    <p class="eyebrow hidden text-accent-deep md:block">Research, without the busywork</p>
     <h2
       id="features-title"
       class="text-[30px] leading-[1.08] tracking-[-0.035em] md:text-[44px] md:leading-[1.04] md:tracking-heading xl:text-[52px]"
@@ -47,7 +47,7 @@ const mapDots: readonly (readonly [number, number])[] = [
   <ul class="grid gap-3.5 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
     <li class="relative grid gap-8 overflow-hidden rounded-2xl bg-ink p-6 text-d-text md:col-span-2 md:min-h-[380px] md:grid-cols-2 md:rounded-[18px] md:p-9">
       <div class="flex flex-col justify-end gap-2.5 md:gap-3.5">
-        <span class="hidden size-10 place-items-center rounded-[10px] border border-ink-line text-amber md:grid">
+        <span class="hidden size-10 place-items-center rounded-[10px] border border-ink-line text-d-accent md:grid">
           <Icon name="capture" size={20} strokeWidth={1.7} />
         </span>
         <h3 class="text-xl leading-[1.25] tracking-title md:text-[26px] md:leading-[1.2] md:tracking-[-0.025em]">
@@ -78,7 +78,7 @@ const mapDots: readonly (readonly [number, number])[] = [
             <div class="rounded-[7px] border border-line px-[9px] py-1.5 text-xs font-medium text-text-2">
               Group CFO – Energy Division
             </div>
-            <span class="rounded-[7px] bg-amber p-2 text-center text-[12.5px] font-semibold text-on-amber">
+            <span class="rounded-[7px] bg-accent p-2 text-center text-[12.5px] font-semibold text-on-accent">
               Add to mandate
             </span>
           </div>
@@ -97,7 +97,7 @@ const mapDots: readonly (readonly [number, number])[] = [
       {mappings.map((row) => (
         <div class="grid grid-cols-2 gap-2 font-mono text-[12.5px]">
           <span class="text-text-2">{row.header}</span>
-          <span class:list={[row.custom ? 'text-amber-deep' : 'text-text']}>{row.field}</span>
+          <span class:list={[row.custom ? 'text-accent-deep' : 'text-text']}>{row.field}</span>
         </div>
       ))}
     </FeatureCard>
@@ -128,7 +128,7 @@ const mapDots: readonly (readonly [number, number])[] = [
       body="Invite a hiring-company representative to the mandates they’re attached to. They follow progress; they never see anyone else’s search."
     >
       <div class="flex items-center gap-2.5">
-        <span class="grid size-7 place-items-center rounded-full bg-sky-tint text-[10.5px] font-semibold text-sky-hover">
+        <span class="grid size-7 place-items-center rounded-full bg-accent-tint text-[10.5px] font-semibold text-accent-hover">
           EM
         </span>
         <div class="flex-1">
@@ -158,16 +158,16 @@ const mapDots: readonly (readonly [number, number])[] = [
           preserveAspectRatio="xMidYMid slice"
           focusable="false"
         >
-          <g fill="rgba(203,213,225,.18)">
+          <g fill="rgba(166,173,187,.18)">
             {mapDots.map(([cx, cy]) => (
               <circle cx={cx} cy={cy} r="1.4" />
             ))}
           </g>
-          <g fill="none" stroke="rgba(226,182,92,.55)" stroke-width="1">
+          <g fill="none" stroke="rgba(110,121,242,.55)" stroke-width="1">
             <path d="M164 40 Q110 10 60 50"></path>
             <path d="M164 40 Q220 20 262 66"></path>
           </g>
-          <g fill="#e2b65c">
+          <g fill="#6e79f2">
             <circle cx="164" cy="40" r="4"></circle>
             <circle cx="60" cy="50" r="3"></circle>
             <circle cx="262" cy="66" r="3"></circle>

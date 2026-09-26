@@ -1,7 +1,7 @@
 ---
 const columns = [
   { label: 'Universe', cards: 4, tone: 'plain' },
-  { label: 'Shortlist', cards: 2, tone: 'amber' },
+  { label: 'Shortlist', cards: 2, tone: 'accent' },
   { label: 'Declined', cards: 1, tone: 'hollow' },
 ] as const;
 ---
@@ -12,7 +12,7 @@ const columns = [
       <span
         class:list={[
           'font-mono text-[9.5px] font-medium tracking-[0.06em] uppercase',
-          column.tone === 'amber' ? 'text-amber-deep' : 'text-text-2',
+          column.tone === 'accent' ? 'text-accent-deep' : 'text-text-2',
         ]}
       >
         {column.label}
@@ -22,7 +22,7 @@ const columns = [
           class:list={[
             'h-[22px] rounded-md border',
             column.tone === 'plain' && 'border-line bg-panel',
-            column.tone === 'amber' && 'border-amber-deep/40 bg-amber-dim',
+            column.tone === 'accent' && 'border-accent-deep/40 bg-accent-dim',
             column.tone === 'hollow' && 'border-line',
           ]}
         />

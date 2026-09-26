@@ -13,7 +13,7 @@ import { securityPoints } from '~/lib/security-points';
   </div>
   <div class="container-page relative grid gap-6 py-16 md:py-28 lg:grid-cols-[minmax(0,400px)_1fr] lg:gap-16 xl:grid-cols-[480px_1fr] xl:gap-24">
     <div class="flex flex-col gap-3.5 md:gap-5">
-      <p class="eyebrow text-amber">Security</p>
+      <p class="eyebrow text-d-accent">Security</p>
       <h2
         id="security-title"
         class="text-[34px] leading-[1.06] tracking-heading md:text-[52px] md:leading-[1.04]"
@@ -25,7 +25,7 @@ import { securityPoints } from '~/lib/security-points';
       </p>
       <a
         href="/security"
-        class="mt-2 hidden items-center gap-2 self-start text-[15px] font-medium text-amber hover:underline md:inline-flex"
+        class="mt-2 hidden items-center gap-2 self-start text-[15px] font-medium text-d-accent hover:underline md:inline-flex"
       >
         Read the security overview <Icon name="arrow-right" />
       </a>
@@ -33,7 +33,12 @@ import { securityPoints } from '~/lib/security-points';
     <ul class="grid gap-px overflow-hidden rounded-[14px] border border-ink-line bg-ink-line md:grid-cols-2 md:rounded-2xl">
       {securityPoints.map((point) => (
         <li class="flex flex-col gap-1 bg-ink px-5 py-[18px] md:gap-3 md:p-8">
-          <Icon name={point.icon} size={22} strokeWidth={1.7} class="hidden text-amber md:block" />
+          <Icon
+            name={point.icon}
+            size={22}
+            strokeWidth={1.7}
+            class="hidden text-d-accent md:block"
+          />
           <h3 class="text-base md:text-lg">{point.title}</h3>
           <p class="text-sm leading-[1.55] text-d-text-3 md:text-[14.5px] md:leading-[1.6]">
             <span class="hidden md:inline">{point.body}</span>

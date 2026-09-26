@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-type Variant = 'amber' | 'ink' | 'outline-dark' | 'outline-light';
+type Variant = 'accent' | 'ink' | 'outline-dark' | 'outline-light';
 type Size = 'sm' | 'md';
 
 interface Props extends HTMLAttributes<'a'> {
@@ -13,7 +13,7 @@ interface Props extends HTMLAttributes<'a'> {
 
 const {
   href,
-  variant = 'amber',
+  variant = 'accent',
   size = 'md',
   block = false,
   class: className,
@@ -21,7 +21,7 @@ const {
 } = Astro.props;
 
 const variants: Record<Variant, string> = {
-  amber: 'bg-amber text-on-amber font-semibold hover:bg-amber-hover',
+  accent: 'bg-accent text-on-accent font-semibold hover:bg-accent-hover',
   ink: 'bg-text text-white font-semibold hover:bg-ink-3',
   'outline-dark': 'border border-ink-line text-d-text font-medium hover:border-graphite-3',
   'outline-light': 'border border-line bg-panel text-text font-medium hover:border-slate-line',
