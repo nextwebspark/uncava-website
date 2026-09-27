@@ -43,7 +43,7 @@ export function softwareApplication(input: {
     url: site.appUrl,
     description: input.description,
     applicationCategory: 'BusinessApplication',
-    applicationSubCategory: 'Executive search and talent mapping',
+    applicationSubCategory: 'C-suite executive search, search strategy and talent mapping',
     operatingSystem: 'Web',
     ...(input.featureList && { featureList: [...input.featureList] }),
     publisher: { '@id': ORGANIZATION_ID },

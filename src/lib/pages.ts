@@ -13,7 +13,7 @@ export const staticPages = {
   home: {
     path: '/',
     title: site.name,
-    ogTitle: 'Map the whole market. Present the right few.',
+    ogTitle: 'Build the strategy behind every C-suite search.',
     description: site.description,
   },
   blog: {

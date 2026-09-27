@@ -6,6 +6,7 @@ import Hero from '~/components/home/Hero.astro';
 import SecurityBand from '~/components/home/SecurityBand.astro';
 import Workflow from '~/components/home/Workflow.astro';
 import AiResearch from '~/components/home/ai/AiResearch.astro';
+import SearchStrategy from '~/components/home/strategy/SearchStrategy.astro';
 import ReportsShowcase from '~/components/home/reports/ReportsShowcase.astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import { staticPages } from '~/lib/pages';
@@ -14,6 +15,8 @@ import { organization, softwareApplication, webSite } from '~/lib/seo/jsonld';
 const page = staticPages.home;
 
 const productFeatures = [
+  'Search strategy: target sectors, role-aware adjacent industries, a filtered company universe and enforced off-limits lists',
+  'Shared and private saved searches for each mandate',
   'Position briefs drafted from the client’s position description',
   'AI research assistant for the company universe',
   'AI candidate assessment with cited sources',
@@ -29,7 +32,7 @@ const productFeatures = [
   description={page.description}
   ogTitle={page.ogTitle}
   ogImagePath="/og-image.png"
-  ogImageAlt="Uncava — Map the whole market. Present the right few."
+  ogImageAlt="Uncava — Build the strategy behind every C-suite search."
   header="dark-overlay"
   footer="full"
   jsonLd={[
@@ -39,6 +42,7 @@ const productFeatures = [
   ]}
 >
   <Hero />
+  <SearchStrategy />
   <Workflow />
   <AiResearch />
   <CompaniesWindow />

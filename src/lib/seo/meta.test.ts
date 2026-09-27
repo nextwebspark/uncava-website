@@ -4,7 +4,7 @@ import { absoluteUrl, ogImagePathFor } from './url';
 
 describe('composeTitle', () => {
   it('gives the home page the brand and tagline', () => {
-    expect(composeTitle(undefined)).toBe('Uncava — Executive search & talent mapping');
+    expect(composeTitle(undefined)).toBe('Uncava — C-suite executive search & strategy');
   });
 
   it('suffixes every other page with the brand', () => {

@@ -1,0 +1,265 @@
+---
+import Icon from '~/components/site/Icon.astro';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+type Stage = 'Shortlisted' | 'In universe' | null;
+
+interface UniverseRow {
+  company: string;
+  country: string;
+  industry: string;
+  employees: string;
+  stage: Stage;
+  onMobile: boolean;
+}
+
+const rows: readonly UniverseRow[] = [
+  {
+    company: 'Najd Utilities',
+    country: 'Saudi Arabia',
+    industry: 'Utilities',
+    employees: '11,800',
+    stage: 'In universe',
+    onMobile: true,
+  },
+  {
+    company: 'Midar Water & Power',
+    country: 'United Arab Emirates',
+    industry: 'Utilities',
+    employees: '8,050',
+    stage: 'In universe',
+    onMobile: true,
+  },
+  {
+    company: 'Hijaz Power Holding',
+    country: 'Saudi Arabia',
+    industry: 'Utilities',
+    employees: '6,300',
+    stage: 'Shortlisted',
+    onMobile: true,
+  },
+  {
+    company: 'Sarab Energy',
+    country: 'United Arab Emirates',
+    industry: 'Renewable Energy',
+    employees: '4,200',
+    stage: 'Shortlisted',
+    onMobile: false,
+  },
+  {
+    company: 'Khaleej Grid Co.',
+    country: 'Saudi Arabia',
+    industry: 'Utilities',
+    employees: '2,650',
+    stage: 'In universe',
+    onMobile: false,
+  },
+  {
+    company: 'Rimal Power',
+    country: 'United Arab Emirates',
+    industry: 'Utilities',
+    employees: '1,900',
+    stage: 'In universe',
+    onMobile: false,
+  },
+  {
+    company: 'Sahab Renewables',
+    country: 'Saudi Arabia',
+    industry: 'Renewable Energy',
+    employees: '1,100',
+    stage: null,
+    onMobile: false,
+  },
+  {
+    company: 'Qasr Solar',
+    country: 'United Arab Emirates',
+    industry: 'Renewable Energy',
+    employees: '640',
+    stage: null,
+    onMobile: false,
+  },
+];
+
+const filters = [
+  { heading: 'Location', chips: ['United Arab Emirates', 'Saudi Arabia'] },
+  { heading: 'Employees', chips: ['1,000–5,000', '5,000+'] },
+  { heading: 'Industry', chips: ['Utilities', 'Renewable Energy'] },
+];
+const mobileChips = ['United Arab Emirates', 'Saudi Arabia', 'Utilities', '1,000+'];
+const adjacentIndustries = ['Oil & Energy', 'Construction', 'Industrial Automation'];
+const headers = ['Company', 'Country', 'Industry', 'Employees', 'Stage'];
+---
+
+<div
+  class:list={[
+    'overflow-hidden rounded-2xl border border-line bg-panel shadow-window md:rounded-[18px]',
+    className,
+  ]}
+  aria-hidden="true"
+>
+  <div class="md:hidden">
+    <div class="flex flex-col gap-2.5 p-4">
+      <div class="flex flex-wrap gap-1.5">
+        {mobileChips.map((chip) => (
+          <span class="rounded-full border border-line bg-panel px-2.5 py-1 text-xs font-medium">
+            {chip}
+          </span>
+        ))}
+      </div>
+      <span class="text-xs font-semibold text-accent-deep">Adjacent industries</span>
+      <div class="flex flex-wrap gap-1.5">
+        {adjacentIndustries.slice(0, 2).map((industry) => (
+          <span class="rounded-full border border-dashed border-slate-line px-[9px] py-[3px] text-[11.5px] font-medium text-text-2">
+            + {industry}
+          </span>
+        ))}
+      </div>
+    </div>
+    <ul>
+      {rows
+        .filter((row) => row.onMobile)
+        .map((row) => (
+          <li class="border-t border-line-soft px-4 py-3">
+            <div class="text-sm font-medium">{row.company}</div>
+            <div class="text-[12.5px] text-text-3">
+              {row.country} · {row.employees}
+            </div>
+          </li>
+        ))}
+    </ul>
+    <div class="flex justify-between border-t border-line px-4 py-3 text-[12.5px] text-text-2">
+      <span>214 companies</span>
+      <span>2 off-limits excluded</span>
+    </div>
+  </div>
+
+  <div class="hidden md:block">
+    <div class="flex items-center gap-2.5 border-b border-line px-[18px] py-3.5">
+      <span class="flex items-center gap-[7px] rounded-lg border border-line px-[11px] py-[7px] text-[13px] font-medium text-text-2">
+        <Icon name="bookmark" size={14} />
+        Save search
+        <span class="rounded bg-accent-dim px-[5px] py-px font-mono text-[10.5px] font-semibold text-accent-deep">
+          2
+        </span>
+      </span>
+      <span class="flex items-center gap-[7px] rounded-lg bg-accent px-[13px] py-2 text-[13px] font-semibold text-on-accent">
+        <Icon name="sparkle" size={14} />
+        AI Research
+      </span>
+      <span class="hidden w-60 items-center gap-2 rounded-lg border border-line px-[11px] py-[7px] text-[13px] text-text-3 lg:flex">
+        <Icon name="search" size={15} />
+        Search companies
+      </span>
+      <span class="ml-auto text-[13px] font-medium text-accent-deep">Add all to universe →</span>
+    </div>
+
+    <div class="grid grid-cols-[260px_1fr] xl:grid-cols-[300px_1fr]">
+      <div class="flex flex-col border-r border-line">
+        {filters.map((filter) => (
+          <div class="flex flex-col gap-2.5 border-b border-line px-[18px] py-4">
+            <span class="text-[13px] font-semibold">{filter.heading}</span>
+            <div class="flex flex-wrap gap-1.5">
+              {filter.chips.map((chip) => (
+                <span class="rounded-full border border-line bg-panel px-2.5 py-1 text-xs font-medium">
+                  {chip}
+                </span>
+              ))}
+            </div>
+            {filter.heading === 'Industry' && (
+              <div class="flex flex-col gap-2 border-t border-line pt-2.5">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="flex items-center gap-1.5 text-xs font-semibold text-accent-deep">
+                    <Icon name="sparkle" size={13} />
+                    Adjacent industries
+                  </span>
+                  <span class="text-[11px] text-text-3">Based on your selection</span>
+                </div>
+                <div class="flex flex-wrap gap-1.5">
+                  {adjacentIndustries.map((industry) => (
+                    <span class="rounded-full border border-dashed border-slate-line px-[9px] py-[3px] text-[11.5px] font-medium text-text-2">
+                      + {industry}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+        <div class="flex items-center justify-between border-b border-line px-[18px] py-4">
+          <span class="text-[13px] font-semibold">Market segments</span>
+          <Icon name="chevron-right" size={14} class="text-text-3" />
+        </div>
+        <div class="flex items-center justify-between px-[18px] py-4">
+          <span class="flex items-center gap-[7px] text-[13px] font-semibold">
+            <Icon name="lock" size={14} />
+            Off-limits
+          </span>
+          <span class="rounded-[5px] bg-panel-2 px-[7px] py-[3px] font-mono text-[11px] font-medium text-text-2">
+            2 barred
+          </span>
+        </div>
+      </div>
+
+      <div class="flex min-w-0 flex-col">
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse text-left">
+            <thead>
+              <tr class="bg-table-head">
+                <th class="w-9 border-b border-line px-3.5 py-2.5"></th>
+                {headers.map((header) => (
+                  <th
+                    class:list={[
+                      'border-b border-line px-3.5 py-2.5 font-mono text-[11px] font-medium tracking-[0.06em] text-text-2 uppercase',
+                      header === 'Industry' && 'hidden xl:table-cell',
+                    ]}
+                  >
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row) => (
+                <tr class="text-[13px] whitespace-nowrap text-text-2">
+                  <td class="border-b border-line-soft px-3.5 py-[11px]">
+                    <span class="block size-[15px] rounded border-[1.5px] border-slate-line"></span>
+                  </td>
+                  <td class="border-b border-line-soft px-3.5 py-[11px] font-medium text-text">
+                    {row.company}
+                  </td>
+                  <td class="border-b border-line-soft px-3.5 py-[11px]">{row.country}</td>
+                  <td class="hidden border-b border-line-soft px-3.5 py-[11px] xl:table-cell">
+                    {row.industry}
+                  </td>
+                  <td class="border-b border-line-soft px-3.5 py-[11px]">{row.employees}</td>
+                  <td class="border-b border-line-soft px-3.5 py-[11px]">
+                    {row.stage === 'Shortlisted' && (
+                      <span class="rounded-[5px] bg-accent-dim px-[7px] py-[3px] text-[11px] font-medium text-accent-deep">
+                        Shortlisted
+                      </span>
+                    )}
+                    {row.stage === 'In universe' && (
+                      <span class="rounded-[5px] bg-panel-2 px-[7px] py-[3px] text-[11px] font-medium text-text-2">
+                        In universe
+                      </span>
+                    )}
+                    {row.stage === null && <span class="text-text-3">—</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div class="mt-auto flex items-center justify-between border-t border-line px-[18px] py-3 text-[12.5px] text-text-2">
+          <span>1 – 8 of 214 companies</span>
+          <span>2 off-limits companies excluded</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

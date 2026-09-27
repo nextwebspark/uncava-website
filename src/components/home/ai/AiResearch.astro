@@ -1,17 +1,9 @@
 ---
-import Icon from '~/components/site/Icon.astro';
 import { aiSafeguards } from '~/lib/ai-safeguards';
 import FeatureCard from '../FeatureCard.astro';
-import AssistantPanel from './AssistantPanel.astro';
 import BriefProvenanceVisual from './BriefProvenanceVisual.astro';
 import CandidateAssessmentVisual from './CandidateAssessmentVisual.astro';
 import ImportMappingVisual from './ImportMappingVisual.astro';
-
-const starterQuestions = [
-  'Renewables developers in Saudi Arabia and the UAE',
-  'Power and water utilities across the GCC',
-  'Utilities adjacent to renewables',
-];
 ---
 
 <section
@@ -31,46 +23,11 @@ const starterQuestions = [
     </div>
     <p class="mb-1.5 max-w-[520px] text-base leading-[1.55] text-pretty text-text-2 md:mb-0 md:text-lg md:leading-[1.6]">
       <span class="hidden md:inline">
-        The assistant reads the brief, searches the market and drafts the first pass.
+        It drafts the brief from the client’s document, reads the public record on every executive,
+        and maps the spreadsheets you’re sent.
       </span>{' '}
       Every suggestion is marked, sourced, and left for you to decide.
     </p>
-  </div>
-
-  <div class="assistant-card relative grid gap-3 overflow-hidden rounded-2xl bg-ink p-5 text-d-text md:gap-10 md:rounded-[18px] md:p-11 lg:min-h-[480px] lg:grid-cols-[minmax(0,420px)_1fr] lg:gap-14">
-    <div class="relative flex flex-col gap-4 lg:justify-center">
-      <span class="hidden size-10 place-items-center rounded-[10px] border border-ink-line text-d-inferred md:grid">
-        <Icon name="sparkle" size={20} />
-      </span>
-      <h3 class="flex items-center gap-2 text-lg tracking-title md:text-[30px] md:leading-[1.15] md:tracking-[-0.03em]">
-        <Icon name="sparkle" size={16} class="text-d-inferred md:hidden" />
-        Ask the market a question.
-      </h3>
-      <p class="hidden text-[15.5px] leading-[1.6] text-d-text-2 md:block">
-        The Uncava Assistant sits over your strategy. Ask for the leading operators in a sector and
-        watch it work — reading the brief, checking the market’s vocabulary, searching the company
-        universe, resolving the companies you name. Tick the ones worth filing. Off-limits companies
-        never make the list.
-      </p>
-      <ul class="mt-1.5 hidden flex-wrap gap-2 md:flex" aria-label="Example starter questions">
-        {starterQuestions.map((question) => (
-          <li class="rounded-full border border-ink-line px-3 py-[7px] text-[12.5px] text-d-text-2">
-            {question}
-          </li>
-        ))}
-      </ul>
-      <p class="hidden text-[12.5px] text-d-text-3 md:block">
-        Starter questions come from your firm’s sectors.
-      </p>
-    </div>
-
-    <AssistantPanel variant="compact" class="relative md:hidden" />
-    <div class="relative hidden md:block">
-      <AssistantPanel
-        variant="full"
-        class="lg:-mr-11 lg:-mb-11 lg:rounded-tr-none lg:rounded-b-none lg:border-r-0 lg:border-b-0"
-      />
-    </div>
   </div>
 
   <ul class="grid gap-3.5 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
@@ -113,13 +70,3 @@ const starterQuestions = [
     ))}
   </ul>
 </section>
-
-<style>
-  .assistant-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(520px 380px at 80% 30%, rgb(176 124 245 / 0.1), transparent 70%);
-  }
-</style>
