@@ -35,7 +35,7 @@ export const staticPages = {
     title: 'Security',
     ogTitle: 'Confidential by design.',
     description:
-      'How Uncava keeps executive search confidential: isolated workspaces, invitation-only membership, read-only client seats, and no names sent to AI.',
+      'How Uncava keeps executive search confidential: isolated workspaces, invitation-only membership, read-only client seats, and names masked before AI.',
   },
   privacy: {
     path: '/privacy',

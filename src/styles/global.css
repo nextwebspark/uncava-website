@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import '@fontsource-variable/geist';
 @import '@fontsource-variable/geist-mono';
+@import '@fontsource/montserrat/latin-200.css';
 @import './theme.css';
 
 @source not '../../design';

@@ -1,0 +1,40 @@
+---
+const kpis = [
+  { label: 'Recent pace', value: '6.5/wk', note: 'vs 4.8 across the mandate' },
+  { label: 'Companies covered', value: '31/48', note: '65% of universe' },
+  { label: 'Projected', value: '3 wks', note: 'to a complete map' },
+];
+
+// Shares are classes, not inline styles: the site CSP allows no style attributes.
+const researchers = [
+  { name: 'S. Rahman', share: 'flex-[14]', colour: 'bg-seq-4' },
+  { name: 'A. Farouk', share: 'flex-[10]', colour: 'bg-green' },
+  { name: 'M. Pereira', share: 'flex-[7]', colour: 'bg-signal' },
+  { name: 'Not yet mapped', share: 'flex-[17]', colour: 'bg-slate-line' },
+];
+---
+
+<div class="grid grid-cols-3 gap-2">
+  {kpis.map((kpi) => (
+    <div class="flex flex-col gap-[3px]">
+      <span class="font-mono text-[9.5px] font-medium tracking-[0.06em] text-text-2 uppercase">
+        {kpi.label}
+      </span>
+      <span class="font-mono text-base font-semibold">{kpi.value}</span>
+      <span class="text-[10.5px] text-text-2">{kpi.note}</span>
+    </div>
+  ))}
+</div>
+<div class="flex h-3 gap-0.5 overflow-hidden rounded-md">
+  {researchers.map((researcher) => (
+    <span class:list={[researcher.share, researcher.colour]}></span>
+  ))}
+</div>
+<ul class="flex flex-wrap gap-3 text-[11.5px] text-text-2">
+  {researchers.map((researcher) => (
+    <li class="flex items-center gap-1.5">
+      <span class:list={['size-2 rounded-full', researcher.colour]}></span>
+      {researcher.name}
+    </li>
+  ))}
+</ul>

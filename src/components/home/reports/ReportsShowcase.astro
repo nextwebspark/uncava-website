@@ -1,0 +1,62 @@
+---
+import FeatureCard from '../FeatureCard.astro';
+import DiversityVisual from './DiversityVisual.astro';
+import MarketReportWindow from './MarketReportWindow.astro';
+import RemunerationVisual from './RemunerationVisual.astro';
+import TeamProgressVisual from './TeamProgressVisual.astro';
+---
+
+<section
+  id="reports"
+  aria-labelledby="reports-title"
+  class="container-page flex flex-col gap-3.5 pb-16 md:gap-14 md:pb-32"
+>
+  <div class="grid gap-3 md:grid-cols-2 md:items-end md:gap-20">
+    <div class="flex flex-col gap-3 md:gap-[18px]">
+      <p class="eyebrow text-accent-deep">Reports</p>
+      <h2
+        id="reports-title"
+        class="text-[30px] leading-[1.08] tracking-[-0.035em] md:text-[44px] md:leading-[1.04] md:tracking-heading xl:text-[52px]"
+      >
+        A report that writes itself from the mandate.
+      </h2>
+    </div>
+    <p class="mb-1.5 max-w-[520px] text-base leading-[1.55] text-pretty text-text-2 md:mb-0 md:text-lg md:leading-[1.6]">
+      <span class="md:hidden">Four chapters built live from the mandate’s rows.</span>
+      <span class="hidden md:inline">
+        Mapping progress, the shape of the market, remuneration and diversity — four chapters built
+        live from the mandate’s rows. Show the client where talent sits. Show the team what’s left
+        to map.
+      </span>
+    </p>
+  </div>
+
+  <figure>
+    <MarketReportWindow />
+    <figcaption class="sr-only">
+      An example report for a Group CFO mandate, open at the Shape of the market chapter: headline
+      figures, a sector by seniority heatmap of mapped executives, and where they are located.
+    </figcaption>
+  </figure>
+
+  <ul class="grid gap-3.5 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
+    <FeatureCard
+      title="Remuneration, level by level."
+      body="The pay ranges of the executives you’ve mapped, set out by seniority — the conversation about the offer starts from the market, not a guess."
+    >
+      <RemunerationVisual />
+    </FeatureCard>
+    <FeatureCard
+      title="Diversity the client can see."
+      body="Gender by seniority and the spread of nationalities across the longlist, so a diverse slate is shown, not promised."
+    >
+      <DiversityVisual />
+    </FeatureCard>
+    <FeatureCard
+      title="Keep the team on pace."
+      body="Coverage, momentum and each researcher’s share of the mapping — see what’s left, who’s on it, and when the map will be complete."
+    >
+      <TeamProgressVisual />
+    </FeatureCard>
+  </ul>
+</section>

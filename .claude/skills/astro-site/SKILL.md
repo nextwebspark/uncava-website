@@ -8,7 +8,8 @@ description: How the uncava.com Astro site is built — stack, directory layout,
 ## Stack
 
 Astro (static output, `strictest` TypeScript), Starlight mounted at `/docs`, Tailwind CSS v4 through
-`@tailwindcss/vite`, self-hosted Geist / Geist Mono (`@fontsource-variable/*`), Vitest, ESLint flat
+`@tailwindcss/vite`, self-hosted Geist / Geist Mono (`@fontsource-variable/*`) and Montserrat 200 for the wordmark
+only (`@fontsource/montserrat`, both Latin files preloaded in `BaseLayout`), Vitest, ESLint flat
 config, Prettier. Exact versions are pinned in `package.json`; Node comes from `.nvmrc`.
 
 ## Where things go

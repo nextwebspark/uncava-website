@@ -1,34 +1,37 @@
 ---
 /**
- * The Uncava mark: a rhombus over a hexagon. `dark` is the dark tile for light grounds, `light`
- * inverts it for dark grounds, and `glyph` is the untiled mark in currentColor (watermarks).
+ * The Uncava mark, as the app draws it: an isometric cube with a filled top face, in currentColor.
+ * `size` is the height; the width follows the 72 × 104 glyph. Below 28px the stroke thickens, as
+ * the app's bold icons do, so the outline doesn't vanish into a hairline.
  */
 interface Props {
   size?: number;
-  tone?: 'dark' | 'light' | 'glyph';
   label?: string;
   class?: string;
 }
 
-const { size = 30, tone = 'dark', label, class: className } = Astro.props;
+const { size = 30, label, class: className } = Astro.props;
 
-const glyphColor = tone === 'glyph' ? 'currentColor' : tone === 'dark' ? '#f4f5f7' : '#16181c';
-const tileColor = tone === 'dark' ? '#16181c' : '#f4f5f7';
+const width = Math.round((size * 72) / 104);
+const strokeWidth = size >= 28 ? 2.6 : size >= 20 ? 4 : 5.5;
 ---
 
 <svg
-  width={size}
+  width={width}
   height={size}
-  viewBox="86 86 340 340"
+  viewBox="-36 -51 72 104"
+  fill="none"
+  stroke="currentColor"
   class:list={['shrink-0', className]}
   role={label ? 'img' : undefined}
   aria-label={label}
   aria-hidden={label ? undefined : 'true'}
   focusable="false"
 >
-  {tone !== 'glyph' && <rect x="86" y="86" width="340" height="340" rx="74" fill={tileColor} />}
-  <g fill={glyphColor} stroke={glyphColor} stroke-width="11" stroke-linejoin="round">
-    <path d="M256 131 332 174 256 216 180 174Z"></path>
-    <path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none"></path>
-  </g>
+  <path
+    d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50"
+    stroke-width={strokeWidth}
+    stroke-linejoin="round"
+  ></path>
+  <path d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z" fill="currentColor" stroke="none"></path>
 </svg>

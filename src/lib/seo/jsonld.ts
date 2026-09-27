@@ -33,7 +33,10 @@ export function webSite(): JsonLdNode {
   };
 }
 
-export function softwareApplication(input: { description: string }): JsonLdNode {
+export function softwareApplication(input: {
+  description: string;
+  featureList?: readonly string[];
+}): JsonLdNode {
   return {
     '@type': 'SoftwareApplication',
     name: site.name,
@@ -42,6 +45,7 @@ export function softwareApplication(input: { description: string }): JsonLdNode 
     applicationCategory: 'BusinessApplication',
     applicationSubCategory: 'Executive search and talent mapping',
     operatingSystem: 'Web',
+    ...(input.featureList && { featureList: [...input.featureList] }),
     publisher: { '@id': ORGANIZATION_ID },
   };
 }

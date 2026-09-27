@@ -1,0 +1,46 @@
+---
+import Icon from '~/components/site/Icon.astro';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const steps = ['Read the brief', 'Searched the company universe', 'Resolved 2 named companies'];
+---
+
+<div
+  class:list={[
+    'flex flex-col gap-3 rounded-[14px] border border-ink-line bg-ink-2/92 p-4 shadow-float backdrop-blur-sm',
+    className,
+  ]}
+  aria-hidden="true"
+>
+  <div class="flex items-center gap-2">
+    <Icon name="sparkle" size={15} class="text-d-inferred" />
+    <span class="text-[13px] font-medium text-d-text">Assistant</span>
+    <span class="ml-auto font-mono text-[10.5px] font-medium text-d-text-3">
+      Group CFO – Energy
+    </span>
+  </div>
+  <p class="max-w-[240px] self-end rounded-[10px_10px_3px_10px] border border-ink-line bg-ink-3 px-[11px] py-2 text-[12.5px] leading-[1.45] text-d-text">
+    Renewables developers in Saudi Arabia and the UAE
+  </p>
+  <ul class="flex flex-col gap-1.5">
+    {steps.map((step) => (
+      <li class="flex items-center gap-2 text-xs text-d-text-2">
+        <Icon name="check" size={13} strokeWidth={2.2} class="text-d-text-3" />
+        {step}
+      </li>
+    ))}
+  </ul>
+  <div class="flex items-center justify-between gap-2 border-t border-ink-line pt-2.5">
+    <span class="rounded-[5px] bg-d-inferred-dim px-[7px] py-1 font-mono text-[11px] font-medium text-d-inferred">
+      4 suggested
+    </span>
+    <span class="rounded-[7px] border border-ink-line px-2.5 py-1.5 text-xs font-medium text-d-text">
+      File as Shortlisted
+    </span>
+  </div>
+</div>

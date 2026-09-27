@@ -4,6 +4,8 @@
  * Two values are darkened from the app's for WCAG AA at the small sizes this site sets them in:
  * --color-text-3 (4.49 → 4.69 on paper) and --color-green-text; the originals stay for fills.
  * --color-accent is the fill that takes white text; --color-d-accent is the accent on dark grounds.
+ * The inferred purples mark AI output and nothing else; --color-inferred-text is darkened from the
+ * app's --u-inferred so small labels clear AA on panel-2 and on the inferred tint.
  */
 @theme {
   --color-ink: #08090b;
@@ -47,17 +49,27 @@
   --color-green-text: #0a7550;
   --color-red: #d93a45;
 
-  --color-mark-tile: #16181c;
-  --color-mark-glyph: #f4f5f7;
+  --color-inferred: #8244d6;
+  --color-inferred-text: #7438c4;
+  --color-inferred-dim: rgb(130 68 214 / 0.1);
+  --color-d-inferred: #b07cf5;
+  --color-d-inferred-dim: rgb(176 124 245 / 0.12);
+
+  --color-seq-1: #e4e8f6;
+  --color-seq-2: #b9c0ee;
+  --color-seq-3: #8189f7;
+  --color-seq-4: #4a56d6;
+  --color-seq-5: #2e3878;
 
   --font-sans: 'Geist Variable', 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-brand: 'Montserrat', system-ui, sans-serif;
 
   --tracking-display: -0.045em;
   --tracking-heading: -0.04em;
   --tracking-title: -0.02em;
   --tracking-eyebrow: 0.08em;
-  --tracking-wordmark: 0.3em;
+  --tracking-wordmark: 0.38em;
 
   --shadow-float: 0 24px 60px rgb(0 0 0 / 0.5);
   --shadow-window: 0 1px 0 rgb(15 23 42 / 0.03), 0 40px 80px -30px rgb(15 23 42 / 0.22);
@@ -73,11 +85,13 @@
   text-transform: uppercase;
 }
 
-/* The app's wordmark: medium weight, uppercase, wide tracking, never title-case bold. */
+/* The app's wordmark: Montserrat 200, uppercase, wide tracking. The negative margin cancels the
+   tracking after the last letter so the word centres and aligns optically. */
 @utility wordmark {
-  font-family: var(--font-sans);
-  font-weight: 500;
+  font-family: var(--font-brand);
+  font-weight: 200;
   letter-spacing: var(--tracking-wordmark);
+  margin-right: calc(var(--tracking-wordmark) * -1);
   text-transform: uppercase;
   line-height: 1;
 }
