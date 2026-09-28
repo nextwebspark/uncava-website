@@ -1,9 +1,10 @@
 ---
 /**
  * The mark with its lid animated open. The lid starts 40 units lower — resting on the rim, a
- * closed box — and lifts to its drawn position as the element scrolls into view. Pure CSS, driven
- * by the scroll timeline: browsers without `animation-timeline` show the open mark, and reduced
- * motion shows it too. The end state is the brand mark exactly as `BrandMark` draws it.
+ * closed box — and lifts to its drawn position over the last stretch of the page scroll. Pure
+ * CSS: browsers without `animation-timeline` show the open mark, and reduced motion shows it too.
+ * The end state is the brand mark exactly as `BrandMark` draws it. Meant for the home footer,
+ * the last thing on the page; anywhere else the range would not line up.
  */
 interface Props {
   size?: number;
@@ -49,22 +50,20 @@ const width = Math.round((size * 72) / 104);
     }
   }
 
-  /* The timeline is measured against the nearest scroll container, so nothing between here and
-     the viewport may be `overflow: hidden` (which makes one); the footer clips with `overflow: clip`.
-     The timeline lives on the <svg>: a view timeline needs a CSS box, which an SVG <path> has
-     not. Named timelines are visible to descendants, so the lid animates against it. The timeline
-     sits in its own rule: the minifier would otherwise fold it into the `animation` shorthand,
-     which browsers reject as a whole. */
-  @supports (animation-timeline: view()) {
-    .mark {
-      view-timeline: --mark block;
-    }
+  /* Driven by the page scroll, not the mark's own entry: the mark sits at the very end of the
+     page, so its entry range is over before the closed box is fully on screen. Instead the lid
+     stays down until the last 170px of scroll — by then the closed box is fully visible — and
+     opens over that stretch, finishing just before the page end. Nothing between here and the
+     viewport may be `overflow: hidden` (it would become the scroller measured); the footer clips
+     with `overflow: clip`. The timeline sits in its own rule: the minifier would otherwise fold
+     it into the `animation` shorthand, which browsers reject as a whole. */
+  @supports (animation-timeline: scroll()) {
     .lid {
-      animation: lid-open linear both;
+      animation: lid-open ease-in-out both;
     }
     .mark .lid {
-      animation-timeline: --mark;
-      animation-range: entry 0% entry 100%;
+      animation-timeline: scroll();
+      animation-range: calc(100% - 170px) calc(100% - 24px);
     }
   }
 

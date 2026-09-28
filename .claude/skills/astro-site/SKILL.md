@@ -37,7 +37,7 @@ config, Prettier. Exact versions are pinned in `package.json`; Node comes from `
 Every page ships no JavaScript unless a feature is impossible without it. The mobile nav is a
 `<details>` element, not a script. The only script today is `CopyLinkButton` (hidden until the
 Clipboard API exists — progressive enhancement). Before adding one: can CSS, `<details>`, a link or a
-form do it? "Animate on scroll" is CSS too: `animation-timeline: view()` inside `@supports`, as
+form do it? "Animate on scroll" is CSS too: `animation-timeline: scroll()` or `view()` inside `@supports`, as
 `OpeningMark.astro` does. If not, use a processed `<script>` (bundled to `/_astro/*.js`).
 
 **Trap:** Astro inlines small processed scripts under Vite's `assetsInlineLimit`; an inline script

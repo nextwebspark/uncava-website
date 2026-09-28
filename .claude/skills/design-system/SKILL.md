@@ -114,8 +114,8 @@ line with Privacy and Terms. Only the home page uses the full footer; the compac
 - Hover transitions only (colour, border, a 2% image scale), all disabled under
   `prefers-reduced-motion` (global rule in `global.css` plus `motion-reduce:` where needed).
 - The one exception is the home footer's mark (`OpeningMark.astro`): its lid starts on the rim
-  and lifts as the footer scrolls into view, a CSS scroll-driven animation
-  (`animation-timeline: view()`, no JS). Browsers without it, and reduced motion, show the open
+  and lifts over the last 170px of the page scroll, once the closed box is on screen, a CSS
+  scroll-driven animation (`animation-timeline: scroll()`, no JS). Browsers without it, and reduced motion, show the open
   mark; the end state is the mark unchanged. No other scroll-driven motion without an artboard.
 
 ## Contrast
