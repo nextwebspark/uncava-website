@@ -1,6 +1,7 @@
 ---
 import { compactFooterNav, footerNav, site } from '~/lib/site';
 import BrandLockup from './BrandLockup.astro';
+import FooterBrand from './FooterBrand.astro';
 
 interface Props {
   variant?: 'full' | 'compact';
@@ -11,24 +12,24 @@ const year = new Date().getFullYear();
 ---
 
 {variant === 'full' ? (
-  <footer class="border-t border-line">
-    <div class="container-page flex flex-col gap-6 py-9 md:gap-14 md:pt-16 md:pb-10">
+  <footer class="overflow-clip border-t border-ink-line bg-ink text-d-text">
+    <div class="container-page flex flex-col gap-7 py-9 md:gap-16 md:pt-16 md:pb-10">
       <div class="grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-[2fr_repeat(3,minmax(0,1fr))] md:gap-12">
         <div class="col-span-2 flex flex-col gap-3.5 md:col-span-1">
           <BrandLockup size="md" class="self-start" />
-          <p class="hidden max-w-[300px] text-sm leading-[1.6] text-text-3 md:block">
+          <p class="hidden max-w-[300px] text-sm leading-[1.6] text-d-text-3 md:block">
             The workspace for C-suite search strategy and talent mapping.
           </p>
         </div>
         {footerNav.map((group) => (
           <nav aria-label={group.heading} class="flex flex-col md:gap-3">
-            <p class="eyebrow hidden text-[11px] text-text-3 md:block">{group.heading}</p>
+            <p class="eyebrow hidden text-[11px] text-d-text-3 md:block">{group.heading}</p>
             <ul class="flex flex-col md:gap-3">
               {group.links.map((link) => (
                 <li>
                   <a
                     href={link.href}
-                    class="flex min-h-11 items-center text-[15px] text-text-2 transition-colors hover:text-text md:min-h-0 md:text-sm"
+                    class="flex min-h-11 items-center text-[15px] text-d-text-2 transition-colors hover:text-d-text md:min-h-0 md:text-sm"
                   >
                     {link.label}
                   </a>
@@ -38,12 +39,18 @@ const year = new Date().getFullYear();
           </nav>
         ))}
       </div>
-      <div class="flex flex-col gap-2 text-[13px] text-text-3 md:flex-row md:justify-between md:border-t md:border-line-soft md:pt-6">
+      <FooterBrand />
+      <div class="flex flex-col gap-2 text-[13px] text-d-text-3 md:flex-row md:justify-between md:border-t md:border-ink-line md:pt-6">
         <span>
-          © {year} {site.name}
+          © {year} {site.name} · {site.legalName} · {site.registeredAddress}
         </span>
-        <span>
-          {site.legalName} · {site.registeredAddress}
+        <span class="flex gap-7">
+          <a href="/privacy" class="transition-colors hover:text-d-text">
+            Privacy
+          </a>
+          <a href="/terms" class="transition-colors hover:text-d-text">
+            Terms
+          </a>
         </span>
       </div>
     </div>

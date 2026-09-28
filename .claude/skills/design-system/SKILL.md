@@ -56,7 +56,8 @@ Never hard-code a hex in a component when a token exists; add a token instead.
 
 - The mark is the app's: an isometric cube with a filled top face, drawn bare (no tile) in
   `currentColor` by `BrandMark.astro` (`size` is the height; width is 72/104 of it; the stroke
-  thickens below 28px like the app's bold icons). Source: `brand/mark.svg`, from the app's
+  thickens below 28px like the app's bold icons). `OpeningMark.astro` is the same drawing with
+  the lid animated, for the home footer only. Source: `brand/mark.svg`, from the app's
   `apps/web/public/brand/uncava-app-icon-*.svg`. Never redraw, recolour, stretch or add effects.
 - The wordmark is **Montserrat 200, uppercase, letter-spacing 0.38em** with a −0.38em right margin
   (`wordmark` utility), set beside the mark by `BrandLockup`. Montserrat is self-hosted at weight
@@ -100,11 +101,22 @@ Headings weight 600 with negative tracking.
 - A wide table lives inside its own `overflow-x-auto` container; the page itself never scrolls
   sideways (check at 360px).
 
+## Home footer
+
+Dark (`ink`), per the artboard: the link columns, then a brand row — `OpeningMark` at 220px beside
+the wordmark as an outline (`color: transparent; -webkit-text-stroke` in `d-text-3`, Montserrat 200,
+`.38em`, `clamp(96px, 11.5vw, 166px)`; 50px on mobile, stacked under a 120px mark) — then the legal
+line with Privacy and Terms. Only the home page uses the full footer; the compact one stays light.
+
 ## Motion
 
 - No entrance animations on above-the-fold content, and never start content at `opacity: 0`.
 - Hover transitions only (colour, border, a 2% image scale), all disabled under
   `prefers-reduced-motion` (global rule in `global.css` plus `motion-reduce:` where needed).
+- The one exception is the home footer's mark (`OpeningMark.astro`): its lid starts on the rim
+  and lifts as the footer scrolls into view, a CSS scroll-driven animation
+  (`animation-timeline: view()`, no JS). Browsers without it, and reduced motion, show the open
+  mark; the end state is the mark unchanged. No other scroll-driven motion without an artboard.
 
 ## Contrast
 

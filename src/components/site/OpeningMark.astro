@@ -1,0 +1,77 @@
+---
+/**
+ * The mark with its lid animated open. The lid starts 40 units lower — resting on the rim, a
+ * closed box — and lifts to its drawn position as the element scrolls into view. Pure CSS, driven
+ * by the scroll timeline: browsers without `animation-timeline` show the open mark, and reduced
+ * motion shows it too. The end state is the brand mark exactly as `BrandMark` draws it.
+ */
+interface Props {
+  size?: number;
+  class?: string;
+}
+
+const { size = 220, class: className } = Astro.props;
+
+const width = Math.round((size * 72) / 104);
+---
+
+<svg
+  width={width}
+  height={size}
+  viewBox="-36 -51 72 104"
+  fill="none"
+  stroke="currentColor"
+  class:list={['mark shrink-0', className]}
+  aria-hidden="true"
+  focusable="false"
+>
+  <path
+    d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50"
+    stroke-width="2.6"
+    stroke-linejoin="round"
+  ></path>
+  <path
+    class="lid"
+    d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z"
+    fill="currentColor"
+    stroke="none"
+  ></path>
+</svg>
+
+<style>
+  /* 40px in an SVG transform is 40 user units: the lid's drop onto the rim. */
+  @keyframes lid-open {
+    from {
+      transform: translateY(40px);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  /* The timeline is measured against the nearest scroll container, so nothing between here and
+     the viewport may be `overflow: hidden` (which makes one); the footer clips with `overflow: clip`.
+     The timeline lives on the <svg>: a view timeline needs a CSS box, which an SVG <path> has
+     not. Named timelines are visible to descendants, so the lid animates against it. The timeline
+     sits in its own rule: the minifier would otherwise fold it into the `animation` shorthand,
+     which browsers reject as a whole. */
+  @supports (animation-timeline: view()) {
+    .mark {
+      view-timeline: --mark block;
+    }
+    .lid {
+      animation: lid-open linear both;
+    }
+    .mark .lid {
+      animation-timeline: --mark;
+      animation-range: entry 0% entry 100%;
+    }
+  }
+
+  /* The global reduced-motion rule shortens durations, which a scroll timeline ignores. */
+  @media (prefers-reduced-motion: reduce) {
+    .lid {
+      animation: none;
+    }
+  }
+</style>

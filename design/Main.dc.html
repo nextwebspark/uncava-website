@@ -23,6 +23,8 @@
     .td{padding:11px 14px;border-bottom:1px solid var(--line-soft);font:400 13px var(--sans);color:var(--text2);white-space:nowrap}
     .foot-link{color:var(--text2);font:400 14px var(--sans)}
     .foot-link:hover{color:var(--text);text-decoration:none}
+    .foot-link-d{color:var(--d-text2);font:400 14px var(--sans)}
+    .foot-link-d:hover{color:var(--d-text);text-decoration:none}
     @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
     
     .rise{}
@@ -750,31 +752,38 @@
     </div>
   </section>
 
-  <footer style="border-top:1px solid var(--line);padding:64px 80px 40px;display:flex;flex-direction:column;gap:56px">
+  <footer style="background:var(--ink);color:var(--d-text);border-top:1px solid var(--ink-line);padding:64px 80px 40px;display:flex;flex-direction:column;gap:64px;overflow:hidden">
     <div style="display:grid;grid-template-columns:2fr repeat(3,minmax(0,1fr));gap:48px">
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;align-items:center;gap:10px">
-          <svg viewBox="-36 -51 72 104" width="19" height="28" fill="none" stroke="currentColor" style="color:var(--text);flex-shrink:0"><path d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50" fill="none" stroke-width="2.6" stroke-linejoin="round"></path><path d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z" fill="currentColor" stroke="none"></path></svg>
+          <svg viewBox="-36 -51 72 104" width="19" height="28" fill="none" stroke="currentColor" style="color:var(--d-text);flex-shrink:0"><path d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50" fill="none" stroke-width="2.6" stroke-linejoin="round"></path><path d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z" fill="currentColor" stroke="none"></path></svg>
           <span style="font:200 14px/1 var(--brand);letter-spacing:.38em;margin-right:-.38em;text-transform:uppercase">Uncava</span>
         </div>
-        <p style="font:400 14px/1.6 var(--sans);color:var(--text3);max-width:300px">The workspace for C-suite search strategy and talent mapping.</p>
+        <p style="font:400 14px/1.6 var(--sans);color:var(--d-text3);max-width:300px">The workspace for C-suite search strategy and talent mapping.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <span class="eyebrow" style="color:var(--text3);font-size:11px">Product</span>
-        <a class="foot-link" href="#">Search strategy</a><a class="foot-link" href="#">AI research</a><a class="foot-link" href="#">Reports</a><a class="foot-link" href="#">Companies</a><a class="foot-link" href="#">Talent map</a><a class="foot-link" href="#">Capture extension</a>
+        <span class="eyebrow" style="color:var(--d-text3);font-size:11px">Product</span>
+        <a class="foot-link-d" href="#">Search strategy</a><a class="foot-link-d" href="#">AI research</a><a class="foot-link-d" href="#">Reports</a><a class="foot-link-d" href="#">Companies</a><a class="foot-link-d" href="#">Talent map</a><a class="foot-link-d" href="#">Capture extension</a>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <span class="eyebrow" style="color:var(--text3);font-size:11px">Resources</span>
-        <a class="foot-link" href="#">Docs</a><a class="foot-link" href="#">Blog</a><a class="foot-link" href="#">Security</a>
+        <span class="eyebrow" style="color:var(--d-text3);font-size:11px">Resources</span>
+        <a class="foot-link-d" href="#">Docs</a><a class="foot-link-d" href="#">Blog</a><a class="foot-link-d" href="#">Security</a>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <span class="eyebrow" style="color:var(--text3);font-size:11px">Company</span>
-        <a class="foot-link" href="#">Contact</a><a class="foot-link" href="#">Privacy</a><a class="foot-link" href="#">Terms</a>
+        <span class="eyebrow" style="color:var(--d-text3);font-size:11px">Company</span>
+        <a class="foot-link-d" href="#">Contact</a><a class="foot-link-d" href="#">Privacy</a><a class="foot-link-d" href="#">Terms</a>
       </div>
     </div>
-    <div style="display:flex;justify-content:space-between;border-top:1px solid var(--line-soft);padding-top:24px;font:400 13px var(--sans);color:var(--text3)">
-      <span>© 2026 Uncava</span>
-      <span>[Company legal name · registered address]</span>
+
+    <!-- Brand row. The lid starts 40 units lower, resting on the rim (a closed box), and lifts to this position as the footer scrolls into view. CSS scroll-driven animation, no JS; browsers without animation-timeline show this open state. -->
+    <div style="display:flex;align-items:flex-end;gap:48px;color:var(--d-text)">
+      <svg viewBox="-36 -51 72 104" width="152" height="220" fill="none" stroke="currentColor" style="flex-shrink:0"><path d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50" fill="none" stroke-width="2.6" stroke-linejoin="round"></path><path d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z" fill="currentColor" stroke="none"></path></svg>
+      <span style="font:200 166px/1 var(--brand);letter-spacing:.38em;margin-right:-.38em;text-transform:uppercase;color:transparent;-webkit-text-stroke:1.5px var(--d-text3);white-space:nowrap;margin-bottom:-14px">Uncava</span>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;border-top:1px solid var(--ink-line);padding-top:24px;font:400 13px var(--sans);color:var(--d-text3)">
+      <span>© 2026 Uncava · [Company legal name · registered address]</span>
+      <span style="display:flex;gap:28px"><a class="foot-link-d" href="#">Privacy</a><a class="foot-link-d" href="#">Terms</a></span>
     </div>
   </footer>
 </div>
