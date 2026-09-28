@@ -8,9 +8,9 @@
 <x-dc>
 <helmet>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root{--ink:#08090b;--ink2:#0e1013;--ink-line:#2b2b2d;--paper:#f7f8fa;--panel:#ffffff;--panel2:#eceff3;--line:#e8e9ea;--line-soft:#f0f0f1;--text:#0b0d12;--text2:#4c5462;--text3:#687080;--d-text:#f4f6f8;--d-text2:#a6adbb;--d-text3:#7c8493;--accent:#4a56d6;--accent-deep:#4a56d6;--accent-dim:rgba(74,86,214,.09);--on-accent:#ffffff;--d-accent:#6e79f2;--signal:#a8602f;--signal-dim:rgba(168,96,47,.1);--link:#4a56d6;--sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace}
+    :root{--ink:#08090b;--ink2:#0e1013;--ink-line:#2b2b2d;--paper:#f7f8fa;--panel:#ffffff;--panel2:#eceff3;--line:#e8e9ea;--line-soft:#f0f0f1;--text:#0b0d12;--text2:#4c5462;--text3:#687080;--d-text:#f4f6f8;--d-text2:#a6adbb;--d-text3:#7c8493;--accent:#4a56d6;--accent-deep:#4a56d6;--accent-dim:rgba(74,86,214,.09);--on-accent:#ffffff;--d-accent:#6e79f2;--signal:#a8602f;--signal-dim:rgba(168,96,47,.1);--link:#4a56d6;--sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace;--brand:'Montserrat',system-ui,sans-serif;--inferred:#8244d6;--inferred-text:#7438c4;--inferred-dim:rgba(130,68,214,.1);--d-inferred:#b07cf5;--d-inferred-dim:rgba(176,124,245,.12)}
     *{box-sizing:border-box}
     body{margin:0;background:var(--paper);color:var(--text);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
     a{color:var(--link);text-decoration:none}
@@ -26,8 +26,8 @@
 <div style="width:1440px;background:var(--paper)">
   <nav style="display:flex;align-items:center;justify-content:space-between;padding:20px 80px;border-bottom:1px solid var(--line);background:var(--panel)">
     <div style="display:flex;align-items:center;gap:11px">
-      <span style="width:30px;height:30px;border-radius:6.5px;background:#16181c;color:#f4f5f7;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="30" height="30" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
-      <span style="font:500 15px var(--sans);letter-spacing:.3em;text-transform:uppercase">Uncava</span>
+      <svg viewBox="-36 -51 72 104" width="21" height="30" fill="none" stroke="currentColor" style="color:var(--text);flex-shrink:0"><path d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50" fill="none" stroke-width="2.6" stroke-linejoin="round"></path><path d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z" fill="currentColor" stroke="none"></path></svg>
+      <span style="font:200 15px/1 var(--brand);letter-spacing:.38em;margin-right:-.38em;text-transform:uppercase">Uncava</span>
     </div>
     <div style="display:flex;align-items:center;gap:34px">
       <a class="nav-link" href="#">Product</a><a class="nav-link" href="#">Security</a><a class="nav-link" href="#">Docs</a><a class="nav-link" href="#">Blog</a><a class="nav-link" href="#" style="color:var(--text)">Contact</a>
@@ -76,7 +76,7 @@
         <div style="display:flex;flex-direction:column;gap:7px"><span class="label">Firm</span><span class="field"></span></div>
         <div style="display:flex;flex-direction:column;gap:7px"><span class="label">Team size</span><span class="field" style="justify-content:space-between">Select<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:7px"><span class="label">What are you searching for? <span style="color:var(--text3);font-weight:400">Optional</span></span><span class="field" style="min-height:112px;align-items:flex-start">e.g. a Group CFO for an energy business in DACH</span></div>
+      <div style="display:flex;flex-direction:column;gap:7px"><span class="label">What are you searching for? <span style="color:var(--text3);font-weight:400">Optional</span></span><span class="field" style="min-height:112px;align-items:flex-start">e.g. a Group CFO for an energy business in Saudi Arabia</span></div>
       <div style="display:flex;gap:10px;align-items:flex-start;font:400 13.5px/1.5 var(--sans);color:var(--text2)">
         <span style="flex:none;width:18px;height:18px;border-radius:5px;border:1.5px solid #d7d7d9;margin-top:1px"></span>
         <span>We’ll use these details only to arrange your demo. See our <a href="#">privacy policy</a>.</span>
@@ -87,8 +87,8 @@
 
   <footer style="border-top:1px solid var(--line);padding:32px 80px;display:flex;justify-content:space-between;align-items:center;font:400 14px var(--sans);color:var(--text3)">
     <div style="display:flex;align-items:center;gap:10px;color:var(--text)">
-      <span style="width:24px;height:24px;border-radius:5.2px;background:#16181c;color:#f4f5f7;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="24" height="24" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
-      <span style="font:500 13px var(--sans);letter-spacing:.3em;text-transform:uppercase">Uncava</span>
+      <svg viewBox="-36 -51 72 104" width="17" height="24" fill="none" stroke="currentColor" style="color:var(--text);flex-shrink:0"><path d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50" fill="none" stroke-width="4" stroke-linejoin="round"></path><path d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z" fill="currentColor" stroke="none"></path></svg>
+      <span style="font:200 13px/1 var(--brand);letter-spacing:.38em;margin-right:-.38em;text-transform:uppercase">Uncava</span>
     </div>
     <div style="display:flex;gap:28px"><a href="#" style="color:var(--text3)">Docs</a><a href="#" style="color:var(--text3)">Blog</a><a href="#" style="color:var(--text3)">Security</a><a href="#" style="color:var(--text3)">Privacy</a><a href="#" style="color:var(--text3)">Terms</a></div>
     <span>© 2026 Uncava</span>

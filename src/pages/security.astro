@@ -27,7 +27,27 @@ const questions: FrequentlyAskedQuestion[] = [
   {
     question: 'Is a position description sent to AI?',
     answer:
-      'Yes, when you choose Read from document. The attached document is read to propose fields for the brief, and nothing is written until you accept each proposal.',
+      'Yes, when you choose Read from document. Client names and contact details are pseudonymised first, compensation is never read, and nothing is written until you accept each proposal.',
+  },
+  {
+    question: 'Can someone approach an off-limits company by mistake?',
+    answer:
+      'Not from Uncava. A company on a mandate’s off-limits list is dropped from every filtered search, from the count and from every bulk add, and there is no setting that shows it anyway.',
+  },
+  {
+    question: 'Does Uncava’s AI file anything on its own?',
+    answer:
+      'No. The assistant and the AI assessment suggest; a consultant chooses what is filed and at which stage. AI output is marked in purple, with its sources or the sentence it came from.',
+  },
+  {
+    question: 'What does an AI candidate assessment read?',
+    answer:
+      'The executive’s LinkedIn profile and public web pages such as press coverage, leadership pages, talks, awards and board listings. Every source it used is listed with the assessment.',
+  },
+  {
+    question: 'How is AI kept in bounds?',
+    answer:
+      'Every AI call runs behind prompt-injection guards and a per-user budget, and client names and contact details are masked before text reaches the model.',
   },
 ];
 

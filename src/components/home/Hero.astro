@@ -2,8 +2,8 @@
 import ButtonLink from '~/components/site/ButtonLink.astro';
 import Icon from '~/components/site/Icon.astro';
 import HeroGlobe from './HeroGlobe.astro';
+import AssistantHeroCard from './ai/AssistantHeroCard.astro';
 import MandateCard from './MandateCard.astro';
-import MarketCard from './MarketCard.astro';
 ---
 
 <section
@@ -17,22 +17,27 @@ import MarketCard from './MarketCard.astro';
     <div class="flex flex-col gap-5 px-5 pt-9 md:px-10 lg:justify-center lg:gap-7 lg:px-0 lg:pt-10 lg:pb-24">
       <p class="flex items-center gap-2 self-start rounded-full border border-ink-line bg-ink-2/70 py-1.5 pr-3 pl-[9px] lg:gap-2.5 lg:py-[7px] lg:pr-3.5 lg:pl-2.5">
         <span class="size-1.5 rounded-full bg-d-accent lg:size-[7px] lg:shadow-[0_0_0_4px_rgb(110_121_242/0.18)]"></span>
-        <span class="eyebrow text-d-text-2">Executive search &amp; talent mapping</span>
+        <span class="eyebrow text-d-text-2">C-suite executive search</span>
       </p>
 
       <h1
         id="hero-title"
         class="text-[44px] leading-[1.02] tracking-display md:text-6xl lg:text-[64px] lg:leading-none xl:text-[76px]"
       >
-        Map the whole market. <span class="text-d-accent">Present the right few.</span>
+        Build the strategy behind{' '}
+        <span class="text-d-accent">
+          every <span class="whitespace-nowrap">C-suite</span> search.
+        </span>
       </h1>
 
       <p class="max-w-[520px] text-[17px] leading-[1.55] text-pretty text-d-text-2 lg:text-[19px]">
+        <span class="hidden md:inline">Uncava turns a brief into a search strategy</span>
+        <span class="md:hidden">Turn a brief into a search strategy</span> — target sectors,
+        adjacent industries, the company universe and the off-limits list — then{' '}
         <span class="hidden md:inline">
-          Uncava is the workspace where search consultants draft the brief,
+          maps the executives and brings the client into the shortlist.
         </span>
-        <span class="md:hidden">Draft the brief,</span> map every company and executive that
-        matters, and bring the client into a shortlist they can trust.
+        <span class="md:hidden">map the executives and bring the client in.</span>
       </p>
 
       <div class="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:gap-3">
@@ -56,7 +61,7 @@ import MarketCard from './MarketCard.astro';
 
     <div class="relative mt-3 h-[330px] sm:h-[440px] lg:mt-0 lg:h-[700px]">
       <HeroGlobe class="absolute inset-0 m-auto h-full w-full lg:inset-auto lg:top-[10px] lg:left-[30px] lg:h-[700px] lg:w-[700px]" />
-      <MarketCard class="absolute top-[388px] left-0 hidden w-[300px] lg:block" />
+      <AssistantHeroCard class="absolute top-[388px] left-0 hidden w-[300px] lg:flex" />
       <MandateCard class="absolute inset-x-5 -bottom-2 sm:inset-x-auto sm:left-1/2 sm:w-[360px] sm:-translate-x-1/2 lg:top-[92px] lg:right-10 lg:bottom-auto lg:left-auto lg:w-[236px] lg:translate-x-0 xl:right-20" />
     </div>
   </div>

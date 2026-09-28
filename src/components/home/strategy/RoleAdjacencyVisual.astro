@@ -1,0 +1,31 @@
+---
+const roles = [
+  {
+    role: 'Group CFO',
+    reach: 'Functional · transfers widely',
+    industries: ['Oil & Energy', 'Construction', 'Logistics', 'Real Estate'],
+  },
+  {
+    role: 'COO – Transmission',
+    reach: 'Sector craft · closest only',
+    industries: ['Oil & Energy'],
+  },
+];
+---
+
+{roles.map((entry, index) => (
+  <>
+    {index > 0 && <span class="h-px bg-line"></span>}
+    <div class="flex items-center justify-between gap-2">
+      <span class="text-[12.5px] font-medium">{entry.role}</span>
+      <span class="font-mono text-[10.5px] font-medium text-text-2">{entry.reach}</span>
+    </div>
+    <div class="flex flex-wrap gap-1.5">
+      {entry.industries.map((industry) => (
+        <span class="rounded-full border border-line bg-panel px-2.5 py-1 text-xs font-medium">
+          {industry}
+        </span>
+      ))}
+    </div>
+  </>
+))}

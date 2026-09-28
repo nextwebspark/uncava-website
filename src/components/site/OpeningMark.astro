@@ -1,0 +1,76 @@
+---
+/**
+ * The mark with its lid animated open. The lid starts 40 units lower — resting on the rim, a
+ * closed box — and lifts to its drawn position over the last stretch of the page scroll. Pure
+ * CSS: browsers without `animation-timeline` show the open mark, and reduced motion shows it too.
+ * The end state is the brand mark exactly as `BrandMark` draws it. Meant for the home footer,
+ * the last thing on the page; anywhere else the range would not line up.
+ */
+interface Props {
+  size?: number;
+  class?: string;
+}
+
+const { size = 220, class: className } = Astro.props;
+
+const width = Math.round((size * 72) / 104);
+---
+
+<svg
+  width={width}
+  height={size}
+  viewBox="-36 -51 72 104"
+  fill="none"
+  stroke="currentColor"
+  class:list={['mark shrink-0', className]}
+  aria-hidden="true"
+  focusable="false"
+>
+  <path
+    d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50"
+    stroke-width="2.6"
+    stroke-linejoin="round"
+  ></path>
+  <path
+    class="lid"
+    d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z"
+    fill="currentColor"
+    stroke="none"
+  ></path>
+</svg>
+
+<style>
+  /* 40px in an SVG transform is 40 user units: the lid's drop onto the rim. */
+  @keyframes lid-open {
+    from {
+      transform: translateY(40px);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  /* Driven by the page scroll, not the mark's own entry: the mark sits at the very end of the
+     page, so its entry range is over before the closed box is fully on screen. Instead the lid
+     stays down until the last 170px of scroll — by then the closed box is fully visible — and
+     opens over that stretch, finishing just before the page end. Nothing between here and the
+     viewport may be `overflow: hidden` (it would become the scroller measured); the footer clips
+     with `overflow: clip`. The timeline sits in its own rule: the minifier would otherwise fold
+     it into the `animation` shorthand, which browsers reject as a whole. */
+  @supports (animation-timeline: scroll()) {
+    .lid {
+      animation: lid-open ease-in-out both;
+    }
+    .mark .lid {
+      animation-timeline: scroll();
+      animation-range: calc(100% - 170px) calc(100% - 24px);
+    }
+  }
+
+  /* The global reduced-motion rule shortens durations, which a scroll timeline ignores. */
+  @media (prefers-reduced-motion: reduce) {
+    .lid {
+      animation: none;
+    }
+  }
+</style>

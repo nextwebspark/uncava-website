@@ -13,7 +13,7 @@ export const staticPages = {
   home: {
     path: '/',
     title: site.name,
-    ogTitle: 'Map the whole market. Present the right few.',
+    ogTitle: 'Build the strategy behind every C-suite search.',
     description: site.description,
   },
   blog: {
@@ -35,7 +35,7 @@ export const staticPages = {
     title: 'Security',
     ogTitle: 'Confidential by design.',
     description:
-      'How Uncava keeps executive search confidential: isolated workspaces, invitation-only membership, read-only client seats, and no names sent to AI.',
+      'How Uncava keeps executive search confidential: isolated workspaces, invitation-only membership, read-only client seats, and names masked before AI.',
   },
   privacy: {
     path: '/privacy',
