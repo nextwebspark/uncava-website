@@ -2,7 +2,7 @@ import { docsLoader } from '@astrojs/starlight/loaders';
 import { docsSchema } from '@astrojs/starlight/schema';
 import { defineCollection, reference } from 'astro:content';
 import { glob } from 'astro/loaders';
-import { authorSchema, blogSchema } from './lib/content-schemas';
+import { authorSchema, blogSchema, legalSchema } from './lib/content-schemas';
 
 const blog = defineCollection({
   loader: glob({ base: './src/content/blog', pattern: '**/*.md' }),
@@ -14,9 +14,14 @@ const authors = defineCollection({
   schema: ({ image }) => authorSchema({ image }),
 });
 
+const legal = defineCollection({
+  loader: glob({ base: './src/content/legal', pattern: '*.md' }),
+  schema: legalSchema(),
+});
+
 const docs = defineCollection({
   loader: docsLoader(),
   schema: docsSchema(),
 });
 
-export const collections = { blog, authors, docs };
+export const collections = { blog, authors, legal, docs };

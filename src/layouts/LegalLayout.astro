@@ -1,37 +1,55 @@
 ---
+import { getEntry, render } from 'astro:content';
 import type { StaticPageMeta } from '~/lib/pages';
 import { breadcrumbList } from '~/lib/seo/jsonld';
 import BaseLayout from './BaseLayout.astro';
 
-export interface LegalSection {
-  id: string;
-  heading: string;
-  placeholder: string;
-}
-
 interface Props {
   page: StaticPageMeta;
-  sections: readonly LegalSection[];
+  documentId: string;
 }
 
-const { page, sections } = Astro.props;
+const { page, documentId } = Astro.props;
+
+const document = await getEntry('legal', documentId);
+if (!document) throw new Error(`No legal document src/content/legal/${documentId}.md`);
+
+const { Content, headings } = await render(document);
+const toc = headings.filter((heading) => heading.depth === 2);
+const lastUpdated = document.data.lastUpdated.toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
 ---
 
 <BaseLayout
   title={page.title}
   description={page.description}
   ogTitle={page.ogTitle}
-  jsonLd={[breadcrumbList([{ name: page.title, path: page.path }])]}
+  jsonLd={[
+    breadcrumbList([
+      { name: 'Legal', path: '/legal' },
+      { name: page.title, path: page.path },
+    ]),
+  ]}
 >
   <div class="container-page grid gap-10 pt-14 pb-16 md:pt-[88px] md:pb-24 lg:grid-cols-[220px_minmax(0,720px)] lg:gap-16">
-    <header class="flex flex-col gap-4 lg:col-start-2">
-      <p class="eyebrow text-accent-deep">Legal</p>
+    <header class="flex min-w-0 flex-col gap-4 lg:col-start-2">
+      <a href="/legal" class="eyebrow self-start text-accent-deep hover:text-accent-hover">
+        Legal
+      </a>
       <h1 class="text-[40px] leading-[1.04] tracking-display md:text-[52px]">{page.title}</h1>
-      <p class="font-mono text-[13px] text-text-3">Last updated [Date]</p>
-      <p class="rounded-xl border border-signal/30 bg-signal-dim px-[18px] py-4 text-[15px] leading-[1.6] text-signal-ink">
-        This page is a placeholder. Every bracketed section must be replaced with text approved by
-        counsel before launch.
+      <p class="font-mono text-[13px] text-text-3">
+        Last updated{' '}
+        <time datetime={document.data.lastUpdated.toISOString().slice(0, 10)}>{lastUpdated}</time>
       </p>
+      {!document.data.reviewedByCounsel && (
+        <p class="rounded-xl border border-signal/30 bg-signal-dim px-[18px] py-4 text-[15px] leading-[1.6] text-signal-ink">
+          Draft pending legal review. Bracketed items are details still to be confirmed.
+        </p>
+      )}
     </header>
 
     <nav
@@ -43,10 +61,13 @@ const { page, sections } = Astro.props;
           On this page
         </p>
         <ol class="flex flex-col gap-2.5">
-          {sections.map((section) => (
+          {toc.map((heading) => (
             <li>
-              <a href={`#${section.id}`} class="text-sm leading-[1.4] text-text-3 hover:text-text">
-                {section.heading}
+              <a
+                href={`#${heading.slug}`}
+                class="text-sm leading-[1.4] text-text-3 hover:text-text"
+              >
+                {heading.text}
               </a>
             </li>
           ))}
@@ -54,19 +75,8 @@ const { page, sections } = Astro.props;
       </div>
     </nav>
 
-    <div class="flex flex-col gap-10 lg:col-start-2">
-      {sections.map((section, index) => (
-        <section
-          id={section.id}
-          aria-labelledby={`${section.id}-title`}
-          class="flex flex-col gap-3"
-        >
-          <h2 id={`${section.id}-title`} class="text-2xl tracking-title">
-            {index + 1}. {section.heading}
-          </h2>
-          <p class="text-[17px] leading-[1.75] text-prose">{section.placeholder}</p>
-        </section>
-      ))}
+    <div class="article-prose legal-prose min-w-0 lg:col-start-2">
+      <Content />
     </div>
   </div>
 </BaseLayout>
