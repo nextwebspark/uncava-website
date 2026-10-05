@@ -75,22 +75,49 @@ GitHub sign-in in the CMS needs a small OAuth relay, the
 
 ## Deploying
 
-Merging to `main` runs `.github/workflows/deploy.yml`: `npm run verify`, then `firebase deploy --only
-hosting`. Same-repository pull requests get a 7-day preview channel from `preview.yml`. Both skip with a
-notice until configured.
+Merging to `main` deploys nothing — CI proves the site is releasable and stops there. Production changes
+only through a release. Same-repository pull requests still get a 7-day preview channel from
+`preview.yml`.
+
+### Cutting a release
+
+GitHub → Actions → **Release** → Run workflow, choosing `patch`, `minor` or `major`.
+
+1. It refuses unless CI is green on the tip of `main` (`force` overrides).
+2. It takes the latest `vX.Y.Z` tag, bumps the chosen part (the first release is `v0.1.0`), pushes the
+   tag and publishes a GitHub Release whose notes are the merged pull requests since the last one.
+3. It calls **Deploy** with that tag: `npm run verify` on the tag, `firebase deploy --only hosting` with
+   the version as the release message, then a smoke test against the live site.
+
+The tag is the version; `package.json` is not bumped. What is live is always one request away:
+`https://uncava.com/version.json` → `{"version","commit","deployedAt"}`.
+
+### Redeploying or rolling back
+
+GitHub → Actions → **Deploy** → Run workflow with an existing tag, e.g. `v0.3.0`. It rebuilds that tag
+and ships it; no new version is cut. For an instant rollback without a rebuild, use Firebase console →
+Hosting → release history → **Rollback**, then redeploy the tag so `version.json` agrees.
 
 ### One-time Google Cloud setup
 
-1. Create (or choose) a Firebase project and enable Hosting. Replace `[FIREBASE_PROJECT_ID]` in
-   `.firebaserc`.
-2. Create a service account for deploys with `roles/firebasehosting.admin`.
-3. Create a Workload Identity Pool and an OIDC provider for `https://token.actions.githubusercontent.com`
-   with attribute condition `assertion.repository == 'nextwebspark/uncava-website'`.
-4. Allow the provider's principal set to impersonate the service account
-   (`roles/iam.workloadIdentityUser`).
-5. In GitHub → Settings → Secrets and variables → Actions → **Variables**, set
-   `GCP_WORKLOAD_IDENTITY_PROVIDER` (full resource name), `GCP_SERVICE_ACCOUNT` (email) and
-   `FIREBASE_PROJECT_ID`. No secrets are needed.
+The site lives in the `hak-talent-mapping` project as its own Hosting site (`hosting.site` in
+`firebase.json`), deployed by a keyless Workload Identity Federation identity. All of it is created by
+one idempotent, re-runnable script:
+
+```bash
+gcloud auth login
+./scripts/gcp-bootstrap.sh   # GCP_PROJECT / GITHUB_REPO override the defaults
+```
+
+It enables the APIs, adds Firebase to the project, creates the Hosting site, the
+`uncava-website-deployer` service account (`roles/firebasehosting.admin` and
+`roles/serviceusage.serviceUsageConsumer` only) and a WIF provider pinned to this repository, then
+prints the `gh variable set` commands for `GCP_WORKLOAD_IDENTITY_PROVIDER`, `GCP_SERVICE_ACCOUNT`,
+`FIREBASE_PROJECT_ID` and, once the domain is connected, `PUBLIC_BASE_URL`. No secrets are needed.
+Until those variables are set, Deploy and Preview skip with a notice.
+
+By hand, once: the `production` environment (required reviewer, deployments from `main` only) and a tag
+ruleset on `v*` blocking update and deletion.
 
 ### Domains and DNS (Cloudflare)
 

@@ -31,7 +31,7 @@ npm run lhci         # Lighthouse CI against dist (needs Chrome)
 | `src/lib/`                                 | Pure TypeScript: site constants, page metadata, content schemas, SEO builders, OG renderer.       |
 | `src/styles/`                              | `theme.css` (tokens, shared), `global.css` (site), `docs.css` (Starlight).                        |
 | `public/admin/`                            | Sveltia CMS: `index.html` + `config.yml`.                                                         |
-| `scripts/`                                 | Build-time tooling (`check-csp.ts`).                                                              |
+| `scripts/`                                 | Build-time tooling (`check-csp.ts`), `gcp-bootstrap.sh` (the GCP deploy identity, re-runnable).   |
 | `tests/`                                   | Config tests: `firebase.json` headers, CMS ↔ schema lockstep. Unit tests sit beside their module. |
 
 ## Invariants
@@ -48,6 +48,8 @@ npm run lhci         # Lighthouse CI against dist (needs Chrome)
   placeholders like `[hello@uncava.com]`. Never write legal text, prices, metrics or testimonials.
 - **Don't build ahead of the design.** No page, section or component without an artboard or a request.
 - **No secrets in the repo.** Deploys authenticate with Workload Identity Federation.
+- **Merging to `main` deploys nothing.** Production changes only through the Release workflow, which
+  tags `vX.Y.Z` and deploys that tag; Deploy on an older tag is the rollback.
 
 ## Conventions
 
