@@ -54,22 +54,29 @@ const questions: FrequentlyAskedQuestion[] = [
 const openItems = [
   {
     heading: 'Hosting and data location',
-    body: '[Where Uncava is hosted and where customer data is stored.]',
+    body: 'The application, database and documents run on Google Cloud in the United States (us-central1).',
   },
-  { heading: 'Encryption', body: '[Encryption in transit and at rest.]' },
+  {
+    heading: 'Encryption',
+    body: 'HTTPS everywhere. Mailbox and calendar refresh tokens are encrypted with AES-256-GCM, with keys in Google Cloud Secret Manager. [Encryption at rest of the database and storage to confirm.]',
+  },
   {
     heading: 'Sign-in and sessions',
-    body: '[Password, Google and LinkedIn sign-in; session handling.]',
+    body: 'Password (bcrypt, verified email, lockout after repeated failures), Google or LinkedIn sign-in. Sessions use a 15-minute token and an HttpOnly refresh cookie rotated on every use; you can revoke sessions at any time.',
   },
   {
     heading: 'AI providers',
-    body: '[Which model provider processes documents and headers, and under what terms.]',
+    body: 'Google Gemini on Vertex AI, in us-central1. Your data is not used to train the models.',
   },
-  { heading: 'Sub-processors', body: '[List of sub-processors, or a link to it.]' },
+  {
+    heading: 'Sub-processors',
+    body: 'Every third party that processes personal data is listed on the sub-processors page.',
+    href: '/subprocessors',
+  },
   { heading: 'Certifications and audits', body: '[Certifications held or in progress, if any.]' },
   {
     heading: 'Reporting a vulnerability',
-    body: '[Security contact address and disclosure policy.]',
+    body: 'Email [security@uncava.com]. Please do not test against other customers’ data.',
   },
 ];
 ---
@@ -150,7 +157,17 @@ const openItems = [
         {openItems.map((item) => (
           <div class="flex flex-col gap-1.5">
             <dt class="text-base font-semibold">{item.heading}</dt>
-            <dd class="text-[15px] leading-[1.6] text-text-2">{item.body}</dd>
+            <dd class="text-[15px] leading-[1.6] text-text-2">
+              {item.body}
+              {item.href && (
+                <>
+                  {' '}
+                  <a href={item.href} class="link-inline">
+                    See the list
+                  </a>
+                </>
+              )}
+            </dd>
           </div>
         ))}
       </dl>

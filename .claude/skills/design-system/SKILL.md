@@ -14,8 +14,8 @@ then update this skill.
 
 Artboards have a desktop and (for home) a mobile frame. Between them, interpolate: stack columns,
 hide what the mobile frame hides, keep what it keeps. **Don't build ahead of the design**: no new
-section, page or variant without an artboard or an explicit request. `/security`, `/privacy`,
-`/terms` and `/404` have no artboard and reuse the home/blog vocabulary.
+section, page or variant without an artboard or an explicit request. `/security`, `/legal` and the
+legal documents (`LegalLayout`) and `/404` have no artboard and reuse the home/blog vocabulary.
 
 ## Tokens (`src/styles/theme.css`)
 

@@ -56,6 +56,7 @@ export const footerNav: readonly {
       { label: 'Contact', href: '/contact' },
       { label: 'Privacy', href: '/privacy' },
       { label: 'Terms', href: '/terms' },
+      { label: 'Legal', href: '/legal' },
     ],
   },
 ];
@@ -66,4 +67,5 @@ export const compactFooterNav: readonly NavLink[] = [
   { label: 'Security', href: '/security' },
   { label: 'Privacy', href: '/privacy' },
   { label: 'Terms', href: '/terms' },
+  { label: 'Legal', href: '/legal' },
 ];
