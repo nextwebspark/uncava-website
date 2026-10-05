@@ -6,3 +6,4 @@
 /src/layouts/ @nextwebspark
 /src/components/ @nextwebspark
 /public/admin/ @nextwebspark
+/scripts/gcp-bootstrap.sh @nextwebspark
