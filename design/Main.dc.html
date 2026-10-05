@@ -8,9 +8,9 @@
 <x-dc>
 <helmet>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root{--ink:#08090b;--ink2:#0e1013;--ink3:#15181d;--ink-line:#2b2b2d;--paper:#f7f8fa;--panel:#ffffff;--panel2:#eceff3;--line:#e8e9ea;--line-soft:#f0f0f1;--text:#0b0d12;--text2:#4c5462;--text3:#687080;--d-text:#f4f6f8;--d-text2:#a6adbb;--d-text3:#7c8493;--accent:#4a56d6;--accent-deep:#4a56d6;--accent-dim:rgba(74,86,214,.09);--on-accent:#ffffff;--d-accent:#6e79f2;--signal:#a8602f;--signal-dim:rgba(168,96,47,.1);--link:#4a56d6;--green:#0f9d6b;--red:#d93a45;--sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace}
+    :root{--ink:#08090b;--ink2:#0e1013;--ink3:#15181d;--ink-line:#2b2b2d;--paper:#f7f8fa;--panel:#ffffff;--panel2:#eceff3;--line:#e8e9ea;--line-soft:#f0f0f1;--text:#0b0d12;--text2:#4c5462;--text3:#687080;--d-text:#f4f6f8;--d-text2:#a6adbb;--d-text3:#7c8493;--accent:#4a56d6;--accent-deep:#4a56d6;--accent-dim:rgba(74,86,214,.09);--on-accent:#ffffff;--d-accent:#6e79f2;--signal:#a8602f;--signal-dim:rgba(168,96,47,.1);--link:#4a56d6;--green:#0f9d6b;--red:#d93a45;--sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace;--brand:'Montserrat',system-ui,sans-serif;--inferred:#8244d6;--inferred-text:#7438c4;--inferred-dim:rgba(130,68,214,.1);--d-inferred:#b07cf5;--d-inferred-dim:rgba(176,124,245,.12)}
     *{box-sizing:border-box}
     body{margin:0;background:var(--paper);color:var(--text);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
     a{color:var(--link);text-decoration:none}
@@ -23,9 +23,13 @@
     .td{padding:11px 14px;border-bottom:1px solid var(--line-soft);font:400 13px var(--sans);color:var(--text2);white-space:nowrap}
     .foot-link{color:var(--text2);font:400 14px var(--sans)}
     .foot-link:hover{color:var(--text);text-decoration:none}
+    .foot-link-d{color:var(--d-text2);font:400 14px var(--sans)}
+    .foot-link-d:hover{color:var(--d-text);text-decoration:none}
     @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
     
     .rise{}
+    .chip{font:500 12px var(--sans);color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+    .chip-add{font:500 11.5px var(--sans);color:var(--text2);border:1px dashed rgba(3,7,18,.16);border-radius:999px;padding:3px 9px}
     
   </style>
 </helmet>
@@ -37,8 +41,8 @@
 
     <nav style="position:relative;display:flex;align-items:center;justify-content:space-between;padding:22px 80px;border-bottom:1px solid rgba(244,246,248,.06)">
       <div style="display:flex;align-items:center;gap:11px">
-        <span style="width:30px;height:30px;border-radius:6.5px;background:#f4f5f7;color:#16181c;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="30" height="30" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
-        <span style="font:500 15px var(--sans);letter-spacing:.3em;text-transform:uppercase">Uncava</span>
+        <svg viewBox="-36 -51 72 104" width="21" height="30" fill="none" stroke="currentColor" style="color:var(--d-text);flex-shrink:0"><path d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50" fill="none" stroke-width="2.6" stroke-linejoin="round"></path><path d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z" fill="currentColor" stroke="none"></path></svg>
+        <span style="font:200 15px/1 var(--brand);letter-spacing:.38em;margin-right:-.38em;text-transform:uppercase">Uncava</span>
       </div>
       <div style="display:flex;align-items:center;gap:34px">
         <a class="nav-link" href="#">Product</a>
@@ -57,10 +61,10 @@
       <div style="display:flex;flex-direction:column;justify-content:center;gap:28px;padding:40px 0 96px">
         <div class="rise" style="display:flex;align-items:center;gap:10px;align-self:flex-start;border:1px solid var(--ink-line);background:rgba(14,16,19,.7);border-radius:999px;padding:7px 14px 7px 10px">
           <span style="width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(110,121,242,.18)"></span>
-          <span class="eyebrow" style="color:var(--d-text2)">Executive search &amp; talent mapping</span>
+          <span class="eyebrow" style="color:var(--d-text2)">C-suite executive search</span>
         </div>
-        <h1 class="rise" style="font:600 76px/1.0 var(--sans);letter-spacing:-.045em;text-wrap:balance;animation-delay:.06s">Map the whole market. <span style="color:var(--d-accent)">Present the right few.</span></h1>
-        <p class="rise" style="font:400 19px/1.55 var(--sans);color:var(--d-text2);max-width:520px;text-wrap:pretty;animation-delay:.12s">Uncava is the workspace where search consultants draft the brief, map every company and executive that matters, and bring the client into a shortlist they can trust.</p>
+        <h1 class="rise" style="font:600 76px/1.0 var(--sans);letter-spacing:-.045em;text-wrap:balance;animation-delay:.06s">Build the strategy behind <span style="color:var(--d-accent)">every <span style="white-space:nowrap">C-suite</span> search.</span></h1>
+        <p class="rise" style="font:400 19px/1.55 var(--sans);color:var(--d-text2);max-width:520px;text-wrap:pretty;animation-delay:.12s">Uncava turns a brief into a search strategy — target sectors, adjacent industries, the company universe and the off-limits list — then maps the executives and brings the client into the shortlist.</p>
         <div class="rise" style="display:flex;align-items:center;gap:12px;animation-delay:.18s">
           <a href="#" style="background:var(--accent);color:var(--on-accent);font:600 15px var(--sans);padding:14px 22px;border-radius:10px;text-decoration:none">Book a demo</a>
           <a href="#" style="display:flex;align-items:center;gap:8px;color:var(--d-text);font:500 15px var(--sans);padding:14px 20px;border-radius:10px;border:1px solid var(--ink-line);text-decoration:none">See how it works <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a>
@@ -119,40 +123,21 @@
           </g>
         </svg>
 
-        <div style="position:absolute;left:0;top:388px;width:300px;background:rgba(14,16,19,.92);backdrop-filter:blur(8px);border:1px solid var(--ink-line);border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.5);padding:16px">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-            <span class="eyebrow" style="color:var(--d-text3);font-size:10.5px">Germany</span>
-            <span style="font:500 11px var(--mono);color:var(--d-text3)">3 companies · 7 executives</span>
+        <div style="position:absolute;left:0;top:388px;width:300px;background:rgba(14,16,19,.92);backdrop-filter:blur(8px);border:1px solid var(--ink-line);border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.5);padding:16px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="color:var(--d-inferred);display:flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 13.6 8a3 3 0 0 0 2.4 2.4l4.5 1.6-4.5 1.6a3 3 0 0 0-2.4 2.4L12 20.5 10.4 16A3 3 0 0 0 8 13.6L3.5 12 8 10.4A3 3 0 0 0 10.4 8Z"></path></svg></span>
+            <span style="font:500 13px var(--sans);color:var(--d-text)">Assistant</span>
+            <span style="margin-left:auto;font:500 10.5px var(--mono);color:var(--d-text3)">Group CFO – Energy</span>
           </div>
-          <div style="display:flex;flex-direction:column;gap:10px">
-            <div style="display:flex;align-items:center;gap:10px">
-              <span style="width:28px;height:28px;border-radius:7px;background:#1d2128;border:1px solid var(--ink-line);display:grid;place-items:center;font:600 11px var(--sans);color:var(--d-text2)">NW</span>
-              <div style="flex:1;min-width:0">
-                <div style="font:500 13px var(--sans);color:var(--d-text)">Nordwind Energie</div>
-                <div style="font:400 11.5px var(--sans);color:var(--d-text3)">Hamburg · 4,200 employees</div>
-              </div>
-              <span style="font:500 10.5px var(--mono);color:var(--on-accent);background:var(--accent);border-radius:5px;padding:3px 6px">Shortlisted</span>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:8px;margin-left:13px;padding-left:23px;border-left:1px solid var(--ink-line)">
-              <div style="display:flex;align-items:center;gap:9px">
-                <span style="width:22px;height:22px;border-radius:50%;background:#2b2f36;display:grid;place-items:center;font:600 9.5px var(--sans);color:var(--d-text2)">LB</span>
-                <span style="font:500 12.5px var(--sans);color:var(--d-text)">Lena Brandt</span>
-                <span style="font:400 12px var(--sans);color:var(--d-text3)">CFO</span>
-              </div>
-              <div style="display:flex;align-items:center;gap:9px">
-                <span style="width:22px;height:22px;border-radius:50%;background:#2b2f36;display:grid;place-items:center;font:600 9.5px var(--sans);color:var(--d-text2)">JK</span>
-                <span style="font:500 12.5px var(--sans);color:var(--d-text)">Jonas Keller</span>
-                <span style="font:400 12px var(--sans);color:var(--d-text3)">VP Finance</span>
-              </div>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px">
-              <span style="width:28px;height:28px;border-radius:7px;background:#1d2128;border:1px solid var(--ink-line);display:grid;place-items:center;font:600 11px var(--sans);color:var(--d-text2)">RH</span>
-              <div style="flex:1;min-width:0">
-                <div style="font:500 13px var(--sans);color:var(--d-text)">Rheinwerk Power</div>
-                <div style="font:400 11.5px var(--sans);color:var(--d-text3)">Essen · 11,800 employees</div>
-              </div>
-              <span style="font:500 10.5px var(--mono);color:var(--d-text2);border:1px solid var(--ink-line);border-radius:5px;padding:3px 6px">In universe</span>
-            </div>
+          <div style="align-self:flex-end;max-width:240px;background:var(--ink3);border:1px solid var(--ink-line);border-radius:10px 10px 3px 10px;padding:8px 11px;font:400 12.5px/1.45 var(--sans);color:var(--d-text)">Renewables developers in Saudi Arabia and the UAE</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:center;gap:8px;font:400 12px var(--sans);color:var(--d-text2)"><span style="color:var(--d-text3);display:flex"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"></path></svg></span>Read the brief</div>
+            <div style="display:flex;align-items:center;gap:8px;font:400 12px var(--sans);color:var(--d-text2)"><span style="color:var(--d-text3);display:flex"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"></path></svg></span>Searched the company universe</div>
+            <div style="display:flex;align-items:center;gap:8px;font:400 12px var(--sans);color:var(--d-text2)"><span style="color:var(--d-text3);display:flex"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"></path></svg></span>Resolved 2 named companies</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:10px;border-top:1px solid var(--ink-line)">
+            <span style="font:500 11px var(--mono);color:var(--d-inferred);background:var(--d-inferred-dim);border-radius:5px;padding:4px 7px">4 suggested</span>
+            <span style="font:500 12px var(--sans);color:var(--d-text);border:1px solid var(--ink-line);border-radius:7px;padding:6px 10px">File as Shortlisted</span>
           </div>
         </div>
 
@@ -171,6 +156,159 @@
             <div style="display:flex;flex-direction:column;gap:1px"><span style="font:600 18px var(--sans);color:var(--d-accent)">12</span><span style="font:400 11px var(--sans);color:var(--d-text3)">Shortlisted</span></div>
             <div style="display:flex;flex-direction:column;gap:1px"><span style="font:600 18px var(--sans);color:var(--d-text)">9</span><span style="font:400 11px var(--sans);color:var(--d-text3)">Declined</span></div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:128px 80px 0;display:flex;flex-direction:column;gap:56px">
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:80px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span class="eyebrow" style="color:var(--accent-deep)">Search strategy</span>
+        <h2 style="font:600 52px/1.04 var(--sans);letter-spacing:-.04em;text-wrap:balance">A search strategy your client can sign off.</h2>
+      </div>
+      <p style="font:400 18px/1.6 var(--sans);color:var(--text2);max-width:520px;text-wrap:pretty">Uncava turns the brief into target sectors, the industries a candidate could come from, a company universe and an off-limits list — one strategy the whole team works to.</p>
+    </div>
+
+    <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 1px 0 rgba(15,23,42,.03),0 40px 80px -30px rgba(15,23,42,.22);overflow:hidden">
+      <div style="display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)">
+        <span style="display:flex;align-items:center;gap:7px;font:500 13px var(--sans);color:var(--text2);border:1px solid var(--line);border-radius:8px;padding:7px 11px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10a1 1 0 0 1 1 1v17l-6-4-6 4V4a1 1 0 0 1 1-1Z"></path></svg>Save search <span style="font:600 10.5px var(--mono);color:var(--accent-deep);background:var(--accent-dim);border-radius:4px;padding:1px 5px">2</span></span>
+        <span style="display:flex;align-items:center;gap:7px;font:600 13px var(--sans);color:var(--on-accent);background:var(--accent);border-radius:8px;padding:8px 13px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 13.6 8a3 3 0 0 0 2.4 2.4l4.5 1.6-4.5 1.6a3 3 0 0 0-2.4 2.4L12 20.5 10.4 16A3 3 0 0 0 8 13.6L3.5 12 8 10.4A3 3 0 0 0 10.4 8Z"></path></svg>AI Research</span>
+        <span style="display:flex;align-items:center;gap:8px;width:240px;font:400 13px var(--sans);color:var(--text3);border:1px solid var(--line);border-radius:8px;padding:7px 11px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>Search companies</span>
+        <span style="margin-left:auto;font:500 13px var(--sans);color:var(--accent-deep)">Add all to universe →</span>
+      </div>
+      <div style="display:grid;grid-template-columns:300px 1fr">
+        <div style="border-right:1px solid var(--line);display:flex;flex-direction:column">
+          <div style="padding:16px 18px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px">
+            <span style="font:600 13px var(--sans)">Location</span>
+            <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="chip">United Arab Emirates</span><span class="chip">Saudi Arabia</span></div>
+          </div>
+          <div style="padding:16px 18px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px">
+            <span style="font:600 13px var(--sans)">Employees</span>
+            <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="chip">1,000–5,000</span><span class="chip">5,000+</span></div>
+          </div>
+          <div style="padding:16px 18px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px">
+            <span style="font:600 13px var(--sans)">Industry</span>
+            <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="chip">Utilities</span><span class="chip">Renewable Energy</span></div>
+            <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--line);padding-top:10px">
+              <div style="display:flex;align-items:center;justify-content:space-between"><span style="display:flex;align-items:center;gap:6px;font:600 12px var(--sans);color:var(--accent-deep)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 13.6 8a3 3 0 0 0 2.4 2.4l4.5 1.6-4.5 1.6a3 3 0 0 0-2.4 2.4L12 20.5 10.4 16A3 3 0 0 0 8 13.6L3.5 12 8 10.4A3 3 0 0 0 10.4 8Z"></path></svg>Adjacent industries</span><span style="font:400 11px var(--sans);color:var(--text3)">Based on your selection</span></div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="chip-add">+ Oil &amp; Energy</span><span class="chip-add">+ Construction</span><span class="chip-add">+ Industrial Automation</span></div>
+            </div>
+          </div>
+          <div style="padding:16px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between"><span style="font:600 13px var(--sans)">Market segments</span><span style="color:var(--text3)">›</span></div>
+          <div style="padding:16px 18px;display:flex;align-items:center;justify-content:space-between"><span style="display:flex;align-items:center;gap:7px;font:600 13px var(--sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2Z"></path><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Off-limits</span><span style="font:500 11px var(--mono);color:var(--text2);background:var(--panel2);border-radius:5px;padding:3px 7px">2 barred</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <table style="width:100%;border-collapse:collapse">
+            <thead><tr style="background:#fbfbfc"><th class="th" style="width:36px"></th><th class="th">Company</th><th class="th">Country</th><th class="th">Industry</th><th class="th">Employees</th><th class="th">Stage</th></tr></thead>
+            <tbody>
+              <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Najd Utilities</td><td class="td">Saudi Arabia</td><td class="td">Utilities</td><td class="td">11,800</td><td class="td"><span style="font:500 11px var(--sans);color:var(--text2);background:var(--panel2);border-radius:5px;padding:3px 7px">In universe</span></td></tr>
+              <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Midar Water &amp; Power</td><td class="td">United Arab Emirates</td><td class="td">Utilities</td><td class="td">8,050</td><td class="td"><span style="font:500 11px var(--sans);color:var(--text2);background:var(--panel2);border-radius:5px;padding:3px 7px">In universe</span></td></tr>
+              <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Hijaz Power Holding</td><td class="td">Saudi Arabia</td><td class="td">Utilities</td><td class="td">6,300</td><td class="td"><span style="font:500 11px var(--sans);color:var(--accent-deep);background:var(--accent-dim);border-radius:5px;padding:3px 7px">Shortlisted</span></td></tr>
+              <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Sarab Energy</td><td class="td">United Arab Emirates</td><td class="td">Renewable Energy</td><td class="td">4,200</td><td class="td"><span style="font:500 11px var(--sans);color:var(--accent-deep);background:var(--accent-dim);border-radius:5px;padding:3px 7px">Shortlisted</span></td></tr>
+              <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Khaleej Grid Co.</td><td class="td">Saudi Arabia</td><td class="td">Utilities</td><td class="td">2,650</td><td class="td"><span style="font:500 11px var(--sans);color:var(--text2);background:var(--panel2);border-radius:5px;padding:3px 7px">In universe</span></td></tr>
+              <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Sahab Renewables</td><td class="td">Saudi Arabia</td><td class="td">Renewable Energy</td><td class="td">1,100</td><td class="td"><span style="color:var(--text3)">—</span></td></tr>
+              
+            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Rimal Power</td><td class="td">United Arab Emirates</td><td class="td">Utilities</td><td class="td">1,900</td><td class="td"><span style="font:500 11px var(--sans);color:var(--text2);background:var(--panel2);border-radius:5px;padding:3px 7px">In universe</span></td></tr>
+              <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Qasr Solar</td><td class="td">United Arab Emirates</td><td class="td">Renewable Energy</td><td class="td">640</td><td class="td"><span style="color:var(--text3)">—</span></td></tr>
+              </tbody>
+          </table>
+          <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-top:1px solid var(--line);font:400 12.5px var(--sans);color:var(--text2)"><span>1 – 8 of 214 companies</span><span>2 off-limits companies excluded</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--ink);color:var(--d-text);border-radius:18px;padding:44px;display:grid;grid-template-columns:420px 1fr;gap:56px;min-height:480px;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;background:radial-gradient(520px 380px at 80% 30%,rgba(176,124,245,.10),transparent 70%);pointer-events:none"></div>
+      <div style="display:flex;flex-direction:column;gap:16px;justify-content:center;position:relative">
+        <span style="width:40px;height:40px;border-radius:10px;border:1px solid var(--ink-line);display:grid;place-items:center;color:var(--d-inferred)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 13.6 8a3 3 0 0 0 2.4 2.4l4.5 1.6-4.5 1.6a3 3 0 0 0-2.4 2.4L12 20.5 10.4 16A3 3 0 0 0 8 13.6L3.5 12 8 10.4A3 3 0 0 0 10.4 8Z"></path></svg></span>
+        <h3 style="font:600 30px/1.15 var(--sans);letter-spacing:-.03em">Ask the market a question.</h3>
+        <p style="font:400 15.5px/1.6 var(--sans);color:var(--d-text2)">The Uncava Assistant sits over your strategy. Ask for the leading operators in a sector and watch it work — reading the brief, checking the market’s vocabulary, searching the company universe, resolving the companies you name. Tick the ones worth filing. Off-limits companies never make the list.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">
+          <span style="font:400 12.5px var(--sans);color:var(--d-text2);border:1px solid var(--ink-line);border-radius:999px;padding:7px 12px">Renewables developers in Saudi Arabia and the UAE</span>
+          <span style="font:400 12.5px var(--sans);color:var(--d-text2);border:1px solid var(--ink-line);border-radius:999px;padding:7px 12px">Power and water utilities across the GCC</span>
+          <span style="font:400 12.5px var(--sans);color:var(--d-text2);border:1px solid var(--ink-line);border-radius:999px;padding:7px 12px">Utilities adjacent to renewables</span>
+        </div>
+        <span style="font:400 12.5px var(--sans);color:var(--d-text3)">Starter questions come from your firm’s sectors.</span>
+      </div>
+
+      <div style="position:relative">
+        <div style="margin:0 -44px -44px 0;background:var(--ink2);border:1px solid var(--ink-line);border-radius:14px 0 0 0;padding:20px 22px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:8px;padding-bottom:12px;border-bottom:1px solid var(--ink-line)">
+            <span style="color:var(--d-inferred);display:flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 13.6 8a3 3 0 0 0 2.4 2.4l4.5 1.6-4.5 1.6a3 3 0 0 0-2.4 2.4L12 20.5 10.4 16A3 3 0 0 0 8 13.6L3.5 12 8 10.4A3 3 0 0 0 10.4 8Z"></path></svg></span>
+            <span style="font:600 13.5px var(--sans)">Assistant</span>
+            <span style="margin-left:auto;font:500 11px var(--mono);color:var(--d-text3)">Al Naseem Group · Group CFO – Energy</span>
+          </div>
+          <div style="align-self:flex-end;background:var(--ink3);border:1px solid var(--ink-line);border-radius:12px 12px 3px 12px;padding:9px 13px;font:400 13px var(--sans)">Renewables developers in Saudi Arabia and the UAE</div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div style="display:flex;align-items:center;gap:9px;font:400 12.5px var(--sans);color:var(--d-text2)"><span style="color:var(--d-text3);display:flex"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"></path></svg></span>Read the brief</div>
+            <div style="display:flex;align-items:center;gap:9px;font:400 12.5px var(--sans);color:var(--d-text2)"><span style="color:var(--d-text3);display:flex"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"></path></svg></span>Checked the market’s vocabulary</div>
+            <div style="display:flex;align-items:center;gap:9px;font:400 12.5px var(--sans);color:var(--d-text2)"><span style="color:var(--d-text3);display:flex"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"></path></svg></span>Searched the company universe</div>
+            <div style="display:flex;align-items:center;gap:9px;font:400 12.5px var(--sans);color:var(--d-text2)"><span style="color:var(--d-text3);display:flex"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"></path></svg></span>Resolved 2 named companies</div>
+            <div style="display:flex;align-items:center;gap:9px;font:400 12.5px var(--sans);color:var(--d-text2)"><span style="color:var(--d-text3);display:flex"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"></path></svg></span>Suggested adjacent sectors</div>
+          </div>
+          <p style="font:400 13.5px/1.55 var(--sans);color:var(--d-text2)">Six operators match. Two are already in this position; four are below.</p>
+          <div style="background:var(--ink);border:1px solid var(--ink-line);border-radius:12px;overflow:hidden">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid var(--ink-line)">
+              <span style="font:600 13px var(--sans)">4 companies not yet in your universe</span>
+              <span style="font:500 10.5px var(--mono);color:var(--d-inferred);background:var(--d-inferred-dim);border-radius:5px;padding:3px 7px">Suggested</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--ink-line)"><span style="width:15px;height:15px;border-radius:4px;background:var(--accent);display:grid;place-items:center;color:#fff"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"></path></svg></span><span style="font:500 13px var(--sans)">Sahab Renewables</span><span style="margin-left:auto;font:400 12px var(--sans);color:var(--d-text3)">Jeddah · 1,100</span></div>
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--ink-line)"><span style="width:15px;height:15px;border-radius:4px;background:var(--accent);display:grid;place-items:center;color:#fff"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"></path></svg></span><span style="font:500 13px var(--sans)">Tabuk Wind Company</span><span style="margin-left:auto;font:400 12px var(--sans);color:var(--d-text3)">Tabuk · 980</span></div>
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--ink-line)"><span style="width:15px;height:15px;border-radius:4px;background:var(--accent);display:grid;place-items:center;color:#fff"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"></path></svg></span><span style="font:500 13px var(--sans)">Qasr Solar</span><span style="margin-left:auto;font:400 12px var(--sans);color:var(--d-text3)">Al Ain · 640</span></div>
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--ink-line)"><span style="width:15px;height:15px;border-radius:4px;border:1.5px solid var(--graphite-3,#3a3d44)"></span><span style="font:500 13px var(--sans)">Barq Energy</span><span style="margin-left:auto;font:400 12px var(--sans);color:var(--d-text3)">Doha · 2,300</span></div>
+            
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-top:1px solid var(--ink-line)">
+              <span style="font:400 12.5px var(--sans);color:var(--d-text2)">File 3 as</span>
+              <div style="display:flex;border:1px solid var(--ink-line);border-radius:8px;overflow:hidden;font:500 12px var(--sans)">
+                <span style="padding:6px 10px;color:var(--d-text2)">In universe</span>
+                <span style="padding:6px 10px;background:var(--accent);color:var(--on-accent)">Shortlisted</span>
+                <span style="padding:6px 10px;color:var(--d-text2)">Declined</span>
+              </div>
+              <span style="margin-left:auto;font:400 12px var(--sans);color:var(--d-text3)">1 off-limits company left out</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+      <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:10px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px">
+          <div style="display:flex;align-items:center;justify-content:space-between"><span style="font:500 12.5px var(--sans)">Group CFO</span><span style="font:500 10.5px var(--mono);color:var(--text2)">Functional · transfers widely</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="chip">Oil &amp; Energy</span><span class="chip">Construction</span><span class="chip">Logistics</span><span class="chip">Real Estate</span></div>
+          <div style="height:1px;background:var(--line)"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between"><span style="font:500 12.5px var(--sans)">COO – Transmission</span><span style="font:500 10.5px var(--mono);color:var(--text2)">Sector craft · closest only</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px"><span class="chip">Oil &amp; Energy</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <h3 style="font:600 22px/1.25 var(--sans);letter-spacing:-.02em">Adjacencies that follow the role.</h3>
+          <p style="font:400 14.5px/1.6 var(--sans);color:var(--text2)">A CFO can come from almost any industry; a COO who runs the grid cannot. The assistant offers the adjacent industries that suit the role — widely for a functional role, only the closest for the sector’s own craft — and says why.</p>
+        </div>
+      </div>
+      <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:9px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px">
+          <div style="display:flex;align-items:center;gap:7px;font:600 12.5px var(--sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2Z"></path><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Off-limits for this mandate</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:7px;padding:7px 10px;font:500 12.5px var(--sans)">Al Naseem Utilities<span style="font:400 11px var(--sans);color:var(--text2)">Client subsidiary</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:7px;padding:7px 10px;font:500 12.5px var(--sans)">Dunes Power<span style="font:400 11px var(--sans);color:var(--text2)">Agreement</span></div>
+          <div style="font:400 11.5px var(--sans);color:var(--text2)">Dropped from every search, count and bulk add.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <h3 style="font:600 22px/1.25 var(--sans);letter-spacing:-.02em">Off-limits, enforced.</h3>
+          <p style="font:400 14.5px/1.6 var(--sans);color:var(--text2)">Bar the client’s own subsidiaries and the firms you have agreements with. They drop out of every search, every count and every “add all” — and there is no switch to show them anyway.</p>
+        </div>
+      </div>
+      <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:8px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px">
+          <div style="font:500 10.5px var(--mono);color:var(--text2);text-transform:uppercase;letter-spacing:.06em">Saved searches</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font:500 12.5px var(--sans)">GCC utilities, 1,000+<span style="font:500 10.5px var(--mono);color:var(--accent-deep);background:var(--accent-dim);border-radius:4px;padding:2px 6px">Shared</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font:500 12.5px var(--sans)">KSA renewables + adjacencies<span style="font:500 10.5px var(--mono);color:var(--accent-deep);background:var(--accent-dim);border-radius:4px;padding:2px 6px">Shared</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font:500 12.5px var(--sans)">Scale check, 5,000+<span style="font:500 10.5px var(--mono);color:var(--text2);border:1px solid var(--line);border-radius:4px;padding:2px 6px">Private</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <h3 style="font:600 22px/1.25 var(--sans);letter-spacing:-.02em">Searches the whole team runs on.</h3>
+          <p style="font:400 14.5px/1.6 var(--sans);color:var(--text2)">Save the searches behind the universe — shared with the mandate or private to you — and come back to the exact filter when the client changes the brief.</p>
         </div>
       </div>
     </div>
@@ -213,7 +351,7 @@
           <div style="display:flex;gap:6px;flex-wrap:wrap">
             <span style="font:500 11px var(--sans);background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 9px;color:var(--text2)">Energy</span>
             <span style="font:500 11px var(--sans);background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 9px;color:var(--text2)">1,000–10,000</span>
-            <span style="font:500 11px var(--sans);background:var(--accent-dim);border:1px solid rgba(74,86,214,.35);border-radius:999px;padding:4px 9px;color:var(--accent-deep)">DACH</span>
+            <span style="font:500 11px var(--sans);background:var(--accent-dim);border:1px solid rgba(74,86,214,.35);border-radius:999px;padding:4px 9px;color:var(--accent-deep)">GCC</span>
           </div>
           <div style="background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden">
             <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line-soft)"><span style="width:12px;height:12px;border-radius:3px;background:var(--text)"></span><span style="flex:1;height:6px;border-radius:3px;background:#d7d7d9"></span><span style="width:30px;height:6px;border-radius:3px;background:#e8e9ea"></span></div>
@@ -223,8 +361,8 @@
         </div>
         <div style="padding:24px;display:flex;flex-direction:column;gap:10px">
           <span style="font:500 12px var(--mono);color:var(--text3)">02 · Strategy</span>
-          <h3 style="font:600 20px/1.25 var(--sans);letter-spacing:-.02em">Search the whole market.</h3>
-          <p style="font:400 14.5px/1.6 var(--sans);color:var(--text2)">Filter a universe of 100,000+ companies by industry, size and geography, and save the searches the mandate runs on.</p>
+          <h3 style="font:600 20px/1.25 var(--sans);letter-spacing:-.02em">Build the strategy.</h3>
+          <p style="font:400 14.5px/1.6 var(--sans);color:var(--text2)">Target sectors and their adjacencies, a filtered company universe, and an off-limits list the whole team works to.</p>
         </div>
       </div>
 
@@ -285,6 +423,82 @@
     </div>
   </section>
 
+  <section style="padding:0 80px 128px;display:flex;flex-direction:column;gap:56px">
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:80px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span class="eyebrow" style="color:var(--inferred-text)">AI research, built in</span>
+        <h2 style="font:600 52px/1.04 var(--sans);letter-spacing:-.04em;text-wrap:balance">AI that does the legwork and shows its working.</h2>
+      </div>
+      <p style="font:400 18px/1.6 var(--sans);color:var(--text2);max-width:520px;text-wrap:pretty">It drafts the brief from the client’s document, reads the public record on every executive, and maps the spreadsheets you’re sent. Every suggestion is marked, sourced, and left for you to decide.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+      <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:9px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px">
+          <div style="display:flex;align-items:center;gap:8px;font:500 12px var(--sans);color:var(--text2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"></path><path d="M14 3v5h5"></path></svg>PD_Group_CFO.pdf<span style="margin-left:auto;font:500 10.5px var(--mono);color:var(--text2)">Read from document</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between"><span style="font:500 12.5px var(--sans)">Reports to</span><span style="font:500 10.5px var(--mono);color:var(--inferred-text)">High confidence</span></div>
+          <div style="font:400 13px var(--sans);background:var(--inferred-dim);border:1px solid var(--line);border-left:2px solid var(--inferred);border-radius:7px;padding:7px 10px">Group Chief Executive</div>
+          <div style="font:italic 400 12px/1.5 var(--sans);color:var(--text2)">“…reporting directly to the Group Chief Executive…”</div>
+          <div style="display:flex;gap:6px"><span style="font:600 11.5px var(--sans);background:var(--text);color:#fff;border-radius:6px;padding:5px 10px">Accept</span><span style="font:500 11.5px var(--sans);border:1px solid var(--line);border-radius:6px;padding:5px 10px;color:var(--text2)">Dismiss</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <h3 style="font:600 22px/1.25 var(--sans);letter-spacing:-.02em">Briefs drafted from the client’s own words.</h3>
+          <p style="font:400 14.5px/1.6 var(--sans);color:var(--text2)">Upload the position description and Uncava proposes the brief — title, reporting line, responsibilities, the ideal candidate, weighted competencies. Every field shows where it came from. Compensation is never read.</p>
+        </div>
+      </div>
+
+      <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:10px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px">
+          <div style="display:flex;align-items:center;gap:6px;font:500 10.5px var(--mono);color:var(--inferred-text)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 13.6 8a3 3 0 0 0 2.4 2.4l4.5 1.6-4.5 1.6a3 3 0 0 0-2.4 2.4L12 20.5 10.4 16A3 3 0 0 0 8 13.6L3.5 12 8 10.4A3 3 0 0 0 10.4 8Z"></path></svg> AI assessment · a proposal to review</div>
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+            <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px"><div style="font:500 10.5px var(--mono);color:var(--text2);text-transform:uppercase;letter-spacing:.06em">Technical</div><div style="font:600 18px var(--sans)">8<span style="font:400 12px var(--sans);color:var(--text2)"> /10</span></div></div>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px"><div style="font:500 10.5px var(--mono);color:var(--text2);text-transform:uppercase;letter-spacing:.06em">Behavioural</div><div style="font:600 18px var(--sans)">7<span style="font:400 12px var(--sans);color:var(--text2)"> /10</span></div></div>
+          </div>
+          <div style="font:400 12px/1.45 var(--sans);color:var(--text2)"><span style="color:var(--green-text);font-weight:600">+</span> Led the group’s sukuk issuance as CFO</div>
+          <div style="font:400 12px/1.45 var(--sans);color:var(--text2)"><span style="color:var(--red);font-weight:600">–</span> No group-level treasury role yet</div>
+          <div style="font:400 11.5px var(--sans);color:var(--text2)">Sources: leadership page · trade press · conference talk</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <h3 style="font:600 22px/1.25 var(--sans);letter-spacing:-.02em">A second read on every executive.</h3>
+          <p style="font:400 14.5px/1.6 var(--sans);color:var(--text2)">From a LinkedIn profile, deep enrich reads the public web — press, leadership pages, talks, boards — fills the gaps, and scores the executive against the brief’s competencies, with the sources it read.</p>
+        </div>
+      </div>
+
+      <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:8px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px">
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font:500 10.5px var(--mono);color:var(--text2);text-transform:uppercase;letter-spacing:.06em"><span>Your header</span><span>Uncava field</span></div>
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font:400 12.5px var(--mono)"><span style="color:var(--text2)">Full Name</span><span style="color:var(--text)">→ Name</span></div>
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font:400 12.5px var(--mono)"><span style="color:var(--text2)">Co.</span><span style="color:var(--text)">→ Company</span></div>
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font:400 12.5px var(--mono)"><span style="color:var(--text2)">Notice period</span><span style="color:var(--inferred-text)">+ Custom column</span></div>
+          <div style="font:500 10.5px var(--mono);color:var(--inferred-text)">Suggested · confirm before import</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <h3 style="font:600 22px/1.25 var(--sans);letter-spacing:-.02em">Spreadsheets mapped by their headers.</h3>
+          <p style="font:400 14.5px/1.6 var(--sans);color:var(--text2)">AI suggests how your columns map from the headers and the shape of the values — never the cells. A person confirms before anything is written.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:16px;background:var(--panel);overflow:hidden">
+      <div style="padding:24px;display:flex;flex-direction:column;gap:8px;border-right:1px solid var(--line)">
+        <span style="display:flex;align-items:center;gap:8px;font:600 15px var(--sans)"><span style="width:10px;height:10px;border-radius:3px;background:var(--inferred)"></span>Marked in purple.</span>
+        <p style="font:400 13.5px/1.55 var(--sans);color:var(--text2)">AI output is labelled, with its sources or the sentence it came from.</p>
+      </div>
+      <div style="padding:24px;display:flex;flex-direction:column;gap:8px;border-right:1px solid var(--line)">
+        <span style="font:600 15px var(--sans)">Suggestions, not decisions.</span>
+        <p style="font:400 13.5px/1.55 var(--sans);color:var(--text2)">Nothing is filed or written until a consultant chooses.</p>
+      </div>
+      <div style="padding:24px;display:flex;flex-direction:column;gap:8px;border-right:1px solid var(--line)">
+        <span style="font:600 15px var(--sans)">Names pseudonymised.</span>
+        <p style="font:400 13.5px/1.55 var(--sans);color:var(--text2)">Client names and contact details are masked before text reaches the model.</p>
+      </div>
+      <div style="padding:24px;display:flex;flex-direction:column;gap:8px">
+        <span style="font:600 15px var(--sans)">Guarded and budgeted.</span>
+        <p style="font:400 13.5px/1.55 var(--sans);color:var(--text2)">Prompt-injection guards and per-user limits on every AI call.</p>
+      </div>
+    </div>
+  </section>
+
   <section style="padding:0 80px 128px;display:flex;flex-direction:column;align-items:center;gap:48px">
     <div style="display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
       <span class="eyebrow" style="color:var(--accent-deep)">Companies</span>
@@ -295,7 +509,7 @@
     <div style="width:1280px;background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 1px 0 rgba(15,23,42,.03),0 40px 80px -30px rgba(15,23,42,.22);overflow:hidden">
       <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line)">
         <div style="display:flex;align-items:center;gap:14px">
-          <span style="width:26px;height:26px;border-radius:5.6px;background:#16181c;color:#f4f5f7;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="26" height="26" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
+          <svg viewBox="-36 -51 72 104" width="18" height="26" fill="none" stroke="currentColor" style="color:var(--text);flex-shrink:0"><path d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50" fill="none" stroke-width="4" stroke-linejoin="round"></path><path d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z" fill="currentColor" stroke="none"></path></svg>
           <div style="display:flex;flex-direction:column">
             <span style="font:600 14px var(--sans)">Group CFO – Energy Division</span>
             <span style="font:400 12px var(--sans);color:var(--text3)">Companies</span>
@@ -331,13 +545,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Nordwind Energie</td><td class="td">Hamburg, DE</td><td class="td">4,200</td><td class="td" style="color:var(--text)">Lena Brandt</td><td class="td">Chief Financial Officer</td><td class="td">Strategy</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--accent-deep);background:var(--accent-dim);border-radius:6px;padding:3px 8px">Shortlisted</span></td></tr>
-            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text3)">Nordwind Energie</td><td class="td">Hamburg, DE</td><td class="td">4,200</td><td class="td" style="color:var(--text)">Jonas Keller</td><td class="td">VP Finance</td><td class="td">Capture</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--accent-deep);background:var(--accent-dim);border-radius:6px;padding:3px 8px">Shortlisted</span></td></tr>
-            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Rheinwerk Power</td><td class="td">Essen, DE</td><td class="td">11,800</td><td class="td" style="color:var(--text)">Anika Vogt</td><td class="td">Group Finance Director</td><td class="td">Import</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
-            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Solaris Grid AG</td><td class="td">Zürich, CH</td><td class="td">2,650</td><td class="td"><span style="display:inline-flex;align-items:center;gap:6px;color:var(--link);font-weight:500"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Add executive</span></td><td class="td">—</td><td class="td">Strategy</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
-            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Baltic Offshore Wind</td><td class="td">Copenhagen, DK</td><td class="td">1,900</td><td class="td" style="color:var(--text)">Mads Holm</td><td class="td">CFO</td><td class="td">Manual</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
-            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Alpenstrom Holding</td><td class="td">Vienna, AT</td><td class="td">6,300</td><td class="td" style="color:var(--text)">Katharina Leitner</td><td class="td">Deputy CFO</td><td class="td">Strategy</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
-            <tr><td class="td" style="border-bottom:none"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500;border-bottom:none">Meridian Utilities</td><td class="td" style="border-bottom:none">Amsterdam, NL</td><td class="td" style="border-bottom:none">8,050</td><td class="td" style="color:var(--text);border-bottom:none">Sophie de Vries</td><td class="td" style="border-bottom:none">CFO</td><td class="td" style="border-bottom:none">Import</td><td class="td" style="border-bottom:none"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
+            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Sarab Energy</td><td class="td">Abu Dhabi, AE</td><td class="td">4,200</td><td class="td" style="color:var(--text)">Layla Al Mansouri</td><td class="td">Chief Financial Officer</td><td class="td">Strategy</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--accent-deep);background:var(--accent-dim);border-radius:6px;padding:3px 8px">Shortlisted</span></td></tr>
+            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text3)">Sarab Energy</td><td class="td">Abu Dhabi, AE</td><td class="td">4,200</td><td class="td" style="color:var(--text)">Omar Haddad</td><td class="td">VP Finance</td><td class="td">Capture</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--accent-deep);background:var(--accent-dim);border-radius:6px;padding:3px 8px">Shortlisted</span></td></tr>
+            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Najd Utilities</td><td class="td">Riyadh, SA</td><td class="td">11,800</td><td class="td" style="color:var(--text)">Faisal Al Harbi</td><td class="td">Group Finance Director</td><td class="td">Import</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
+            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Khaleej Grid Co.</td><td class="td">Dammam, SA</td><td class="td">2,650</td><td class="td"><span style="display:inline-flex;align-items:center;gap:6px;color:var(--link);font-weight:500"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Add executive</span></td><td class="td">—</td><td class="td">Strategy</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
+            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Rimal Power</td><td class="td">Dubai, AE</td><td class="td">1,900</td><td class="td" style="color:var(--text)">Rashid Al Kaabi</td><td class="td">CFO</td><td class="td">Manual</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
+            <tr><td class="td"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500">Hijaz Power Holding</td><td class="td">Jeddah, SA</td><td class="td">6,300</td><td class="td" style="color:var(--text)">Noura Al Qahtani</td><td class="td">Deputy CFO</td><td class="td">Strategy</td><td class="td"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
+            <tr><td class="td" style="border-bottom:none"><span style="display:block;width:15px;height:15px;border-radius:4px;border:1.5px solid #d7d7d9"></span></td><td class="td" style="color:var(--text);font-weight:500;border-bottom:none">Midar Water &amp; Power</td><td class="td" style="border-bottom:none">Sharjah, AE</td><td class="td" style="border-bottom:none">8,050</td><td class="td" style="color:var(--text);border-bottom:none">Priya Menon</td><td class="td" style="border-bottom:none">CFO</td><td class="td" style="border-bottom:none">Import</td><td class="td" style="border-bottom:none"><span style="font:500 11.5px var(--sans);color:var(--text2);background:var(--panel2);border-radius:6px;padding:3px 8px">In universe</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -345,12 +559,96 @@
   </section>
 
   <section style="padding:0 80px 128px;display:flex;flex-direction:column;gap:56px">
-    <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
-      <span class="eyebrow" style="color:var(--accent-deep)">Research, without the busywork</span>
-      <h2 style="font:600 52px/1.04 var(--sans);letter-spacing:-.04em;text-wrap:balance">Built for the way researchers actually work.</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:80px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span class="eyebrow" style="color:var(--accent-deep)">Reports</span>
+        <h2 style="font:600 52px/1.04 var(--sans);letter-spacing:-.04em;text-wrap:balance">A report that writes itself from the mandate.</h2>
+      </div>
+      <p style="font:400 18px/1.6 var(--sans);color:var(--text2);max-width:520px;text-wrap:pretty">Mapping progress, the shape of the market, remuneration and diversity — four chapters built live from the mandate’s rows. Show the client where talent sits. Show the team what’s left to map.</p>
+    </div>
+
+    <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 1px 0 rgba(15,23,42,.03),0 40px 80px -30px rgba(15,23,42,.22);overflow:hidden;display:grid;grid-template-columns:260px 1fr">
+      <div style="border-right:1px solid var(--line);padding:24px 18px;display:flex;flex-direction:column;gap:4px">
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font:400 13.5px var(--sans);color:var(--text2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 6-6 4 4 8-8"></path><path d="M15 7h6v6"></path></svg>Mapping progress</div>
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font:400 13.5px var(--sans);background:var(--accent-dim);color:var(--accent-deep);font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"></path></svg>Shape of the market</div>
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font:400 13.5px var(--sans);color:var(--text2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"></path><path d="M17 7H9.5a3 3 0 0 0 0 6h5a3 3 0 0 1 0 6H6"></path></svg>Remuneration</div>
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font:400 13.5px var(--sans);color:var(--text2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20a6 6 0 0 1 12 0"></path><path d="M16 4.5a3.5 3.5 0 0 1 0 7"></path><path d="M21 20a6 6 0 0 0-4-5.6"></path></svg>Diversity &amp; DEI</div>
+        
+        <div style="height:1px;background:var(--line);margin:18px 0"></div>
+        <p style="font:italic 400 12px/1.6 var(--sans);color:var(--text3)">Talent mapping report, prepared for Al Naseem Group — confidential. Generated live from the mandate’s rows.</p>
+      </div>
+      <div style="padding:36px 40px;display:flex;flex-direction:column;gap:24px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <h3 style="font:600 28px/1.15 var(--sans);letter-spacing:-.025em">Where does the universe actually sit?</h3>
+          <p style="font:400 15px/1.6 var(--sans);color:var(--text2);max-width:680px"><strong style="color:var(--text);font-weight:600">Utilities leads</strong> the universe, deepest at C-Suite. Board-level coverage is <strong style="color:var(--text);font-weight:600">3 executives</strong>, and 2 of 12 sector × seniority pockets are still empty.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+          <div style="background:var(--panel2);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><span style="font:500 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text2)">Deepest pocket</span><span style="font:600 24px var(--mono);color:var(--accent-deep)">9</span><span style="font:400 12px var(--sans);color:var(--text2)">Utilities · C-Suite</span></div>
+          <div style="background:var(--panel2);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><span style="font:500 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text2)">Empty pockets</span><span style="font:600 24px var(--mono)">2<span style="font:400 12px var(--mono);color:var(--text2)"> /12</span></span><span style="font:400 12px var(--sans);color:var(--text2)">sector × seniority pairs</span></div>
+          <div style="background:var(--signal-dim);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><span style="font:500 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--signal-ink)">Board-level total</span><span style="font:600 24px var(--mono);color:var(--signal-ink)">3</span><span style="font:400 12px var(--sans);color:var(--signal-ink)">across 2 of 3 sectors</span></div>
+          <div style="background:rgba(15,157,107,.1);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px"><span style="font:500 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--green-text)">Placed in the matrix</span><span style="font:600 24px var(--mono);color:var(--green-text)">42<span style="font:400 12px var(--mono)"> /44</span></span><span style="font:400 12px var(--sans);color:var(--green-text)">95% of mapped executives</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:20px">
+          <div style="border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font:600 14px var(--sans)">Sector × seniority</span><span style="font:400 12px var(--sans);color:var(--text3)">42 executives placed · hatched = no executive identified yet</span></div>
+            <div style="display:grid;grid-template-columns:64px repeat(3,minmax(0,1fr));gap:5px;align-items:center">
+              <span></span><span style="font:500 10.5px var(--mono);color:var(--text2);text-align:center">Utilities</span><span style="font:500 10.5px var(--mono);color:var(--text2);text-align:center">Renewables</span><span style="font:500 10.5px var(--mono);color:var(--text2);text-align:center">Grid &amp; networks</span>
+              <span style="font:500 12px var(--sans);color:var(--text2)">Board</span><span style="height:34px;border-radius:6px;background:#e4e8f6;color:var(--text);display:grid;place-items:center;font:600 12px var(--mono)">2</span><span style="height:34px;border-radius:6px;background:#e4e8f6;color:var(--text);display:grid;place-items:center;font:600 12px var(--mono)">1</span><span style="height:34px;border-radius:6px;border:1px dashed var(--slate-line,rgba(3,7,18,.16));background:repeating-linear-gradient(135deg,transparent 0 5px,rgba(3,7,18,.06) 5px 6px)"></span>
+              <span style="font:500 12px var(--sans);color:var(--text2)">C-Suite</span><span style="height:34px;border-radius:6px;background:#2e3878;color:#fff;display:grid;place-items:center;font:600 12px var(--mono)">9</span><span style="height:34px;border-radius:6px;background:#8189f7;color:var(--text);display:grid;place-items:center;font:600 12px var(--mono)">6</span><span style="height:34px;border-radius:6px;background:#b9c0ee;color:var(--text);display:grid;place-items:center;font:600 12px var(--mono)">4</span>
+              <span style="font:500 12px var(--sans);color:var(--text2)">N-1</span><span style="height:34px;border-radius:6px;background:#4a56d6;color:#fff;display:grid;place-items:center;font:600 12px var(--mono)">7</span><span style="height:34px;border-radius:6px;background:#8189f7;color:var(--text);display:grid;place-items:center;font:600 12px var(--mono)">5</span><span style="height:34px;border-radius:6px;background:#b9c0ee;color:var(--text);display:grid;place-items:center;font:600 12px var(--mono)">3</span>
+              <span style="font:500 12px var(--sans);color:var(--text2)">N-2</span><span style="height:34px;border-radius:6px;background:#b9c0ee;color:var(--text);display:grid;place-items:center;font:600 12px var(--mono)">3</span><span style="height:34px;border-radius:6px;background:#e4e8f6;color:var(--text);display:grid;place-items:center;font:600 12px var(--mono)">2</span><span style="height:34px;border-radius:6px;border:1px dashed var(--slate-line,rgba(3,7,18,.16));background:repeating-linear-gradient(135deg,transparent 0 5px,rgba(3,7,18,.06) 5px 6px)"></span>
+            </div>
+          </div>
+          <div style="border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font:600 14px var(--sans)">Where talent sits</span><span style="font:400 12px var(--sans);color:var(--text3)">42 located across 4 countries</span></div>
+            <div style="display:grid;grid-template-columns:84px 1fr 24px;gap:10px;align-items:center;font:400 12.5px var(--sans);color:var(--text2)"><span>Saudi Arabia</span><span style="height:10px;border-radius:5px;background:var(--panel2);overflow:hidden"><span style="display:block;height:100%;width:100%;background:var(--accent);border-radius:5px"></span></span><span style="font:500 11.5px var(--mono);text-align:right">21</span></div>
+            <div style="display:grid;grid-template-columns:84px 1fr 24px;gap:10px;align-items:center;font:400 12.5px var(--sans);color:var(--text2)"><span>UAE</span><span style="height:10px;border-radius:5px;background:var(--panel2);overflow:hidden"><span style="display:block;height:100%;width:67%;background:#b9c0ee;border-radius:5px"></span></span><span style="font:500 11.5px var(--mono);text-align:right">14</span></div>
+            <div style="display:grid;grid-template-columns:84px 1fr 24px;gap:10px;align-items:center;font:400 12.5px var(--sans);color:var(--text2)"><span>Qatar</span><span style="height:10px;border-radius:5px;background:var(--panel2);overflow:hidden"><span style="display:block;height:100%;width:19%;background:#b9c0ee;border-radius:5px"></span></span><span style="font:500 11.5px var(--mono);text-align:right">4</span></div>
+            <div style="display:grid;grid-template-columns:84px 1fr 24px;gap:10px;align-items:center;font:400 12.5px var(--sans);color:var(--text2)"><span>Oman</span><span style="height:10px;border-radius:5px;background:var(--panel2);overflow:hidden"><span style="display:block;height:100%;width:14%;background:#b9c0ee;border-radius:5px"></span></span><span style="font:500 11.5px var(--mono);text-align:right">3</span></div>
+            <p style="font:italic 400 12px/1.5 var(--sans);color:var(--text3);margin-top:4px;padding-top:10px;border-top:1px dashed var(--line)">Half of located talent sits in Saudi Arabia, a third in the UAE. Thin coverage elsewhere in the GCC.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+      <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:12px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px">
+          <div style="display:flex;justify-content:space-between;font:500 10.5px var(--mono);color:var(--text2);text-transform:uppercase;letter-spacing:.06em"><span>Base salary</span><span>USD k</span></div><div style="display:grid;grid-template-columns:56px 1fr;gap:10px;align-items:center"><span style="font:500 12px var(--sans);color:var(--text2)">C-Suite</span><span style="position:relative;height:14px"><span style="position:absolute;top:6px;left:0;right:0;height:2px;background:var(--line)"></span><span style="position:absolute;top:3px;height:8px;left:38%;width:54%;border-radius:4px;background:#b9c0ee"></span><span style="position:absolute;top:0;left:64%;width:3px;height:14px;border-radius:2px;background:var(--accent-ink,#2e3878)"></span></span></div><div style="display:grid;grid-template-columns:56px 1fr;gap:10px;align-items:center"><span style="font:500 12px var(--sans);color:var(--text2)">N-1</span><span style="position:relative;height:14px"><span style="position:absolute;top:6px;left:0;right:0;height:2px;background:var(--line)"></span><span style="position:absolute;top:3px;height:8px;left:22%;width:42%;border-radius:4px;background:#b9c0ee"></span><span style="position:absolute;top:0;left:41%;width:3px;height:14px;border-radius:2px;background:var(--accent-ink,#2e3878)"></span></span></div><div style="display:grid;grid-template-columns:56px 1fr;gap:10px;align-items:center"><span style="font:500 12px var(--sans);color:var(--text2)">N-2</span><span style="position:relative;height:14px"><span style="position:absolute;top:6px;left:0;right:0;height:2px;background:var(--line)"></span><span style="position:absolute;top:3px;height:8px;left:12%;width:32%;border-radius:4px;background:#b9c0ee"></span><span style="position:absolute;top:0;left:27%;width:3px;height:14px;border-radius:2px;background:var(--accent-ink,#2e3878)"></span></span></div><div style="display:flex;gap:14px;font:400 11.5px var(--sans);color:var(--text2)"><span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:8px;border-radius:4px;background:#b9c0ee"></span>Range</span><span style="display:flex;align-items:center;gap:6px"><span style="width:3px;height:12px;border-radius:2px;background:#2e3878"></span>Median</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <h3 style="font:600 22px/1.25 var(--sans);letter-spacing:-.02em">Remuneration, level by level.</h3>
+          <p style="font:400 14.5px/1.6 var(--sans);color:var(--text2)">The pay ranges of the executives you’ve mapped, set out by seniority — the conversation about the offer starts from the market, not a guess.</p>
+        </div>
+      </div>
+      <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:22px">
+        <div style="display:grid;grid-template-columns:1fr 96px;gap:14px;align-items:center;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px">
+          <div style="display:flex;flex-direction:column;gap:7px"><div style="display:grid;grid-template-columns:1fr 44px 1fr;gap:6px;font:500 10.5px var(--mono);color:var(--text2);text-transform:uppercase;letter-spacing:.06em"><span style="text-align:right">Women</span><span></span><span>Men</span></div><div style="display:grid;grid-template-columns:1fr 44px 1fr;gap:6px;align-items:center"><span style="justify-self:end;height:10px;width:20%;border-radius:5px 0 0 5px;background:var(--accent)"></span><span style="font:500 10.5px var(--sans);color:var(--text2);text-align:center">Board</span><span style="height:10px;width:55%;border-radius:0 5px 5px 0;background:#b9c0ee"></span></div><div style="display:grid;grid-template-columns:1fr 44px 1fr;gap:6px;align-items:center"><span style="justify-self:end;height:10px;width:38%;border-radius:5px 0 0 5px;background:var(--accent)"></span><span style="font:500 10.5px var(--sans);color:var(--text2);text-align:center">C-Suite</span><span style="height:10px;width:80%;border-radius:0 5px 5px 0;background:#b9c0ee"></span></div><div style="display:grid;grid-template-columns:1fr 44px 1fr;gap:6px;align-items:center"><span style="justify-self:end;height:10px;width:52%;border-radius:5px 0 0 5px;background:var(--accent)"></span><span style="font:500 10.5px var(--sans);color:var(--text2);text-align:center">N-1</span><span style="height:10px;width:72%;border-radius:0 5px 5px 0;background:#b9c0ee"></span></div><div style="display:grid;grid-template-columns:1fr 44px 1fr;gap:6px;align-items:center"><span style="justify-self:end;height:10px;width:64%;border-radius:5px 0 0 5px;background:var(--accent)"></span><span style="font:500 10.5px var(--sans);color:var(--text2);text-align:center">N-2</span><span style="height:10px;width:60%;border-radius:0 5px 5px 0;background:#b9c0ee"></span></div></div><svg width="96" height="96" viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.9" fill="none" stroke="#e4e8f6" stroke-width="6"></circle><circle cx="21" cy="21" r="15.9" fill="none" stroke="#4a56d6" stroke-width="6" stroke-dasharray="44 56" stroke-dashoffset="25"></circle><circle cx="21" cy="21" r="15.9" fill="none" stroke="#0f9d6b" stroke-width="6" stroke-dasharray="22 78" stroke-dashoffset="-19"></circle><circle cx="21" cy="21" r="15.9" fill="none" stroke="#a8602f" stroke-width="6" stroke-dasharray="16 84" stroke-dashoffset="-41"></circle><circle cx="21" cy="21" r="15.9" fill="none" stroke="#8189f7" stroke-width="6" stroke-dasharray="10 90" stroke-dashoffset="-57"></circle><text x="21" y="23.5" text-anchor="middle" font-family="Geist Mono,monospace" font-size="7" font-weight="600" fill="#0b0d12">11</text></svg>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <h3 style="font:600 22px/1.25 var(--sans);letter-spacing:-.02em">Diversity the client can see.</h3>
+          <p style="font:400 14.5px/1.6 var(--sans);color:var(--text2)">Gender by seniority and the spread of nationalities across the longlist, so a diverse slate is shown, not promised.</p>
+        </div>
+      </div>
+      <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:12px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px">
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px"><div style="display:flex;flex-direction:column;gap:3px"><span style="font:500 9.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--text2)">Recent pace</span><span style="font:600 16px var(--mono)">6.5/wk</span><span style="font:400 10.5px var(--sans);color:var(--text2)">vs 4.8 across the mandate</span></div><div style="display:flex;flex-direction:column;gap:3px"><span style="font:500 9.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--text2)">Companies covered</span><span style="font:600 16px var(--mono)">31/48</span><span style="font:400 10.5px var(--sans);color:var(--text2)">65% of universe</span></div><div style="display:flex;flex-direction:column;gap:3px"><span style="font:500 9.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--text2)">Projected</span><span style="font:600 16px var(--mono)">3 wks</span><span style="font:400 10.5px var(--sans);color:var(--text2)">to a complete map</span></div></div><div style="display:flex;height:12px;border-radius:6px;overflow:hidden;gap:2px"><span style="flex:14;background:#4a56d6"></span><span style="flex:10;background:#0f9d6b"></span><span style="flex:7;background:#a8602f"></span><span style="flex:17;background:var(--line)"></span></div><div style="display:flex;flex-wrap:wrap;gap:12px;font:400 11.5px var(--sans);color:var(--text2)"><span style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#4a56d6"></span>S. Rahman</span><span style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#0f9d6b"></span>A. Farouk</span><span style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#a8602f"></span>M. Pereira</span><span style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:rgba(3,7,18,.16)"></span>Not yet mapped</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <h3 style="font:600 22px/1.25 var(--sans);letter-spacing:-.02em">Keep the team on pace.</h3>
+          <p style="font:400 14.5px/1.6 var(--sans);color:var(--text2)">Coverage, momentum and each researcher’s share of the mapping — see what’s left, who’s on it, and when the map will be complete.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 80px 128px;display:flex;flex-direction:column;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
+      <span class="eyebrow" style="color:var(--accent-deep)">Research, without the busywork</span>
+      <h2 style="font:600 52px/1.04 var(--sans);letter-spacing:-.04em;text-wrap:balance">Built for the way search teams actually work.</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
       <div style="grid-column:span 2;background:var(--ink);color:var(--d-text);border-radius:18px;padding:36px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;min-height:380px;position:relative;overflow:hidden">
         <div style="display:flex;flex-direction:column;gap:14px;justify-content:flex-end">
           <span style="width:40px;height:40px;border-radius:10px;border:1px solid var(--ink-line);display:grid;place-items:center;color:var(--d-accent)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18"></path><path d="M12 13v5M9.5 15.5 12 18l2.5-2.5"></path></svg></span>
@@ -365,11 +663,11 @@
             <span style="height:8px;width:72%;border-radius:4px;background:#1d2128"></span>
             <div style="margin-top:8px;align-self:flex-end;width:230px;background:#f7f8fa;color:var(--text);border-radius:12px;padding:14px;box-shadow:0 20px 40px rgba(0,0,0,.45);display:flex;flex-direction:column;gap:10px">
               <div style="display:flex;align-items:center;gap:8px">
-                <span style="width:20px;height:20px;border-radius:4.3px;background:#16181c;color:#f4f5f7;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="20" height="20" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
+                <svg viewBox="-36 -51 72 104" width="14" height="20" fill="none" stroke="currentColor" style="color:var(--text);flex-shrink:0"><path d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50" fill="none" stroke-width="4" stroke-linejoin="round"></path><path d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z" fill="currentColor" stroke="none"></path></svg>
                 <span style="font:600 12.5px var(--sans)">Capture executive</span>
               </div>
-              <div style="font:500 13px var(--sans)">Mads Holm</div>
-              <div style="font:400 12px var(--sans);color:var(--text3);margin-top:-8px">CFO · Baltic Offshore Wind</div>
+              <div style="font:500 13px var(--sans)">Rashid Al Kaabi</div>
+              <div style="font:400 12px var(--sans);color:var(--text3);margin-top:-8px">CFO · Rimal Power</div>
               <div style="font:500 12px var(--sans);border:1px solid var(--line);border-radius:7px;padding:6px 9px;color:var(--text2)">Group CFO – Energy Division</div>
               <span style="text-align:center;font:600 12.5px var(--sans);background:var(--accent);color:var(--on-accent);border-radius:7px;padding:8px">Add to mandate</span>
             </div>
@@ -379,34 +677,9 @@
 
       <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:22px">
         <div style="display:flex;flex-direction:column;gap:8px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px">
-          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font:500 10.5px var(--mono);color:var(--text3);text-transform:uppercase;letter-spacing:.06em"><span>Your header</span><span>Uncava field</span></div>
-          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font:400 12.5px var(--mono)"><span style="color:var(--text2)">Full Name</span><span style="color:var(--text)">→ Name</span></div>
-          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font:400 12.5px var(--mono)"><span style="color:var(--text2)">Co.</span><span style="color:var(--text)">→ Company</span></div>
-          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font:400 12.5px var(--mono)"><span style="color:var(--text2)">Notice period</span><span style="color:var(--accent-deep)">+ Custom column</span></div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <h3 style="font:600 22px/1.25 var(--sans);letter-spacing:-.02em">Import a spreadsheet, safely.</h3>
-          <p style="font:400 14.5px/1.6 var(--sans);color:var(--text2)">Columns are matched for you and confirmed by a person before anything is written. When AI helps, it sees your headers — never the people in them.</p>
-        </div>
-      </div>
-
-      <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:22px">
-        <div style="display:flex;flex-direction:column;gap:8px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px">
-          <div style="display:flex;align-items:center;justify-content:space-between"><span style="font:500 12.5px var(--sans)">Role title</span><span style="font:500 10.5px var(--mono);color:var(--green)">From document · 94%</span></div>
-          <div style="font:400 13px var(--sans);background:#fff;border:1px solid var(--line);border-radius:7px;padding:7px 10px">Group Chief Financial Officer</div>
-          <div style="display:flex;gap:6px"><span style="font:600 11.5px var(--sans);background:var(--text);color:#fff;border-radius:6px;padding:5px 10px">Accept</span><span style="font:500 11.5px var(--sans);border:1px solid var(--line);border-radius:6px;padding:5px 10px;color:var(--text2)">Dismiss</span></div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <h3 style="font:600 22px/1.25 var(--sans);letter-spacing:-.02em">Briefs that write their first draft.</h3>
-          <p style="font:400 14.5px/1.6 var(--sans);color:var(--text2)">Seventeen role templates, and a reader that proposes fields from the client’s position description — each one yours to accept.</p>
-        </div>
-      </div>
-
-      <div style="background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:22px">
-        <div style="display:flex;flex-direction:column;gap:8px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px">
           <div style="display:flex;align-items:center;gap:10px">
-            <span style="width:28px;height:28px;border-radius:50%;background:#dbeafe;display:grid;place-items:center;font:600 10.5px var(--sans);color:#3a46c4">EM</span>
-            <div style="flex:1"><div style="font:500 12.5px var(--sans)">Elena Marsh</div><div style="font:400 11.5px var(--sans);color:var(--text3)">Client · Hartwell Group</div></div>
+            <span style="width:28px;height:28px;border-radius:50%;background:#dbeafe;display:grid;place-items:center;font:600 10.5px var(--sans);color:#3a46c4">HS</span>
+            <div style="flex:1"><div style="font:500 12.5px var(--sans)">Hessa Al Suwaidi</div><div style="font:400 11.5px var(--sans);color:var(--text3)">Client · Al Naseem Group</div></div>
             <span style="font:500 10.5px var(--mono);color:var(--text2);border:1px solid var(--line);border-radius:5px;padding:3px 6px">View only</span>
           </div>
           <div style="height:1px;background:var(--line)"></div>
@@ -437,8 +710,8 @@
   </section>
 
   <section style="background:var(--ink);color:var(--d-text);padding:112px 80px;display:grid;grid-template-columns:480px 1fr;gap:96px;position:relative;overflow:hidden">
-    <div style="position:absolute;right:-120px;top:-120px;width:520px;height:520px;opacity:.06;color:#f4f6f8">
-      <svg viewBox="86 86 340 340" width="520" height="520" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg>
+    <div style="position:absolute;right:-40px;top:-80px;width:360px;height:520px;opacity:.06;color:#f4f6f8">
+      <svg viewBox="-36 -51 72 104" width="360" height="520" fill="none" stroke="currentColor"><path d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50" fill="none" stroke-width="2.6" stroke-linejoin="round"></path><path d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z" fill="currentColor" stroke="none"></path></svg>
     </div>
     <div style="display:flex;flex-direction:column;gap:20px;position:relative">
       <span class="eyebrow" style="color:var(--d-accent)">Security</span>
@@ -464,8 +737,8 @@
       </div>
       <div style="background:var(--ink);padding:32px;display:flex;flex-direction:column;gap:12px">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6e79f2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"></path><path d="M9 12h6"></path></svg>
-        <h3 style="font:600 18px var(--sans)">Spreadsheets stay out of the model</h3>
-        <p style="font:400 14.5px/1.6 var(--sans);color:var(--d-text3)">When AI helps map a spreadsheet it sees column headers and value shapes — never the names, salaries or notes in the cells.</p>
+        <h3 style="font:600 18px var(--sans)">Names stay out of the model</h3>
+        <p style="font:400 14.5px/1.6 var(--sans);color:var(--d-text3)">Client names and contact details are pseudonymised before text reaches an AI model. Spreadsheet mapping sees headers, never the cells.</p>
       </div>
     </div>
   </section>
@@ -479,31 +752,38 @@
     </div>
   </section>
 
-  <footer style="border-top:1px solid var(--line);padding:64px 80px 40px;display:flex;flex-direction:column;gap:56px">
+  <footer style="background:var(--ink);color:var(--d-text);border-top:1px solid var(--ink-line);padding:64px 80px 40px;display:flex;flex-direction:column;gap:64px;overflow:hidden">
     <div style="display:grid;grid-template-columns:2fr repeat(3,minmax(0,1fr));gap:48px">
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;align-items:center;gap:10px">
-          <span style="width:28px;height:28px;border-radius:6px;background:#16181c;color:#f4f5f7;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="28" height="28" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
-          <span style="font:500 14px var(--sans);letter-spacing:.3em;text-transform:uppercase">Uncava</span>
+          <svg viewBox="-36 -51 72 104" width="19" height="28" fill="none" stroke="currentColor" style="color:var(--d-text);flex-shrink:0"><path d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50" fill="none" stroke-width="2.6" stroke-linejoin="round"></path><path d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z" fill="currentColor" stroke="none"></path></svg>
+          <span style="font:200 14px/1 var(--brand);letter-spacing:.38em;margin-right:-.38em;text-transform:uppercase">Uncava</span>
         </div>
-        <p style="font:400 14px/1.6 var(--sans);color:var(--text3);max-width:300px">The workspace for executive search and talent mapping.</p>
+        <p style="font:400 14px/1.6 var(--sans);color:var(--d-text3);max-width:300px">The workspace for C-suite search strategy and talent mapping.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <span class="eyebrow" style="color:var(--text3);font-size:11px">Product</span>
-        <a class="foot-link" href="#">Strategy</a><a class="foot-link" href="#">Companies</a><a class="foot-link" href="#">Talent map</a><a class="foot-link" href="#">Capture extension</a>
+        <span class="eyebrow" style="color:var(--d-text3);font-size:11px">Product</span>
+        <a class="foot-link-d" href="#">Search strategy</a><a class="foot-link-d" href="#">AI research</a><a class="foot-link-d" href="#">Reports</a><a class="foot-link-d" href="#">Companies</a><a class="foot-link-d" href="#">Talent map</a><a class="foot-link-d" href="#">Capture extension</a>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <span class="eyebrow" style="color:var(--text3);font-size:11px">Resources</span>
-        <a class="foot-link" href="#">Docs</a><a class="foot-link" href="#">Blog</a><a class="foot-link" href="#">Security</a>
+        <span class="eyebrow" style="color:var(--d-text3);font-size:11px">Resources</span>
+        <a class="foot-link-d" href="#">Docs</a><a class="foot-link-d" href="#">Blog</a><a class="foot-link-d" href="#">Security</a>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <span class="eyebrow" style="color:var(--text3);font-size:11px">Company</span>
-        <a class="foot-link" href="#">Contact</a><a class="foot-link" href="#">Privacy</a><a class="foot-link" href="#">Terms</a>
+        <span class="eyebrow" style="color:var(--d-text3);font-size:11px">Company</span>
+        <a class="foot-link-d" href="#">Contact</a><a class="foot-link-d" href="#">Privacy</a><a class="foot-link-d" href="#">Terms</a>
       </div>
     </div>
-    <div style="display:flex;justify-content:space-between;border-top:1px solid var(--line-soft);padding-top:24px;font:400 13px var(--sans);color:var(--text3)">
-      <span>© 2026 Uncava</span>
-      <span>[Company legal name · registered address]</span>
+
+    <!-- Brand row. The lid starts 40 units lower, resting on the rim (a closed box), and lifts to this position over the last 170px of the page scroll, once the closed box is fully on screen. CSS scroll-driven animation, no JS; browsers without animation-timeline show this open state. -->
+    <div style="display:flex;align-items:flex-end;gap:48px;color:var(--d-text)">
+      <svg viewBox="-36 -51 72 104" width="152" height="220" fill="none" stroke="currentColor" style="flex-shrink:0"><path d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50" fill="none" stroke-width="2.6" stroke-linejoin="round"></path><path d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z" fill="currentColor" stroke="none"></path></svg>
+      <span style="font:200 166px/1 var(--brand);letter-spacing:.38em;margin-right:-.38em;text-transform:uppercase;color:transparent;-webkit-text-stroke:1.5px var(--d-text3);white-space:nowrap;margin-bottom:-14px">Uncava</span>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;border-top:1px solid var(--ink-line);padding-top:24px;font:400 13px var(--sans);color:var(--d-text3)">
+      <span>© 2026 Uncava · [Company legal name · registered address]</span>
+      <span style="display:flex;gap:28px"><a class="foot-link-d" href="#">Privacy</a><a class="foot-link-d" href="#">Terms</a></span>
     </div>
   </footer>
 </div>

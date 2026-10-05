@@ -1,0 +1,25 @@
+---
+const searches = [
+  { name: 'GCC utilities, 1,000+', shared: true },
+  { name: 'KSA renewables + adjacencies', shared: true },
+  { name: 'Scale check, 5,000+', shared: false },
+];
+---
+
+<p class="font-mono text-[10.5px] font-medium tracking-[0.06em] text-text-2 uppercase">
+  Saved searches
+</p>
+{searches.map((search) => (
+  <div class="flex items-center justify-between text-[12.5px] font-medium">
+    {search.name}
+    {search.shared ? (
+      <span class="rounded bg-accent-dim px-1.5 py-0.5 font-mono text-[10.5px] font-medium text-accent-deep">
+        Shared
+      </span>
+    ) : (
+      <span class="rounded border border-line px-1.5 py-0.5 font-mono text-[10.5px] font-medium text-text-2">
+        Private
+      </span>
+    )}
+  </div>
+))}

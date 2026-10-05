@@ -8,9 +8,9 @@
 <x-dc>
 <helmet>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root{--ink:#08090b;--ink2:#0e1013;--ink-line:#2b2b2d;--paper:#f7f8fa;--panel:#ffffff;--panel2:#eceff3;--line:#e8e9ea;--line-soft:#f0f0f1;--text:#0b0d12;--text2:#4c5462;--text3:#687080;--accent:#4a56d6;--accent-deep:#4a56d6;--accent-dim:rgba(74,86,214,.09);--on-accent:#ffffff;--d-accent:#6e79f2;--signal:#a8602f;--signal-dim:rgba(168,96,47,.1);--link:#4a56d6;--link-dim:rgba(74,86,214,.08);--sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace}
+    :root{--ink:#08090b;--ink2:#0e1013;--ink-line:#2b2b2d;--paper:#f7f8fa;--panel:#ffffff;--panel2:#eceff3;--line:#e8e9ea;--line-soft:#f0f0f1;--text:#0b0d12;--text2:#4c5462;--text3:#687080;--accent:#4a56d6;--accent-deep:#4a56d6;--accent-dim:rgba(74,86,214,.09);--on-accent:#ffffff;--d-accent:#6e79f2;--signal:#a8602f;--signal-dim:rgba(168,96,47,.1);--link:#4a56d6;--link-dim:rgba(74,86,214,.08);--sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace;--brand:'Montserrat',system-ui,sans-serif;--inferred:#8244d6;--inferred-text:#7438c4;--inferred-dim:rgba(130,68,214,.1);--d-inferred:#b07cf5;--d-inferred-dim:rgba(176,124,245,.12)}
     *{box-sizing:border-box}
     body{margin:0;background:var(--panel);color:var(--text);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
     a{color:var(--link);text-decoration:none}
@@ -30,8 +30,8 @@
 <div style="width:1440px;background:var(--panel)">
   <header style="display:grid;grid-template-columns:280px 1fr auto;align-items:center;gap:32px;height:64px;padding:0 32px;border-bottom:1px solid var(--line)">
     <div style="display:flex;align-items:center;gap:10px">
-      <span style="width:28px;height:28px;border-radius:6px;background:#16181c;color:#f4f5f7;display:grid;place-items:center"><svg viewBox="86 86 340 340" width="28" height="28" fill="currentColor" stroke="currentColor"><path d="M256 131 332 174 256 216 180 174Z" stroke-width="11" stroke-linejoin="round"></path><path d="M256 241 332 285V336L256 380 180 336V285Z" fill="none" stroke-width="11" stroke-linejoin="round"></path></svg></span>
-      <span style="font:500 14px var(--sans);letter-spacing:.3em;text-transform:uppercase">Uncava</span>
+      <svg viewBox="-36 -51 72 104" width="19" height="28" fill="none" stroke="currentColor" style="color:var(--text);flex-shrink:0"><path d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50" fill="none" stroke-width="2.6" stroke-linejoin="round"></path><path d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z" fill="currentColor" stroke="none"></path></svg>
+      <span style="font:200 14px/1 var(--brand);letter-spacing:.38em;margin-right:-.38em;text-transform:uppercase">Uncava</span>
       <span style="font:500 12px var(--mono);color:var(--text3);border:1px solid var(--line);border-radius:6px;padding:2px 7px">Docs</span>
     </div>
     <div style="display:flex;align-items:center;gap:10px;width:440px;background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:8px 12px;color:var(--text3);font:400 14px var(--sans)">

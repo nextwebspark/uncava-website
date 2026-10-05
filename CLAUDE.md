@@ -20,19 +20,19 @@ npm run lhci         # Lighthouse CI against dist (needs Chrome)
 
 ## Layout
 
-| Path                                       | What                                                                                              |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------- |
-| `design/*.dc.html`                         | **Source of truth for all UI.** Read the artboard before building or changing a page.             |
-| `brand/`                                   | Mark, favicon, OG image, extension icons. Copied into `public/`, never edited in place.           |
-| `src/pages/`                               | Routes. Marketing pages, `blog/`, `og/[...slug].png.ts`, `llms.txt.ts`, `blog/rss.xml.ts`.        |
-| `src/components/{site,home,blog,docs,seo}` | Small typed Astro components, grouped by where they are used.                                     |
-| `src/layouts/`                             | `BaseLayout` (every non-docs page) and `LegalLayout`.                                             |
-| `src/content/`                             | `blog/*.md`, `authors/*.json`, `docs/docs/**/*.md` (Starlight, served under `/docs`).             |
-| `src/lib/`                                 | Pure TypeScript: site constants, page metadata, content schemas, SEO builders, OG renderer.       |
-| `src/styles/`                              | `theme.css` (tokens, shared), `global.css` (site), `docs.css` (Starlight).                        |
-| `public/admin/`                            | Sveltia CMS: `index.html` + `config.yml`.                                                         |
-| `scripts/`                                 | Build-time tooling (`check-csp.ts`).                                                              |
-| `tests/`                                   | Config tests: `firebase.json` headers, CMS ↔ schema lockstep. Unit tests sit beside their module. |
+| Path                                       | What                                                                                                |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| `design/*.dc.html`                         | **Source of truth for all UI.** Read the artboard before building or changing a page.               |
+| `brand/`                                   | Mark, favicon, OG image, extension icons. Copied into `public/`, never edited in place.             |
+| `src/pages/`                               | Routes. Marketing pages, `blog/`, `og/[...slug].png.ts`, `llms.txt.ts`, `blog/rss.xml.ts`.          |
+| `src/components/{site,home,blog,docs,seo}` | Small typed Astro components, grouped by where they are used.                                       |
+| `src/layouts/`                             | `BaseLayout` (every non-docs page) and `LegalLayout`.                                               |
+| `src/content/`                             | `blog/*.md`, `authors/*.json`, `legal/*.md`, `docs/docs/**/*.md` (Starlight, served under `/docs`). |
+| `src/lib/`                                 | Pure TypeScript: site constants, page metadata, content schemas, SEO builders, OG renderer.         |
+| `src/styles/`                              | `theme.css` (tokens, shared), `global.css` (site), `docs.css` (Starlight).                          |
+| `public/admin/`                            | Sveltia CMS: `index.html` + `config.yml`.                                                           |
+| `scripts/`                                 | Build-time tooling (`check-csp.ts`).                                                                |
+| `tests/`                                   | Config tests: `firebase.json` headers, CMS ↔ schema lockstep. Unit tests sit beside their module.   |
 
 ## Invariants
 
@@ -45,7 +45,9 @@ npm run lhci         # Lighthouse CI against dist (needs Chrome)
 - **The CSP is self-only.** Only `/docs/**` (Starlight hashes, Pagefind wasm) and `/admin/**` (Sveltia)
   are loosened, and only in `firebase.json`, in rules ordered after `**`.
 - **No invented facts.** Product claims come from what the app does; unknowns are visible bracketed
-  placeholders like `[hello@uncava.com]`. Never write legal text, prices, metrics or testimonials.
+  placeholders like `[hello@uncava.com]`. Never write prices, metrics or testimonials. Legal pages
+  (`src/content/legal/`) are drafts written only from what the app does; they show a "pending legal
+  review" notice until counsel approves and `reviewedByCounsel` is set.
 - **Don't build ahead of the design.** No page, section or component without an artboard or a request.
 - **No secrets in the repo.** Deploys authenticate with Workload Identity Federation.
 

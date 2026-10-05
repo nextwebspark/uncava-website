@@ -8,7 +8,8 @@ description: How the uncava.com Astro site is built — stack, directory layout,
 ## Stack
 
 Astro (static output, `strictest` TypeScript), Starlight mounted at `/docs`, Tailwind CSS v4 through
-`@tailwindcss/vite`, self-hosted Geist / Geist Mono (`@fontsource-variable/*`), Vitest, ESLint flat
+`@tailwindcss/vite`, self-hosted Geist / Geist Mono (`@fontsource-variable/*`) and Montserrat 200 for the wordmark
+only (`@fontsource/montserrat`, both Latin files preloaded in `BaseLayout`), Vitest, ESLint flat
 config, Prettier. Exact versions are pinned in `package.json`; Node comes from `.nvmrc`.
 
 ## Where things go
@@ -36,7 +37,8 @@ config, Prettier. Exact versions are pinned in `package.json`; Node comes from `
 Every page ships no JavaScript unless a feature is impossible without it. The mobile nav is a
 `<details>` element, not a script. The only script today is `CopyLinkButton` (hidden until the
 Clipboard API exists — progressive enhancement). Before adding one: can CSS, `<details>`, a link or a
-form do it? If not, use a processed `<script>` (bundled to `/_astro/*.js`).
+form do it? "Animate on scroll" is CSS too: `animation-timeline: scroll()` or `view()` inside `@supports`, as
+`OpeningMark.astro` does. If not, use a processed `<script>` (bundled to `/_astro/*.js`).
 
 **Trap:** Astro inlines small processed scripts under Vite's `assetsInlineLimit`; an inline script
 violates the CSP. `astro.config.mjs` sets `vite.build.assetsInlineLimit: 0` and

@@ -1,0 +1,245 @@
+---
+import Icon, { type IconName } from '~/components/site/Icon.astro';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const chapters: readonly { icon: IconName; label: string; current: boolean }[] = [
+  { icon: 'trending-up', label: 'Mapping progress', current: false },
+  { icon: 'globe', label: 'Shape of the market', current: true },
+  { icon: 'currency', label: 'Remuneration', current: false },
+  { icon: 'team', label: 'Diversity & DEI', current: false },
+];
+const mobileChapters = [...chapters].sort((a, b) => Number(b.current) - Number(a.current));
+
+const kpis = [
+  {
+    label: 'Deepest pocket',
+    value: '9',
+    of: '',
+    note: 'Utilities · C-Suite',
+    tone: 'lead',
+    mobile: true,
+  },
+  {
+    label: 'Empty pockets',
+    value: '2',
+    of: '/12',
+    note: 'sector × seniority pairs',
+    tone: 'plain',
+    mobile: true,
+  },
+  {
+    label: 'Board-level total',
+    value: '3',
+    of: '',
+    note: 'across 2 of 3 sectors',
+    tone: 'signal',
+    mobile: false,
+  },
+  {
+    label: 'Placed in the matrix',
+    value: '42',
+    of: '/44',
+    note: '95% of mapped executives',
+    tone: 'green',
+    mobile: false,
+  },
+] as const;
+
+const kpiTone = {
+  lead: {
+    surface: 'bg-panel-2',
+    label: 'text-text-2',
+    value: 'text-accent-deep',
+    note: 'text-text-2',
+  },
+  plain: { surface: 'bg-panel-2', label: 'text-text-2', value: 'text-text', note: 'text-text-2' },
+  signal: {
+    surface: 'bg-signal-dim',
+    label: 'text-signal-ink',
+    value: 'text-signal-ink',
+    note: 'text-signal-ink',
+  },
+  green: {
+    surface: 'bg-green/10',
+    label: 'text-green-text',
+    value: 'text-green-text',
+    note: 'text-green-text',
+  },
+} as const;
+
+const sectors = [
+  { name: 'Utilities', short: 'Utilities' },
+  { name: 'Renewables', short: 'Renew.' },
+  { name: 'Grid & networks', short: 'Grid' },
+];
+const seniority: readonly { level: string; counts: readonly number[] }[] = [
+  { level: 'Board', counts: [2, 1, 0] },
+  { level: 'C-Suite', counts: [9, 6, 4] },
+  { level: 'N-1', counts: [7, 5, 3] },
+  { level: 'N-2', counts: [3, 2, 0] },
+];
+
+function cellClass(count: number): string {
+  if (count === 0) return 'empty-cell border border-dashed border-slate-line';
+  if (count <= 2) return 'bg-seq-1 text-text';
+  if (count <= 4) return 'bg-seq-2 text-text';
+  if (count <= 6) return 'bg-seq-3 text-text';
+  if (count <= 8) return 'bg-seq-4 text-white';
+  return 'bg-seq-5 text-white';
+}
+
+// Bar widths are classes, not inline styles: the site CSP allows no style attributes.
+const countries = [
+  { name: 'Saudi Arabia', executives: 21, bar: 'w-full bg-accent' },
+  { name: 'UAE', executives: 14, bar: 'w-[67%] bg-seq-2' },
+  { name: 'Qatar', executives: 4, bar: 'w-[19%] bg-seq-2' },
+  { name: 'Oman', executives: 3, bar: 'w-[14%] bg-seq-2' },
+];
+---
+
+<div class:list={['flex flex-col gap-3.5', className]} aria-hidden="true">
+  <ul class="-mx-5 flex gap-1.5 overflow-x-auto px-5 md:hidden">
+    {mobileChapters.map((chapter) => (
+      <li
+        class:list={[
+          'flex min-h-11 flex-none items-center rounded-lg px-3 text-[13px] font-medium whitespace-nowrap',
+          chapter.current ? 'bg-accent-dim text-accent-deep' : 'border border-line text-text-2',
+        ]}
+      >
+        {chapter.label}
+      </li>
+    ))}
+  </ul>
+
+  <div class="grid overflow-hidden rounded-2xl border border-line bg-panel shadow-window md:rounded-[18px] lg:grid-cols-[260px_1fr]">
+    <div class="hidden flex-col gap-1 border-r border-line px-[18px] py-6 lg:flex">
+      {chapters.map((chapter) => (
+        <span
+          class:list={[
+            'flex items-center gap-2.5 rounded-lg px-3 py-[9px] text-[13.5px]',
+            chapter.current ? 'bg-accent-dim font-medium text-accent-deep' : 'text-text-2',
+          ]}
+        >
+          <Icon name={chapter.icon} size={16} strokeWidth={1.7} />
+          {chapter.label}
+        </span>
+      ))}
+      <span class="my-[18px] h-px bg-line"></span>
+      <p class="text-xs leading-[1.6] text-text-3 italic">
+        Talent mapping report, prepared for Al Naseem Group — confidential. Generated live from the
+        mandate’s rows.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-3 p-[18px] md:gap-6 md:px-10 md:py-9">
+      <div class="flex flex-col gap-2.5">
+        <p class="text-[19px] leading-[1.2] font-semibold tracking-title md:text-[28px] md:leading-[1.15] md:tracking-[-0.025em]">
+          Where does the universe actually sit?
+        </p>
+        <p class="hidden max-w-[680px] text-[15px] leading-[1.6] text-text-2 md:block">
+          <strong class="font-semibold text-text">Utilities leads</strong> the universe, deepest at
+          C-Suite. Board-level coverage is{' '}
+          <strong class="font-semibold text-text">3 executives</strong>, and 2 of 12 sector ×
+          seniority pockets are still empty.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 md:gap-3 xl:grid-cols-4">
+        {kpis.map((kpi) => {
+          const tone = kpiTone[kpi.tone];
+          return (
+            <div
+              class:list={[
+                'flex-col gap-1.5 rounded-[9px] px-3 py-2.5 md:rounded-[10px] md:px-4 md:py-3.5',
+                tone.surface,
+                kpi.mobile ? 'flex' : 'hidden md:flex',
+              ]}
+            >
+              <span
+                class:list={[
+                  'font-mono text-[10px] font-medium tracking-eyebrow uppercase md:text-[10.5px]',
+                  tone.label,
+                ]}
+              >
+                {kpi.label}
+              </span>
+              <span class:list={['font-mono text-xl font-semibold md:text-2xl', tone.value]}>
+                {kpi.value}
+                {kpi.of && <span class="text-xs font-normal">{kpi.of}</span>}
+              </span>
+              <span class:list={['hidden text-xs md:block', tone.note]}>{kpi.note}</span>
+            </div>
+          );
+        })}
+      </div>
+
+      <div class="grid gap-5 xl:grid-cols-[1.5fr_1fr]">
+        <div class="flex flex-col gap-3 md:rounded-xl md:border md:border-line md:px-5 md:py-[18px]">
+          <div class="hidden flex-col gap-0.5 md:flex">
+            <span class="text-sm font-semibold">Sector × seniority</span>
+            <span class="text-xs text-text-3">
+              42 executives placed · hatched = no executive identified yet
+            </span>
+          </div>
+          <div class="grid grid-cols-[56px_repeat(3,minmax(0,1fr))] items-center gap-1 md:grid-cols-[64px_repeat(3,minmax(0,1fr))] md:gap-[5px]">
+            <span></span>
+            {sectors.map((sector) => (
+              <span class="text-center font-mono text-[10px] font-medium text-text-2 md:text-[10.5px]">
+                <span class="md:hidden">{sector.short}</span>
+                <span class="hidden md:inline">{sector.name}</span>
+              </span>
+            ))}
+            {seniority.map((row) => (
+              <>
+                <span class="text-xs font-medium text-text-2">{row.level}</span>
+                {row.counts.map((count) => (
+                  <span
+                    class:list={[
+                      'grid h-[30px] place-items-center rounded-[5px] font-mono text-xs font-semibold md:h-[34px] md:rounded-md',
+                      cellClass(count),
+                    ]}
+                  >
+                    {count > 0 ? count : ''}
+                  </span>
+                ))}
+              </>
+            ))}
+          </div>
+        </div>
+
+        <div class="hidden flex-col gap-3 rounded-xl border border-line px-5 py-[18px] md:flex">
+          <div class="flex flex-col gap-0.5">
+            <span class="text-sm font-semibold">Where talent sits</span>
+            <span class="text-xs text-text-3">42 located across 4 countries</span>
+          </div>
+          {countries.map((country) => (
+            <div class="grid grid-cols-[84px_1fr_24px] items-center gap-2.5 text-[12.5px] text-text-2">
+              <span>{country.name}</span>
+              <span class="h-2.5 overflow-hidden rounded-[5px] bg-panel-2">
+                <span class:list={['block h-full rounded-[5px]', country.bar]}></span>
+              </span>
+              <span class="text-right font-mono text-[11.5px] font-medium">
+                {country.executives}
+              </span>
+            </div>
+          ))}
+          <p class="mt-1 border-t border-dashed border-line pt-2.5 text-xs leading-normal text-text-3 italic">
+            Half of located talent sits in Saudi Arabia, a third in the UAE. Thin coverage elsewhere
+            in the GCC.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .empty-cell {
+    background: repeating-linear-gradient(135deg, transparent 0 5px, rgb(3 7 18 / 0.06) 5px 6px);
+  }
+</style>
