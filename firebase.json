@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "uncava-website",
     "public": "dist",
     "cleanUrls": true,
     "trailingSlash": false,

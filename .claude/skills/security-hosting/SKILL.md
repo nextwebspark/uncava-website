@@ -10,7 +10,8 @@ description: Security and hosting for uncava.com — Firebase Hosting config, se
 - `public: dist`, `cleanUrls: true`, `trailingSlash: false` — must match Astro's `trailingSlash:
 'never'` + `build.format: 'file'` (asserted by `tests/firebase-config.test.ts`).
 - `redirects` is where every retired URL gets its 301. Redirects run before static files.
-- `.firebaserc` holds `[FIREBASE_PROJECT_ID]`; CI passes the real id with `--project`.
+- `site: uncava-website` pins the Hosting site (the project hosts other things); `.firebaserc` names
+  `hak-talent-mapping`, and CI still passes `--project` explicitly.
 
 ## Header rules: order is the mechanism
 
@@ -59,14 +60,23 @@ Repository (or `production` environment) variables — not secrets, they are ide
 `PUBLIC_DEMO_FORM_ENDPOINT`, `PUBLIC_NEWSLETTER_FORM_ENDPOINT`. Workflows skip with a notice when the
 first three are unset.
 
-Service account roles: `roles/firebasehosting.admin` only. Restrict the WIF provider with an
-attribute condition on `assertion.repository == 'nextwebspark/uncava-website'` (and
-`assertion.ref == 'refs/heads/main'` for the production binding if previews use a separate account).
+GCP lives in `scripts/gcp-bootstrap.sh` (idempotent, re-runnable): project `hak-talent-mapping`, Hosting
+site from `hosting.site` in `firebase.json`, the shared `github-pool` with this repo's own provider
+`uncava-website-provider` (condition `assertion.repository == 'nextwebspark/uncava-website'`), and the
+`uncava-website-deployer` account with `roles/firebasehosting.admin` +
+`roles/serviceusage.serviceUsageConsumer` only. Change roles there, never in the console.
 
 ## Workflows
 
 - `ci.yml` (PRs + main): `npm ci`, lint, format, check, test, build, CSP audit, Lighthouse CI.
-- `deploy.yml` (main): `npm run verify`, WIF auth, `firebase-tools deploy --only hosting`.
+- Merging to `main` deploys nothing. `release.yml` (manual, `bump: patch|minor|major`): requires the CI
+  check green on `main`, computes the next `vX.Y.Z` from the latest tag, pushes the tag, publishes a
+  GitHub Release, then calls `deploy.yml` with the tag. Its `tag` job is the only one with
+  `contents: write` and the only checkout that keeps credentials (it pushes the tag).
+- `deploy.yml` (`workflow_call` from Release, or `workflow_dispatch` to redeploy / roll back a tag):
+  accepts only `vX.Y.Z`, checks out the tag, `npm run verify`, writes `dist/version.json`, WIF auth,
+  `firebase-tools deploy --only hosting --message <tag>`, smoke test (version, `h1`, CSP, HSTS,
+  `/admin` noindex). Runs in the `production` environment.
 - `preview.yml` (same-repo PRs only — forks never get OIDC): build, preview channel `pr-<n>` for 7 days,
   sticky comment with the URL.
 - Every third-party action is pinned to a full commit SHA with its version in a comment; Dependabot
