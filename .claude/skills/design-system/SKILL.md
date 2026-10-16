@@ -113,10 +113,10 @@ line with Privacy and Terms. Only the home page uses the full footer; the compac
 - No entrance animations on above-the-fold content, and never start content at `opacity: 0`.
 - Hover transitions only (colour, border, a 2% image scale), all disabled under
   `prefers-reduced-motion` (global rule in `global.css` plus `motion-reduce:` where needed).
-- The one exception is the home footer's mark (`OpeningMark.astro`): its lid starts on the rim
-  and lifts over the last 170px of the page scroll, once the closed box is on screen, a CSS
-  scroll-driven animation (`animation-timeline: scroll()`, no JS). Browsers without it, and reduced motion, show the open
-  mark; the end state is the mark unchanged. No other scroll-driven motion without an artboard.
+- The one exception is the home footer's mark (`OpeningMark.astro`): a 6.4-second CSS loop, symmetric: each swing 1.4s, each rest 1.8s (opening 0.8–2.2s, open 2.2–4s, closing 4–5.4s).
+  Closed, the lid swings a half-turn on the box's back corner, whole (never squashed) and lifting
+  a little clear of the box mid-swing, round the left into the brand mark, rests there, then carries on round the right to close. No JS; under reduced motion it is the plain mark. The resting open state is the
+  mark unchanged. No other looping motion without an artboard.
 
 ## Contrast
 
