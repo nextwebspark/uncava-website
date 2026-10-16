@@ -1,0 +1,130 @@
+---
+import Icon from '~/components/site/Icon.astro';
+
+interface Props {
+  variant: 'full' | 'compact';
+  class?: string;
+}
+
+const { variant, class: className } = Astro.props;
+const isFull = variant === 'full';
+
+const steps = isFull
+  ? [
+      'Read the brief',
+      'Checked the market’s vocabulary',
+      'Searched the company universe',
+      'Resolved 2 named companies',
+      'Suggested adjacent sectors',
+    ]
+  : ['Read the brief', 'Searched the company universe', 'Resolved 2 named companies'];
+
+const suggestions = [
+  { name: 'Sahab Renewables', city: 'Jeddah', employees: '1,100', ticked: true },
+  { name: 'Tabuk Wind Company', city: 'Tabuk', employees: '980', ticked: true },
+  { name: 'Qasr Solar', city: 'Al Ain', employees: '640', ticked: true },
+  { name: 'Barq Energy', city: 'Doha', employees: '2,300', ticked: false },
+];
+const shown = isFull ? suggestions : suggestions.filter((company) => company.ticked);
+
+const stages = ['In universe', 'Shortlisted', 'Declined'];
+---
+
+<div
+  class:list={[
+    'flex flex-col gap-3 text-d-text',
+    isFull && 'gap-3.5 rounded-[14px] border border-ink-line bg-ink-2 px-[22px] py-5',
+    className,
+  ]}
+  aria-hidden="true"
+>
+  {isFull && (
+    <div class="flex items-center gap-2 border-b border-ink-line pb-3">
+      <Icon name="sparkle" size={16} class="text-d-inferred" />
+      <span class="text-[13.5px] font-semibold">Assistant</span>
+      <span class="ml-auto font-mono text-[11px] font-medium text-d-text-3">
+        Al Naseem Group · Group CFO – Energy
+      </span>
+    </div>
+  )}
+
+  <p class="self-end rounded-[12px_12px_3px_12px] border border-ink-line bg-ink-3 px-3 py-[9px] text-[13px]">
+    Renewables developers in Saudi Arabia and the UAE
+  </p>
+
+  <ul class="flex flex-col gap-1.5">
+    {steps.map((step) => (
+      <li class="flex items-center gap-2 text-[12.5px] text-d-text-2">
+        <Icon name="check" size={13} strokeWidth={2.2} class="text-d-text-3" />
+        {step}
+      </li>
+    ))}
+  </ul>
+
+  {isFull && (
+    <p class="text-[13.5px] leading-[1.55] text-d-text-2">
+      Six operators match. Two are already in this position; four are below.
+    </p>
+  )}
+
+  <div
+    class:list={[
+      'overflow-hidden rounded-xl border border-ink-line',
+      isFull ? 'bg-ink' : 'bg-ink-2',
+    ]}
+  >
+    <div class="flex items-center justify-between gap-3 px-3.5 py-[11px]">
+      <span class="text-[13px] font-semibold">
+        {isFull ? '4 companies not yet in your universe' : '3 companies suggested'}
+      </span>
+      <span class="rounded-[5px] bg-d-inferred-dim px-[7px] py-[3px] font-mono text-[10.5px] font-medium text-d-inferred">
+        Suggested
+      </span>
+    </div>
+    <ul>
+      {shown.map((company) => (
+        <li class="flex items-center gap-3 border-t border-ink-line px-3.5 py-2.5">
+          {company.ticked ? (
+            <span class="grid size-[15px] place-items-center rounded bg-accent text-on-accent">
+              <Icon name="check" size={10} strokeWidth={3} />
+            </span>
+          ) : (
+            <span class="size-[15px] rounded border-[1.5px] border-graphite-3"></span>
+          )}
+          <span class="text-[13px] font-medium">{company.name}</span>
+          <span class="ml-auto text-xs text-d-text-3">
+            {company.city}
+            {isFull && ` · ${company.employees}`}
+          </span>
+        </li>
+      ))}
+    </ul>
+    {isFull && (
+      <div class="flex flex-wrap items-center gap-2.5 border-t border-ink-line px-3.5 py-[11px]">
+        <span class="text-[12.5px] text-d-text-2">File 3 as</span>
+        <span class="flex overflow-hidden rounded-lg border border-ink-line text-xs font-medium">
+          {stages.map((stage) => (
+            <span
+              class:list={[
+                'px-2.5 py-1.5',
+                stage === 'Shortlisted' ? 'bg-accent text-on-accent' : 'text-d-text-2',
+              ]}
+            >
+              {stage}
+            </span>
+          ))}
+        </span>
+        <span class="ml-auto text-xs text-d-text-3">1 off-limits company left out</span>
+      </div>
+    )}
+  </div>
+
+  {!isFull && (
+    <>
+      <span class="rounded-[10px] bg-accent p-[13px] text-center text-[15px] font-semibold text-on-accent">
+        File as Shortlisted
+      </span>
+      <span class="text-[13px] text-d-text-3">Off-limits companies never make the list.</span>
+    </>
+  )}
+</div>

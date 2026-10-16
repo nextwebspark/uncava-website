@@ -14,22 +14,23 @@ export interface OgCard {
 
 const require = createRequire(import.meta.url);
 
-let fonts: Promise<{ regular: Buffer; medium: Buffer; semibold: Buffer }> | undefined;
+let fonts:
+  Promise<{ regular: Buffer; medium: Buffer; semibold: Buffer; wordmark: Buffer }> | undefined;
 
 function loadFonts() {
-  // Satori reads TTF/OTF/WOFF but not WOFF2, so the static @fontsource/geist files are used here.
-  const file = (weight: number) =>
-    readFile(require.resolve(`@fontsource/geist/files/geist-latin-${weight}-normal.woff`));
-  fonts ??= Promise.all([file(400), file(500), file(600)]).then(([regular, medium, semibold]) => ({
-    regular,
-    medium,
-    semibold,
-  }));
+  // Satori reads TTF/OTF/WOFF but not WOFF2, so the static @fontsource files are used here.
+  const file = (path: string) => readFile(require.resolve(`@fontsource/${path}`));
+  fonts ??= Promise.all([
+    file('geist/files/geist-latin-400-normal.woff'),
+    file('geist/files/geist-latin-500-normal.woff'),
+    file('geist/files/geist-latin-600-normal.woff'),
+    file('montserrat/files/montserrat-latin-200-normal.woff'),
+  ]).then(([regular, medium, semibold, wordmark]) => ({ regular, medium, semibold, wordmark }));
   return fonts;
 }
 
 const markDataUri = `data:image/svg+xml;base64,${Buffer.from(
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="86 86 340 340"><rect x="86" y="86" width="340" height="340" rx="74" fill="#f4f5f7"/><g fill="#16181c" stroke="#16181c" stroke-width="11" stroke-linejoin="round"><path d="M256 131 332 174 256 216 180 174Z"/><path fill="none" d="M256 241 332 285V336L256 380 180 336V285Z"/></g></svg>',
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-36 -51 72 104" fill="none" stroke="#f4f6f8"><path d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50" stroke-width="3.4" stroke-linejoin="round"/><path d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z" fill="#f4f6f8" stroke="none"/></svg>',
 ).toString('base64')}`;
 
 export function titleFontSize(title: string): number {
@@ -52,7 +53,7 @@ const el = (
 
 /** Renders a page's share card in the look of brand/og-image.png. */
 export async function renderOgImage(card: OgCard): Promise<Buffer> {
-  const { regular, medium, semibold } = await loadFonts();
+  const { regular, medium, semibold, wordmark } = await loadFonts();
 
   const tree = el(
     'div',
@@ -70,15 +71,21 @@ export async function renderOgImage(card: OgCard): Promise<Buffer> {
       color: '#f4f6f8',
     },
     [
-      el('div', { display: 'flex', alignItems: 'center', gap: 26 }, [
-        el('img', { width: 74, height: 74 }, undefined, {
+      el('div', { display: 'flex', alignItems: 'center', gap: 24 }, [
+        el('img', { width: 52, height: 75 }, undefined, {
           src: markDataUri,
-          width: 74,
-          height: 74,
+          width: 52,
+          height: 75,
         }),
         el(
           'div',
-          { fontSize: 26, fontWeight: 500, letterSpacing: '0.3em', color: '#f4f6f8' },
+          {
+            fontFamily: 'Montserrat',
+            fontSize: 30,
+            fontWeight: 200,
+            letterSpacing: '0.38em',
+            color: '#f4f6f8',
+          },
           'UNCAVA',
         ),
       ]),
@@ -118,6 +125,7 @@ export async function renderOgImage(card: OgCard): Promise<Buffer> {
       { name: 'Geist', data: regular, weight: 400, style: 'normal' },
       { name: 'Geist', data: medium, weight: 500, style: 'normal' },
       { name: 'Geist', data: semibold, weight: 600, style: 'normal' },
+      { name: 'Montserrat', data: wordmark, weight: 200, style: 'normal' },
     ],
   });
 

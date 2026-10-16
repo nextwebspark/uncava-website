@@ -11,7 +11,14 @@ export const GET: APIRoute = async () => {
   const link = (title: string, path: string, description: string) =>
     `- [${title}](${absoluteUrl(path)}): ${description}`;
 
-  const pages = [staticPages.security, staticPages.contact, staticPages.blog];
+  const pages = [
+    staticPages.security,
+    staticPages.contact,
+    staticPages.blog,
+    staticPages.privacy,
+    staticPages.terms,
+    staticPages.subprocessors,
+  ];
 
   const body = [
     `# ${site.name}`,

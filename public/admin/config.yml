@@ -143,6 +143,37 @@ collections:
           hint: 'A full URL, e.g. https://www.linkedin.com/in/…',
         }
 
+  - name: legal
+    label: Legal pages
+    label_singular: Legal page
+    description: >-
+      Privacy, terms and the other legal pages. Each file is one page; its title and search
+      description live in the code. Only change wording counsel has approved.
+    folder: src/content/legal
+    extension: md
+    format: frontmatter
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    preview_path: '{{slug}}'
+    fields:
+      - name: lastUpdated
+        label: Last updated
+        widget: datetime
+        time_format: false
+        format: YYYY-MM-DD
+        hint: Change this whenever the wording changes. It is shown at the top of the page.
+      - name: reviewedByCounsel
+        label: Approved by counsel
+        widget: boolean
+        default: false
+        required: false
+        hint: While off, the page shows a "draft pending legal review" notice.
+      - name: body
+        label: Body
+        widget: markdown
+        hint: Start sections with "Heading 2". Each one appears in the page's table of contents.
+
   - name: docs-getting-started
     label: 'Docs: Getting started'
     label_singular: Docs page

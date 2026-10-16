@@ -1,0 +1,33 @@
+---
+import Icon from '~/components/site/Icon.astro';
+
+const scores = [
+  { label: 'Technical', score: 8 },
+  { label: 'Behavioural', score: 7 },
+];
+---
+
+<div class="flex items-center gap-1.5 font-mono text-[10.5px] font-medium text-inferred-text">
+  <Icon name="sparkle" size={12} />
+  AI assessment · a proposal to review
+</div>
+<div class="grid grid-cols-2 gap-2">
+  {scores.map(({ label, score }) => (
+    <div class="rounded-lg border border-line bg-panel px-2.5 py-2">
+      <div class="font-mono text-[10.5px] font-medium tracking-[0.06em] text-text-2 uppercase">
+        {label}
+      </div>
+      <div class="text-lg font-semibold">
+        {score}
+        <span class="text-xs font-normal text-text-2">/10</span>
+      </div>
+    </div>
+  ))}
+</div>
+<p class="text-xs leading-[1.45] text-text-2">
+  <span class="font-semibold text-green-text">+</span> Led the group’s sukuk issuance as CFO
+</p>
+<p class="text-xs leading-[1.45] text-text-2">
+  <span class="font-semibold text-red">–</span> No group-level treasury role yet
+</p>
+<p class="text-[11.5px] text-text-2">Sources: leadership page · trade press · conference talk</p>

@@ -3,7 +3,7 @@ import { z } from 'astro/zod';
 import { describe, expect, it } from 'vitest';
 import { parse } from 'yaml';
 import { BLOG_TAG_SLUGS } from '../src/lib/blog-tags';
-import { authorSchema, blogSchema } from '../src/lib/content-schemas';
+import { authorSchema, blogSchema, legalSchema } from '../src/lib/content-schemas';
 
 interface CmsField {
   name: string;
@@ -35,6 +35,7 @@ const collection = (name: string) => {
 const stub = () => z.string();
 const blog = blogSchema({ image: stub, author: z.string() });
 const authors = authorSchema({ image: stub });
+const legal = legalSchema();
 
 function optionalInSchema(schema: z.ZodObject, key: string): boolean {
   return schema.shape[key]?.safeParse(undefined).success ?? false;
@@ -81,6 +82,13 @@ describe('Sveltia CMS config', () => {
 
     expect(people.extension).toBe('json');
     expectLockstep(authors, people.fields, false);
+  });
+
+  it('edits exactly the legal page fields the schema defines', () => {
+    const pages = collection('legal');
+
+    expect(pages.folder).toBe('src/content/legal');
+    expectLockstep(legal, pages.fields, true);
   });
 
   it('covers every docs sidebar group with a CMS collection', () => {

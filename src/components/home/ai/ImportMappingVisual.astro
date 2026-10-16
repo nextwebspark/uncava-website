@@ -1,0 +1,21 @@
+---
+const mappings = [
+  { header: 'Full Name', field: '→ Name', suggested: false },
+  { header: 'Co.', field: '→ Company', suggested: false },
+  { header: 'Notice period', field: '+ Custom column', suggested: true },
+];
+---
+
+<div class="grid grid-cols-2 gap-2 font-mono text-[10.5px] font-medium tracking-[0.06em] text-text-2 uppercase">
+  <span>Your header</span>
+  <span>Uncava field</span>
+</div>
+{mappings.map((row) => (
+  <div class="grid grid-cols-2 gap-2 font-mono text-[12.5px]">
+    <span class="text-text-2">{row.header}</span>
+    <span class:list={[row.suggested ? 'text-inferred-text' : 'text-text']}>{row.field}</span>
+  </div>
+))}
+<p class="font-mono text-[10.5px] font-medium text-inferred-text">
+  Suggested · confirm before import
+</p>
