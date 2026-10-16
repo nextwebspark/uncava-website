@@ -10,13 +10,13 @@
 # Needs gcloud logged in as a project owner. No service-account key is ever created.
 set -euo pipefail
 
-PROJECT="${GCP_PROJECT:-hak-talent-mapping}"
+PROJECT="${GCP_PROJECT:-hak-talent-mapping-fe0e5}"
 REPO="${GITHUB_REPO:-nextwebspark/uncava-website}"
 SITE="$(node -p 'require("./firebase.json").hosting.site')"
 
 DEPLOY_SA="uncava-website-deployer"
-POOL="github-pool"                 # shared with the other apps in this project
-PROVIDER="uncava-website-provider" # its own: every existing provider is pinned to another repository
+POOL="github-pool"
+PROVIDER="uncava-website-provider"
 
 PROJECT_NUMBER="$(gcloud projects describe "$PROJECT" --format='value(projectNumber)')"
 DEPLOY_SA_EMAIL="${DEPLOY_SA}@${PROJECT}.iam.gserviceaccount.com"

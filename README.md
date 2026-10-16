@@ -100,7 +100,7 @@ Hosting → release history → **Rollback**, then redeploy the tag so `version.
 
 ### One-time Google Cloud setup
 
-The site lives in the `hak-talent-mapping` project as its own Hosting site (`hosting.site` in
+The site lives in the `hak-talent-mapping-fe0e5` Firebase project as its own Hosting site (`hosting.site` in
 `firebase.json`), deployed by a keyless Workload Identity Federation identity. All of it is created by
 one idempotent, re-runnable script:
 

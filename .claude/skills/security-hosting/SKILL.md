@@ -10,8 +10,8 @@ description: Security and hosting for uncava.com — Firebase Hosting config, se
 - `public: dist`, `cleanUrls: true`, `trailingSlash: false` — must match Astro's `trailingSlash:
 'never'` + `build.format: 'file'` (asserted by `tests/firebase-config.test.ts`).
 - `redirects` is where every retired URL gets its 301. Redirects run before static files.
-- `site: uncava-website` pins the Hosting site (the project hosts other things); `.firebaserc` names
-  `hak-talent-mapping`, and CI still passes `--project` explicitly.
+- `site: uncava-website` pins the Hosting site (a project can hold several); `.firebaserc` names
+  `hak-talent-mapping-fe0e5`, and CI still passes `--project` explicitly.
 
 ## Header rules: order is the mechanism
 
@@ -60,8 +60,8 @@ Repository (or `production` environment) variables — not secrets, they are ide
 `PUBLIC_DEMO_FORM_ENDPOINT`, `PUBLIC_NEWSLETTER_FORM_ENDPOINT`. Workflows skip with a notice when the
 first three are unset.
 
-GCP lives in `scripts/gcp-bootstrap.sh` (idempotent, re-runnable): project `hak-talent-mapping`, Hosting
-site from `hosting.site` in `firebase.json`, the shared `github-pool` with this repo's own provider
+GCP lives in `scripts/gcp-bootstrap.sh` (idempotent, re-runnable): project `hak-talent-mapping-fe0e5`, Hosting
+site from `hosting.site` in `firebase.json`, `github-pool` with the provider
 `uncava-website-provider` (condition `assertion.repository == 'nextwebspark/uncava-website'`), and the
 `uncava-website-deployer` account with `roles/firebasehosting.admin` +
 `roles/serviceusage.serviceUsageConsumer` only. Change roles there, never in the console.
