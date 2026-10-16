@@ -1,0 +1,153 @@
+---
+/**
+ * The mark as a box that keeps opening: closed, the lid swings open on the box's back corner
+ * round the left into the brand mark, rests there, then carries on round the right to close — a
+ * 6.4-second loop in pure CSS. Under reduced motion it is simply the brand mark.
+ */
+interface Props {
+  size?: number;
+  class?: string;
+}
+
+const { size = 220, class: className } = Astro.props;
+
+const width = Math.round((size * 72) / 104);
+---
+
+<svg
+  width={width}
+  height={size}
+  viewBox="-36 -51 72 104"
+  fill="none"
+  stroke="currentColor"
+  class:list={['shrink-0 overflow-visible', className]}
+  aria-hidden="true"
+  focusable="false"
+>
+  <path
+    class="lid"
+    d="M0 -48 L 32 -30 L 0 -12 L -32 -30 Z"
+    fill="currentColor"
+    stroke="none"
+  ></path>
+  <path
+    d="M-32 10 L 0 -8 L 32 10 L 0 28 Z M-32 10 V 32 L 0 50 L 32 32 V 10 M0 28 V 50"
+    stroke-width="2.6"
+    stroke-linejoin="round"
+  ></path>
+</svg>
+
+<style>
+  /* The lid swings open on one corner. Closed, it lies on the rim; it turns 180° about the box's
+     back corner (0, -8), passing on the left, lifting clear of the box mid-swing (20 units at the
+     quarter-turn, |sin θ|) and rising the last 4 units into the brand mark's position. Closing
+     carries on the same way round, 180° → 360°, so the lid comes back down on the right.
+     Timing is symmetric: opening 0.8–2.2s, open 2.2–4s, closing 4–5.4s, closed 5.4s round to
+     0.8s — each swing 1.4s, each rest 1.8s. The lid is point-symmetric, so
+     the half-turn lands on exactly the drawn lid: the end state is the mark unchanged. Every
+     keyframe uses the same three functions (lift, turn, drop onto the rim), so the browser
+     interpolates each as a number and the lid stays whole all the way round. The keyframes are
+     generated with the easing, cubic-bezier(0.6, 0, 0.3, 1), baked in: regenerate them rather
+     than hand-edit the numbers. The lid is drawn before the box, so the box's edges stay on top. */
+  @keyframes lid-swing {
+    0% {
+      transform: translate(0, 0px) rotate(0deg) translate(0, 40px);
+    }
+    12.5% {
+      transform: translate(0, 0px) rotate(0deg) translate(0, 40px);
+    }
+    14.32% {
+      transform: translate(0, -0.48px) rotate(1.3deg) translate(0, 40px);
+    }
+    16.15% {
+      transform: translate(0, -2.21px) rotate(6deg) translate(0, 40px);
+    }
+    17.97% {
+      transform: translate(0, -5.79px) rotate(15.8deg) translate(0, 40px);
+    }
+    19.79% {
+      transform: translate(0, -12.01px) rotate(34.2deg) translate(0, 40px);
+    }
+    21.61% {
+      transform: translate(0, -19.86px) rotate(66.7deg) translate(0, 40px);
+    }
+    23.44% {
+      transform: translate(0, -21.38px) rotate(108.5deg) translate(0, 40px);
+    }
+    25.26% {
+      transform: translate(0, -16.07px) rotate(139.6deg) translate(0, 40px);
+    }
+    27.08% {
+      transform: translate(0, -10.9px) rotate(158.3deg) translate(0, 40px);
+    }
+    28.91% {
+      transform: translate(0, -7.42px) rotate(169.5deg) translate(0, 40px);
+    }
+    30.73% {
+      transform: translate(0, -5.35px) rotate(175.9deg) translate(0, 40px);
+    }
+    32.55% {
+      transform: translate(0, -4.3px) rotate(179.1deg) translate(0, 40px);
+    }
+    34.37% {
+      transform: translate(0, -4px) rotate(180deg) translate(0, 40px);
+    }
+    62.5% {
+      transform: translate(0, -4px) rotate(180deg) translate(0, 40px);
+    }
+    64.32% {
+      transform: translate(0, -4.42px) rotate(181.3deg) translate(0, 40px);
+    }
+    66.15% {
+      transform: translate(0, -5.94px) rotate(186deg) translate(0, 40px);
+    }
+    67.97% {
+      transform: translate(0, -9.09px) rotate(195.8deg) translate(0, 40px);
+    }
+    69.79% {
+      transform: translate(0, -14.49px) rotate(214.2deg) translate(0, 40px);
+    }
+    71.61% {
+      transform: translate(0, -20.89px) rotate(246.7deg) translate(0, 40px);
+    }
+    73.44% {
+      transform: translate(0, -20.56px) rotate(288.5deg) translate(0, 40px);
+    }
+    75.26% {
+      transform: translate(0, -13.86px) rotate(319.6deg) translate(0, 40px);
+    }
+    77.08% {
+      transform: translate(0, -7.86px) rotate(338.3deg) translate(0, 40px);
+    }
+    78.91% {
+      transform: translate(0, -3.89px) rotate(349.5deg) translate(0, 40px);
+    }
+    80.73% {
+      transform: translate(0, -1.54px) rotate(355.9deg) translate(0, 40px);
+    }
+    82.55% {
+      transform: translate(0, -0.35px) rotate(359.1deg) translate(0, 40px);
+    }
+    84.38% {
+      transform: translate(0, -0px) rotate(360deg) translate(0, 40px);
+    }
+    100% {
+      transform: translate(0, -0px) rotate(360deg) translate(0, 40px);
+    }
+  }
+
+  /* With `view-box` the reference box sits at the user-space origin, so this is the box's back
+     corner (0, -8), the pivot. */
+  .lid {
+    transform-box: view-box;
+    transform-origin: 0 -8px;
+    animation: lid-swing 6.4s linear infinite;
+  }
+
+  /* Reduced motion: no loop; the lid stays where the brand mark draws it. */
+  @media (prefers-reduced-motion: reduce) {
+    .lid {
+      animation: none;
+    }
+  }
+</style>

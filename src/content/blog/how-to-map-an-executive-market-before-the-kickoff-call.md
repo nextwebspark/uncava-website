@@ -35,7 +35,7 @@ Write the answers into the brief before you open a database. They will be the cr
 
 Translate the brief into criteria a database understands — industry, headcount band, revenue band, headquarters region — and pull everything that matches. Resist the urge to pre-judge. A universe that is too narrow on day one is the reason a search stalls in week six.
 
-A wide first pull does two things. It surfaces the adjacent sectors a client did not think to mention — the utility whose trading arm looks like a commodities house, the engineering group that has quietly become an energy business. And it gives you a denominator. “We looked at every company in DACH with more than a thousand employees in these three industries” is a far stronger statement than a list of twenty names, however good the names are.
+A wide first pull does two things. It surfaces the adjacent sectors a client did not think to mention — the utility whose trading arm looks like a commodities house, the engineering group that has quietly become an energy business. And it gives you a denominator. “We looked at every company in the GCC with more than a thousand employees in these three industries” is a far stronger statement than a list of twenty names, however good the names are.
 
 Save the search that produced the universe. Criteria change as the client reacts, and being able to show what the universe looked like before and after a change is part of defending the eventual shortlist.
 

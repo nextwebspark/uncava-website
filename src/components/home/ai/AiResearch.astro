@@ -1,0 +1,72 @@
+---
+import { aiSafeguards } from '~/lib/ai-safeguards';
+import FeatureCard from '../FeatureCard.astro';
+import BriefProvenanceVisual from './BriefProvenanceVisual.astro';
+import CandidateAssessmentVisual from './CandidateAssessmentVisual.astro';
+import ImportMappingVisual from './ImportMappingVisual.astro';
+---
+
+<section
+  id="ai"
+  aria-labelledby="ai-title"
+  class="container-page flex flex-col gap-3.5 pb-16 md:gap-14 md:pb-32"
+>
+  <div class="grid gap-3 md:grid-cols-2 md:items-end md:gap-20">
+    <div class="flex flex-col gap-3 md:gap-[18px]">
+      <p class="eyebrow text-inferred-text">AI research, built in</p>
+      <h2
+        id="ai-title"
+        class="text-[30px] leading-[1.08] tracking-[-0.035em] md:text-[44px] md:leading-[1.04] md:tracking-heading xl:text-[52px]"
+      >
+        AI that does the legwork and shows its working.
+      </h2>
+    </div>
+    <p class="mb-1.5 max-w-[520px] text-base leading-[1.55] text-pretty text-text-2 md:mb-0 md:text-lg md:leading-[1.6]">
+      <span class="hidden md:inline">
+        It drafts the brief from the client’s document, reads the public record on every executive,
+        and maps the spreadsheets you’re sent.
+      </span>{' '}
+      Every suggestion is marked, sourced, and left for you to decide.
+    </p>
+  </div>
+
+  <ul class="grid gap-3.5 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
+    <FeatureCard
+      title="Briefs drafted from the client’s own words."
+      body="Upload the position description and Uncava proposes the brief — title, reporting line, responsibilities, the ideal candidate, weighted competencies. Every field shows where it came from. Compensation is never read."
+    >
+      <BriefProvenanceVisual />
+    </FeatureCard>
+    <FeatureCard
+      title="A second read on every executive."
+      body="From a LinkedIn profile, deep enrich reads the public web — press, leadership pages, talks, boards — fills the gaps, and scores the executive against the brief’s competencies, with the sources it read."
+    >
+      <CandidateAssessmentVisual />
+    </FeatureCard>
+    <FeatureCard
+      title="Spreadsheets mapped by their headers."
+      body="AI suggests how your columns map from the headers and the shape of the values — never the cells. A person confirms before anything is written."
+    >
+      <ImportMappingVisual />
+    </FeatureCard>
+  </ul>
+
+  <ul
+    class="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line lg:grid-cols-4"
+    aria-label="How Uncava keeps AI in check"
+  >
+    {aiSafeguards.map((safeguard, index) => (
+      <li class="flex flex-col gap-1 bg-panel p-4 md:gap-2 md:p-6">
+        <span class="flex items-center gap-2 text-sm font-semibold md:text-[15px]">
+          {index === 0 && <span class="size-[9px] rounded-[3px] bg-inferred md:size-2.5" />}
+          <span class="md:hidden">{safeguard.shortTitle}</span>
+          <span class="hidden md:inline">{safeguard.title}</span>
+        </span>
+        <span class="text-[13px] leading-normal text-text-2 md:text-[13.5px] md:leading-[1.55]">
+          <span class="md:hidden">{safeguard.shortBody}</span>
+          <span class="hidden md:inline">{safeguard.body}</span>
+        </span>
+      </li>
+    ))}
+  </ul>
+</section>

@@ -1,5 +1,6 @@
 ---
 import geistLatin from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
+import montserratWordmark from '@fontsource/montserrat/files/montserrat-latin-200-normal.woff2?url';
 import Seo, { type SeoProps } from '~/components/seo/Seo.astro';
 import SiteFooter from '~/components/site/SiteFooter.astro';
 import SiteHeader from '~/components/site/SiteHeader.astro';
@@ -20,9 +21,16 @@ const { header = 'light', footer = 'compact', ...seo } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preload" href={geistLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={montserratWordmark} as="font" type="font/woff2" crossorigin />
     <Seo {...seo} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="icon"
+      href="/favicon-dark.svg"
+      type="image/svg+xml"
+      media="(prefers-color-scheme: dark)"
+    />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />

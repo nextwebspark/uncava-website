@@ -13,7 +13,7 @@ export const staticPages = {
   home: {
     path: '/',
     title: site.name,
-    ogTitle: 'Map the whole market. Present the right few.',
+    ogTitle: 'Build the strategy behind every C-suite search.',
     description: site.description,
   },
   blog: {
@@ -35,7 +35,7 @@ export const staticPages = {
     title: 'Security',
     ogTitle: 'Confidential by design.',
     description:
-      'How Uncava keeps executive search confidential: isolated workspaces, invitation-only membership, read-only client seats, and no names sent to AI.',
+      'How Uncava keeps executive search confidential: isolated workspaces, invitation-only membership, read-only client seats, and names masked before AI.',
   },
   privacy: {
     path: '/privacy',
@@ -50,6 +50,41 @@ export const staticPages = {
     ogTitle: 'Terms of service',
     description:
       'The terms that govern use of the uncava.com website and the Uncava executive search and talent mapping application.',
+  },
+  legal: {
+    path: '/legal',
+    title: 'Legal',
+    ogTitle: 'Legal',
+    description:
+      'Every Uncava legal document in one place: privacy policy, terms of service, acceptable use, cookies, sub-processors and the data processing addendum.',
+  },
+  acceptableUse: {
+    path: '/acceptable-use',
+    title: 'Acceptable use policy',
+    ogTitle: 'Acceptable use policy',
+    description:
+      'What Uncava may and may not be used for, including how executives are contacted through outreach and how do-not-contact requests are respected.',
+  },
+  cookies: {
+    path: '/cookies',
+    title: 'Cookie notice',
+    ogTitle: 'Cookie notice',
+    description:
+      'The cookies and browser storage uncava.com and the Uncava application use. Strictly necessary only: no analytics, advertising or tracking cookies.',
+  },
+  subprocessors: {
+    path: '/subprocessors',
+    title: 'Sub-processors',
+    ogTitle: 'Sub-processors',
+    description:
+      'The third parties that process personal data on behalf of Uncava, what each one does, and where the data is processed.',
+  },
+  dpa: {
+    path: '/dpa',
+    title: 'Data processing addendum',
+    ogTitle: 'Data processing addendum',
+    description:
+      'How Uncava processes personal data on behalf of search firms and hiring teams: roles, instructions, security, sub-processors, transfers and deletion.',
   },
   notFound: {
     path: '/404',

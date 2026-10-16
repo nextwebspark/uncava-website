@@ -1,0 +1,28 @@
+---
+import { site } from '~/lib/site';
+import OpeningMark from './OpeningMark.astro';
+---
+
+<div
+  class="flex flex-col gap-[18px] text-d-text md:flex-row md:items-end md:gap-12"
+  aria-hidden="true"
+>
+  <OpeningMark size={120} class="md:hidden" />
+  <OpeningMark size={220} class="hidden md:block" />
+  <span class="outline-wordmark wordmark text-[50px] leading-none whitespace-nowrap md:-mb-3.5 md:text-[clamp(96px,11.5vw,166px)]">
+    {site.name}
+  </span>
+</div>
+
+<style>
+  .outline-wordmark {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--color-d-text-3);
+  }
+
+  @media (width >= 48rem) {
+    .outline-wordmark {
+      -webkit-text-stroke-width: 1.5px;
+    }
+  }
+</style>

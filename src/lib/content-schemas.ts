@@ -41,3 +41,10 @@ export function authorSchema<TImage extends z.ZodType>(deps: { image: () => TIma
     url: z.url().optional(),
   });
 }
+
+export function legalSchema() {
+  return z.object({
+    lastUpdated: z.coerce.date(),
+    reviewedByCounsel: z.boolean().default(false),
+  });
+}

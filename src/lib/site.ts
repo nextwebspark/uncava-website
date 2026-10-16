@@ -5,9 +5,9 @@ export const site = {
   locale: 'en',
   ogLocale: 'en_GB',
   themeColor: '#08090b',
-  tagline: 'Executive search & talent mapping',
+  tagline: 'C-suite executive search & strategy',
   description:
-    'Uncava is the workspace where search consultants draft the brief, map every company and executive that matters, and bring the client into a shortlist.',
+    'Uncava is the C-suite executive search workspace: build the search strategy, map every company and executive with AI research, and bring the client a shortlist.',
   contactEmail: '[hello@uncava.com]',
   legalName: '[Company legal name]',
   registeredAddress: '[Registered address]',
@@ -34,8 +34,10 @@ export const footerNav: readonly {
   {
     heading: 'Product',
     links: [
-      { label: 'Strategy', href: '/#workflow' },
+      { label: 'Search strategy', href: '/#strategy' },
+      { label: 'AI research', href: '/#ai' },
       { label: 'Companies', href: '/#companies' },
+      { label: 'Reports', href: '/#reports' },
       { label: 'Talent map', href: '/#features' },
       { label: 'Capture extension', href: '/docs/capture/install-the-extension' },
     ],
@@ -54,6 +56,7 @@ export const footerNav: readonly {
       { label: 'Contact', href: '/contact' },
       { label: 'Privacy', href: '/privacy' },
       { label: 'Terms', href: '/terms' },
+      { label: 'Legal', href: '/legal' },
     ],
   },
 ];
@@ -64,4 +67,5 @@ export const compactFooterNav: readonly NavLink[] = [
   { label: 'Security', href: '/security' },
   { label: 'Privacy', href: '/privacy' },
   { label: 'Terms', href: '/terms' },
+  { label: 'Legal', href: '/legal' },
 ];

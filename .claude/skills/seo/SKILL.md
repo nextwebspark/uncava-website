@@ -17,7 +17,8 @@ Every indexable page, no exceptions:
 - [ ] **Canonical** — emitted by `<Seo>` from `absoluteUrl()`: no trailing slash, no query, no hash.
       Only a post republished from elsewhere overrides it (`canonical` frontmatter).
 - [ ] **OG image** — 1200×630, generated at build by `src/pages/og/[...slug].png.ts` for every page,
-      post, tag and docs page. The home page uses `public/og-image.png` (the brand lockup).
+      post, tag and docs page. The home page uses `public/og-image.png`, rendered once by
+      `renderOgImage()` and copied from `brand/`.
 - [ ] **Structured data** — the JSON-LD for the page kind (table below), built only through
       `src/lib/seo/jsonld.ts`, never hand-written JSON.
 - [ ] **Headings** — exactly one `h1`; levels never skip (`h1` → `h2` → `h3`). Card titles in a
@@ -69,7 +70,7 @@ Lighthouse CI (`lighthouserc.json`) fails the build below: performance 0.95, acc
 best practices 0.95, SEO 1.0 — mobile emulation, median of three runs. Core Web Vitals targets:
 LCP < 2.5 s, CLS < 0.1, INP < 200 ms.
 
-What keeps them green: no client JS, fonts self-hosted with the Latin Geist file preloaded, the LCP
+What keeps them green: no client JS, fonts self-hosted with the Latin Geist and Montserrat 200 files preloaded, the LCP
 image eager + `fetchpriority="high"`, explicit image dimensions, **no entrance animation that starts
 at `opacity: 0` on above-the-fold content** (it delays LCP and blanks crawler screenshots).
 

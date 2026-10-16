@@ -1,0 +1,31 @@
+---
+// Positions are classes, not inline styles: the site CSP allows no style attributes.
+const levels = [
+  { level: 'C-Suite', range: 'left-[38%] w-[54%]', median: 'left-[64%]' },
+  { level: 'N-1', range: 'left-[22%] w-[42%]', median: 'left-[41%]' },
+  { level: 'N-2', range: 'left-[12%] w-[32%]', median: 'left-[27%]' },
+];
+---
+
+<div class="flex justify-between font-mono text-[10.5px] font-medium tracking-[0.06em] text-text-2 uppercase">
+  <span>Base salary</span>
+  <span>USD k</span>
+</div>
+{levels.map((row) => (
+  <div class="grid grid-cols-[56px_1fr] items-center gap-2.5">
+    <span class="text-xs font-medium text-text-2">{row.level}</span>
+    <span class="relative h-3.5">
+      <span class="absolute inset-x-0 top-1.5 h-0.5 bg-line"></span>
+      <span class:list={['absolute top-[3px] h-2 rounded bg-seq-2', row.range]}></span>
+      <span class:list={['absolute top-0 h-3.5 w-[3px] rounded-sm bg-seq-5', row.median]}></span>
+    </span>
+  </div>
+))}
+<div class="flex gap-3.5 text-[11.5px] text-text-2">
+  <span class="flex items-center gap-1.5">
+    <span class="h-2 w-3.5 rounded bg-seq-2"></span>Range
+  </span>
+  <span class="flex items-center gap-1.5">
+    <span class="h-3 w-[3px] rounded-sm bg-seq-5"></span>Median
+  </span>
+</div>

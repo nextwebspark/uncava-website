@@ -1,0 +1,62 @@
+---
+import FeatureCard from '../FeatureCard.astro';
+import AssistantShowcase from './AssistantShowcase.astro';
+import OffLimitsVisual from './OffLimitsVisual.astro';
+import RoleAdjacencyVisual from './RoleAdjacencyVisual.astro';
+import SavedSearchesVisual from './SavedSearchesVisual.astro';
+import StrategyWindow from './StrategyWindow.astro';
+---
+
+<section
+  id="strategy"
+  aria-labelledby="strategy-title"
+  class="container-page flex flex-col gap-3.5 pt-[72px] md:gap-14 md:pt-32"
+>
+  <div class="grid gap-3 md:grid-cols-2 md:items-end md:gap-20">
+    <div class="flex flex-col gap-3 md:gap-[18px]">
+      <p class="eyebrow text-accent-deep">Search strategy</p>
+      <h2
+        id="strategy-title"
+        class="text-[30px] leading-[1.08] tracking-[-0.035em] md:text-[44px] md:leading-[1.04] md:tracking-heading xl:text-[52px]"
+      >
+        A search strategy your client can sign off.
+      </h2>
+    </div>
+    <p class="mb-1.5 max-w-[520px] text-base leading-[1.55] text-pretty text-text-2 md:mb-0 md:text-lg md:leading-[1.6]">
+      Uncava turns the brief into target sectors, the industries a candidate could come from, a
+      company universe and an off-limits list — one strategy the whole team works to.
+    </p>
+  </div>
+
+  <figure>
+    <StrategyWindow />
+    <figcaption class="sr-only">
+      An example Strategy screen for a Group CFO mandate: location, size and industry filters with
+      suggested adjacent industries, an off-limits list, and the matching companies with their
+      stage.
+    </figcaption>
+  </figure>
+
+  <AssistantShowcase />
+
+  <ul class="grid gap-3.5 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
+    <FeatureCard
+      title="Adjacencies that follow the role."
+      body="A CFO can come from almost any industry; a COO who runs the grid cannot. The assistant offers the adjacent industries that suit the role — widely for a functional role, only the closest for the sector’s own craft — and says why."
+    >
+      <RoleAdjacencyVisual />
+    </FeatureCard>
+    <FeatureCard
+      title="Off-limits, enforced."
+      body="Bar the client’s own subsidiaries and the firms you have agreements with. They drop out of every search, every count and every “add all” — and there is no switch to show them anyway."
+    >
+      <OffLimitsVisual />
+    </FeatureCard>
+    <FeatureCard
+      title="Searches the whole team runs on."
+      body="Save the searches behind the universe — shared with the mandate or private to you — and come back to the exact filter when the client changes the brief."
+    >
+      <SavedSearchesVisual />
+    </FeatureCard>
+  </ul>
+</section>

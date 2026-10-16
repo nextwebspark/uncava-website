@@ -1,0 +1,74 @@
+---
+import { getEntry } from 'astro:content';
+import Icon from '~/components/site/Icon.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { staticPages, type StaticPageMeta } from '~/lib/pages';
+import { breadcrumbList } from '~/lib/seo/jsonld';
+
+const page = staticPages.legal;
+
+const documents: { id: string; meta: StaticPageMeta }[] = [
+  { id: 'privacy', meta: staticPages.privacy },
+  { id: 'terms', meta: staticPages.terms },
+  { id: 'acceptable-use', meta: staticPages.acceptableUse },
+  { id: 'cookies', meta: staticPages.cookies },
+  { id: 'subprocessors', meta: staticPages.subprocessors },
+  { id: 'dpa', meta: staticPages.dpa },
+];
+
+const listed = await Promise.all(
+  documents.map(async ({ id, meta }) => {
+    const entry = await getEntry('legal', id);
+    if (!entry) throw new Error(`No legal document src/content/legal/${id}.md`);
+    return { meta, lastUpdated: entry.data.lastUpdated };
+  }),
+);
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  ogTitle={page.ogTitle}
+  jsonLd={[breadcrumbList([{ name: page.title, path: page.path }])]}
+>
+  <div class="container-page flex flex-col gap-10 pt-14 pb-16 md:pt-[88px] md:pb-24">
+    <header class="flex max-w-[720px] flex-col gap-4">
+      <p class="eyebrow text-accent-deep">Legal</p>
+      <h1 class="text-[40px] leading-[1.04] tracking-display md:text-[52px]">Legal</h1>
+      <p class="text-[17px] leading-[1.6] text-text-2">
+        How Uncava handles personal data and the terms the service is offered on. Security practices
+        are on the{' '}
+        <a href="/security" class="link-inline">
+          security page
+        </a>
+        .
+      </p>
+    </header>
+
+    <ul class="grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2">
+      {listed.map(({ meta, lastUpdated }) => (
+        <li class="bg-panel">
+          <a href={meta.path} class="group flex h-full flex-col gap-2 p-6 md:p-8">
+            <h2 class="flex items-center justify-between gap-4 text-lg tracking-title">
+              {meta.title}
+              <Icon
+                name="arrow-right"
+                class="text-text-3 transition-transform group-hover:translate-x-0.5"
+              />
+            </h2>
+            <p class="text-[14.5px] leading-[1.6] text-text-2">{meta.description}</p>
+            <p class="mt-auto pt-2 font-mono text-[12px] text-text-3">
+              Updated{' '}
+              {lastUpdated.toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+                timeZone: 'UTC',
+              })}
+            </p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

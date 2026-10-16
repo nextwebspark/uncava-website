@@ -5,11 +5,26 @@ import Features from '~/components/home/Features.astro';
 import Hero from '~/components/home/Hero.astro';
 import SecurityBand from '~/components/home/SecurityBand.astro';
 import Workflow from '~/components/home/Workflow.astro';
+import AiResearch from '~/components/home/ai/AiResearch.astro';
+import SearchStrategy from '~/components/home/strategy/SearchStrategy.astro';
+import ReportsShowcase from '~/components/home/reports/ReportsShowcase.astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import { staticPages } from '~/lib/pages';
 import { organization, softwareApplication, webSite } from '~/lib/seo/jsonld';
 
 const page = staticPages.home;
+
+const productFeatures = [
+  'Search strategy: target sectors, role-aware adjacent industries, a filtered company universe and enforced off-limits lists',
+  'Shared and private saved searches for each mandate',
+  'Position briefs drafted from the client’s position description',
+  'AI research assistant for the company universe',
+  'AI candidate assessment with cited sources',
+  'Spreadsheet import with AI column mapping',
+  'Talent mapping by company, executive and location',
+  'Mandate reports: market shape, remuneration, diversity and progress',
+  'Read-only client seats',
+];
 ---
 
 <BaseLayout
@@ -17,14 +32,21 @@ const page = staticPages.home;
   description={page.description}
   ogTitle={page.ogTitle}
   ogImagePath="/og-image.png"
-  ogImageAlt="Uncava — Executive search, mapped."
+  ogImageAlt="Uncava — Build the strategy behind every C-suite search."
   header="dark-overlay"
   footer="full"
-  jsonLd={[organization(), webSite(), softwareApplication({ description: page.description })]}
+  jsonLd={[
+    organization(),
+    webSite(),
+    softwareApplication({ description: page.description, featureList: productFeatures }),
+  ]}
 >
   <Hero />
+  <SearchStrategy />
   <Workflow />
+  <AiResearch />
   <CompaniesWindow />
+  <ReportsShowcase />
   <Features />
   <SecurityBand />
   <ClosingCta />

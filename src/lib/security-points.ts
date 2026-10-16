@@ -28,8 +28,8 @@ export const securityPoints: readonly SecurityPoint[] = [
   },
   {
     icon: 'shield-minus',
-    title: 'Spreadsheets stay out of the model',
-    body: 'When AI helps map a spreadsheet it sees column headers and value shapes — never the names, salaries or notes in the cells.',
-    shortBody: 'AI sees spreadsheet headers, never cell values.',
+    title: 'Names stay out of the model',
+    body: 'Client names and contact details are pseudonymised before text reaches an AI model. Spreadsheet mapping sees headers, never the cells.',
+    shortBody: 'Client names pseudonymised; AI never sees spreadsheet cells.',
   },
 ];
