@@ -231,3 +231,14 @@ collections:
     slug: '{{slug}}'
     preview_path: docs/capture/{{slug}}
     fields: *docs_fields
+
+  - name: docs-privacy
+    label: 'Docs: Privacy & GDPR'
+    label_singular: Docs page
+    folder: src/content/docs/docs/privacy
+    extension: md
+    format: frontmatter
+    create: true
+    slug: '{{slug}}'
+    preview_path: docs/privacy/{{slug}}
+    fields: *docs_fields
