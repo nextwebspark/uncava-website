@@ -44,7 +44,6 @@ export default defineConfig({
           items: [{ autogenerate: { directory: 'docs/companies' } }],
         },
         { label: 'Capture extension', items: [{ autogenerate: { directory: 'docs/capture' } }] },
-        { label: 'Privacy & GDPR', items: [{ autogenerate: { directory: 'docs/privacy' } }] },
       ],
     }),
     sitemap({
