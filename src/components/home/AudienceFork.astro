@@ -1,0 +1,67 @@
+---
+import SectionHead from './SectionHead.astro';
+
+interface Audience {
+  readonly tone: 'firm' | 'inh';
+  readonly eyebrow: string;
+  readonly title: string;
+  readonly points: readonly string[];
+  readonly cta: string;
+  readonly href: string;
+}
+
+const audiences: readonly Audience[] = [
+  {
+    tone: 'firm',
+    eyebrow: 'For search firms',
+    title: 'Deliver more searches with the same team',
+    points: [
+      'Faster from brief to longlist',
+      'Consistent quality across consultants',
+      'Client-ready evidence at every stage',
+    ],
+    cta: 'See Uncava for search firms',
+    href: '/for-search-firms',
+  },
+  {
+    tone: 'inh',
+    eyebrow: 'For in-house talent teams',
+    title: 'Run senior searches with search-firm rigour',
+    points: [
+      'Confidence to run senior searches in-house',
+      'Credibility with hiring managers',
+      'Shorter time to hire',
+    ],
+    cta: 'See Uncava for in-house teams',
+    href: '/for-in-house-teams',
+  },
+];
+---
+
+<section id="who" class="sq-sec fk-sq">
+  <div class="wrap">
+    <div class="sq-frame">
+      <SectionHead
+        title="Two sides of the search."
+        muted="One standard of evidence."
+        intro="Whether you run searches for clients or for your own business, Uncava works the way you do."
+      />
+      <div class="fk-grid">
+        {audiences.map((audience) => (
+          <a class:list={['fk', `fk-${audience.tone}`]} href={audience.href}>
+            <span class="mono fk-k">{audience.eyebrow}</span>
+            <span class="fk-t">{audience.title}</span>
+            <ul class="fk-l">
+              {audience.points.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+            <span class="fk-go">
+              {audience.cta} <i aria-hidden="true">↗</i>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

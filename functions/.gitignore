@@ -1,0 +1,3 @@
+lib/
+.secret.local
+.env.local

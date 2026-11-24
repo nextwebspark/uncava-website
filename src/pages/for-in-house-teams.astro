@@ -1,0 +1,83 @@
+---
+import DemoCta from '~/components/home/DemoCta.astro';
+import EarlyEvidence from '~/components/home/EarlyEvidence.astro';
+import FaqSection from '~/components/home/FaqSection.astro';
+import MidCta from '~/components/home/MidCta.astro';
+import StagesSection from '~/components/home/StagesSection.astro';
+import PageHero from '~/components/marketing/PageHero.astro';
+import PointGrid from '~/components/marketing/PointGrid.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { buyerQuestions } from '~/lib/faq';
+import { staticPages } from '~/lib/pages';
+import { breadcrumbList } from '~/lib/seo/jsonld';
+
+const page = staticPages.forInHouseTeams;
+
+const points = [
+  {
+    title: 'Confidence to run senior searches in-house',
+    body: 'The steps a top search firm follows, built in: brief, market map, engagement, assessment and shortlist, each with the evidence behind it.',
+  },
+  {
+    title: 'Credibility with hiring managers',
+    body: 'Walk into the brief meeting with the market view: where talent sits, which pockets are empty, and where your offer lands against disclosed pay.',
+  },
+  {
+    title: 'Shorter time to hire',
+    body: 'See early when a brief is out of step with the market, and reset it with the hiring manager before a stalled search adds weeks of vacancy.',
+  },
+  {
+    title: 'A shortlist both sides can defend',
+    body: 'Candidates are scored against the competencies and weights agreed at the brief. Move a weight with the hiring manager and see who leads, and why.',
+  },
+  {
+    title: 'Speaks your organisation’s language',
+    body: 'An in-house workspace says Position, Business unit and Hiring manager, so it reads like your organisation rather than an agency.',
+  },
+  {
+    title: 'Works alongside your search firms',
+    body: 'Run some searches yourselves and brief firms on others, with the market evidence to brief and manage a firm well.',
+  },
+];
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  ogTitle={page.ogTitle}
+  theme="dark"
+  jsonLd={[breadcrumbList([{ name: page.title, path: page.path }])]}
+>
+  <PageHero
+    eyebrow="For in-house talent teams"
+    title="Run senior searches"
+    muted="with search-firm rigour."
+    intro="Uncava gives a talent acquisition team the method and the evidence a retained search firm brings, for the senior roles you choose to run yourselves."
+    secondary={{ label: 'See how it works', href: '#workflow' }}
+  />
+  <PointGrid
+    title="Senior hiring, on evidence."
+    muted="Owned by your team."
+    intro="AI does the groundwork. Your team, and your hiring managers, make the calls."
+    points={points}
+  />
+  <EarlyEvidence />
+  <StagesSection />
+  <MidCta
+    title="Bring a role you’re hiring for"
+    body="We’ll map its market with you, live, and show what your hiring manager would see."
+  />
+  <FaqSection
+    questions={[
+      buyerQuestions.inHouseWithFirms,
+      buyerQuestions.hiringManagers,
+      buyerQuestions.aiDecides,
+      buyerQuestions.security,
+    ]}
+  />
+  <DemoCta />
+</BaseLayout>
+
+<script>
+  import '~/scripts/home';
+</script>

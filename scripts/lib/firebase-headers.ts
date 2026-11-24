@@ -11,10 +11,27 @@ export interface HostingConfig {
   readonly trailingSlash: boolean;
   readonly headers: readonly HeaderRule[];
   readonly redirects: readonly { source: string; destination: string; type: number }[];
+  readonly rewrites: readonly {
+    readonly source: string;
+    readonly function?: { readonly functionId: string; readonly region: string };
+  }[];
+  readonly ignore: readonly string[];
+}
+
+export interface FunctionsCodebase {
+  readonly source: string;
+  readonly codebase: string;
+  readonly runtime: string;
 }
 
 export function loadHostingConfig(file = 'firebase.json'): HostingConfig {
   return (JSON.parse(readFileSync(file, 'utf8')) as { hosting: HostingConfig }).hosting;
+}
+
+export function loadFunctionsConfig(file = 'firebase.json'): readonly FunctionsCodebase[] {
+  return (
+    (JSON.parse(readFileSync(file, 'utf8')) as { functions?: FunctionsCodebase[] }).functions ?? []
+  );
 }
 
 /** Firebase header globs: `**` crosses slashes, `*` does not, `{a,b}` alternates; sources are rooted at `/`. */

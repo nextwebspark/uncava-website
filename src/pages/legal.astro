@@ -2,22 +2,14 @@
 import { getEntry } from 'astro:content';
 import Icon from '~/components/site/Icon.astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
-import { staticPages, type StaticPageMeta } from '~/lib/pages';
+import { legalDocuments } from '~/lib/legal-documents';
+import { staticPages } from '~/lib/pages';
 import { breadcrumbList } from '~/lib/seo/jsonld';
 
 const page = staticPages.legal;
 
-const documents: { id: string; meta: StaticPageMeta }[] = [
-  { id: 'privacy', meta: staticPages.privacy },
-  { id: 'terms', meta: staticPages.terms },
-  { id: 'acceptable-use', meta: staticPages.acceptableUse },
-  { id: 'cookies', meta: staticPages.cookies },
-  { id: 'subprocessors', meta: staticPages.subprocessors },
-  { id: 'dpa', meta: staticPages.dpa },
-];
-
 const listed = await Promise.all(
-  documents.map(async ({ id, meta }) => {
+  legalDocuments.map(async ({ id, meta }) => {
     const entry = await getEntry('legal', id);
     if (!entry) throw new Error(`No legal document src/content/legal/${id}.md`);
     return { meta, lastUpdated: entry.data.lastUpdated };

@@ -10,7 +10,7 @@ Proprietary. © Uncava. All rights reserved.
 - [Astro](https://astro.build) — static output, TypeScript `strictest`
 - [Starlight](https://starlight.astro.build) — documentation under `/docs`, with Pagefind search
 - [Tailwind CSS v4](https://tailwindcss.com) via `@tailwindcss/vite`; tokens in `src/styles/theme.css`
-- Geist and Geist Mono, self-hosted via Fontsource
+- Geist and JetBrains Mono, self-hosted via Fontsource
 - Build-time Open Graph images with Satori + Sharp
 - [Sveltia CMS](https://sveltiacms.app) at `/admin` for non-technical editors
 - Firebase Hosting; GitHub Actions for CI, deploys and preview channels
@@ -100,7 +100,7 @@ Hosting → release history → **Rollback**, then redeploy the tag so `version.
 
 ### One-time Google Cloud setup
 
-The site lives in the `hak-talent-mapping` project as its own Hosting site (`hosting.site` in
+The site lives in the `hak-talent-mapping-fe0e5` Firebase project (not the app's `hak-talent-mapping`) as its own Hosting site (`hosting.site` in
 `firebase.json`), deployed by a keyless Workload Identity Federation identity. All of it is created by
 one idempotent, re-runnable script:
 

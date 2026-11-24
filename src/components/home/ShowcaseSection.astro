@@ -1,0 +1,23 @@
+---
+import FeatureShowcase from './FeatureShowcase';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="highlights" class="sq-sec fx-sq">
+  <div class="wrap">
+    <div class="sq-frame">
+      <SectionHead
+        title="Map. Assess. Rank. Report."
+        intro="Four things your team does on every search, done with evidence instead of spreadsheets."
+      />
+      <div class="pin-wrap [--n:4]" data-pin="fx" data-n="4">
+        <div class="pin">
+          <div class="pin-inner" data-island="showcase">
+            <FeatureShowcase />
+          </div>
+        </div>
+      </div>
+      <div class="sq-foot mono min-h-14 border-t-0" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>

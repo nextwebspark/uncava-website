@@ -37,9 +37,15 @@ Every indexable page, no exceptions:
 | Blog post            | `BlogPosting` + `BreadcrumbList`                                           |
 | Docs page            | `BreadcrumbList` (from `DocsHead`)                                         |
 | Security             | `BreadcrumbList` + `FAQPage` (only because the page shows those questions) |
+| About                | `Organization`, `AboutPage`, `BreadcrumbList`                              |
+| Audience, pricing    | `BreadcrumbList` (pricing never gets `offers`: no prices are published)    |
 | Contact, legal       | `BreadcrumbList`                                                           |
+| Contact thanks/error | none; `noindex`, out of the sitemap                                        |
 
-Never add `offers`, `aggregateRating` or `review` without real data behind them.
+Never add `offers`, `aggregateRating` or `review` without real data behind them. `Organization`
+carries the legal name, the LinkedIn page and the founder (`sameAs`), and the support/sales/security
+mailboxes as `contactPoint`s. Google stopped showing FAQ rich results in 2026, so the home FAQ has no
+`FAQPage` markup; Security keeps its existing one.
 
 ## Crawl files
 

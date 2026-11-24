@@ -1,11 +1,48 @@
 @import 'tailwindcss';
 @import '@fontsource-variable/geist';
-@import '@fontsource-variable/geist-mono';
-@import '@fontsource/montserrat/latin-200.css';
+@import '@fontsource-variable/jetbrains-mono';
+@import '@fontsource/montserrat/latin-400.css';
 @import './theme.css';
 
 @source not '../../design';
 @source not '../../brand';
+
+/* Matches Starlight's: `dark:` follows the reading pages' switch, not the OS. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/*
+ * The reading pages (blog, legal, security, 404) open dark. Their components use the light
+ * vocabulary (paper, panel, text, line …); in dark those tokens take the home artboard's ink
+ * values, so one set of markup serves both schemes. `accent` stays the fill that takes white text;
+ * `accent-deep` is accent as text and becomes d-accent, which clears AA on ink.
+ */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-paper: var(--color-ink);
+  --color-panel: var(--color-ink-2);
+  --color-panel-2: var(--color-ink-3);
+  --color-table-head: var(--color-ink-2);
+  --color-line: rgb(255 255 255 / 0.09);
+  --color-line-soft: rgb(255 255 255 / 0.06);
+  --color-slate-line: rgb(255 255 255 / 0.18);
+  --color-text: var(--color-d-text);
+  --color-text-2: var(--color-d-text-2);
+  --color-text-3: var(--color-d-text-3);
+  --color-prose: var(--color-d-text-1);
+  --color-accent-hover: #5c68e8;
+  --color-accent-deep: var(--color-d-accent);
+  --color-accent-dim: var(--color-d-accent-dim);
+  --color-accent-tint: #1e2440;
+  --color-accent-ink: var(--color-d-accent-soft);
+  --color-signal: var(--color-d-warm);
+  --color-signal-ink: var(--color-d-warm-soft);
+  --color-green-text: var(--color-d-green);
+  --color-red: var(--color-d-red);
+  --color-inferred-text: var(--color-d-inferred);
+  --color-inferred-dim: var(--color-d-inferred-dim);
+  --shadow-window: 0 40px 80px -30px rgb(0 0 0 / 0.6);
+  --shadow-form: 0 40px 80px -40px rgb(0 0 0 / 0.6);
+}
 
 @layer base {
   html {
@@ -32,12 +69,21 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-accent-deep);
     outline-offset: 2px;
   }
 
+  .dark-page {
+    color-scheme: dark;
+  }
+
+  .dark-page :focus-visible {
+    outline-color: var(--color-d-accent);
+  }
+
+  /* Clears the fixed header when a link jumps to an anchor. */
   [id] {
-    scroll-margin-top: 1.5rem;
+    scroll-margin-top: calc(var(--site-header-height) + 1.5rem);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -51,6 +97,35 @@
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer base {
+  :root {
+    --site-header-height: 76px;
+  }
+}
+
+@layer components {
+  /* Over the home hero the header is clear, as the artboard draws it; it turns solid over the first
+     120px of scrolling. Browsers without scroll timelines keep the translucent ink throughout. */
+  @supports (animation-timeline: scroll()) {
+    /* Through a variable so the minifier can't fold the timeline into the animation shorthand,
+       which browsers reject. */
+    .site-header-overlay {
+      --site-header-timeline: scroll(root);
+      animation: site-header-solid linear both;
+      animation-timeline: var(--site-header-timeline);
+      animation-range: 0 120px;
+    }
+  }
+
+  @keyframes site-header-solid {
+    from {
+      border-color: transparent;
+      background-color: transparent;
+      backdrop-filter: none;
     }
   }
 }
@@ -70,8 +145,20 @@
   }
 }
 
+/* The home artboard's page width: 1760px, 40px gutters, 16px on phones. */
+@utility container-wide {
+  width: 100%;
+  max-width: 1760px;
+  margin-inline: auto;
+  padding-inline: 16px;
+
+  @media (width > 700px) {
+    padding-inline: 40px;
+  }
+}
+
 @utility link-inline {
-  color: var(--color-accent);
+  color: var(--color-accent-deep);
   text-decoration: underline;
   text-underline-offset: 3px;
 
@@ -81,6 +168,16 @@
 }
 
 @layer components {
+  /* The enquiry form's honeypot: off-screen for people, still in the form for bots that fill
+     every field. Not display:none, which some bots skip. */
+  .enquiry-trap {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
   /* Rendered Markdown in a blog post, per design/BlogPost.dc.html. */
   .article-prose {
     display: flex;
@@ -127,7 +224,7 @@
     }
 
     & a {
-      color: var(--color-accent);
+      color: var(--color-accent-deep);
       text-decoration: underline;
       text-underline-offset: 3px;
     }
@@ -200,7 +297,7 @@
 
     & h2 {
       margin-top: 24px;
-      scroll-margin-top: 24px;
+      scroll-margin-top: calc(var(--site-header-height) + 24px);
       font-size: 22px;
 
       @media (width >= 48rem) {

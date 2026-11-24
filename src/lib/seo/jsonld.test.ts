@@ -19,16 +19,29 @@ describe('organization and website', () => {
     expect(org['url']).toBe('https://uncava.com/');
   });
 
-  it('omit sameAs while the organisation has no public profiles', () => {
-    expect(organization()).not.toHaveProperty('sameAs');
+  it('name the company LinkedIn page and the founder as the same entity elsewhere', () => {
+    const org = organization();
+
+    expect(org['sameAs']).toEqual(['https://www.linkedin.com/company/uncava/']);
+    expect(org['founder']).toMatchObject({
+      '@type': 'Person',
+      name: 'Hakan Alac',
+      sameAs: ['https://www.linkedin.com/in/hakanalac/'],
+    });
+  });
+
+  it('publish the real mailboxes as contact points', () => {
+    const points = organization()['contactPoint'] as readonly { email: string }[];
+
+    expect(points.map((point) => point.email)).toContain('support@uncava.com');
   });
 });
 
 describe('softwareApplication', () => {
-  it('describes the web app at app.uncava.com without inventing a price', () => {
+  it('describes the web app at beta.uncava.com without inventing a price', () => {
     const app = softwareApplication({ description: 'Executive search workspace.' });
 
-    expect(app['url']).toBe('https://app.uncava.com');
+    expect(app['url']).toBe('https://beta.uncava.com');
     expect(app['operatingSystem']).toBe('Web');
     expect(app).not.toHaveProperty('offers');
     expect(app).not.toHaveProperty('aggregateRating');

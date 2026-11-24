@@ -2,12 +2,15 @@
 import ButtonLink from '~/components/site/ButtonLink.astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import { staticPages } from '~/lib/pages';
+import { blogListed } from '~/lib/site';
 
 const page = staticPages.notFound;
 
 const destinations = [
   { href: '/docs', label: 'Docs', body: 'How to run a mandate in Uncava.' },
-  { href: '/blog', label: 'Blog', body: 'Field notes on executive search.' },
+  ...(blogListed
+    ? [{ href: '/blog', label: 'Blog', body: 'Field notes on executive search.' }]
+    : []),
   { href: '/security', label: 'Security', body: 'How Uncava keeps a search confidential.' },
 ];
 ---

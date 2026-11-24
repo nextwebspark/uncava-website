@@ -1,25 +1,43 @@
 ---
 import geistLatin from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
-import montserratWordmark from '@fontsource/montserrat/files/montserrat-latin-200-normal.woff2?url';
+import montserratWordmark from '@fontsource/montserrat/files/montserrat-latin-400-normal.woff2?url';
 import Seo, { type SeoProps } from '~/components/seo/Seo.astro';
 import SiteFooter from '~/components/site/SiteFooter.astro';
 import SiteHeader from '~/components/site/SiteHeader.astro';
-import { site } from '~/lib/site';
+import { blogListed, site } from '~/lib/site';
+import { DEFAULT_SCHEME } from '~/lib/theme';
 import '~/styles/global.css';
 
 interface Props extends SeoProps {
-  header?: 'light' | 'dark-overlay';
-  footer?: 'full' | 'compact';
+  /**
+   * `dark` is the home artboard's ink page (home, product and company pages).
+   * `reading` is the blog vocabulary (blog, legal, security, 404), drawn in the home's ink colours.
+   */
+  theme?: 'dark' | 'reading';
+  /**
+   * Lets a reading page's reader switch it to light (the blog). public/theme-init.js applies a
+   * stored choice before first paint. Without it the page is dark only, with the home's header.
+   */
+  themeSwitch?: boolean;
+  /** The home page lays its header over the hero. */
+  headerOverlay?: boolean;
 }
 
-const { header = 'light', footer = 'compact', ...seo } = Astro.props;
+const { theme = 'reading', themeSwitch = false, headerOverlay = false, ...seo } = Astro.props;
+const isDark = theme === 'dark';
+const chromeTone = themeSwitch ? 'adaptive' : 'dark';
 ---
 
 <!doctype html>
-<html lang={site.locale}>
+<html
+  lang={site.locale}
+  class:list={[isDark && 'dark-page']}
+  data-theme={isDark ? undefined : DEFAULT_SCHEME}
+>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {themeSwitch && <script is:inline src="/theme-init.js" />}
     <link rel="preload" href={geistLatin} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={montserratWordmark} as="font" type="font/woff2" crossorigin />
     <Seo {...seo} />
@@ -34,25 +52,29 @@ const { header = 'light', footer = 'compact', ...seo } = Astro.props;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title={`${site.name} blog`}
-      href="/blog/rss.xml"
-    />
+    {blogListed && (
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title={`${site.name} blog`}
+        href="/blog/rss.xml"
+      />
+    )}
     <slot name="head" />
   </head>
-  <body class="flex min-h-dvh flex-col">
+  <body class:list={['flex min-h-dvh flex-col', isDark && 'bg-ink text-d-text']}>
     <a
       href="#main"
-      class="sr-only z-50 rounded-lg bg-text px-4 py-2 text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+      class="sr-only z-50 rounded-lg bg-text px-4 py-2 text-panel focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
     >
       Skip to content
     </a>
-    <SiteHeader tone={header === 'light' ? 'light' : 'dark'} overlay={header === 'dark-overlay'} />
-    <main id="main" class="flex-1">
-      <slot />
-    </main>
-    <SiteFooter variant={footer} />
+    <div class:list={['flex flex-1 flex-col', isDark && 'uvroot relative overflow-x-clip']}>
+      <SiteHeader tone={chromeTone} overlay={headerOverlay} />
+      <main id="main" class="flex-1">
+        <slot />
+      </main>
+      <SiteFooter tone={chromeTone} />
+    </div>
   </body>
 </html>

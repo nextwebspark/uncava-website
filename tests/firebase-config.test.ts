@@ -3,6 +3,7 @@ import astroConfig from '../astro.config.mjs';
 import {
   effectiveHeaders,
   globToRegExp,
+  loadFunctionsConfig,
   loadHostingConfig,
   parseCsp,
 } from '../scripts/lib/firebase-headers';
@@ -76,5 +77,34 @@ describe('hosting config', () => {
       'public, max-age=31536000, immutable',
     );
     expect(headersFor('/security').get('cache-control')).toBe('public, max-age=0, must-revalidate');
+  });
+
+  it('keeps the enquiry endpoint out of caches and search results', () => {
+    expect(headersFor('/api/enquiry').get('cache-control')).toBe('no-store');
+    expect(headersFor('/api/enquiry').get('x-robots-tag')).toBe('noindex, nofollow');
+  });
+
+  it('serves security.txt as plain text, and deploys the .well-known folder at all', () => {
+    expect(headersFor('/.well-known/security.txt').get('content-type')).toBe(
+      'text/plain; charset=utf-8',
+    );
+    expect(
+      hosting.ignore.some((pattern) => pattern === '**/.*' || pattern.includes('well-known')),
+    ).toBe(false);
+  });
+});
+
+describe('enquiry endpoint', () => {
+  const rewrite = hosting.rewrites.find((rule) => rule.source === '/api/enquiry');
+
+  it('is served from our own origin, so the form posts under form-action self', () => {
+    expect(rewrite?.function).toEqual({ functionId: 'enquiry', region: 'us-central1' });
+    expect(cspFor('/contact').get('form-action')).toEqual(["'self'"]);
+  });
+
+  it('deploys as its own codebase, so a website deploy never touches other functions in the project', () => {
+    const functions = loadFunctionsConfig();
+    expect(functions).toHaveLength(1);
+    expect(functions[0]).toMatchObject({ source: 'functions', codebase: 'website' });
   });
 });

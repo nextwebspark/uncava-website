@@ -6,3 +6,6 @@ design/
 brand/
 public/admin/index.html
 .lighthouseci/
+functions/lib/
+functions/node_modules/
+functions/package-lock.json

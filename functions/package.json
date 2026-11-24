@@ -1,0 +1,24 @@
+{
+  "name": "uncava-website-functions",
+  "private": true,
+  "description": "The website's one server endpoint: POST /api/enquiry emails the enquiry form to support@uncava.com.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "lib/index.js",
+  "engines": {
+    "node": "22"
+  },
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node22 --format=esm --outfile=lib/index.js --external:firebase-functions --external:firebase-admin",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "firebase-admin": "14.5.1",
+    "firebase-functions": "7.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "esbuild": "0.28.2",
+    "typescript": "6.0.3"
+  }
+}

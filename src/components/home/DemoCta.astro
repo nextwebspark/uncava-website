@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+import ButtonLink from '~/components/site/ButtonLink.astro';
+import assessmentDrawer from '~/assets/home/screens/assessment-drawer.webp';
+import callChanges from '~/assets/home/screens/call-changes.webp';
+import candidateRanking from '~/assets/home/screens/candidate-ranking.webp';
+import conversations from '~/assets/home/screens/conversations.webp';
+import marketShapeReport from '~/assets/home/screens/market-shape-report.webp';
+import peopleTable from '~/assets/home/screens/people-table.webp';
+import progressReport from '~/assets/home/screens/progress-report.webp';
+import remunerationReport from '~/assets/home/screens/remuneration-report.webp';
+import '~/styles/home.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'Map your next search in Uncava' } = Astro.props;
+
+/* Each row repeats once so the marquee can loop seamlessly at -50%. */
+const reports = [candidateRanking, remunerationReport, marketShapeReport, progressReport];
+const workspace = [peopleTable, callChanges, conversations, assessmentDrawer];
+const rows = [
+  { reverse: true, screens: [...reports, ...reports] },
+  { reverse: false, screens: [...workspace, ...workspace] },
+];
+---
+
+<section id="demo" class="relative mt-35 h-130 overflow-hidden">
+  <div
+    class="absolute -inset-x-50 -inset-y-25 flex transform-[perspective(1600px)_rotateX(30deg)_rotateZ(-10deg)] flex-col gap-7 opacity-20 blur-[2px]"
+    aria-hidden="true"
+  >
+    {rows.map((row) => (
+      <div class:list={['track', row.reverse && 'rev']}>
+        {row.screens.map((screen) => (
+          <Image src={screen} alt="" widths={[520, 1040]} sizes="520px" loading="lazy" />
+        ))}
+      </div>
+    ))}
+  </div>
+  <div class="absolute inset-0 bg-[radial-gradient(60%_70%_at_50%_50%,rgba(8,9,11,.55),#08090B_100%)]"></div>
+  <div class="wrap relative flex h-full flex-col items-center justify-center gap-6 text-center">
+    <h2 class="m-0 max-w-245 font-sans text-[60px] leading-[1.02] font-semibold tracking-[-.04em] max-[700px]:text-[38px]">
+      {title}
+    </h2>
+    <div class="flex flex-wrap justify-center gap-3">
+      <ButtonLink href="/contact" variant="paper" size="home">
+        Book a demo
+      </ButtonLink>
+      <ButtonLink href="/contact?topic=enquiry" variant="ghost" size="home">
+        Talk to us
+      </ButtonLink>
+    </div>
+  </div>
+</section>

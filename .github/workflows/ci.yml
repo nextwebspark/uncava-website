@@ -29,6 +29,8 @@ jobs:
 
       - run: npm ci
 
+      - run: npm ci --prefix functions
+
       - name: Lint
         run: npm run lint
 
@@ -37,6 +39,9 @@ jobs:
 
       - name: Type check
         run: npm run check
+
+      - name: Enquiry function (type check and bundle)
+        run: npm run check:functions
 
       - name: Unit tests
         run: npm test

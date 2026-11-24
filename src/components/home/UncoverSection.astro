@@ -1,0 +1,47 @@
+---
+import SectionHead from './SectionHead.astro';
+import UncoverDemo from './UncoverDemo';
+
+const steps = [
+  { title: 'Ask in plain words', body: 'Type what you’re looking for, or set filters by hand.' },
+  {
+    title: 'Get companies, tiered',
+    body: 'Results arrive ranked against the brief, ready to file.',
+  },
+  {
+    title: 'Uncover what you missed',
+    body: 'Adjacent sectors with transferable talent, one click to add.',
+  },
+];
+---
+
+<section id="uncover" class="sq-sec ux-sq">
+  <div class="wrap">
+    <div class="sq-frame">
+      <SectionHead
+        title="Search what you know."
+        muted="Uncover what you don’t."
+        intro="Ask for the companies you know. Uncava returns them, tiered against the brief, then shows the sectors you didn’t think to search, each with a reason."
+        leadsIntoExample
+      />
+      <div class="sq-body">
+        <div data-island="uncover">
+          <UncoverDemo />
+        </div>
+      </div>
+      <ol class="sq-steps m-0 list-none p-0">
+        {steps.map((step, i) => (
+          <li class="howstep">
+            <span class="mono" aria-hidden="true">
+              {i + 1}
+            </span>
+            <div>
+              <b>{step.title}</b>
+              <span>{step.body}</span>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

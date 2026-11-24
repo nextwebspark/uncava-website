@@ -1,5 +1,5 @@
 /*
- * Design tokens: the UNCAVA palette (app.uncava.com's --u-* tokens), as drawn in design/*.dc.html.
+ * Design tokens: the UNCAVA palette (the app's --u-* tokens), as drawn in design/*.dc.html.
  * Shared by the site (global.css) and the docs (docs.css), so a token changes in one place.
  * Two values are darkened from the app's for WCAG AA at the small sizes this site sets them in:
  * --color-text-3 (4.49 → 4.69 on paper) and --color-green-text; the originals stay for fills.
@@ -12,6 +12,9 @@
   --color-ink-2: #0e1013;
   --color-ink-3: #15181d;
   --color-ink-line: rgb(255 255 255 / 0.07);
+  --color-ink-0: #0b0c0f;
+  --color-frame-line: #1f2124;
+  --color-hairline: rgb(255 255 255 / 0.1);
   --color-graphite-1: #1d2128;
   --color-graphite-2: #2b2f36;
   --color-graphite-3: #3a3d44;
@@ -32,6 +35,10 @@
   --color-d-text: #f4f6f8;
   --color-d-text-2: #a6adbb;
   --color-d-text-3: #7c8493;
+  --color-d-text-1: #d5d9e0;
+  --color-d-text-15: #b4bac6;
+  --color-d-text-4: #59607a;
+  --color-d-slate: #3a404b;
 
   --color-accent: #4a56d6;
   --color-accent-hover: #3a46c4;
@@ -42,6 +49,13 @@
   --color-on-accent: #ffffff;
   --color-d-accent: #6e79f2;
   --color-d-accent-dim: rgb(110 121 242 / 0.14);
+  --color-d-accent-soft: #a3a9fa;
+  --color-d-accent-2: #7782f4;
+  --color-d-green: #3ecf8e;
+  --color-d-warm: #d4855c;
+  --color-d-warm-soft: #e8a27c;
+  --color-d-red: #f2626b;
+  --color-d-blue: #5aa9ff;
   --color-signal: #a8602f;
   --color-signal-dim: rgb(168 96 47 / 0.1);
   --color-signal-ink: #7a4119;
@@ -54,6 +68,7 @@
   --color-inferred-dim: rgb(130 68 214 / 0.1);
   --color-d-inferred: #b07cf5;
   --color-d-inferred-dim: rgb(176 124 245 / 0.12);
+  --color-d-inferred-soft: #c9a6fa;
 
   --color-seq-1: #e4e8f6;
   --color-seq-2: #b9c0ee;
@@ -62,7 +77,8 @@
   --color-seq-5: #2e3878;
 
   --font-sans: 'Geist Variable', 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-mono:
+    'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
   --font-brand: 'Montserrat', system-ui, sans-serif;
 
   --tracking-display: -0.045em;
@@ -85,11 +101,12 @@
   text-transform: uppercase;
 }
 
-/* The app's wordmark: Montserrat 200, uppercase, wide tracking. The negative margin cancels the
-   tracking after the last letter so the word centres and aligns optically. */
+/* The wordmark: Montserrat, uppercase, wide tracking. The site sets it at 400, heavier than the
+   app's 200, which read too faint at header size (owner's call, 2026-11). The negative margin
+   cancels the tracking after the last letter so the word centres and aligns optically. */
 @utility wordmark {
   font-family: var(--font-brand);
-  font-weight: 200;
+  font-weight: 400;
   letter-spacing: var(--tracking-wordmark);
   margin-right: calc(var(--tracking-wordmark) * -1);
   text-transform: uppercase;

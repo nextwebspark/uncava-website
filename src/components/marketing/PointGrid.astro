@@ -1,0 +1,41 @@
+---
+import SectionHead from '~/components/home/SectionHead.astro';
+import '~/styles/home.css';
+
+/** A titled grid of numbered cells (the artboard's `sq-list3`): what a page promises, one per cell. */
+export interface GridPoint {
+  readonly title: string;
+  readonly body: string;
+  readonly tag?: string;
+}
+
+interface Props {
+  title: string;
+  muted?: string | undefined;
+  intro: string;
+  points: readonly GridPoint[];
+  id?: string;
+}
+
+const { title, muted, intro, points, id } = Astro.props;
+---
+
+<section class="sq-sec" id={id}>
+  <div class="wrap">
+    <div class="sq-frame">
+      <SectionHead title={title} muted={muted} intro={intro} />
+      <ul class="sq-list3 m-0 list-none p-0">
+        {points.map((point, i) => (
+          <li class="sq-cell">
+            <span class="sq-k mono">
+              <span>{String(i + 1).padStart(2, '0')}</span>
+              <span>{point.tag ?? ''}</span>
+            </span>
+            <h3>{point.title}</h3>
+            <p>{point.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

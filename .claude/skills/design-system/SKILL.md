@@ -7,15 +7,30 @@ description: Visual rules for uncava.com — design/*.dc.html artboards are the 
 
 ## Source of truth
 
-`design/*.dc.html` artboards define every screen: `Main` (home, 1440), `HomeMobile` (home, 390),
-`Blog`, `BlogPost`, `Docs`, `Contact`. Read the artboard before building or changing a page, and lift
-its values rather than eyeballing. When the artboard and this skill disagree, the artboard wins —
-then update this skill.
+`design/*.dc.html` artboards define every screen: `Home` (the dark home page, one responsive file with
+its own breakpoints at 1100/1000/900/700px and its interactive demos), `Blog`, `BlogPost`, `Docs`,
+`Contact`. Read the artboard before building or changing a page, and lift its values rather than
+eyeballing. When the artboard and this skill disagree, the artboard wins — then update this skill.
 
-Artboards have a desktop and (for home) a mobile frame. Between them, interpolate: stack columns,
-hide what the mobile frame hides, keep what it keeps. **Don't build ahead of the design**: no new
-section, page or variant without an artboard or an explicit request. `/security`, `/legal` and the
-legal documents (`LegalLayout`) and `/404` have no artboard and reuse the home/blog vocabulary.
+`Home.dc.html` is a self-contained preview (images inlined as base64, a Preact runtime). Open it in a
+browser to see the motion. Its stylesheet is ported rule for rule into `src/styles/home.css`.
+
+**Don't build ahead of the design**: no new section, page or variant without an artboard or an
+explicit request. Dark pages without an artboard — `/contact`, `/about`, `/pricing`,
+`/for-search-firms`, `/for-in-house-teams`, `/contact/thanks|error` — reuse the home artboard's
+square-grid vocabulary (`sq-sec`, `sq-frame`, `sq-head`, `sq-list3`, `fk-*`, `faq`) through
+`SectionHead`, `PageHero` and `PointGrid`. `/security`, `/legal`, the legal documents and `/404` reuse
+the blog vocabulary and are dark only, with the home header and footer.
+
+**Light and dark.** The whole site opens dark. The blog vocabulary is written in the light tokens
+(`paper`, `panel`, `text`, `line` …); on a reading page (`BaseLayout theme="reading"`,
+`<html data-theme="dark">`) `global.css` maps those tokens to the ink values, so one set of markup
+serves both schemes. Only the blog (`themeSwitch`) and the docs offer a light mode, through
+`ThemeToggle` in the header; the choice is shared (`uncava-theme` in localStorage, `src/lib/theme.ts`)
+and applied before first paint by `public/theme-init.js`. In dark, `accent` stays the white-text
+fill and `accent-deep` (accent as text, links) becomes `d-accent`: write link and accent text as
+`accent-deep`, never `text-accent`. Use `text-panel` for text on a `bg-text` fill, never
+`text-white`, so it inverts. `dark:` targets `[data-theme=dark]`, not the OS.
 
 ## Tokens (`src/styles/theme.css`)
 
@@ -23,20 +38,24 @@ The palette is **UNCAVA**, the app's own (`claude-design/uncava-tokens.css` and
 `apps/web/src/styles/tokens.css` in the app repo). A palette change starts there and is copied here,
 into `theme.css` and every artboard's `:root` at once.
 
-| Role            | Token                                                | Value                                             |
-| --------------- | ---------------------------------------------------- | ------------------------------------------------- |
-| Dark grounds    | `ink`, `ink-2`, `ink-3`, `ink-line`                  | `#08090b` `#0e1013` `#15181d` 7% white            |
-| Light grounds   | `paper`, `panel`, `panel-2`, `line`, `line-soft`     | `#f7f8fa` `#fff` `#eceff3` 9% / 6% `#030712`      |
-| Text on light   | `text`, `text-2`, `text-3`, `prose`                  | `#0b0d12` `#4c5462` `#687080` `#2b3441`           |
-| Text on dark    | `d-text`, `d-text-2`, `d-text-3`                     | `#f4f6f8` `#a6adbb` `#7c8493`                     |
-| Accent on light | `accent`, `accent-hover`, `accent-deep`, `on-accent` | `#4a56d6` `#3a46c4` `#4a56d6` `#fff`              |
-| Accent tints    | `accent-dim`, `accent-tint`, `accent-ink`            | 9% accent, `#e4e8f6`, `#2e3878`                   |
-| Accent on dark  | `d-accent`, `d-accent-dim`                           | `#6e79f2`, 14% of it                              |
-| Warning         | `signal`, `signal-dim`, `signal-ink`                 | `#a8602f`, 10% of it, `#7a4119`                   |
-| Success / error | `green`, `green-text`, `red`                         | `#0f9d6b` `#0a7550` `#d93a45`                     |
-| AI output       | `inferred`, `inferred-text`, `inferred-dim`          | `#8244d6` `#7438c4`, 10% of `inferred`            |
-| AI on dark      | `d-inferred`, `d-inferred-dim`                       | `#b07cf5`, 12% of it                              |
-| Report ramp     | `seq-1` … `seq-5`                                    | `#e4e8f6` `#b9c0ee` `#8189f7` `#4a56d6` `#2e3878` |
+| Role            | Token                                                 | Value                                             |
+| --------------- | ----------------------------------------------------- | ------------------------------------------------- |
+| Dark grounds    | `ink`, `ink-2`, `ink-3`, `ink-line`                   | `#08090b` `#0e1013` `#15181d` 7% white            |
+| Light grounds   | `paper`, `panel`, `panel-2`, `line`, `line-soft`      | `#f7f8fa` `#fff` `#eceff3` 9% / 6% `#030712`      |
+| Text on light   | `text`, `text-2`, `text-3`, `prose`                   | `#0b0d12` `#4c5462` `#687080` `#2b3441`           |
+| Text on dark    | `d-text`, `d-text-2`, `d-text-3`                      | `#f4f6f8` `#a6adbb` `#7c8493`                     |
+| Accent on light | `accent`, `accent-hover`, `accent-deep`, `on-accent`  | `#4a56d6` `#3a46c4` `#4a56d6` `#fff`              |
+| Accent tints    | `accent-dim`, `accent-tint`, `accent-ink`             | 9% accent, `#e4e8f6`, `#2e3878`                   |
+| Accent on dark  | `d-accent`, `d-accent-dim`                            | `#6e79f2`, 14% of it                              |
+| Warning         | `signal`, `signal-dim`, `signal-ink`                  | `#a8602f`, 10% of it, `#7a4119`                   |
+| Success / error | `green`, `green-text`, `red`                          | `#0f9d6b` `#0a7550` `#d93a45`                     |
+| AI output       | `inferred`, `inferred-text`, `inferred-dim`           | `#8244d6` `#7438c4`, 10% of `inferred`            |
+| AI on dark      | `d-inferred`, `d-inferred-dim`, `d-inferred-soft`     | `#b07cf5`, 12% of it, `#c9a6fa`                   |
+| Home artboard   | `d-text-1`, `d-text-15`, `d-text-4`, `d-slate`        | `#d5d9e0` `#b4bac6` `#59607a` `#3a404b`           |
+| Home signals    | `d-green`, `d-warm`, `d-warm-soft`, `d-red`, `d-blue` | `#3ecf8e` `#d4855c` `#e8a27c` `#f2626b` `#5aa9ff` |
+| Home accents    | `d-accent-soft`, `d-accent-2`                         | `#a3a9fa` `#7782f4`                               |
+| Frames          | `ink-0`, `frame-line`, `hairline`                     | `#0b0c0f` `#1f2124` 10% white                     |
+| Report ramp     | `seq-1` … `seq-5`                                     | `#e4e8f6` `#b9c0ee` `#8189f7` `#4a56d6` `#2e3878` |
 
 `accent` is the one fill that takes white text (CTA buttons, the last docs step). Text, icons, dots
 and strokes on a dark ground use `d-accent`; `accent` there is only a fill. Links are `accent` too:
@@ -56,12 +75,13 @@ Never hard-code a hex in a component when a token exists; add a token instead.
 
 - The mark is the app's: an isometric cube with a filled top face, drawn bare (no tile) in
   `currentColor` by `BrandMark.astro` (`size` is the height; width is 72/104 of it; the stroke
-  thickens below 28px like the app's bold icons). `OpeningMark.astro` is the same drawing with
-  the lid animated, for the home footer only. Source: `brand/mark.svg`, from the app's
+  thickens below 28px like the app's bold icons; `weight="fine"` is the header and footer drawing,
+  stroke 3.4, heavier than the artboard's 2.2 hairline at the owner's request). Source: `brand/mark.svg`, from the app's
   `apps/web/public/brand/uncava-app-icon-*.svg`. Never redraw, recolour, stretch or add effects.
-- The wordmark is **Montserrat 200, uppercase, letter-spacing 0.38em** with a −0.38em right margin
+- The wordmark is **Montserrat 400, uppercase, letter-spacing 0.38em** (the app uses 200; the
+  owner asked for a heavier one on the site, 2026-11) with a −0.38em right margin
   (`wordmark` utility), set beside the mark by `BrandLockup`. Montserrat is self-hosted at weight
-  200 only and used for nothing else. Never title-case, never bold.
+  400 only and used for nothing else. Never title-case, never bold.
 - Favicons, the touch icon and `icon-*.png` come from the app unchanged; `favicon.svg` (ink) and
   `favicon-dark.svg` (light, `media="(prefers-color-scheme: dark)"`) avoid an inline `<style>`,
   which the CSP would block. `tests/brand-assets.test.ts` keeps `public/` copies identical.
@@ -69,16 +89,19 @@ Never hard-code a hex in a component when a token exists; add a token instead.
 
 ## Sample data
 
-Uncava's market is the Gulf, above all the UAE and Saudi Arabia. Every mock-up uses one fictional
-Gulf energy set, the same on the site and in the artboards: Sarab Energy (Abu Dhabi), Najd
-Utilities (Riyadh), Khaleej Grid Co. (Dammam), Rimal Power (Dubai), Hijaz Power Holding (Jeddah),
-Midar Water & Power (Sharjah); the client is Al Naseem Group; the mandate is Group CFO – Energy.
-Never use a real company or person, and never a data vendor's name.
+Uncava's market is the Gulf, above all the UAE and Saudi Arabia. The home artboard's mandate is the
+sample everywhere: client **Halden Consumer Group** (FMCG), role **Chief Financial Officer**, candidates
+Sarah Mitchell (Alderwick Dairy), Daniel Weber, Karim Aziz, Nadia Haddad, Priya Raman, Wei Chen and the
+pipeline names in `components/home/HeroScenes.tsx`. Data lives in `src/lib/home-demo/*`.
+Never use a real company or person, and never a data vendor's name: the artboard's uncover demo and
+hero results named real Gulf businesses, and the site renames them to fictional ones (Rimal Dairy Co.,
+Wahat Food Holding, Sabkha Distribution, …). Keep it that way when the artboard changes.
 
 ## Typography
 
-Geist for everything except the wordmark (Montserrat 200), Geist Mono for eyebrows, meta lines,
-table headers and numbers-as-labels.
+Geist for everything except the wordmark (Montserrat 400), JetBrains Mono (the home artboard's mono,
+self-hosted as `@fontsource-variable/jetbrains-mono`) for eyebrows, meta lines, table headers and
+numbers-as-labels.
 Headings weight 600 with negative tracking.
 
 | Use                       | Desktop                               | Mobile  |
@@ -92,8 +115,9 @@ Headings weight 600 with negative tracking.
 
 ## Components and patterns
 
-- **Primary CTA "Book a demo" is always the solid accent** (`ButtonLink` default) — dark nav, light nav, closing
-  CTA, blog aside. Secondary is an outline. The docs header button is "Sign in".
+- **Primary CTA "Book a demo"**: on dark pages the artboard's paper-white button (`ButtonLink
+variant="paper" size="home"`), secondary the hairline `ghost`; on light pages the solid accent
+  (`ButtonLink` default). Every one goes to `/contact`. The docs header button is "Sign in".
 - Cards: `panel` with a `line` border, 16–18px radius; dark feature cards use `ink`.
 - Stage badges: Shortlisted = `accent-dim` + `accent-deep`; In universe = `panel-2` + `text-2`.
 - Touch targets ≥ 44px on mobile (nav items, chips, stage tabs, footer links). Tab rows scroll
@@ -101,22 +125,39 @@ Headings weight 600 with negative tracking.
 - A wide table lives inside its own `overflow-x-auto` container; the page itself never scrolls
   sideways (check at 360px).
 
-## Home footer
+## Header and footer
 
-Dark (`ink`), per the artboard: the link columns, then a brand row — `OpeningMark` at 220px beside
-the wordmark as an outline (`color: transparent; -webkit-text-stroke` in `d-text-3`, Montserrat 200,
-`.38em`, `clamp(96px, 11.5vw, 166px)`; 50px on mobile, stacked under a 120px mark) — then the legal
-line with Privacy and Terms. Only the home page uses the full footer; the compact one stays light.
+Per the home artboard, on every page (`tone` dark, or `adaptive` on the blog with its light/dark
+toggle): mark (`BrandMark weight="fine"`) and wordmark; Product, How it works, FAQ, About, Pricing |
+Sign in, Book a demo. The header stays in view while the page scrolls (owner's request; the artboard
+draws it absolute): `sticky` on every page, `fixed` over the home hero, where it starts clear and
+turns translucent ink over the first 120px of scrolling (a CSS scroll timeline, `.site-header-overlay`
+in `global.css`). `--site-header-height` keeps anchor jumps and sticky sidebars clear of it.
+Pinned home sections stick just below it and keep their scaled size once released.
+
+The docs header follows Linear's docs (owner's reference): a left column exactly the sidebar's width
+(mark → `/`, divider, "Docs" → `/docs`, round search button) and a bar with the breadcrumb (Home /
+section), the round theme switch and a pill "Sign in".
+
+The blog is unlisted while `blogListed` in `src/lib/site.ts` is false (owner's call, 2026-11): no
+link to it anywhere, no RSS discovery link, out of the sitemap and llms.txt. Flip the flag to list it.
+
+The footer departs from the artboard at the owner's request: a link directory. Logo, then five
+columns from `footerColumns` in `site.ts` (Product, Solutions, Company, Resources, Connect), then a
+rule with Privacy · Terms · GDPR and other policies and the © line. Only real pages and mailboxes go
+in it; no placeholder links.
 
 ## Motion
 
-- No entrance animations on above-the-fold content, and never start content at `opacity: 0`.
+- The home artboard's motion is the exception, and only it: the hero's four product scenes, the
+  demos (uncover, Map/Assess/Rank/Report, stages), the CTA marquee, and the desktop scroll
+  storytelling (`src/scripts/home-story.ts`: pinned sections and heading reveals, only when the window
+  is wider than 1000px and shorter than 1300px). All of it stops under `prefers-reduced-motion`.
+- Elsewhere: no entrance animations on above-the-fold content, and never start content at
+  `opacity: 0` — the reveal classes only apply once the script has added `uv-scrolly`.
 - Hover transitions only (colour, border, a 2% image scale), all disabled under
   `prefers-reduced-motion` (global rule in `global.css` plus `motion-reduce:` where needed).
-- The one exception is the home footer's mark (`OpeningMark.astro`): a 6.4-second CSS loop, symmetric: each swing 1.4s, each rest 1.8s (opening 0.8–2.2s, open 2.2–4s, closing 4–5.4s).
-  Closed, the lid swings a half-turn on the box's back corner, whole (never squashed) and lifting
-  a little clear of the box mid-swing, round the left into the brand mark, rests there, then carries on round the right to close. No JS; under reduced motion it is the plain mark. The resting open state is the
-  mark unchanged. No other looping motion without an artboard.
+- No other looping motion without an artboard.
 
 ## Contrast
 
@@ -128,5 +169,5 @@ WCAG AA is the floor: 4.5:1 for text under 24px (18.66px bold), 3:1 above. Known
 `d-inferred` on `ink` 6.69 and on `d-inferred-dim` 5.50, `text` on `seq-3` 6.34. Never set
 `inferred` itself as small text on `panel-2` tints, nor on `ink` (3.55).
 Never set `accent` as text on a dark ground (3.41); use `d-accent`.
-Small labels inside product mock-ups follow the same rules; `aria-hidden` does not exempt them from
+Small labels inside product mock-ups follow the same rules (the home artboard's `#59607a` muted text is lifted to `#7c8493` in `home.css` for that reason); `aria-hidden` does not exempt them from
 Lighthouse. Check a new pair before using it.

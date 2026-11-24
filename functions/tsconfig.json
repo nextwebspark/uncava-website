@@ -1,0 +1,11 @@
+{
+  "extends": "../node_modules/astro/tsconfigs/strictest.json",
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "types": ["node"],
+    "jsx": "preserve"
+  },
+  "include": ["src/**/*.ts", "../src/lib/enquiry.ts", "../src/lib/site.ts"],
+  "exclude": ["src/**/*.test.ts"]
+}

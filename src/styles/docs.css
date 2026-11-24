@@ -4,8 +4,8 @@
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css' layer(utilities);
 @import '@fontsource-variable/geist';
-@import '@fontsource-variable/geist-mono';
-@import '@fontsource/montserrat/latin-200.css';
+@import '@fontsource-variable/jetbrains-mono';
+@import '@fontsource/montserrat/latin-400.css';
 @import './theme.css';
 
 @source not '../../design';
@@ -259,4 +259,11 @@ starlight-toc a[aria-current='true'] {
   font-size: 0.96875rem;
   font-weight: 600;
   color: var(--sl-color-white);
+}
+
+/* The docs header (DocsHeader.astro) draws its own columns edge to edge on desktop. */
+@media (min-width: 50rem) {
+  .page > header.header {
+    padding: 0;
+  }
 }

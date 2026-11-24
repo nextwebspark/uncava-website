@@ -7,19 +7,19 @@ These are the third parties that process personal data for Uncava. Each is bound
 
 ## Infrastructure
 
-| Provider     | What it does for Uncava                                                                    | Data it receives                                                                       | Location                      | Transfer mechanism |
-| ------------ | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- | ----------------------------- | ------------------ |
-| Google Cloud | Cloud Run and Cloud SQL: hosts the application and its database                            | everything in the service                                                              | United States (`us-central1`) | [mechanism]        |
-| Google Cloud | Cloud Storage: stores documents, photos, attachments and workspace exports                 | the files you upload or export                                                         | United States (`us-central1`) | [mechanism]        |
-| Google Cloud | Secret Manager: holds the encryption keys                                                  | no personal data                                                                       | [region to confirm]           | —                  |
-| Google Cloud | Cloud Logging: keeps application logs for 30 days                                          | logs with email addresses, profile links and phone numbers masked                      | [region to confirm]           | [mechanism]        |
-| Google Cloud | Vertex AI (Gemini): drafts briefs, proposes companies, assesses candidates, writes openers | the record or text the feature reads, with contact details removed; never compensation | [region to confirm]           | [mechanism]        |
-| Resend       | Sends account and notification email                                                       | users' names and email addresses; candidate names in notification emails               | [Region]                      | [mechanism]        |
-| Stripe       | Takes payment for subscriptions                                                            | the workspace name; the payer's card, billing address and tax id                       | [Region]                      | [mechanism]        |
-| Google Fonts | Serves the application's fonts                                                             | each user's IP address and browser                                                     | Global                        | [mechanism]        |
-| Firebase     | Hosts the uncava.com website                                                               | visitors' IP address, requested page and browser                                       | Global CDN                    | [mechanism]        |
-| Cloudflare   | DNS for uncava.com                                                                         | no personal data                                                                       | Global                        | —                  |
-| [Provider]   | Delivers the website's demo and newsletter forms                                           | what you type into the form                                                            | [Region]                      | [mechanism]        |
+| Provider     | What it does for Uncava                                                                    | Data it receives                                                                                | Location                      | Transfer mechanism |
+| ------------ | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- | ----------------------------- | ------------------ |
+| Google Cloud | Cloud Run and Cloud SQL: hosts the application and its database                            | everything in the service                                                                       | United States (`us-central1`) | [mechanism]        |
+| Google Cloud | Cloud Storage: stores documents, photos, attachments and workspace exports                 | the files you upload or export                                                                  | United States (`us-central1`) | [mechanism]        |
+| Google Cloud | Secret Manager: holds the encryption keys                                                  | no personal data                                                                                | [region to confirm]           | —                  |
+| Google Cloud | Cloud Logging: keeps application logs for 30 days                                          | logs with email addresses, profile links and phone numbers masked                               | [region to confirm]           | [mechanism]        |
+| Google Cloud | Vertex AI (Gemini): drafts briefs, proposes companies, assesses candidates, writes openers | the record or text the feature reads, with contact details removed; never compensation          | [region to confirm]           | [mechanism]        |
+| Resend       | Sends account and notification email, and delivers website enquiries to our inbox          | users' names and email addresses; candidate names in notification emails; enquiry form contents | [Region]                      | [mechanism]        |
+| Stripe       | Takes payment for subscriptions                                                            | the workspace name; the payer's card, billing address and tax id                                | [Region]                      | [mechanism]        |
+| Google Fonts | Serves the application's fonts                                                             | each user's IP address and browser                                                              | Global                        | [mechanism]        |
+| Firebase     | Hosts the uncava.com website                                                               | visitors' IP address, requested page and browser                                                | Global CDN                    | [mechanism]        |
+| Cloudflare   | DNS for uncava.com                                                                         | no personal data                                                                                | Global                        | —                  |
+| Google Cloud | Cloud Functions: receives the website's enquiry form and passes it to Resend               | what you type into the form                                                                     | United States (`us-central1`) | [mechanism]        |
 
 ## Email, calendar and meetings
 
@@ -47,4 +47,4 @@ These supply professional information about companies and executives, and receiv
 
 ## Changes to this list
 
-We update this page before a new sub-processor starts processing customer data, and tell customers [30] days ahead by [notification mechanism: email list or RSS feed]. Customers with a signed [Data processing addendum](/dpa) can ask to be added to the notifications at [Privacy email address] and may object as the addendum describes.
+We update this page before a new sub-processor starts processing customer data, and tell customers [30] days ahead by [notification mechanism: email list or RSS feed]. Customers with a signed [Data processing addendum](/dpa) can ask to be added to the notifications at [privacy@uncava.com](mailto:privacy@uncava.com) and may object as the addendum describes.

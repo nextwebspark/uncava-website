@@ -3,7 +3,7 @@ lastUpdated: 2026-10-05
 reviewedByCounsel: false
 ---
 
-These terms govern your use of uncava.com, the Uncava application and the UNCAVA Capture browser extension (together, "the service"), provided by [Company legal name] ("Uncava", "we", "us"). Where your organisation has signed an order form or master agreement with us, that agreement takes precedence over these terms where they conflict.
+These terms govern your use of uncava.com, the Uncava application and the UNCAVA Capture browser extension (together, "the service"), provided by Uncava ("Uncava", "we", "us"). Where your organisation has signed an order form or master agreement with us, that agreement takes precedence over these terms where they conflict.
 
 ## Agreement to these terms
 
@@ -15,7 +15,7 @@ Uncava is a workspace for executive search: building a search strategy, mapping 
 
 ## Accounts and workspaces
 
-- You must give accurate information, keep your password safe and tell us at once at [Security email address] if you suspect your account is compromised.
+- You must give accurate information, keep your password safe and tell us at once at [security@uncava.com](mailto:security@uncava.com) if you suspect your account is compromised.
 - Accounts are personal. Do not share sign-ins.
 - A workspace is administered by its admins, who decide who is invited, what role they have and when they are removed. Client representatives get read-only access to the positions they are attached to.
 - You must be at least 18 and using Uncava for professional purposes.
@@ -73,4 +73,4 @@ These terms are governed by the laws of [the United Arab Emirates / the Dubai In
 
 ## Contact
 
-[Company legal name], [Registered address]. Email [Legal email address].
+Uncava, [Registered address]. Email [legal@uncava.com](mailto:legal@uncava.com).

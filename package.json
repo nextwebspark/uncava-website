@@ -18,21 +18,24 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
-    "verify": "npm run lint && npm run format:check && npm run check && npm run test && npm run build && npm run check:csp",
+    "verify": "npm run lint && npm run format:check && npm run check && npm run check:functions && npm run test && npm run build && npm run check:csp",
     "lhci": "lhci autorun",
-    "check:csp": "node scripts/check-csp.ts"
+    "check:csp": "node scripts/check-csp.ts",
+    "check:functions": "npm --prefix functions run typecheck && npm --prefix functions run build"
   },
   "dependencies": {
+    "@astrojs/preact": "6.1.6",
     "@astrojs/rss": "4.0.19",
     "@astrojs/sitemap": "3.7.4",
     "@astrojs/starlight": "0.42.6",
     "@astrojs/starlight-tailwind": "5.0.0",
     "@fontsource-variable/geist": "5.3.0",
-    "@fontsource-variable/geist-mono": "5.3.0",
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
     "@fontsource/geist": "5.3.0",
     "@fontsource/montserrat": "5.3.0",
     "@tailwindcss/vite": "4.3.3",
     "astro": "7.3.8",
+    "preact": "11.2.0",
     "satori": "0.62.0",
     "sharp": "0.35.5",
     "tailwindcss": "4.3.3"

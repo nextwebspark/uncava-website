@@ -3,20 +3,20 @@ lastUpdated: 2026-11-13
 reviewedByCounsel: false
 ---
 
-This policy explains how [Company legal name] ("Uncava", "we", "us") handles personal data when you visit uncava.com, use the Uncava application, connect a mailbox or calendar to it, or install the UNCAVA Capture browser extension. It also explains what we do with information about executives held in Uncava, and how an executive can find out what is held and object to it.
+This policy explains how Uncava ("Uncava", "we", "us") handles personal data when you visit uncava.com, use the Uncava application, connect a mailbox or calendar to it, or install the UNCAVA Capture browser extension. It also explains what we do with information about executives held in Uncava, and how an executive can find out what is held and object to it.
 
 ## Who we are
 
-Uncava is operated by [Company legal name], a company registered in the United Arab Emirates [free zone or emirate, licence number], with its registered address at [Registered address].
+Uncava is operated by Uncava, a company registered in the United Arab Emirates [free zone or emirate, licence number], with its registered address at [Registered address].
 
 - For **account, website and billing data**, and for the **company and executive data Uncava itself sources**, we are the controller.
 - For the **data a search firm or hiring team puts into its workspace** — candidates, notes, documents, outreach — the firm is the controller and we process it on its behalf, under our [Data processing addendum](/dpa).
 
-Privacy questions and requests: [Privacy email address].
+Privacy questions and requests: [privacy@uncava.com](mailto:privacy@uncava.com).
 
 ## Data protection officer
 
-[Name and contact of our data protection officer, or: We have not appointed a data protection officer because [reason]. Privacy questions go to [Privacy email address].]
+[Name and contact of our data protection officer, or: We have not appointed a data protection officer because [reason]. Privacy questions go to [privacy@uncava.com](mailto:privacy@uncava.com).]
 
 ## Our EU and UK representatives
 
@@ -39,7 +39,7 @@ We are not established in the European Union or the United Kingdom. Our represen
 
 **Website visits.** uncava.com is a static site. It sets no cookies and runs no analytics. Our hosting provider records standard server logs (IP address, requested URL, time, user agent) for security and operations.
 
-**Website forms.** If you book a demo or subscribe to the newsletter, we receive what you type into the form: your name, work email, company and message, or your email address alone for the newsletter. The forms are delivered by [form processor].
+**Website forms.** If you book a demo or subscribe to the newsletter, we receive what you type into the form: your name, work email, company and message, or your email address alone for the newsletter. The enquiry form is received by a Google Cloud function and sent to our support inbox as an email through Resend; the website itself stores nothing you type.
 
 ## Executives: where your data comes from
 
@@ -70,7 +70,7 @@ Uncava keeps the professional profiles it fetches from providers for up to [30] 
 | Newsletter                                                            | subscribers                       | consent [confirmed by double opt-in]; withdrawn by unsubscribing                                                    | until you unsubscribe                                           |
 | Answering legal requests and meeting legal duties                     | anyone                            | legal obligation                                                                                                    | as the law requires                                             |
 
-Where we rely on legitimate interests we have weighed them against your interests and rights; the assessment is available on request from [Privacy email address].
+Where we rely on legitimate interests we have weighed them against your interests and rights; the assessment is available on request from [privacy@uncava.com](mailto:privacy@uncava.com).
 
 We do not sell personal data, use it for advertising, or use your workspace content or mailbox data to train AI models.
 
@@ -87,13 +87,13 @@ Uncava uses Google's Vertex AI. Contact details are removed from what the model 
 
 Each firm decides whether these features run in its workspace. Gender inference, nationality inference, AI assessment drafts and automatic enrichment after capture are separate switches, and they start switched off in every new workspace. Turning gender or nationality inference off removes every value the AI proposed that no consultant confirmed.
 
-**No decision about you is made by automated means alone.** A consultant decides what to keep, what to change and whether to approach you. You can ask for a human to review anything, give your view, and contest it, through [Privacy email address] or the firm that holds your record.
+**No decision about you is made by automated means alone.** A consultant decides what to keep, what to change and whether to approach you. You can ask for a human to review anything, give your view, and contest it, through [privacy@uncava.com](mailto:privacy@uncava.com) or the firm that holds your record.
 
 ## Your right to object
 
 **You can object at any time to the use of your data based on legitimate interests**, including to being mapped, enriched or approached about roles. Where the use is for direct marketing, we and the firms stop without needing a reason.
 
-Tell the firm that contacted you, or write to [Privacy email address]. A firm can stop all contact with you, restrict its use of your record, or delete it and add you to its suppression list so that you are not added again. See [Requests about you](#requests-about-you).
+Tell the firm that contacted you, or write to [privacy@uncava.com](mailto:privacy@uncava.com). A firm can stop all contact with you, restrict its use of your record, or delete it and add you to its suppression list so that you are not added again. See [Requests about you](#requests-about-you).
 
 ## Google, Microsoft and Zoom data
 
@@ -135,7 +135,7 @@ We share personal data only with:
 
 ## International transfers
 
-Uncava is hosted on Google Cloud in the United States (`us-central1`). Its AI processing on Vertex AI runs in [region to confirm], and some sub-processors operate in the United States. Personal data from the UAE, Saudi Arabia, the EU, the UK and elsewhere is therefore transferred to the United States. We rely on [the EU-US Data Privacy Framework where the recipient is certified / the European Commission's standard contractual clauses / the UK International Data Transfer Addendum — mechanism per recipient to confirm], and on the equivalent mechanisms under the UAE and Saudi laws. A copy of the safeguards is available on request from [Privacy email address].
+Uncava is hosted on Google Cloud in the United States (`us-central1`). Its AI processing on Vertex AI runs in [region to confirm], and some sub-processors operate in the United States. Personal data from the UAE, Saudi Arabia, the EU, the UK and elsewhere is therefore transferred to the United States. We rely on [the EU-US Data Privacy Framework where the recipient is certified / the European Commission's standard contractual clauses / the UK International Data Transfer Addendum — mechanism per recipient to confirm], and on the equivalent mechanisms under the UAE and Saudi laws. A copy of the safeguards is available on request from [privacy@uncava.com](mailto:privacy@uncava.com).
 
 ## Retention
 
@@ -171,7 +171,7 @@ You may also complain to a data protection authority — in the UAE, the UAE Dat
 
 If you are an executive and want to know whether a firm using Uncava holds information about you, or want it corrected, deleted or no longer used:
 
-1. **Email [Privacy email address]** with your full name, your LinkedIn profile address, and any email addresses or phone numbers you think may be held. We ask for nothing else, and only enough to be sure the request is yours — usually a reply from one of those addresses.
+1. **Email [privacy@uncava.com](mailto:privacy@uncava.com)** with your full name, your LinkedIn profile address, and any email addresses or phone numbers you think may be held. We ask for nothing else, and only enough to be sure the request is yours — usually a reply from one of those addresses.
 2. **We find each firm whose workspace holds you** and pass your request to it, because each firm is the controller of its own records and answers you itself, within one month.
 3. **We act on what Uncava holds itself**: the professional profiles in our provider cache.
 
@@ -191,7 +191,7 @@ Uncava is a professional tool and is not directed at anyone under 18.
 
 ## Contact
 
-[Company legal name], [Registered address]. Email [Privacy email address].
+Uncava, [Registered address]. Email [privacy@uncava.com](mailto:privacy@uncava.com).
 
 ## Changes to this policy
 

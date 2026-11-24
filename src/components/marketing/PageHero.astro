@@ -1,0 +1,58 @@
+---
+import ButtonLink from '~/components/site/ButtonLink.astro';
+import '~/styles/home.css';
+
+/** The opening of a product or company page, in the home artboard's square-grid vocabulary. */
+interface Props {
+  eyebrow: string;
+  title: string;
+  muted?: string | undefined;
+  intro: string;
+  primary?: { label: string; href: string };
+  secondary?: { label: string; href: string };
+}
+
+const {
+  eyebrow,
+  title,
+  muted,
+  intro,
+  primary = { label: 'Book a demo', href: '/contact' },
+  secondary,
+} = Astro.props;
+---
+
+<section class="sq-sec border-b-0">
+  <div class="wrap">
+    <div class="sq-frame">
+      <div class="sq-head flex flex-col gap-8 pt-16! md:pt-24!">
+        <span class="sq-tag">
+          <i></i>
+          {eyebrow}
+        </span>
+        <div class="sq-hrow">
+          <h1 class="m-0 max-w-[1000px] font-sans text-[44px] leading-[1.02] font-semibold tracking-[-.045em] md:text-[72px] md:leading-none">
+            {title}
+            {muted && (
+              <>
+                <br />
+                <span class="text-d-text-3">{muted}</span>
+              </>
+            )}
+          </h1>
+          <p>{intro}</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <ButtonLink href={primary.href} variant="paper" size="home">
+            {primary.label}
+          </ButtonLink>
+          {secondary && (
+            <ButtonLink href={secondary.href} variant="ghost" size="home">
+              {secondary.label}
+            </ButtonLink>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

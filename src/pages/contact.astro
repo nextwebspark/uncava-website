@@ -1,215 +1,283 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
+import {
+  ENQUIRY_ENDPOINT,
+  enquiryAudiences,
+  enquiryFields as f,
+  enquiryLimits,
+  enquiryTopics,
+  teamSizes,
+} from '~/lib/enquiry';
 import { staticPages } from '~/lib/pages';
-import { isPlaceholder } from '~/lib/placeholder';
 import { breadcrumbList } from '~/lib/seo/jsonld';
-import { site } from '~/lib/site';
+import { emails } from '~/lib/site';
 
 const page = staticPages.contact;
-const endpoint = import.meta.env.PUBLIC_DEMO_FORM_ENDPOINT;
-const emailIsReal = !isPlaceholder(site.contactEmail);
 
 const steps = [
   {
     number: '01',
-    title: 'A 30-minute call',
-    body: 'A walkthrough on your search, not a slide deck.',
+    title: 'Tell us about the search',
+    body: 'Your team, and a role you’re hiring for if you have one in mind.',
   },
   {
     number: '02',
-    title: 'Your mandate, mapped live',
-    body: 'Brief, strategy and a first shortlist, built on screen.',
+    title: 'We reply by email',
+    body: 'From support@uncava.com, to arrange a time that suits you.',
   },
   {
     number: '03',
-    title: 'A workspace for your team',
-    body: 'If it fits, we set up your workspace and you invite your researchers.',
+    title: 'We map it with you, live',
+    body: 'Bring a live role. We build its brief and map its market with you on the call.',
   },
 ];
 
-const teamSizes = ['Just me', '2–5 people', '6–20 people', '21–50 people', 'More than 50 people'];
+const directory = [
+  { label: 'Demos, sales and general questions', address: emails.contact },
+  { label: 'Help with your workspace', address: emails.support },
+];
 
 const field =
-  'min-h-[46px] w-full rounded-[9px] border border-line bg-panel px-3.5 py-3 text-[15px] text-text placeholder:text-text-3 focus:border-accent disabled:bg-panel-2';
-const label = 'text-[13.5px] font-medium text-text';
+  'min-h-12 w-full rounded-[6px] border border-[rgba(255,255,255,.12)] bg-ink-3 px-3.5 py-3 text-[15px] text-d-text placeholder:text-d-text-3 focus:border-d-accent';
+const label = 'text-[13.5px] font-medium text-d-text-1';
+const optional = 'font-normal text-d-text-3';
 ---
 
 <BaseLayout
   title={page.title}
   description={page.description}
   ogTitle={page.ogTitle}
-  jsonLd={[breadcrumbList([{ name: 'Book a demo', path: page.path }])]}
+  theme="dark"
+  jsonLd={[breadcrumbList([{ name: 'Contact', path: page.path }])]}
 >
-  <section class="container-page grid items-start gap-12 pt-12 pb-16 md:pt-24 md:pb-[120px] lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_600px] xl:gap-24">
-    <div class="flex flex-col gap-6 md:gap-7 lg:pt-3">
-      <p class="eyebrow text-accent-deep">Book a demo</p>
-      <h1 class="text-[40px] leading-[1.04] tracking-display md:text-5xl xl:text-[60px] xl:leading-[1.02]">
-        See Uncava on one of your own mandates.
+  <section class="container-wide grid items-start gap-12 pt-12 pb-20 md:pt-20 md:pb-30 lg:grid-cols-[minmax(0,1fr)_minmax(0,600px)] lg:gap-20">
+    <div class="flex flex-col gap-6 lg:pt-3">
+      <p class="eyebrow text-d-accent-soft">Book a demo · Get in touch</p>
+      <h1 class="m-0 font-sans text-[40px] leading-[1.04] font-semibold tracking-[-.04em] md:text-[56px] xl:text-[64px]">
+        See Uncava on one of your own roles.
       </h1>
-      <p class="max-w-[520px] text-[17px] leading-[1.6] text-text-2 md:text-lg">
-        Bring a live search. We’ll build its brief, pull a first universe of companies and put it on
-        a map — in the call, with you.
+      <p class="m-0 max-w-[540px] text-[17px] leading-[1.6] text-d-text-2 md:text-lg">
+        Book a demo, or ask us anything. Bring a live search and we’ll build its brief and map its
+        market with you, in the call.
       </p>
 
-      <ol class="mt-3 flex flex-col border-t border-line">
+      <ol class="mt-3 flex flex-col border-t border-hairline">
         {steps.map((step) => (
-          <li class="grid grid-cols-[48px_minmax(0,1fr)] gap-2 border-b border-line py-[22px]">
-            <span class="pt-[3px] font-mono text-[13px] font-medium text-accent-deep">
+          <li class="grid grid-cols-[48px_minmax(0,1fr)] gap-2 border-b border-hairline py-5.5">
+            <span class="pt-0.75 font-mono text-[13px] font-medium text-d-accent-soft">
               {step.number}
             </span>
             <div class="flex flex-col gap-1">
-              <h2 class="text-[17px]">{step.title}</h2>
-              <p class="text-[15px] leading-[1.55] text-text-2">{step.body}</p>
+              <h2 class="m-0 text-[17px]">{step.title}</h2>
+              <p class="m-0 text-[15px] leading-[1.55] text-d-text-2">{step.body}</p>
             </div>
           </li>
         ))}
       </ol>
 
-      <p class="text-[15px] text-text-2">
-        Prefer email? Write to{' '}
-        {emailIsReal ? (
-          <a href={`mailto:${site.contactEmail}`} class="link-inline">
-            {site.contactEmail}
-          </a>
-        ) : (
-          <span class="text-accent">{site.contactEmail}</span>
-        )}
-      </p>
+      <div class="flex flex-col gap-3">
+        <h2 class="eyebrow m-0 text-d-text-3">Prefer email?</h2>
+        <dl class="m-0 grid gap-x-6 gap-y-2 text-[15px] sm:grid-cols-[auto_1fr]">
+          {directory.map((entry) => (
+            <>
+              <dt class="text-d-text-2">{entry.label}</dt>
+              <dd class="m-0">
+                <a
+                  href={`mailto:${entry.address}`}
+                  class="text-d-accent-soft underline underline-offset-3 hover:text-d-text"
+                >
+                  {entry.address}
+                </a>
+              </dd>
+            </>
+          ))}
+        </dl>
+      </div>
     </div>
 
     <form
-      action={endpoint}
+      id="enquiry"
+      action={ENQUIRY_ENDPOINT}
       method="post"
-      aria-labelledby="demo-form-title"
-      class="flex flex-col gap-5 rounded-[20px] border border-line bg-panel p-6 shadow-form sm:p-10"
+      aria-labelledby="enquiry-title"
+      class="flex flex-col gap-5 rounded-[10px] border border-frame-line bg-ink-2 p-6 sm:p-10"
     >
       <div class="flex flex-col gap-1.5">
-        <h2 id="demo-form-title" class="text-2xl tracking-title">
-          Tell us about your search
+        <h2 id="enquiry-title" class="m-0 text-2xl tracking-title">
+          How can we help?
         </h2>
-        <p class="text-[14.5px] text-text-3">[Reply time, e.g. within one working day]</p>
+        <p class="m-0 text-[14.5px] text-d-text-3">
+          Fields marked optional can be left blank. We reply from {emails.support}.
+        </p>
       </div>
 
-      <fieldset disabled={!endpoint} class="flex flex-col gap-5">
-        <legend class="sr-only">Your details</legend>
-        <div class="grid gap-4 sm:grid-cols-2">
-          <div class="flex flex-col gap-[7px]">
-            <label for="first-name" class={label}>
-              First name
+      <fieldset class="m-0 flex flex-col gap-2.5 border-0 p-0">
+        <legend class:list={[label, 'mb-2.5 p-0']}>What would you like to do?</legend>
+        <div class="grid grid-cols-2 gap-2.5">
+          {enquiryTopics.map((topic, i) => (
+            <label class="flex min-h-12 cursor-pointer items-center gap-2.5 rounded-[6px] border border-[rgba(255,255,255,.12)] bg-ink-3 px-3.5 text-[14.5px] text-d-text-1 has-checked:border-d-accent has-checked:bg-d-accent-dim">
+              <input
+                type="radio"
+                name={f.topic}
+                value={topic.value}
+                checked={i === 0}
+                required
+                class="size-4 accent-d-accent"
+              />
+              {topic.label}
             </label>
-            <input
-              id="first-name"
-              name="first_name"
-              type="text"
-              required
-              autocomplete="given-name"
-              class={field}
-            />
-          </div>
-          <div class="flex flex-col gap-[7px]">
-            <label for="last-name" class={label}>
-              Last name
-            </label>
-            <input
-              id="last-name"
-              name="last_name"
-              type="text"
-              required
-              autocomplete="family-name"
-              class={field}
-            />
-          </div>
-        </div>
-        <div class="flex flex-col gap-[7px]">
-          <label for="work-email" class={label}>
-            Work email
-          </label>
-          <input
-            id="work-email"
-            name="email"
-            type="email"
-            required
-            autocomplete="email"
-            placeholder="you@firm.com"
-            class={field}
-          />
-        </div>
-        <div class="grid gap-4 sm:grid-cols-2">
-          <div class="flex flex-col gap-[7px]">
-            <label for="firm" class={label}>
-              Firm
-            </label>
-            <input
-              id="firm"
-              name="firm"
-              type="text"
-              required
-              autocomplete="organization"
-              class={field}
-            />
-          </div>
-          <div class="flex flex-col gap-[7px]">
-            <label for="team-size" class={label}>
-              Team size
-            </label>
-            <select
-              id="team-size"
-              name="team_size"
-              required
-              class:list={[field, 'appearance-auto']}
-            >
-              <option value="" selected disabled>
-                Select
-              </option>
-              {teamSizes.map((size) => (
-                <option value={size}>{size}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div class="flex flex-col gap-[7px]">
-          <label for="search" class={label}>
-            What are you searching for? <span class="font-normal text-text-3">Optional</span>
-          </label>
-          <textarea
-            id="search"
-            name="search"
-            rows="4"
-            placeholder="e.g. a Group CFO for an energy business in Saudi Arabia"
-            class:list={[field, 'min-h-[112px] resize-y']}
-          ></textarea>
-        </div>
-        <div class="flex items-start gap-2.5 text-[13.5px] leading-[1.5] text-text-2">
-          <input
-            id="consent"
-            name="consent"
-            type="checkbox"
-            required
-            class="mt-0.5 size-[18px] flex-none rounded-[5px] accent-text"
-          />
-          <label for="consent">
-            We’ll use these details only to arrange your demo. See our{' '}
-            <a href="/privacy" class="link-inline">
-              privacy policy
-            </a>
-            .
-          </label>
+          ))}
         </div>
       </fieldset>
 
-      {endpoint ? (
-        <button
-          type="submit"
-          class="min-h-[52px] rounded-[10px] bg-accent px-4 text-base font-semibold text-on-accent transition-colors hover:bg-accent-hover"
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="flex flex-col gap-1.75">
+          <label for="first-name" class={label}>
+            First name
+          </label>
+          <input
+            id="first-name"
+            name={f.firstName}
+            type="text"
+            required
+            maxlength={enquiryLimits.name}
+            autocomplete="given-name"
+            class={field}
+          />
+        </div>
+        <div class="flex flex-col gap-1.75">
+          <label for="last-name" class={label}>
+            Last name
+          </label>
+          <input
+            id="last-name"
+            name={f.lastName}
+            type="text"
+            required
+            maxlength={enquiryLimits.name}
+            autocomplete="family-name"
+            class={field}
+          />
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1.75">
+        <label for="work-email" class={label}>
+          Work email
+        </label>
+        <input
+          id="work-email"
+          name={f.email}
+          type="email"
+          required
+          maxlength={enquiryLimits.email}
+          autocomplete="email"
+          placeholder="you@firm.com"
+          class={field}
+        />
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="flex flex-col gap-1.75">
+          <label for="company" class={label}>
+            Company
+          </label>
+          <input
+            id="company"
+            name={f.company}
+            type="text"
+            required
+            maxlength={enquiryLimits.company}
+            autocomplete="organization"
+            class={field}
+          />
+        </div>
+        <div class="flex flex-col gap-1.75">
+          <label for="audience" class={label}>
+            You are
+          </label>
+          <select id="audience" name={f.audience} required class:list={[field, 'appearance-auto']}>
+            <option value="" selected disabled>
+              Select
+            </option>
+            {enquiryAudiences.map((audience) => (
+              <option value={audience.value}>{audience.label}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="flex flex-col gap-1.75">
+          <label for="team-size" class={label}>
+            Team size <span class={optional}>Optional</span>
+          </label>
+          <select id="team-size" name={f.teamSize} class:list={[field, 'appearance-auto']}>
+            <option value="" selected>
+              Select
+            </option>
+            {teamSizes.map((size) => (
+              <option value={size}>{size}</option>
+            ))}
+          </select>
+        </div>
+        <div class="flex flex-col gap-1.75">
+          <label for="role" class={label}>
+            Role you’re hiring for <span class={optional}>Optional</span>
+          </label>
+          <input
+            id="role"
+            name={f.role}
+            type="text"
+            maxlength={enquiryLimits.role}
+            placeholder="e.g. Group CFO, Riyadh"
+            class={field}
+          />
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1.75">
+        <label for="message" class={label}>
+          Message <span class={optional}>Optional</span>
+        </label>
+        <textarea
+          id="message"
+          name={f.message}
+          rows="4"
+          maxlength={enquiryLimits.message}
+          placeholder="Anything we should know before we reply"
+          class:list={[field, 'min-h-28 resize-y']}
+        ></textarea>
+      </div>
+
+      <div class="enquiry-trap" aria-hidden="true">
+        <label for="website">Leave this field empty</label>
+        <input id="website" name={f.honeypot} type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <p class="m-0 text-[13.5px] leading-[1.5] text-d-text-2">
+        We use these details only to reply to you, and we don’t add you to a mailing list. See our{' '}
+        <a
+          href="/privacy"
+          class="text-d-accent-soft underline underline-offset-3 hover:text-d-text"
         >
-          Book a demo
-        </button>
-      ) : (
-        <p class="rounded-[10px] border border-dashed border-slate-line px-4 py-3.5 text-center text-[15px] text-text-2">
-          Online booking isn’t connected yet. Email{' '}
-          <span class="font-medium text-text">{site.contactEmail}</span> to book a demo.
-        </p>
-      )}
+          privacy policy
+        </a>
+        .
+      </p>
+
+      <button
+        type="submit"
+        class="min-h-13 rounded-[6px] bg-d-text px-4 text-base font-semibold text-ink transition-colors hover:bg-white"
+      >
+        Send
+      </button>
     </form>
   </section>
 </BaseLayout>
+
+<script>
+  import { preselectTopic } from '~/scripts/enquiry-topic';
+
+  preselectTopic(document.querySelector('#enquiry'), window.location.search);
+</script>

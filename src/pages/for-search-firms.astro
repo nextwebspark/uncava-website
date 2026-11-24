@@ -1,0 +1,78 @@
+---
+import DemoCta from '~/components/home/DemoCta.astro';
+import EarlyEvidence from '~/components/home/EarlyEvidence.astro';
+import FaqSection from '~/components/home/FaqSection.astro';
+import MidCta from '~/components/home/MidCta.astro';
+import UncoverSection from '~/components/home/UncoverSection.astro';
+import PageHero from '~/components/marketing/PageHero.astro';
+import PointGrid from '~/components/marketing/PointGrid.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { buyerQuestions } from '~/lib/faq';
+import { staticPages } from '~/lib/pages';
+import { breadcrumbList } from '~/lib/seo/jsonld';
+
+const page = staticPages.forSearchFirms;
+
+const points = [
+  {
+    title: 'Faster from brief to longlist',
+    body: 'Drop in the client’s job description and the brief fills itself. The assistant suggests and tiers target companies against it, with its reasons, and finds who holds the role at each.',
+  },
+  {
+    title: 'Consistent quality across consultants',
+    body: 'Every search runs the retained method: one brief, one market map, one set of weighted competencies, scored with evidence. A partner can open any mandate and read it the same way.',
+  },
+  {
+    title: 'Client-ready evidence at every stage',
+    body: 'Market shape, mapping progress, remuneration and the assessment report go to the client as report chapters by link, generated live from the mandate.',
+  },
+  {
+    title: 'Your notes stay inside the firm',
+    body: 'Client contacts get a read-only seat on the mandates you attach them to. Notes, assessments and the ranking stay with your team.',
+  },
+  {
+    title: 'Speaks the agency’s language',
+    body: 'A search-firm workspace says Client and Client contact throughout, so the screens match how your consultants already talk.',
+  },
+  {
+    title: 'The market stays mapped',
+    body: 'Every company and executive you map stays in your workspace, ready for the next mandate in the same sector.',
+  },
+];
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  ogTitle={page.ogTitle}
+  theme="dark"
+  jsonLd={[breadcrumbList([{ name: page.title, path: page.path }])]}
+>
+  <PageHero
+    eyebrow="For search firms"
+    title="Deliver more searches"
+    muted="with the same team."
+    intro="Uncava runs the retained search method end to end, from the client’s brief to the shortlist report, so each consultant can carry more mandates without the quality slipping."
+    secondary={{ label: 'See the product', href: '/#highlights' }}
+  />
+  <PointGrid
+    title="Built for the way a retained firm works."
+    muted="From pitch to placement."
+    intro="The groundwork moves faster. The judgement stays with your consultants."
+    points={points}
+  />
+  <UncoverSection />
+  <EarlyEvidence />
+  <MidCta
+    title="Bring a live mandate"
+    body="We’ll build its brief and map its market with you, in the call."
+  />
+  <FaqSection
+    questions={[buyerQuestions.clientsSeeWork, buyerQuestions.aiDecides, buyerQuestions.security]}
+  />
+  <DemoCta />
+</BaseLayout>
+
+<script>
+  import '~/scripts/home';
+</script>

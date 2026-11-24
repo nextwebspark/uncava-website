@@ -1,0 +1,44 @@
+---
+import StatusPage from '~/components/site/StatusPage.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { staticPages } from '~/lib/pages';
+import { emails } from '~/lib/site';
+
+const page = staticPages.contactError;
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  ogTitle={page.ogTitle}
+  noindex={page.noindex}
+  theme="dark"
+>
+  <StatusPage
+    eyebrow="Message not sent"
+    title="Your message didn’t reach us."
+    links={[
+      { label: 'Try the form again', href: '/contact', primary: true },
+      { label: `Email ${emails.support}`, href: `mailto:${emails.support}` },
+    ]}
+  >
+    <p class="m-0">This usually means one of three things:</p>
+    <ul class="m-0 flex list-disc flex-col gap-2 pl-5">
+      <li>A required field was empty, or the email address wasn’t complete.</li>
+      <li>
+        Several messages came from your connection in a few minutes. Wait a little, then retry.
+      </li>
+      <li>Our email service didn’t answer. Nothing you did; please try again shortly.</li>
+    </ul>
+    <p class="m-0">
+      You can always write to us directly at{' '}
+      <a
+        class="text-d-accent-soft underline underline-offset-3 hover:text-d-text"
+        href={`mailto:${emails.support}`}
+      >
+        {emails.support}
+      </a>
+      .
+    </p>
+  </StatusPage>
+</BaseLayout>

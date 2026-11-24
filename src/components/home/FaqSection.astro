@@ -1,0 +1,31 @@
+---
+import type { FaqEntry } from '~/lib/faq';
+import '~/styles/home.css';
+
+interface Props {
+  title?: string;
+  questions: readonly FaqEntry[];
+}
+
+const { title = 'Questions buyers ask', questions } = Astro.props;
+---
+
+<section id="faq" class="sq-sec faq-sq">
+  <div class="wrap">
+    <div class="sq-frame">
+      <div class="faq-grid">
+        <div class="faq-l">
+          <h2>{title}</h2>
+        </div>
+        <div class="faq-r">
+          {questions.map((entry) => (
+            <details class="faq">
+              <summary>{entry.question}</summary>
+              <p>{entry.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

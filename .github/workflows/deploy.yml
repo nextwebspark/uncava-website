@@ -39,7 +39,6 @@ jobs:
       SERVICE_ACCOUNT: ${{ vars.GCP_SERVICE_ACCOUNT }}
       FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
       PUBLIC_BASE_URL: ${{ vars.PUBLIC_BASE_URL }}
-      PUBLIC_DEMO_FORM_ENDPOINT: ${{ vars.PUBLIC_DEMO_FORM_ENDPOINT }}
       PUBLIC_NEWSLETTER_FORM_ENDPOINT: ${{ vars.PUBLIC_NEWSLETTER_FORM_ENDPOINT }}
     steps:
       # A dispatched ref is free text; only a release tag may reach production.
@@ -74,7 +73,7 @@ jobs:
           cache: npm
 
       - if: steps.config.outputs.enabled == 'true'
-        run: npm ci
+        run: npm ci && npm ci --prefix functions
 
       - name: Verify and build
         if: steps.config.outputs.enabled == 'true'
@@ -100,8 +99,10 @@ jobs:
       - name: Deploy
         if: steps.config.outputs.enabled == 'true'
         run: |
-          npx --yes firebase-tools@15.30.0 deploy --only hosting --project "$FIREBASE_PROJECT_ID" \
-            --message "${REF} ($(git rev-parse --short HEAD))" --non-interactive
+          # The enquiry function deploys with the site: Hosting's /api/enquiry rewrite names it.
+          npx --yes firebase-tools@15.30.0 deploy --only hosting,functions:website \
+            --project "$FIREBASE_PROJECT_ID" \
+            --message "${REF} ($(git rev-parse --short HEAD))" --non-interactive --force
 
       # A successful deploy means Firebase accepted the files, not that the site serves them as intended.
       - name: Smoke test
@@ -127,6 +128,15 @@ jobs:
           HEADERS="$(curl -fsSI "$URL/")"
           grep -qi '^content-security-policy:' <<<"$HEADERS"
           grep -qi '^strict-transport-security:' <<<"$HEADERS"
+
+          echo "security.txt is served"
+          curl -fsS "$URL/.well-known/security.txt" | grep -q '^Contact: mailto:security@uncava.com'
+
+          echo "the enquiry endpoint answers, and a bot that fills the honeypot is sent nothing"
+          STATUS="$(curl -sS -o /dev/null -w '%{http_code} %{redirect_url}' -X POST "$URL/api/enquiry" \
+            -H "Origin: $URL" -H 'Sec-Fetch-Site: same-origin' \
+            --data-urlencode 'website=smoke-test' --data-urlencode 'topic=demo')"
+          grep -q '^303 .*/contact/thanks$' <<<"$STATUS" || { echo "::error::/api/enquiry answered '${STATUS}'."; exit 1; }
 
           echo "the CMS stays out of search"
           ADMIN_HEADERS="$(curl -fsSIL "$URL/admin")"

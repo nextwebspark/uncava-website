@@ -1,0 +1,150 @@
+---
+import DemoCta from '~/components/home/DemoCta.astro';
+import FaqSection from '~/components/home/FaqSection.astro';
+import SectionHead from '~/components/home/SectionHead.astro';
+import ButtonLink from '~/components/site/ButtonLink.astro';
+import PageHero from '~/components/marketing/PageHero.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import type { FaqEntry } from '~/lib/faq';
+import { staticPages } from '~/lib/pages';
+import { breadcrumbList } from '~/lib/seo/jsonld';
+import { emails } from '~/lib/site';
+
+const page = staticPages.pricing;
+
+const plans = [
+  {
+    tone: 'firm',
+    eyebrow: 'For search firms',
+    title: 'Run every client mandate in one workspace',
+    points: [
+      'Screens that say Client and Client contact',
+      'Read-only seats for client contacts, on the mandates you attach them to',
+      'Market maps, progress and assessment reports shared with clients by link',
+      'Your notes, assessments and ranking stay inside the firm',
+    ],
+  },
+  {
+    tone: 'inh',
+    eyebrow: 'For in-house talent teams',
+    title: 'Run senior searches with your hiring managers',
+    points: [
+      'Screens that say Position, Business unit and Hiring manager',
+      'Read-only seats for hiring managers, on the positions you attach them to',
+      'Report chapters shared with hiring managers by link',
+      'Market evidence to brief and manage the search firms you still use',
+    ],
+  },
+] as const;
+
+const included = [
+  'Briefs drafted from the job description, every field linked to its source',
+  'Company universe with live-count filters and saved searches',
+  'AI research assistant that tiers companies against the brief, with reasons',
+  'Adjacent sectors with transferable talent',
+  'Executives mapped by company, level and country',
+  'Outreach sequences sent from your own inbox',
+  'Interview co-pilot with consent-based transcription',
+  'Competency scoring with evidence, and AI-drafted assessment reports',
+  'Candidate ranking with what-if weightings',
+  'Remuneration benchmarking against disclosed packages',
+  'Spreadsheet import and the browser capture extension',
+  'Isolated workspace, two-factor sign-in and an audit log',
+];
+
+const pricingFaq: readonly FaqEntry[] = [
+  {
+    question: 'How is Uncava priced?',
+    answer:
+      'It depends on your team and how you search. Tell us about both and we’ll reply with a quote.',
+  },
+  {
+    question: 'Who do I talk to about an invoice?',
+    answer: `Write to ${emails.support} and we’ll put you in touch with the right person.`,
+  },
+];
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  ogTitle={page.ogTitle}
+  theme="dark"
+  jsonLd={[breadcrumbList([{ name: 'Pricing', path: page.path }])]}
+>
+  <PageHero
+    eyebrow="Pricing"
+    title="Pricing for"
+    muted="your team."
+    intro="Tell us about your team and the searches you run, and we’ll reply with a quote."
+    primary={{ label: 'Ask for a quote', href: '/contact?topic=enquiry' }}
+    secondary={{ label: 'Book a demo', href: '/contact' }}
+  />
+
+  <section class="sq-sec fk-sq">
+    <div class="wrap">
+      <div class="sq-frame">
+        <SectionHead
+          title="Two ways to use it."
+          muted="One product."
+          intro="A workspace is set up for who you search for: your clients, or your own business."
+        />
+        <div class="fk-grid">
+          {plans.map((plan) => (
+            <div class:list={['fk', `fk-${plan.tone}`]}>
+              <span class="mono fk-k">{plan.eyebrow}</span>
+              <h3 class="fk-t m-0">{plan.title}</h3>
+              <ul class="fk-l">
+                {plan.points.map((point) => (
+                  <li>{point}</li>
+                ))}
+              </ul>
+              <span class="fk-go">
+                <ButtonLink href="/contact?topic=enquiry" variant="paper" size="home">
+                  Ask for a quote
+                </ButtonLink>
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sq-sec">
+    <div class="wrap">
+      <div class="sq-frame">
+        <SectionHead
+          title="What your team works with."
+          intro="What Uncava gives your team on every search."
+        />
+        <ul class="m-0 grid list-none gap-px bg-hairline p-0 sm:grid-cols-2 lg:grid-cols-3">
+          {included.map((item) => (
+            <li class="flex items-start gap-3 bg-ink px-10 py-7 text-[16px] leading-[1.5] text-d-text-1">
+              <svg
+                class="mt-1 shrink-0 text-d-accent"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 8.5l3.2 3L13 4.5"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <FaqSection title="Pricing questions" questions={pricingFaq} />
+  <DemoCta />
+</BaseLayout>
