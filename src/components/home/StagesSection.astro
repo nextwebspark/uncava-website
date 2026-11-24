@@ -1,0 +1,23 @@
+---
+import SearchStages from './SearchStages';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="anatomy-intro" class="sq-sec an-sq">
+  <div class="wrap">
+    <div class="sq-frame">
+      <SectionHead
+        title="Your whole search, running in one place"
+        intro="One brief becomes a mapped market, then a shortlist, then a hire. Select a stage to see what Uncava does and what your team decides."
+        leadsIntoExample
+      />
+      <div id="workflow" class="sq-body">
+        <div class="wrap pin-wrap [--n:6]" data-pin="an" data-n="6">
+          <div class="pin" data-island="stages">
+            <SearchStages />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

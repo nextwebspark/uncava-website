@@ -3,7 +3,8 @@
 The public site for **Uncava** — executive search and talent mapping — at `https://uncava.com`: marketing
 pages, the blog, and the docs. The product itself is a separate codebase at `https://app.uncava.com`;
 nothing here talks to it except links. Static Astro build, served by Firebase Hosting, edited by
-non-technical people through Sveltia CMS at `/admin`.
+non-technical people through Sveltia CMS at `/admin`. One Cloud Function (`functions/`) receives the
+enquiry form at `/api/enquiry` and emails it to support@uncava.com through Resend.
 
 ## Commands
 
@@ -15,6 +16,7 @@ npm run verify       # everything CI runs except Lighthouse: lint, format, check
 npm run check        # astro check + tsc
 npm test             # vitest
 npm run check:csp    # post-build: every page in dist runs under the CSP firebase.json serves it with
+npm run check:functions  # type check + bundle functions/ (run `npm ci --prefix functions` once)
 npm run lhci         # Lighthouse CI against dist (needs Chrome)
 ```
 
@@ -32,11 +34,14 @@ npm run lhci         # Lighthouse CI against dist (needs Chrome)
 | `src/styles/`                              | `theme.css` (tokens, shared), `global.css` (site), `docs.css` (Starlight).                          |
 | `public/admin/`                            | Sveltia CMS: `index.html` + `config.yml`.                                                           |
 | `scripts/`                                 | Build-time tooling (`check-csp.ts`), `gcp-bootstrap.sh` (the GCP deploy identity, re-runnable).     |
+| `functions/`                               | The enquiry Cloud Function, its own `package.json`. Pure modules are tested by the root Vitest.     |
 | `tests/`                                   | Config tests: `firebase.json` headers, CMS ↔ schema lockstep. Unit tests sit beside their module.   |
 
 ## Invariants
 
 - **Zero client JavaScript by default.** A `<script>` needs a reason a reviewer would accept; never inline.
+  The home page's product demos are the accepted exception: Preact components rendered at build time
+  and hydrated by one bundled script (`src/scripts/home.ts`). No `style` attribute anywhere, JSX included.
 - **One trailing-slash policy:** Astro `trailingSlash: 'never'` + `build.format: 'file'`, Firebase
   `cleanUrls: true` + `trailingSlash: false`. Every absolute URL goes through `absoluteUrl()`.
 - **Every page has one `h1`, a unique title and a 50–160 character description, a canonical, and an OG
@@ -49,7 +54,10 @@ npm run lhci         # Lighthouse CI against dist (needs Chrome)
   (`src/content/legal/`) are drafts written only from what the app does; they show a "pending legal
   review" notice until counsel approves and `reviewedByCounsel` is set.
 - **Don't build ahead of the design.** No page, section or component without an artboard or a request.
-- **No secrets in the repo.** Deploys authenticate with Workload Identity Federation.
+- **No secrets in the repo.** Deploys authenticate with Workload Identity Federation. The function's
+  Resend key lives in Secret Manager (`RESEND_API_KEY`); local emulation uses gitignored
+  `functions/.secret.local`.
+- **The enquiry form stores nothing.** It becomes one email; logs carry the outcome, never the content.
 - **Merging to `main` deploys nothing.** Production changes only through the Release workflow, which
   tags `vX.Y.Z` and deploys that tag; Deploy on an older tag is the rollback.
 

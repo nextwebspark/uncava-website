@@ -1,0 +1,27 @@
+---
+import ButtonLink from '~/components/site/ButtonLink.astro';
+
+interface Props {
+  title?: string;
+  body?: string;
+}
+
+const {
+  title = 'See it on one of your live roles',
+  body = 'Bring a role you’re hiring for. We’ll map its market with you, live.',
+} = Astro.props;
+---
+
+<section class="wrap pt-45 max-[700px]:pt-24">
+  <div class="flex flex-wrap items-center justify-between gap-6 border border-t-2 border-[rgba(110,121,242,.4)] border-t-d-accent bg-[linear-gradient(120deg,rgba(74,86,214,.16),rgba(11,12,15,0)_60%)] p-12 max-[700px]:p-6">
+    <div class="flex max-w-160 flex-col gap-2.5">
+      <h2 class="m-0 font-sans text-[32px] leading-[1.15] font-semibold tracking-[-.03em] max-[700px]:text-[26px]">
+        {title}
+      </h2>
+      <p class="m-0 text-[16px] leading-[1.55] text-d-text-2">{body}</p>
+    </div>
+    <ButtonLink href="/contact" variant="paper" size="home">
+      Book a demo
+    </ButtonLink>
+  </div>
+</section>

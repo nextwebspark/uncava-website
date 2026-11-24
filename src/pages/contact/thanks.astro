@@ -1,0 +1,40 @@
+---
+import StatusPage from '~/components/site/StatusPage.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { staticPages } from '~/lib/pages';
+import { emails } from '~/lib/site';
+
+const page = staticPages.contactThanks;
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  ogTitle={page.ogTitle}
+  noindex={page.noindex}
+  theme="dark"
+>
+  <StatusPage
+    eyebrow="Message sent"
+    title="Thanks. Your message is with the Uncava team."
+    links={[
+      { label: 'Back to the home page', href: '/', primary: true },
+      { label: 'Read the docs', href: '/docs' },
+    ]}
+  >
+    <p class="m-0">
+      We reply from{' '}
+      <a
+        class="text-d-accent-soft underline underline-offset-3 hover:text-d-text"
+        href={`mailto:${emails.support}`}
+      >
+        {emails.support}
+      </a>{' '}
+      to the work email you gave us.{' '}
+    </p>
+    <p class="m-0">
+      If you asked for a demo, we’ll suggest a time for a call. Bring a role you’re hiring for and
+      we’ll map its market with you, live.
+    </p>
+  </StatusPage>
+</BaseLayout>

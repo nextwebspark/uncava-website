@@ -15,11 +15,15 @@ REPO="${GITHUB_REPO:-nextwebspark/uncava-website}"
 SITE="$(node -p 'require("./firebase.json").hosting.site')"
 
 DEPLOY_SA="uncava-website-deployer"
+ENQUIRY_SA="uncava-website-enquiry"   # the enquiry function runs as this, and it can read one secret
+ENQUIRY_SECRET="RESEND_API_KEY"       # defineSecret() name in functions/src/index.ts
+FUNCTION_REGION="us-central1"
 POOL="github-pool"                 # shared with the other apps in this project
 PROVIDER="uncava-website-provider" # its own: every existing provider is pinned to another repository
 
 PROJECT_NUMBER="$(gcloud projects describe "$PROJECT" --format='value(projectNumber)')"
 DEPLOY_SA_EMAIL="${DEPLOY_SA}@${PROJECT}.iam.gserviceaccount.com"
+ENQUIRY_SA_EMAIL="${ENQUIRY_SA}@${PROJECT}.iam.gserviceaccount.com"
 PROVIDER_NAME="projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/${POOL}/providers/${PROVIDER}"
 
 say() { printf '\n\033[1m▸ %s\033[0m\n' "$1"; }
@@ -36,11 +40,23 @@ firebase_api() {
 status_of() { tail -n 1 <<<"$1"; }
 body_of() { sed '$d' <<<"$1"; }
 
+# ── Billing ───────────────────────────────────────────────────────────────────
+# The enquiry function needs the pay-as-you-go (Blaze) plan, which is a linked billing account.
+say "Billing"
+if [ "$(gcloud billing projects describe "$PROJECT" --format='value(billingEnabled)')" = "True" ]; then
+    echo "  ✓ ${PROJECT} has billing linked (Blaze)"
+else
+    echo "${PROJECT} has no billing account. Link one (Firebase console → Usage and billing → Blaze), then re-run." >&2
+    exit 1
+fi
+
 # ── APIs ──────────────────────────────────────────────────────────────────────
 say "Enabling APIs"
 gcloud services enable \
     firebase.googleapis.com firebasehosting.googleapis.com \
     iam.googleapis.com iamcredentials.googleapis.com sts.googleapis.com \
+    cloudfunctions.googleapis.com run.googleapis.com cloudbuild.googleapis.com \
+    artifactregistry.googleapis.com secretmanager.googleapis.com \
     --project="$PROJECT"
 
 # ── Firebase and the Hosting site ─────────────────────────────────────────────
@@ -88,6 +104,42 @@ for ROLE in roles/firebasehosting.admin roles/serviceusage.serviceUsageConsumer;
         --member="serviceAccount:${DEPLOY_SA_EMAIL}" --role="$ROLE" --condition=None --quiet >/dev/null
     echo "  ✓ deployer has ${ROLE}"
 done
+
+# ── Enquiry function ──────────────────────────────────────────────────────────
+# Its own runtime identity, so the function can read the Resend key and nothing else in the project.
+say "Enquiry function"
+if gcloud iam service-accounts describe "$ENQUIRY_SA_EMAIL" --project="$PROJECT" &>/dev/null; then
+    echo "  ✓ ${ENQUIRY_SA} exists"
+else
+    gcloud iam service-accounts create "$ENQUIRY_SA" --project="$PROJECT" \
+        --display-name="uncava.com enquiry form (runtime)"
+fi
+
+if gcloud secrets describe "$ENQUIRY_SECRET" --project="$PROJECT" &>/dev/null; then
+    echo "  ✓ secret ${ENQUIRY_SECRET} exists"
+else
+    gcloud secrets create "$ENQUIRY_SECRET" --project="$PROJECT" --replication-policy=automatic
+    echo "  ✓ created secret ${ENQUIRY_SECRET} (empty: add the key, see the steps below)"
+fi
+gcloud secrets add-iam-policy-binding "$ENQUIRY_SECRET" --project="$PROJECT" --quiet \
+    --member="serviceAccount:${ENQUIRY_SA_EMAIL}" --role=roles/secretmanager.secretAccessor >/dev/null
+echo "  ✓ ${ENQUIRY_SA} can read ${ENQUIRY_SECRET}, and no other secret"
+
+# Deploying a 2nd-gen function: create and update it (functions + Cloud Run), make it publicly
+# invocable (run.admin sets that policy), and clean up old build images (artifactregistry).
+for ROLE in roles/cloudfunctions.developer roles/run.admin roles/artifactregistry.admin; do
+    gcloud projects add-iam-policy-binding "$PROJECT" \
+        --member="serviceAccount:${DEPLOY_SA_EMAIL}" --role="$ROLE" --condition=None --quiet >/dev/null
+    echo "  ✓ deployer has ${ROLE}"
+done
+# The deployer may run the function as its runtime identity, and no other.
+gcloud iam service-accounts add-iam-policy-binding "$ENQUIRY_SA_EMAIL" --project="$PROJECT" --quiet \
+    --member="serviceAccount:${DEPLOY_SA_EMAIL}" --role=roles/iam.serviceAccountUser >/dev/null
+echo "  ✓ deployer may act as ${ENQUIRY_SA} only"
+# firebase-tools reads the secret's version and policy at deploy time; scoped to this one secret.
+gcloud secrets add-iam-policy-binding "$ENQUIRY_SECRET" --project="$PROJECT" --quiet \
+    --member="serviceAccount:${DEPLOY_SA_EMAIL}" --role=roles/secretmanager.admin >/dev/null
+echo "  ✓ deployer manages ${ENQUIRY_SECRET} only"
 
 # ── Workload Identity Federation ──────────────────────────────────────────────
 say "Workload Identity Federation"
@@ -137,6 +189,13 @@ Done. What remains is deliberately manual.
 
 3. Firebase console → Hosting → site '${SITE}' → Add custom domain: uncava.com, then www.uncava.com
    redirecting to it. Records in Cloudflare as DNS only (grey cloud). See README, "Domains and DNS".
+
+4. The enquiry form's Resend key. In the Resend account the app already uses (uncava.com is verified
+   there), create an API key with "Sending access" restricted to uncava.com, then:
+
+     printf '%s' 're_…' | gcloud secrets versions add ${ENQUIRY_SECRET} --project=${PROJECT} --data-file=-
+
+   Until it has a version the deploy fails, by design: a form that silently drops enquiries is worse.
 
 Then ship: Actions → Release → Run workflow.
 EOF

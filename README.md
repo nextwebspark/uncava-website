@@ -10,7 +10,7 @@ Proprietary. © Uncava. All rights reserved.
 - [Astro](https://astro.build) — static output, TypeScript `strictest`
 - [Starlight](https://starlight.astro.build) — documentation under `/docs`, with Pagefind search
 - [Tailwind CSS v4](https://tailwindcss.com) via `@tailwindcss/vite`; tokens in `src/styles/theme.css`
-- Geist and Geist Mono, self-hosted via Fontsource
+- Geist and JetBrains Mono, self-hosted via Fontsource
 - Build-time Open Graph images with Satori + Sharp
 - [Sveltia CMS](https://sveltiacms.app) at `/admin` for non-technical editors
 - Firebase Hosting; GitHub Actions for CI, deploys and preview channels

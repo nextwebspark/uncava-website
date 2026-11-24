@@ -33,6 +33,20 @@ updates:
       everything-else:
         patterns: ['*']
 
+  - package-ecosystem: npm
+    directory: /functions
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    ignore:
+      # The function runs on Cloud Functions' nodejs22 runtime; its types follow that major.
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
+    groups:
+      enquiry-function:
+        patterns: ['*']
+
   - package-ecosystem: github-actions
     directory: /
     schedule:

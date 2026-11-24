@@ -1,0 +1,57 @@
+---
+import ButtonLink from '~/components/site/ButtonLink.astro';
+import HeroScenes from './HeroScenes';
+import '~/styles/home.css';
+---
+
+<section
+  id="top"
+  class="relative flex min-h-[min(1000px,100vh)] flex-col justify-end overflow-hidden"
+  aria-labelledby="home-title"
+>
+  <div data-island="hero" class="absolute inset-0">
+    <HeroScenes />
+  </div>
+  <div class="hero-veil" aria-hidden="true"></div>
+  <div class="wrap relative flex w-full flex-col gap-7 pt-0 pb-24">
+    <h1
+      id="home-title"
+      class="m-0 max-w-245 font-sans text-[76px] leading-[1.0] font-semibold tracking-[-.045em] max-[700px]:text-[44px] max-[700px]:leading-[1.02]"
+    >
+      The operating system for executive search
+    </h1>
+    <div class="flex flex-wrap items-end justify-between gap-5">
+      <p class="m-0 max-w-130 text-[17px] leading-[1.55] text-d-text-2">
+        Map the market, find who’s in role, assess on evidence and agree the shortlist, in one
+        place. Built for search firms and in-house talent teams.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <ButtonLink href="/contact" variant="paper" size="home">
+          Book a demo
+        </ButtonLink>
+        <ButtonLink href="/#highlights" variant="ghost" size="home">
+          See the product
+        </ButtonLink>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap pt-2" aria-label="How Uncava works">
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-px overflow-hidden border border-[rgba(255,255,255,.1)] bg-[rgba(255,255,255,.07)]">
+    <div class="cred">
+      <span class="credk">Built by practitioners</span>
+      <span class="credv">Designed by retained executive search partners.</span>
+    </div>
+    <div class="cred">
+      <span class="credk">AI assists, you decide</span>
+      <span class="credv">AI drafts the map, notes and summaries. Your team makes every call.</span>
+    </div>
+    <div class="cred">
+      <span class="credk">The retained search method</span>
+      <span class="credv">
+        Strategy, market map, assessment and report: the steps a top search firm follows.
+      </span>
+    </div>
+  </div>
+</section>

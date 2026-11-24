@@ -1,0 +1,139 @@
+---
+import DemoCta from '~/components/home/DemoCta.astro';
+import SectionHead from '~/components/home/SectionHead.astro';
+import PageHero from '~/components/marketing/PageHero.astro';
+import PointGrid from '~/components/marketing/PointGrid.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { staticPages } from '~/lib/pages';
+import { breadcrumbList, organization, type JsonLdNode } from '~/lib/seo/jsonld';
+import { absoluteUrl } from '~/lib/seo/url';
+import { emails, site } from '~/lib/site';
+
+const page = staticPages.about;
+
+const principles = [
+  {
+    title: 'Built by practitioners',
+    body: 'Designed by retained executive search partners, around the work a search actually involves.',
+  },
+  {
+    title: 'AI assists, you decide',
+    body: 'AI drafts the map, notes and summaries. Your team approves every change and makes every call.',
+  },
+  {
+    title: 'The retained search method',
+    body: 'Strategy, market map, assessment and report: the steps a top search firm follows, in one place.',
+  },
+];
+
+const mailboxes = [
+  { label: 'General questions', address: emails.hello },
+  { label: 'Sales and demos', address: emails.contact },
+  { label: 'Help with your workspace', address: emails.support },
+  { label: 'Partnerships and working with us', address: emails.team },
+  { label: 'Privacy and data requests', address: emails.privacy },
+  { label: 'Contracts and legal notices', address: emails.legal },
+  { label: 'Report a security issue', address: emails.security },
+];
+
+const aboutPage: JsonLdNode = {
+  '@type': 'AboutPage',
+  name: page.title,
+  url: absoluteUrl(page.path),
+  about: { '@id': `${site.url}/#organization` },
+};
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  ogTitle={page.ogTitle}
+  theme="dark"
+  jsonLd={[organization(), aboutPage, breadcrumbList([{ name: 'About', path: page.path }])]}
+>
+  <PageHero
+    eyebrow="About Uncava"
+    title="The operating system"
+    muted="for executive search."
+    intro="Uncava helps search firms and in-house talent teams map the market, find who’s in role, assess on evidence and agree the shortlist, in one place. We build it for the Gulf first, above all the UAE and Saudi Arabia."
+    secondary={{ label: 'Contact us', href: '/contact?topic=enquiry' }}
+  />
+
+  <PointGrid
+    title="What we believe."
+    muted="Evidence over instinct."
+    intro="Most searches go wrong early, and teams find out late. Uncava puts the evidence in front of you while there is still time to act on it."
+    points={principles}
+  />
+
+  <section class="sq-sec">
+    <div class="wrap">
+      <div class="sq-frame">
+        <SectionHead title="Who’s behind it." intro="Uncava was founded by Hakan Alac." />
+        <div class="grid gap-px bg-hairline md:grid-cols-2">
+          <article class="flex flex-col gap-4 bg-ink p-10 md:p-14">
+            <span class="eyebrow text-d-accent-soft">{site.founder.role}</span>
+            <h3 class="m-0 text-[28px] leading-tight tracking-[-.02em]">{site.founder.name}</h3>
+            <a
+              href={site.founder.linkedIn}
+              rel="noopener"
+              class="self-start text-[15px] font-medium text-d-accent-soft underline underline-offset-3 hover:text-d-text"
+            >
+              Hakan on LinkedIn
+            </a>
+          </article>
+          <article class="flex flex-col gap-4 bg-ink p-10 md:p-14">
+            <span class="eyebrow text-d-accent-soft">Company</span>
+            <h3 class="m-0 text-[28px] leading-tight tracking-[-.02em]">{site.legalName}</h3>
+            <dl class="m-0 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-[15px]">
+              <dt class="text-d-text-3">Focus</dt>
+              <dd class="m-0 text-d-text-1">The Gulf: the UAE and Saudi Arabia first</dd>
+              <dt class="text-d-text-3">Product</dt>
+              <dd class="m-0">
+                <a
+                  class="text-d-accent-soft underline underline-offset-3 hover:text-d-text"
+                  href={site.appUrl}
+                >
+                  app.uncava.com
+                </a>
+              </dd>
+            </dl>
+            <a
+              href={site.linkedIn}
+              rel="me noopener"
+              class="self-start text-[15px] font-medium text-d-accent-soft underline underline-offset-3 hover:text-d-text"
+            >
+              Uncava on LinkedIn
+            </a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sq-sec" id="contact">
+    <div class="wrap">
+      <div class="sq-frame">
+        <SectionHead
+          title="Talk to the right person."
+          intro="Every address reaches a person on the team. For a demo, the form is quickest."
+        />
+        <ul class="m-0 grid list-none gap-px bg-hairline p-0 sm:grid-cols-2 lg:grid-cols-3">
+          {mailboxes.map((mailbox) => (
+            <li class="flex flex-col gap-2 bg-ink px-10 py-8">
+              <span class="text-[14px] text-d-text-3">{mailbox.label}</span>
+              <a
+                href={`mailto:${mailbox.address}`}
+                class="text-[17px] font-medium text-d-text underline-offset-3 hover:underline"
+              >
+                {mailbox.address}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <DemoCta />
+</BaseLayout>

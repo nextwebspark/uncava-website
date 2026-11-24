@@ -1,0 +1,30 @@
+---
+/**
+ * A square-grid section's heading row, per the home artboard: a two-line h2 (the second line
+ * muted) and an intro. `leadsIntoExample` drops the divider when a product view follows directly.
+ */
+interface Props {
+  title: string;
+  muted?: string | undefined;
+  intro: string;
+  leadsIntoExample?: boolean;
+  id?: string;
+}
+
+const { title, muted, intro, leadsIntoExample = false, id } = Astro.props;
+---
+
+<div class:list={['sq-head', leadsIntoExample && 'nob']}>
+  <div class="sq-hrow">
+    <h2 id={id}>
+      {title}
+      {muted && (
+        <>
+          <br />
+          <span>{muted}</span>
+        </>
+      )}
+    </h2>
+    <p>{intro}</p>
+  </div>
+</div>

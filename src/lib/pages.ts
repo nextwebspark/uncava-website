@@ -13,8 +13,36 @@ export const staticPages = {
   home: {
     path: '/',
     title: site.name,
-    ogTitle: 'Build the strategy behind every C-suite search.',
+    ogTitle: 'The operating system for executive search.',
     description: site.description,
+  },
+  forSearchFirms: {
+    path: '/for-search-firms',
+    title: 'Uncava for search firms',
+    ogTitle: 'Deliver more searches with the same team.',
+    description:
+      'Uncava for retained executive search firms: faster from brief to longlist, consistent quality across consultants, client-ready evidence at every stage.',
+  },
+  forInHouseTeams: {
+    path: '/for-in-house-teams',
+    title: 'Uncava for in-house talent teams',
+    ogTitle: 'Run senior searches with search-firm rigour.',
+    description:
+      'Uncava for in-house talent teams: run senior searches with search-firm rigour, earn credibility with hiring managers and shorten time to hire.',
+  },
+  about: {
+    path: '/about',
+    title: 'About Uncava',
+    ogTitle: 'Built by practitioners of retained executive search.',
+    description:
+      'Uncava is the operating system for executive search, designed by retained search partners for search firms and in-house talent teams in the Gulf.',
+  },
+  pricing: {
+    path: '/pricing',
+    title: 'Pricing',
+    ogTitle: 'Pricing that fits how your team searches.',
+    description:
+      'Uncava pricing for search firms and in-house talent teams: what every workspace includes, and how to get a quote for your team.',
   },
   blog: {
     path: '/blog',
@@ -25,10 +53,26 @@ export const staticPages = {
   },
   contact: {
     path: '/contact',
-    title: 'Book a demo',
-    ogTitle: 'See Uncava on one of your own mandates.',
+    title: 'Book a demo or ask a question',
+    ogTitle: 'See Uncava on one of your own roles.',
     description:
-      'Book a 30-minute Uncava demo on one of your live searches: we build the brief, pull a first universe of companies and map it with you.',
+      'Book an Uncava demo on one of your live searches, or ask us anything. Tell us about your team and the role, and we will reply by email.',
+  },
+  contactThanks: {
+    path: '/contact/thanks',
+    title: 'Thanks, we have your message',
+    ogTitle: 'Thanks, we have your message.',
+    description:
+      'Your message has reached the Uncava team. We will reply by email to the address you gave us; here is what happens next.',
+    noindex: true,
+  },
+  contactError: {
+    path: '/contact/error',
+    title: 'Your message did not send',
+    ogTitle: 'Your message did not send.',
+    description:
+      'Something stopped your message from reaching Uncava. Check the form and try again, or email support@uncava.com directly.',
+    noindex: true,
   },
   security: {
     path: '/security',

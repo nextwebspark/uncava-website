@@ -1,8 +1,8 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-type Variant = 'accent' | 'ink' | 'outline-dark' | 'outline-light';
-type Size = 'sm' | 'md';
+type Variant = 'accent' | 'ink' | 'outline-dark' | 'outline-light' | 'paper' | 'ghost';
+type Size = 'sm' | 'md' | 'home';
 
 interface Props extends HTMLAttributes<'a'> {
   href: string;
@@ -25,11 +25,16 @@ const variants: Record<Variant, string> = {
   ink: 'bg-text text-white font-semibold hover:bg-ink-3',
   'outline-dark': 'border border-ink-line text-d-text font-medium hover:border-graphite-3',
   'outline-light': 'border border-line bg-panel text-text font-medium hover:border-slate-line',
+  /* The home artboard's buttons on ink: a paper-white primary and a hairline secondary. */
+  paper: 'bg-d-text text-ink font-medium hover:bg-white',
+  ghost:
+    'border border-[rgba(255,255,255,.18)] text-d-text font-medium hover:border-[rgba(255,255,255,.4)]',
 };
 
 const sizes: Record<Size, string> = {
   sm: 'rounded-lg px-[18px] py-2.5 text-sm',
   md: 'rounded-[10px] px-[22px] py-3.5 text-[15px]',
+  home: 'rounded-[6px] px-5.5 py-3.75 text-[15px] leading-none',
 };
 ---
 

@@ -33,4 +33,4 @@ Uncava is for researching markets, finding and assessing executives, and approac
 
 ## Reporting and enforcement
 
-Report misuse or a security issue to [Security email address]. We may investigate suspected breaches of this policy and suspend or remove access, content or connected accounts where necessary, telling you why unless the law prevents it.
+Report misuse or a security issue to [security@uncava.com](mailto:security@uncava.com). We may investigate suspected breaches of this policy and suspend or remove access, content or connected accounts where necessary, telling you why unless the law prevents it.

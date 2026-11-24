@@ -3,7 +3,7 @@ lastUpdated: 2026-11-13
 reviewedByCounsel: false
 ---
 
-This addendum forms part of the agreement between [Company legal name] ("Uncava") and the customer that uses Uncava ("you"). It applies when Uncava processes personal data on your behalf. A countersigned copy is available on request from [Legal email address].
+This addendum forms part of the agreement between Uncava ("Uncava") and the customer that uses Uncava ("you"). It applies when Uncava processes personal data on your behalf. A countersigned copy is available on request from [legal@uncava.com](mailto:legal@uncava.com).
 
 ## Roles
 
@@ -59,7 +59,7 @@ Uncava makes available all information reasonably needed to demonstrate complian
 
 ## Contact
 
-[Company legal name], [Registered address]. Email [Legal email address].
+Uncava, [Registered address]. Email [legal@uncava.com](mailto:legal@uncava.com).
 
 ## Annex 1: Technical and organisational measures
 

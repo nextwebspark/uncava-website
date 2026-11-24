@@ -46,8 +46,30 @@ blocks, or a form posting to an origin missing from `form-action`. When a Starli
 inline script it prints the new hash — review what changed, then replace the old hash.
 
 Adding a third-party origin (analytics, a form provider, embeds) is a security decision: add it to
-the narrowest rule, explain it in the PR. Setting `PUBLIC_DEMO_FORM_ENDPOINT` requires adding that
-origin to `form-action` for `**` — the audit fails until you do.
+the narrowest rule, explain it in the PR. Setting `PUBLIC_NEWSLETTER_FORM_ENDPOINT` requires adding
+that origin to `form-action` for `**` — the audit fails until you do.
+
+## The enquiry form (`/api/enquiry`)
+
+The site's one server endpoint. `/contact` posts to `/api/enquiry`; `hosting.rewrites` sends that to
+the `enquiry` Cloud Function (`functions/`, 2nd gen, `us-central1`, codebase `website`), so the post
+is same-origin and `form-action 'self'` holds. The function never stores anything: it validates,
+emails the enquiry to support@uncava.com through **Resend** (the account and verified uncava.com
+domain the app already uses, with the website's own sending-only key in Secret Manager as
+`RESEND_API_KEY`), and answers 303 to `/contact/thanks` or `/contact/error`. Guards: POST only;
+`Sec-Fetch-Site: same-origin` or an allowed `Origin` (uncava.com, www, the preview channels); a 10 KB
+body cap; a honeypot field (`website`) answered with a silent "thanks"; a links-in-message limit;
+no CR/LF in single-line fields (header injection); five posts per address per ten minutes per
+instance (hashed). Logs carry the outcome only, never what was typed. No auto-reply, so the form
+cannot mail a third party. It runs as `uncava-website-enquiry`, which can read that one secret.
+
+Why not post to the app (beta/app.uncava.com): the app's API is one origin with its SPA and assumes a
+signed-in, workspace-scoped caller; a public form there widens its surface, couples the two deploys,
+and needs a cross-origin `form-action`.
+
+Local: `functions/.secret.local` (`RESEND_API_KEY=…`) and `functions/.env.local`
+(`ENQUIRY_DRY_RUN=true`), both gitignored, then
+`npx firebase-tools emulators:start --only hosting,functions --project demo-uncava`.
 
 ## Secrets
 
@@ -57,26 +79,31 @@ the deploy service account.
 
 Repository (or `production` environment) variables — not secrets, they are identifiers:
 `GCP_WORKLOAD_IDENTITY_PROVIDER`, `GCP_SERVICE_ACCOUNT`, `FIREBASE_PROJECT_ID`, and optionally
-`PUBLIC_DEMO_FORM_ENDPOINT`, `PUBLIC_NEWSLETTER_FORM_ENDPOINT`. Workflows skip with a notice when the
+`PUBLIC_NEWSLETTER_FORM_ENDPOINT`. Workflows skip with a notice when the
 first three are unset.
 
 GCP lives in `scripts/gcp-bootstrap.sh` (idempotent, re-runnable): project `hak-talent-mapping`, Hosting
 site from `hosting.site` in `firebase.json`, the shared `github-pool` with this repo's own provider
 `uncava-website-provider` (condition `assertion.repository == 'nextwebspark/uncava-website'`), and the
 `uncava-website-deployer` account with `roles/firebasehosting.admin` +
-`roles/serviceusage.serviceUsageConsumer` only. Change roles there, never in the console.
+`roles/serviceusage.serviceUsageConsumer`, plus what a function deploy needs
+(`cloudfunctions.developer`, `run.admin`, `artifactregistry.admin`, `serviceAccountUser` on the
+enquiry runtime account only, `secretmanager.admin` on its one secret only). It also checks billing
+(Blaze) and creates the `RESEND_API_KEY` secret shell. Change roles there, never in the console.
 
 ## Workflows
 
-- `ci.yml` (PRs + main): `npm ci`, lint, format, check, test, build, CSP audit, Lighthouse CI.
+- `ci.yml` (PRs + main): `npm ci` (root and `functions/`), lint, format, check, the function's type
+  check and bundle, test, build, CSP audit, Lighthouse CI.
 - Merging to `main` deploys nothing. `release.yml` (manual, `bump: patch|minor|major`): requires the CI
   check green on `main`, computes the next `vX.Y.Z` from the latest tag, pushes the tag, publishes a
   GitHub Release, then calls `deploy.yml` with the tag. Its `tag` job is the only one with
   `contents: write` and the only checkout that keeps credentials (it pushes the tag).
 - `deploy.yml` (`workflow_call` from Release, or `workflow_dispatch` to redeploy / roll back a tag):
   accepts only `vX.Y.Z`, checks out the tag, `npm run verify`, writes `dist/version.json`, WIF auth,
-  `firebase-tools deploy --only hosting --message <tag>`, smoke test (version, `h1`, CSP, HSTS,
-  `/admin` noindex). Runs in the `production` environment.
+  `firebase-tools deploy --only hosting,functions:website --message <tag>`, smoke test (version,
+  `h1`, CSP, HSTS, security.txt, a honeypot POST to `/api/enquiry` answering 303 thanks, `/admin`
+  noindex). Runs in the `production` environment.
 - `preview.yml` (same-repo PRs only — forks never get OIDC): build, preview channel `pr-<n>` for 7 days,
   sticky comment with the URL.
 - Every third-party action is pinned to a full commit SHA with its version in a comment; Dependabot

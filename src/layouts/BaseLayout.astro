@@ -8,15 +8,18 @@ import { site } from '~/lib/site';
 import '~/styles/global.css';
 
 interface Props extends SeoProps {
-  header?: 'light' | 'dark-overlay';
-  footer?: 'full' | 'compact';
+  /** `dark` is the home artboard's ink page (home, product and company pages); `light` the rest. */
+  theme?: 'light' | 'dark';
+  /** The home page lays its header over the hero. */
+  headerOverlay?: boolean;
 }
 
-const { header = 'light', footer = 'compact', ...seo } = Astro.props;
+const { theme = 'light', headerOverlay = false, ...seo } = Astro.props;
+const isDark = theme === 'dark';
 ---
 
 <!doctype html>
-<html lang={site.locale}>
+<html lang={site.locale} class:list={[isDark && 'dark-page']}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,17 +45,19 @@ const { header = 'light', footer = 'compact', ...seo } = Astro.props;
     />
     <slot name="head" />
   </head>
-  <body class="flex min-h-dvh flex-col">
+  <body class:list={['flex min-h-dvh flex-col', isDark && 'bg-ink text-d-text']}>
     <a
       href="#main"
       class="sr-only z-50 rounded-lg bg-text px-4 py-2 text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
     >
       Skip to content
     </a>
-    <SiteHeader tone={header === 'light' ? 'light' : 'dark'} overlay={header === 'dark-overlay'} />
-    <main id="main" class="flex-1">
-      <slot />
-    </main>
-    <SiteFooter variant={footer} />
+    <div class:list={['flex flex-1 flex-col', isDark && 'uvroot relative overflow-x-clip']}>
+      <SiteHeader tone={theme} overlay={headerOverlay} />
+      <main id="main" class="flex-1">
+        <slot />
+      </main>
+      <SiteFooter tone={theme} />
+    </div>
   </body>
 </html>

@@ -1,0 +1,29 @@
+---
+import ButtonLink from './ButtonLink.astro';
+
+/** A short dark page that answers one moment: a form sent, a form that failed, a missing page. */
+interface Props {
+  eyebrow: string;
+  title: string;
+  links: readonly { label: string; href: string; primary?: boolean }[];
+}
+
+const { eyebrow, title, links } = Astro.props;
+---
+
+<section class="container-wide flex flex-col gap-6 pt-16 pb-24 md:pt-28 md:pb-36">
+  <p class="eyebrow m-0 text-d-accent-soft">{eyebrow}</p>
+  <h1 class="m-0 max-w-[880px] font-sans text-[40px] leading-[1.04] font-semibold tracking-[-.04em] md:text-[60px]">
+    {title}
+  </h1>
+  <div class="flex max-w-[640px] flex-col gap-4 text-[17px] leading-[1.6] text-d-text-2">
+    <slot />
+  </div>
+  <div class="mt-4 flex flex-wrap gap-3">
+    {links.map((link) => (
+      <ButtonLink href={link.href} variant={link.primary ? 'paper' : 'ghost'} size="home">
+        {link.label}
+      </ButtonLink>
+    ))}
+  </div>
+</section>

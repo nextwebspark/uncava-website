@@ -8,7 +8,7 @@ description: How the uncava.com Astro site is built — stack, directory layout,
 ## Stack
 
 Astro (static output, `strictest` TypeScript), Starlight mounted at `/docs`, Tailwind CSS v4 through
-`@tailwindcss/vite`, self-hosted Geist / Geist Mono (`@fontsource-variable/*`) and Montserrat 200 for the wordmark
+`@tailwindcss/vite`, self-hosted Geist / JetBrains Mono (`@fontsource-variable/*`) and Montserrat 200 for the wordmark
 only (`@fontsource/montserrat`, both Latin files preloaded in `BaseLayout`), Vitest, ESLint flat
 config, Prettier. Exact versions are pinned in `package.json`; Node comes from `.nvmrc`.
 
@@ -19,8 +19,9 @@ config, Prettier. Exact versions are pinned in `package.json`; Node comes from `
 - `src/components/site/` — used on every page (header, footer, `BrandMark`, `BrandLockup`,
   `ButtonLink`, `Icon`). `home/`, `blog/`, `docs/` — used by one area. `seo/` — head output.
 - `src/layouts/BaseLayout.astro` — every non-docs page. It owns `<html>`, fonts, favicons, `<Seo>`,
-  header, `<main id="main">` and footer. Props: SEO props + `header` (`light` | `dark-overlay`) +
-  `footer` (`full` | `compact`). Only the home page uses `dark-overlay` + `full`, per the artboards.
+  header, `<main id="main">` and footer. Props: SEO props + `theme` (`light` | `dark`) +
+  `headerOverlay` (home only: the header sits over the hero). Dark pages import `~/styles/home.css`
+  through the components they use (`components/home/*`, `components/marketing/*`).
 - `src/lib/` — pure, framework-free TypeScript with tests beside it. Anything testable goes here, not
   in a component.
 
@@ -35,10 +36,19 @@ config, Prettier. Exact versions are pinned in `package.json`; Node comes from `
 ## Islands policy: zero JS by default
 
 Every page ships no JavaScript unless a feature is impossible without it. The mobile nav is a
-`<details>` element, not a script. The only script today is `CopyLinkButton` (hidden until the
-Clipboard API exists — progressive enhancement). Before adding one: can CSS, `<details>`, a link or a
-form do it? "Animate on scroll" is CSS too (`animation-timeline: scroll()` or `view()` inside `@supports`), and
-so is a loop: `OpeningMark.astro` is plain `@keyframes`. If not, use a processed `<script>` (bundled to `/_astro/*.js`).
+`<details>` element, not a script. Before adding one: can CSS, `<details>`, a link or a form do it?
+If not, use a processed `<script>` (bundled to `/_astro/*.js`). Scripts today: `CopyLinkButton`
+(progressive enhancement), the contact form's `?topic=` preselect, and the home page's demos.
+
+**The home demos are Preact components rendered at build time.** `HeroScenes`, `UncoverDemo`,
+`FeatureShowcase` and `SearchStages` (`.tsx` in `components/home/`) render to static HTML with no
+`client:*` directive — so Astro emits no island bootstrap, which would be an inline script — and sit
+in a `data-island` element. `src/scripts/home.ts`, a processed script, hydrates them and starts the
+scroll storytelling. Pages that reuse a demo section import `~/scripts/home` too.
+
+**Trap: no `style` attribute, ever, including from JSX.** The CSP blocks it in the HTML. Static
+values are literal Tailwind classes (`left-[7%]`), SVG attributes, or classes; values only known at
+run time go through `runtimeStyle()` (a ref that sets them via the CSSOM, which the CSP allows).
 
 **Trap:** Astro inlines small processed scripts under Vite's `assetsInlineLimit`; an inline script
 violates the CSP. `astro.config.mjs` sets `vite.build.assetsInlineLimit: 0` and

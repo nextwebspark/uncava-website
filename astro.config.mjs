@@ -1,4 +1,5 @@
 // @ts-check
+import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
@@ -20,6 +21,9 @@ export default defineConfig({
   },
   devToolbar: { enabled: false },
   integrations: [
+    // Renders the home page's product demos to static HTML at build time; src/scripts/home.ts
+    // hydrates them from a bundled module, so no island bootstrap script is ever inlined.
+    preact(),
     starlight({
       title: 'Uncava Docs',
       description: 'How to run executive search mandates in Uncava.',
@@ -48,7 +52,8 @@ export default defineConfig({
     }),
     sitemap({
       filter: (page) =>
-        !/\/(admin|404)(\/|$)/.test(new URL(page).pathname) && !page.endsWith('/docs'),
+        !/\/(admin|404|contact\/thanks|contact\/error)(\/|$)/.test(new URL(page).pathname) &&
+        !page.endsWith('/docs'),
     }),
   ],
   vite: {

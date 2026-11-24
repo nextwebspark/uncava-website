@@ -34,4 +34,4 @@ You can block or delete cookies in your browser settings. If you block the cooki
 
 ## Questions
 
-See the [Privacy policy](/privacy) or email [Privacy email address].
+See the [Privacy policy](/privacy) or email [privacy@uncava.com](mailto:privacy@uncava.com).

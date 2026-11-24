@@ -1,0 +1,28 @@
+---
+import PayPanel from './demo/PayPanel';
+import SectionHead from './SectionHead.astro';
+---
+
+<section class="sq-sec">
+  <div class="wrap">
+    <div class="sq-frame">
+      <SectionHead
+        title="Most searches go wrong early."
+        muted="Teams find out late."
+        intro="Uncava puts that evidence in front of you in real time, so you reset the brief with your hiring manager or client early, before a stalled search adds weeks of vacancy cost."
+        leadsIntoExample
+      />
+      <div class="sq-vrow">
+        <div class="sq-vis">
+          <div
+            class="pfix"
+            role="img"
+            aria-label="Remuneration view: the offered ceiling of AED 1.2M sits at the 47th percentile of 32 disclosed packages in the UAE"
+          >
+            <PayPanel variant="frame" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -5,13 +5,29 @@ export const site = {
   locale: 'en',
   ogLocale: 'en_GB',
   themeColor: '#08090b',
-  tagline: 'C-suite executive search & strategy',
+  tagline: 'The operating system for executive search',
   description:
-    'Uncava is the C-suite executive search workspace: build the search strategy, map every company and executive with AI research, and bring the client a shortlist.',
-  contactEmail: '[hello@uncava.com]',
-  legalName: '[Company legal name]',
+    'Uncava is the operating system for executive search: map the market, find who is in role, assess on evidence and agree the shortlist, in one place.',
+  legalName: 'Uncava',
   registeredAddress: '[Registered address]',
-  sameAs: [] as readonly string[],
+  linkedIn: 'https://www.linkedin.com/company/uncava/',
+  sameAs: ['https://www.linkedin.com/company/uncava/'] as readonly string[],
+  founder: {
+    name: 'Hakan Alac',
+    role: 'Founder',
+    linkedIn: 'https://www.linkedin.com/in/hakanalac/',
+  },
+} as const;
+
+/** Every published mailbox, by the job it does. The enquiry form delivers to `support`. */
+export const emails = {
+  support: 'support@uncava.com',
+  hello: 'hello@uncava.com',
+  contact: 'contact@uncava.com',
+  team: 'team@uncava.com',
+  privacy: 'privacy@uncava.com',
+  legal: 'legal@uncava.com',
+  security: 'security@uncava.com',
 } as const;
 
 export interface NavLink {
@@ -20,52 +36,25 @@ export interface NavLink {
 }
 
 export const primaryNav: readonly NavLink[] = [
-  { label: 'Product', href: '/#workflow' },
-  { label: 'Security', href: '/security' },
-  { label: 'Docs', href: '/docs' },
+  { label: 'Product', href: '/#highlights' },
+  { label: 'How it works', href: '/#workflow' },
+  { label: 'FAQ', href: '/#faq' },
+  { label: 'About', href: '/about' },
+  { label: 'Pricing', href: '/pricing' },
+];
+
+export const footerNav: readonly NavLink[] = [
+  { label: 'About Us', href: '/about' },
+  { label: 'Terms of Service', href: '/terms' },
+  { label: 'Privacy Policy', href: '/privacy' },
+  { label: 'GDPR', href: '/legal' },
+];
+
+export const footerResources: readonly NavLink[] = [
+  { label: 'For search firms', href: '/for-search-firms' },
+  { label: 'For in-house teams', href: '/for-in-house-teams' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Docs', href: '/docs' },
+  { label: 'Security', href: '/security' },
   { label: 'Contact', href: '/contact' },
-];
-
-export const footerNav: readonly {
-  readonly heading: string;
-  readonly links: readonly NavLink[];
-}[] = [
-  {
-    heading: 'Product',
-    links: [
-      { label: 'Search strategy', href: '/#strategy' },
-      { label: 'AI research', href: '/#ai' },
-      { label: 'Companies', href: '/#companies' },
-      { label: 'Reports', href: '/#reports' },
-      { label: 'Talent map', href: '/#features' },
-      { label: 'Capture extension', href: '/docs/capture/install-the-extension' },
-    ],
-  },
-  {
-    heading: 'Resources',
-    links: [
-      { label: 'Docs', href: '/docs' },
-      { label: 'Blog', href: '/blog' },
-      { label: 'Security', href: '/security' },
-    ],
-  },
-  {
-    heading: 'Company',
-    links: [
-      { label: 'Contact', href: '/contact' },
-      { label: 'Privacy', href: '/privacy' },
-      { label: 'Terms', href: '/terms' },
-      { label: 'Legal', href: '/legal' },
-    ],
-  },
-];
-
-export const compactFooterNav: readonly NavLink[] = [
-  { label: 'Docs', href: '/docs' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Security', href: '/security' },
-  { label: 'Privacy', href: '/privacy' },
-  { label: 'Terms', href: '/terms' },
-  { label: 'Legal', href: '/legal' },
 ];

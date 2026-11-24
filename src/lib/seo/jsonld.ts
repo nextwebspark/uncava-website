@@ -1,4 +1,4 @@
-import { site } from '../site';
+import { emails, site } from '../site';
 import { absoluteUrl } from './url';
 
 export type JsonLdNode = { readonly '@type': string } & Readonly<Record<string, unknown>>;
@@ -17,8 +17,21 @@ export function organization(): JsonLdNode {
     '@id': ORGANIZATION_ID,
     name: site.name,
     url: absoluteUrl('/'),
+    legalName: site.legalName,
     logo: absoluteUrl('/apple-touch-icon.png'),
+    email: emails.hello,
     ...(site.sameAs.length > 0 ? { sameAs: [...site.sameAs] } : {}),
+    founder: {
+      '@type': 'Person',
+      name: site.founder.name,
+      jobTitle: site.founder.role,
+      sameAs: [site.founder.linkedIn],
+    },
+    contactPoint: [
+      { '@type': 'ContactPoint', contactType: 'sales', email: emails.hello },
+      { '@type': 'ContactPoint', contactType: 'customer support', email: emails.support },
+      { '@type': 'ContactPoint', contactType: 'security', email: emails.security },
+    ],
   };
 }
 
