@@ -56,7 +56,8 @@ gcloud services enable \
     firebase.googleapis.com firebasehosting.googleapis.com \
     iam.googleapis.com iamcredentials.googleapis.com sts.googleapis.com \
     cloudfunctions.googleapis.com run.googleapis.com cloudbuild.googleapis.com \
-    artifactregistry.googleapis.com secretmanager.googleapis.com \
+    artifactregistry.googleapis.com secretmanager.googleapis.com eventarc.googleapis.com pubsub.googleapis.com \
+    storage.googleapis.com cloudbilling.googleapis.com \
     --project="$PROJECT"
 
 # ── Firebase and the Hosting site ─────────────────────────────────────────────
@@ -127,7 +128,7 @@ echo "  ✓ ${ENQUIRY_SA} can read ${ENQUIRY_SECRET}, and no other secret"
 
 # Deploying a 2nd-gen function: create and update it (functions + Cloud Run), make it publicly
 # invocable (run.admin sets that policy), and clean up old build images (artifactregistry).
-for ROLE in roles/cloudfunctions.developer roles/run.admin roles/artifactregistry.admin; do
+for ROLE in roles/cloudfunctions.admin roles/run.admin roles/artifactregistry.admin; do
     gcloud projects add-iam-policy-binding "$PROJECT" \
         --member="serviceAccount:${DEPLOY_SA_EMAIL}" --role="$ROLE" --condition=None --quiet >/dev/null
     echo "  ✓ deployer has ${ROLE}"
@@ -136,10 +137,22 @@ done
 gcloud iam service-accounts add-iam-policy-binding "$ENQUIRY_SA_EMAIL" --project="$PROJECT" --quiet \
     --member="serviceAccount:${DEPLOY_SA_EMAIL}" --role=roles/iam.serviceAccountUser >/dev/null
 echo "  ✓ deployer may act as ${ENQUIRY_SA} only"
+# firebase-tools refuses any functions deploy unless the deployer may act as the App Engine default
+# account, even when the function runs as its own. That account holds no roles here; keep it so.
+gcloud iam service-accounts add-iam-policy-binding "${PROJECT}@appspot.gserviceaccount.com" \
+    --project="$PROJECT" --quiet \
+    --member="serviceAccount:${DEPLOY_SA_EMAIL}" --role=roles/iam.serviceAccountUser >/dev/null
+echo "  ✓ deployer passes firebase-tools' App Engine account check"
 # firebase-tools reads the secret's version and policy at deploy time; scoped to this one secret.
 gcloud secrets add-iam-policy-binding "$ENQUIRY_SECRET" --project="$PROJECT" --quiet \
     --member="serviceAccount:${DEPLOY_SA_EMAIL}" --role=roles/secretmanager.admin >/dev/null
 echo "  ✓ deployer manages ${ENQUIRY_SECRET} only"
+# Cloud Build builds a 2nd-gen function as the Compute Engine default account, which a project
+# created after mid-2024 leaves without roles; the build fails without this one.
+gcloud projects add-iam-policy-binding "$PROJECT" --condition=None --quiet \
+    --member="serviceAccount:${PROJECT_NUMBER}-compute@developer.gserviceaccount.com" \
+    --role=roles/cloudbuild.builds.builder >/dev/null
+echo "  ✓ the function build account can build"
 
 # ── Workload Identity Federation ──────────────────────────────────────────────
 say "Workload Identity Federation"
