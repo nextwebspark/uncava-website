@@ -29,8 +29,9 @@ export const enquiry = onRequest(
     memory: '256MiB',
     timeoutSeconds: 15,
     secrets: [resendApiKey],
-    // Its own identity (scripts/gcp-bootstrap.sh), able to read the Resend key and nothing else.
-    serviceAccount: 'uncava-website-enquiry@',
+    // Its own identity (scripts/gcp-bootstrap.sh), able to read the Resend key and nothing else. The
+    // full address: firebase-tools does not expand the 'name@' shorthand when it binds the secret.
+    serviceAccount: 'uncava-website-enquiry@hak-talent-mapping-fe0e5.iam.gserviceaccount.com',
     invoker: 'public',
   },
   async (req, res) => {

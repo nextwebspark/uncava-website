@@ -88,7 +88,7 @@ site from `hosting.site` in `firebase.json`, the shared `github-pool` with this 
 `uncava-website-provider` (condition `assertion.repository == 'nextwebspark/uncava-website'`), and the
 `uncava-website-deployer` account with `roles/firebasehosting.admin` +
 `roles/serviceusage.serviceUsageConsumer`, plus what a function deploy needs
-(`cloudfunctions.developer`, `run.admin`, `artifactregistry.admin`, `serviceAccountUser` on the
+(`cloudfunctions.admin`, `run.admin`, `artifactregistry.admin`, `serviceAccountUser` on the
 enquiry runtime account only, `secretmanager.admin` on its one secret only). It also checks billing
 (Blaze) and creates the `RESEND_API_KEY` secret shell. Change roles there, never in the console.
 
