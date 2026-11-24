@@ -2,9 +2,11 @@
 import { primaryNav, site } from '~/lib/site';
 import BrandMark from './BrandMark.astro';
 import Icon from './Icon.astro';
+import ThemeToggle from './ThemeToggle.astro';
 
 interface Props {
-  tone: 'dark' | 'light';
+  /** `adaptive` follows the page's light/dark switch and shows the toggle. */
+  tone: 'dark' | 'adaptive';
   overlay?: boolean;
 }
 
@@ -22,13 +24,18 @@ const link = isDark
   : 'text-text-2 hover:text-text aria-[current=page]:text-text';
 const primary = isDark
   ? 'bg-d-text text-ink hover:bg-white'
-  : 'bg-accent text-on-accent hover:bg-accent-hover';
+  : 'bg-accent text-on-accent hover:bg-accent-hover dark:bg-d-text dark:text-ink dark:hover:bg-white';
 ---
 
+<!-- Stays in view while the page scrolls. Over the home hero it starts clear and turns solid as the
+     page moves (site-header-overlay in global.css). -->
 <header
   class:list={[
-    isDark ? 'text-d-text' : 'border-b border-line bg-panel text-text',
-    overlay ? 'absolute inset-x-0 top-0 z-20' : isDark && 'border-b border-hairline',
+    'site-header top-0 z-40 border-b backdrop-blur-md',
+    isDark
+      ? 'border-hairline bg-ink/80 text-d-text'
+      : 'border-line bg-panel/85 text-text dark:border-hairline dark:bg-ink/80',
+    overlay ? 'site-header-overlay fixed inset-x-0' : 'sticky',
   ]}
 >
   <nav aria-label="Primary" class="relative">
@@ -38,12 +45,12 @@ const primary = isDark
         'flex items-center justify-between gap-4 py-4',
       ]}
     >
-      <a href="/" class="flex items-center gap-2.5" aria-label={`${site.name} home`}>
+      <a href="/" class="flex items-center gap-2.5 text-current" aria-label={`${site.name} home`}>
         <BrandMark size={26} weight="fine" />
         <span class="wordmark text-[15px]">{site.name}</span>
       </a>
 
-      <div class="hidden items-center gap-6.5 text-[14px] lg:flex">
+      <div class="hidden items-center gap-6.5 text-[14px] lg:ml-auto lg:flex">
         {primaryNav.map((item) => (
           <a
             href={item.href}
@@ -70,6 +77,10 @@ const primary = isDark
           Book a demo
         </a>
       </div>
+
+      {!isDark && (
+        <ThemeToggle class="ml-auto border-line text-text-2 hover:border-slate-line hover:text-text lg:ml-0" />
+      )}
 
       <details class="group lg:hidden">
         <summary class="grid size-11 cursor-pointer list-none place-items-center rounded-lg [&::-webkit-details-marker]:hidden">

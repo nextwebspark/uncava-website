@@ -10,7 +10,7 @@
 # Needs gcloud logged in as a project owner. No service-account key is ever created.
 set -euo pipefail
 
-PROJECT="${GCP_PROJECT:-hak-talent-mapping}"
+PROJECT="${GCP_PROJECT:-hak-talent-mapping-fe0e5}"  # the Firebase project (number 760406747757), not the app's hak-talent-mapping
 REPO="${GITHUB_REPO:-nextwebspark/uncava-website}"
 SITE="$(node -p 'require("./firebase.json").hosting.site')"
 

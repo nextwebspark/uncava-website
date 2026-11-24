@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
+import { blogListed } from './src/lib/site.ts';
 
 export default defineConfig({
   site: 'https://uncava.com',
@@ -32,11 +33,12 @@ export default defineConfig({
       credits: false,
       titleDelimiter: '—',
       customCss: ['./src/styles/docs.css'],
-      head: [{ tag: 'meta', attrs: { name: 'theme-color', content: '#ffffff' } }],
+      head: [{ tag: 'meta', attrs: { name: 'theme-color', content: '#08090b' } }],
       components: {
         Head: './src/components/docs/DocsHead.astro',
         Header: './src/components/docs/DocsHeader.astro',
-        SiteTitle: './src/components/docs/DocsSiteTitle.astro',
+        ThemeProvider: './src/components/docs/DocsThemeProvider.astro',
+        ThemeSelect: './src/components/docs/DocsThemeSelect.astro',
       },
       sidebar: [
         {
@@ -53,7 +55,8 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !/\/(admin|404|contact\/thanks|contact\/error)(\/|$)/.test(new URL(page).pathname) &&
-        !page.endsWith('/docs'),
+        !page.endsWith('/docs') &&
+        (blogListed || !/^\/blog(\/|$)/.test(new URL(page).pathname)),
     }),
   ],
   vite: {

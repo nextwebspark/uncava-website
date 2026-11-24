@@ -33,11 +33,8 @@ const steps = [
 ];
 
 const directory = [
-  { label: 'Sales and demos', address: emails.contact },
-  { label: 'General questions', address: emails.hello },
+  { label: 'Demos, sales and general questions', address: emails.contact },
   { label: 'Help with your workspace', address: emails.support },
-  { label: 'Privacy and data requests', address: emails.privacy },
-  { label: 'Report a security issue', address: emails.security },
 ];
 
 const field =
@@ -265,13 +262,6 @@ const optional = 'font-normal text-d-text-3';
           class="text-d-accent-soft underline underline-offset-3 hover:text-d-text"
         >
           privacy policy
-        </a>{' '}
-        or write to{' '}
-        <a
-          href={`mailto:${emails.privacy}`}
-          class="text-d-accent-soft underline underline-offset-3 hover:text-d-text"
-        >
-          {emails.privacy}
         </a>
         .
       </p>

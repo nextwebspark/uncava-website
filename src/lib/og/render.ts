@@ -24,7 +24,7 @@ function loadFonts() {
     file('geist/files/geist-latin-400-normal.woff'),
     file('geist/files/geist-latin-500-normal.woff'),
     file('geist/files/geist-latin-600-normal.woff'),
-    file('montserrat/files/montserrat-latin-200-normal.woff'),
+    file('montserrat/files/montserrat-latin-400-normal.woff'),
   ]).then(([regular, medium, semibold, wordmark]) => ({ regular, medium, semibold, wordmark }));
   return fonts;
 }
@@ -82,7 +82,7 @@ export async function renderOgImage(card: OgCard): Promise<Buffer> {
           {
             fontFamily: 'Montserrat',
             fontSize: 30,
-            fontWeight: 200,
+            fontWeight: 400,
             letterSpacing: '0.38em',
             color: '#f4f6f8',
           },
@@ -125,7 +125,7 @@ export async function renderOgImage(card: OgCard): Promise<Buffer> {
       { name: 'Geist', data: regular, weight: 400, style: 'normal' },
       { name: 'Geist', data: medium, weight: 500, style: 'normal' },
       { name: 'Geist', data: semibold, weight: 600, style: 'normal' },
-      { name: 'Montserrat', data: wordmark, weight: 200, style: 'normal' },
+      { name: 'Montserrat', data: wordmark, weight: 400, style: 'normal' },
     ],
   });
 

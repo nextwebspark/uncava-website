@@ -19,8 +19,18 @@ browser to see the motion. Its stylesheet is ported rule for rule into `src/styl
 explicit request. Dark pages without an artboard — `/contact`, `/about`, `/pricing`,
 `/for-search-firms`, `/for-in-house-teams`, `/contact/thanks|error` — reuse the home artboard's
 square-grid vocabulary (`sq-sec`, `sq-frame`, `sq-head`, `sq-list3`, `fk-*`, `faq`) through
-`SectionHead`, `PageHero` and `PointGrid`. `/security`, `/legal`, the legal documents and `/404` stay
-light and reuse the blog vocabulary.
+`SectionHead`, `PageHero` and `PointGrid`. `/security`, `/legal`, the legal documents and `/404` reuse
+the blog vocabulary and are dark only, with the home header and footer.
+
+**Light and dark.** The whole site opens dark. The blog vocabulary is written in the light tokens
+(`paper`, `panel`, `text`, `line` …); on a reading page (`BaseLayout theme="reading"`,
+`<html data-theme="dark">`) `global.css` maps those tokens to the ink values, so one set of markup
+serves both schemes. Only the blog (`themeSwitch`) and the docs offer a light mode, through
+`ThemeToggle` in the header; the choice is shared (`uncava-theme` in localStorage, `src/lib/theme.ts`)
+and applied before first paint by `public/theme-init.js`. In dark, `accent` stays the white-text
+fill and `accent-deep` (accent as text, links) becomes `d-accent`: write link and accent text as
+`accent-deep`, never `text-accent`. Use `text-panel` for text on a `bg-text` fill, never
+`text-white`, so it inverts. `dark:` targets `[data-theme=dark]`, not the OS.
 
 ## Tokens (`src/styles/theme.css`)
 
@@ -65,12 +75,13 @@ Never hard-code a hex in a component when a token exists; add a token instead.
 
 - The mark is the app's: an isometric cube with a filled top face, drawn bare (no tile) in
   `currentColor` by `BrandMark.astro` (`size` is the height; width is 72/104 of it; the stroke
-  thickens below 28px like the app's bold icons; `weight="fine"` is the artboard's hairline drawing
-  for the header and footer). Source: `brand/mark.svg`, from the app's
+  thickens below 28px like the app's bold icons; `weight="fine"` is the header and footer drawing,
+  stroke 3.4, heavier than the artboard's 2.2 hairline at the owner's request). Source: `brand/mark.svg`, from the app's
   `apps/web/public/brand/uncava-app-icon-*.svg`. Never redraw, recolour, stretch or add effects.
-- The wordmark is **Montserrat 200, uppercase, letter-spacing 0.38em** with a −0.38em right margin
+- The wordmark is **Montserrat 400, uppercase, letter-spacing 0.38em** (the app uses 200; the
+  owner asked for a heavier one on the site, 2026-11) with a −0.38em right margin
   (`wordmark` utility), set beside the mark by `BrandLockup`. Montserrat is self-hosted at weight
-  200 only and used for nothing else. Never title-case, never bold.
+  400 only and used for nothing else. Never title-case, never bold.
 - Favicons, the touch icon and `icon-*.png` come from the app unchanged; `favicon.svg` (ink) and
   `favicon-dark.svg` (light, `media="(prefers-color-scheme: dark)"`) avoid an inline `<style>`,
   which the CSP would block. `tests/brand-assets.test.ts` keeps `public/` copies identical.
@@ -88,7 +99,7 @@ Wahat Food Holding, Sabkha Distribution, …). Keep it that way when the artboar
 
 ## Typography
 
-Geist for everything except the wordmark (Montserrat 200), JetBrains Mono (the home artboard's mono,
+Geist for everything except the wordmark (Montserrat 400), JetBrains Mono (the home artboard's mono,
 self-hosted as `@fontsource-variable/jetbrains-mono`) for eyebrows, meta lines, table headers and
 numbers-as-labels.
 Headings weight 600 with negative tracking.
@@ -116,11 +127,25 @@ variant="paper" size="home"`), secondary the hairline `ghost`; on light pages th
 
 ## Header and footer
 
-Per the home artboard, on every page (`tone` dark or light): mark (`BrandMark weight="fine"`) and
-wordmark; Product, How it works, FAQ, About, Pricing | Sign in, Book a demo. The footer is the
-artboard's — logo, About Us · Terms of Service · Privacy Policy · GDPR (→ `/legal`), LinkedIn
-"Follow us", © line — plus one row the artboard lacks (for-firms/in-house pages, Blog, Docs, Security,
-Contact, support@) so no page is orphaned.
+Per the home artboard, on every page (`tone` dark, or `adaptive` on the blog with its light/dark
+toggle): mark (`BrandMark weight="fine"`) and wordmark; Product, How it works, FAQ, About, Pricing |
+Sign in, Book a demo. The header stays in view while the page scrolls (owner's request; the artboard
+draws it absolute): `sticky` on every page, `fixed` over the home hero, where it starts clear and
+turns translucent ink over the first 120px of scrolling (a CSS scroll timeline, `.site-header-overlay`
+in `global.css`). `--site-header-height` keeps anchor jumps and sticky sidebars clear of it.
+Pinned home sections stick just below it and keep their scaled size once released.
+
+The docs header follows Linear's docs (owner's reference): a left column exactly the sidebar's width
+(mark → `/`, divider, "Docs" → `/docs`, round search button) and a bar with the breadcrumb (Home /
+section), the round theme switch and a pill "Sign in".
+
+The blog is unlisted while `blogListed` in `src/lib/site.ts` is false (owner's call, 2026-11): no
+link to it anywhere, no RSS discovery link, out of the sitemap and llms.txt. Flip the flag to list it.
+
+The footer departs from the artboard at the owner's request: a link directory. Logo, then five
+columns from `footerColumns` in `site.ts` (Product, Solutions, Company, Resources, Connect), then a
+rule with Privacy · Terms · GDPR and other policies and the © line. Only real pages and mailboxes go
+in it; no placeholder links.
 
 ## Motion
 

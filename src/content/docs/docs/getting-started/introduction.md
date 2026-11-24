@@ -46,6 +46,6 @@ Uncava follows the order a consultant works a mandate:
 
 ## Signing in
 
-Sign in to Uncava at [app.uncava.com](https://app.uncava.com) with your work email and password, or with Google or LinkedIn.
+Sign in to Uncava at [beta.uncava.com](https://beta.uncava.com) with your work email and password, or with Google or LinkedIn.
 
 Next, set up [your first mandate](/docs/getting-started/your-first-mandate).

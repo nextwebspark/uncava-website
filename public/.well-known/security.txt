@@ -1,4 +1,4 @@
-# Report a security issue in uncava.com or app.uncava.com.
+# Report a security issue in uncava.com or beta.uncava.com.
 Contact: mailto:security@uncava.com
 Expires: 2027-11-01T00:00:00.000Z
 Preferred-Languages: en

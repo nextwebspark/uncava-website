@@ -67,8 +67,13 @@ export function startHomeStory(): void {
     if (tallest) inner.style.setProperty('--aph', `${Math.ceil(tallest + 14)}px`);
   };
 
+  const header = document.querySelector<HTMLElement>('.site-header');
+
   const tick = () => {
     const viewport = window.innerHeight;
+    // The header stays fixed over the page, so a pinned section sticks just below it.
+    const headerHeight = header?.offsetHeight ?? 0;
+    const pinHeight = viewport - headerHeight;
     let y = window.scrollY;
     const now = Date.now();
     const quiet = now < quietUntil;
@@ -91,14 +96,15 @@ export function startHomeStory(): void {
       if (measure && inner && pin !== 'an') {
         inner.style.setProperty(
           '--ps',
-          String(Math.min(1, (viewport - 40) / (inner.offsetHeight || 1))),
+          String(Math.min(1, (pinHeight - 40) / (inner.offsetHeight || 1))),
         );
+        inner.style.setProperty('--pih', `${inner.offsetHeight}px`);
       }
       if (measure && inner && pin === 'an') {
         sizeStagesPanel(inner);
         const panel = inner.querySelector<HTMLElement>('.an-text');
         const panelHeight = panel ? panel.offsetHeight : 240;
-        const available = viewport - panelHeight - 40;
+        const available = pinHeight - panelHeight - 40;
         const width = (inner.parentElement?.clientWidth ?? inner.offsetWidth) || inner.offsetWidth;
         inner.style.setProperty(
           '--asw',
@@ -119,7 +125,7 @@ export function startHomeStory(): void {
       if (goingUp && rect.top < viewport && rect.bottom > 0) {
         // Scrolling up through a pinned section: drop the effect and show it as a normal section.
         const docTop = rect.top + y;
-        const engaged = rect.top <= 0;
+        const engaged = rect.top <= headerHeight;
         wrap.classList.add('pin-done');
         if (engaged) y = jumpTo(Math.max(0, docTop + Math.max(0, wrap.offsetHeight - viewport)));
         continue;
@@ -131,8 +137,8 @@ export function startHomeStory(): void {
         if (delta) y = jumpTo(y + delta);
         continue;
       }
-      const travel = Math.max(1, wrap.offsetHeight - viewport);
-      const progress = Math.min(1, Math.max(0, -rect.top / travel));
+      const travel = Math.max(1, wrap.offsetHeight - pinHeight);
+      const progress = Math.min(1, Math.max(0, (headerHeight - rect.top) / travel));
       const index = Math.min(steps - 1, Math.floor(progress * steps));
       if (lastStep[pin] === index) continue;
       lastStep[pin] = index;

@@ -1,5 +1,5 @@
 /*
- * Design tokens: the UNCAVA palette (app.uncava.com's --u-* tokens), as drawn in design/*.dc.html.
+ * Design tokens: the UNCAVA palette (the app's --u-* tokens), as drawn in design/*.dc.html.
  * Shared by the site (global.css) and the docs (docs.css), so a token changes in one place.
  * Two values are darkened from the app's for WCAG AA at the small sizes this site sets them in:
  * --color-text-3 (4.49 → 4.69 on paper) and --color-green-text; the originals stay for fills.
@@ -101,11 +101,12 @@
   text-transform: uppercase;
 }
 
-/* The app's wordmark: Montserrat 200, uppercase, wide tracking. The negative margin cancels the
-   tracking after the last letter so the word centres and aligns optically. */
+/* The wordmark: Montserrat, uppercase, wide tracking. The site sets it at 400, heavier than the
+   app's 200, which read too faint at header size (owner's call, 2026-11). The negative margin
+   cancels the tracking after the last letter so the word centres and aligns optically. */
 @utility wordmark {
   font-family: var(--font-brand);
-  font-weight: 200;
+  font-weight: 400;
   letter-spacing: var(--tracking-wordmark);
   margin-right: calc(var(--tracking-wordmark) * -1);
   text-transform: uppercase;

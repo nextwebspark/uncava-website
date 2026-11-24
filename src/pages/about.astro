@@ -27,13 +27,8 @@ const principles = [
 ];
 
 const mailboxes = [
-  { label: 'General questions', address: emails.hello },
-  { label: 'Sales and demos', address: emails.contact },
+  { label: 'Demos, sales and general questions', address: emails.contact },
   { label: 'Help with your workspace', address: emails.support },
-  { label: 'Partnerships and working with us', address: emails.team },
-  { label: 'Privacy and data requests', address: emails.privacy },
-  { label: 'Contracts and legal notices', address: emails.legal },
-  { label: 'Report a security issue', address: emails.security },
 ];
 
 const aboutPage: JsonLdNode = {
@@ -94,7 +89,7 @@ const aboutPage: JsonLdNode = {
                   class="text-d-accent-soft underline underline-offset-3 hover:text-d-text"
                   href={site.appUrl}
                 >
-                  app.uncava.com
+                  {new URL(site.appUrl).host}
                 </a>
               </dd>
             </dl>
@@ -116,9 +111,9 @@ const aboutPage: JsonLdNode = {
       <div class="sq-frame">
         <SectionHead
           title="Talk to the right person."
-          intro="Every address reaches a person on the team. For a demo, the form is quickest."
+          intro="Both addresses reach a person on the team. For a demo, the form is quickest."
         />
-        <ul class="m-0 grid list-none gap-px bg-hairline p-0 sm:grid-cols-2 lg:grid-cols-3">
+        <ul class="m-0 grid list-none gap-px bg-hairline p-0 sm:grid-cols-2">
           {mailboxes.map((mailbox) => (
             <li class="flex flex-col gap-2 bg-ink px-10 py-8">
               <span class="text-[14px] text-d-text-3">{mailbox.label}</span>

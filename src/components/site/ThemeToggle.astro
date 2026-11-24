@@ -1,0 +1,57 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  /** Colour and border classes from the caller's header; the toggle owns only its shape. */
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<!-- Hidden until its script runs: without JavaScript there is nothing to switch. -->
+<button
+  type="button"
+  data-theme-toggle
+  hidden
+  class:list={[
+    'theme-toggle inline-grid size-9 shrink-0 cursor-pointer bg-transparent place-items-center rounded-lg border transition-colors',
+    className,
+  ]}
+>
+  <span class="when-dark">
+    <Icon name="sun" size={17} />
+    <span class="sr-only">Switch to light mode</span>
+  </span>
+  <span class="when-light">
+    <Icon name="moon" size={17} />
+    <span class="sr-only">Switch to dark mode</span>
+  </span>
+</button>
+
+<style>
+  .theme-toggle[hidden] {
+    display: none;
+  }
+
+  .when-light,
+  :global(:root[data-theme='light']) .when-dark {
+    display: none;
+  }
+
+  :global(:root[data-theme='light']) .when-light {
+    display: contents;
+  }
+
+  .when-dark {
+    display: contents;
+  }
+
+  :global(.theme-switching *) {
+    transition: none !important;
+  }
+</style>
+
+<script>
+  import '~/scripts/theme-toggle';
+</script>

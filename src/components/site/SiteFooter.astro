@@ -1,101 +1,91 @@
 ---
-import { emails, footerNav, footerResources, site } from '~/lib/site';
+import { footerColumns, footerLegal, site } from '~/lib/site';
 import BrandMark from './BrandMark.astro';
 
 interface Props {
-  tone?: 'dark' | 'light';
+  tone?: 'dark' | 'adaptive';
 }
 
-const { tone = 'light' } = Astro.props;
+const { tone = 'adaptive' } = Astro.props;
 const isDark = tone === 'dark';
 const year = new Date().getFullYear();
 
-const muted = isDark ? 'text-d-text-3' : 'text-text-3';
+const heading = isDark ? 'text-d-text' : 'text-text';
 const link = isDark
-  ? 'text-d-text-15 transition-colors hover:text-d-text'
+  ? 'text-d-text-2 transition-colors hover:text-d-text'
   : 'text-text-2 transition-colors hover:text-text';
+const quiet = isDark
+  ? 'text-d-text-3 transition-colors hover:text-d-text-2'
+  : 'text-text-3 transition-colors hover:text-text-2';
 const rule = isDark ? 'border-ink-line' : 'border-line';
+
+function relFor(href: string): string | undefined {
+  if (href === site.linkedIn) return 'me noopener';
+  return undefined;
+}
 ---
 
-<footer class:list={['border-t text-[13px]', rule, muted, isDark ? 'bg-ink' : 'bg-paper']}>
+<footer class:list={['border-t text-[14px]', rule, isDark ? 'bg-ink' : 'bg-paper']}>
   <div
-    class:list={[isDark ? 'container-wide' : 'container-page', 'flex flex-col gap-9 pt-12 pb-14']}
+    class:list={[
+      isDark ? 'container-wide' : 'container-page',
+      'flex flex-col gap-14 pt-16 pb-12 md:pt-20',
+    ]}
   >
-    <div class="flex flex-wrap items-center justify-between gap-6 max-[700px]:flex-col max-[700px]:items-start">
+    <nav
+      aria-label="Footer"
+      class="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-6"
+    >
       <a
         href="/"
-        class:list={['flex items-center gap-2.5', isDark ? 'text-d-text' : 'text-text']}
+        class:list={[
+          'col-span-2 flex items-center gap-2.5 self-start sm:col-span-3 lg:col-span-1',
+          heading,
+        ]}
         aria-label={`${site.name} home`}
       >
         <BrandMark size={26} weight="fine" />
         <span class="wordmark text-[15px]">{site.name}</span>
       </a>
-      <nav aria-label="Company">
-        <ul class="flex flex-wrap gap-x-7 gap-y-2 text-[14px] max-[700px]:gap-x-4.5">
-          {footerNav.map((item) => (
-            <li>
-              <a
-                href={item.href}
-                class:list={['inline-flex min-h-11 items-center sm:min-h-0', link]}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <a
-        href={site.linkedIn}
-        rel="me noopener"
-        class:list={[
-          'inline-flex items-center gap-2.5 rounded-[6px] border px-4 py-2.5 text-[14px] leading-none font-medium transition-colors',
-          isDark
-            ? 'border-[rgba(255,255,255,.18)] text-d-text hover:border-[rgba(255,255,255,.4)] hover:bg-[rgba(255,255,255,.04)]'
-            : 'border-slate-line text-text hover:border-text-3',
-        ]}
-        aria-label="Follow us on LinkedIn"
-      >
-        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" class="fill-current">
-          <rect x="0" y="0" width="24" height="24" rx="3"></rect>
-          <rect
-            x="5"
-            y="9.5"
-            width="3"
-            height="9"
-            class={isDark ? 'fill-ink-0' : 'fill-panel'}
-          ></rect>
-          <circle cx="6.5" cy="6.3" r="1.8" class={isDark ? 'fill-ink-0' : 'fill-panel'}></circle>
-          <path
-            d="M10.5 9.5h2.9v1.3c.5-.9 1.6-1.6 3.1-1.6 2.6 0 3.5 1.6 3.5 4.3v5h-3v-4.4c0-1.2-.3-2.1-1.5-2.1s-1.9.9-1.9 2.1v4.4h-3.1z"
-            class={isDark ? 'fill-ink-0' : 'fill-panel'}
-          ></path>
-        </svg>
-        <span>Follow us</span>
-      </a>
-    </div>
+      {footerColumns.map((column) => (
+        <div class="flex flex-col gap-5">
+          <h2 class:list={['text-[14px] leading-none font-medium', heading]}>{column.title}</h2>
+          <ul class="flex flex-col gap-1 sm:gap-3">
+            {column.links.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  rel={relFor(item.href)}
+                  class:list={['inline-flex min-h-11 items-center sm:min-h-0', link]}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </nav>
 
-    <nav aria-label="Resources">
-      <ul class="flex flex-wrap gap-x-7 gap-y-1 text-[13px]">
-        {footerResources.map((item) => (
+    <div
+      class:list={[
+        'flex flex-wrap items-center justify-between gap-x-7 gap-y-3 border-t pt-6 text-[13px]',
+        rule,
+      ]}
+    >
+      <ul class="flex flex-wrap gap-x-7 gap-y-1">
+        {footerLegal.map((item) => (
           <li>
-            <a href={item.href} class:list={['inline-flex min-h-11 items-center sm:min-h-0', link]}>
+            <a
+              href={item.href}
+              class:list={['inline-flex min-h-11 items-center sm:min-h-0', quiet]}
+            >
               {item.label}
             </a>
           </li>
         ))}
-        <li>
-          <a
-            href={`mailto:${emails.support}`}
-            class:list={['inline-flex min-h-11 items-center sm:min-h-0', link]}
-          >
-            {emails.support}
-          </a>
-        </li>
       </ul>
-    </nav>
-
-    <div class:list={['flex flex-wrap justify-between gap-3 border-t pt-6', rule]}>
-      <span>
+      <span class={isDark ? 'text-d-text-3' : 'text-text-3'}>
         © {year} {site.name}. All rights reserved.
       </span>
     </div>

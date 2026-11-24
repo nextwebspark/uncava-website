@@ -38,10 +38,10 @@ describe('organization and website', () => {
 });
 
 describe('softwareApplication', () => {
-  it('describes the web app at app.uncava.com without inventing a price', () => {
+  it('describes the web app at beta.uncava.com without inventing a price', () => {
     const app = softwareApplication({ description: 'Executive search workspace.' });
 
-    expect(app['url']).toBe('https://app.uncava.com');
+    expect(app['url']).toBe('https://beta.uncava.com');
     expect(app['operatingSystem']).toBe('Web');
     expect(app).not.toHaveProperty('offers');
     expect(app).not.toHaveProperty('aggregateRating');

@@ -8,14 +8,15 @@ interface Props {
   size?: number;
   label?: string;
   class?: string;
-  /** `fine` is the home artboard's hairline drawing of the mark, used in its header and footer. */
+  /** `fine` is the header and footer drawing: lighter than the app's bold small sizes, but not the
+   * artboard's 2.2 hairline, which read too faint. */
   weight?: 'app' | 'fine';
 }
 
 const { size = 30, label, class: className, weight = 'app' } = Astro.props;
 
 const width = Math.round((size * 72) / 104);
-const strokeWidth = weight === 'fine' ? 2.2 : size >= 28 ? 2.6 : size >= 20 ? 4 : 5.5;
+const strokeWidth = weight === 'fine' ? 3.4 : size >= 28 ? 2.6 : size >= 20 ? 4 : 5.5;
 ---
 
 <svg

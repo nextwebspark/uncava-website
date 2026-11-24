@@ -19,8 +19,10 @@ config, Prettier. Exact versions are pinned in `package.json`; Node comes from `
 - `src/components/site/` — used on every page (header, footer, `BrandMark`, `BrandLockup`,
   `ButtonLink`, `Icon`). `home/`, `blog/`, `docs/` — used by one area. `seo/` — head output.
 - `src/layouts/BaseLayout.astro` — every non-docs page. It owns `<html>`, fonts, favicons, `<Seo>`,
-  header, `<main id="main">` and footer. Props: SEO props + `theme` (`light` | `dark`) +
-  `headerOverlay` (home only: the header sits over the hero). Dark pages import `~/styles/home.css`
+  header, `<main id="main">` and footer. Props: SEO props + `theme` (`dark`, the home
+  artboard's pages | `reading`, the blog vocabulary in ink colours, the default) + `themeSwitch`
+  (blog only: adds the light/dark toggle and `public/theme-init.js`) + `headerOverlay` (home only:
+  the header sits over the hero). Dark pages import `~/styles/home.css`
   through the components they use (`components/home/*`, `components/marketing/*`).
 - `src/lib/` — pure, framework-free TypeScript with tests beside it. Anything testable goes here, not
   in a component.
@@ -38,7 +40,8 @@ config, Prettier. Exact versions are pinned in `package.json`; Node comes from `
 Every page ships no JavaScript unless a feature is impossible without it. The mobile nav is a
 `<details>` element, not a script. Before adding one: can CSS, `<details>`, a link or a form do it?
 If not, use a processed `<script>` (bundled to `/_astro/*.js`). Scripts today: `CopyLinkButton`
-(progressive enhancement), the contact form's `?topic=` preselect, and the home page's demos.
+(progressive enhancement), the contact form's `?topic=` preselect, the home page's demos, and the
+blog and docs light/dark toggle (`ThemeToggle` + `public/theme-init.js`).
 
 **The home demos are Preact components rendered at build time.** `HeroScenes`, `UncoverDemo`,
 `FeatureShowcase` and `SearchStages` (`.tsx` in `components/home/`) render to static HTML with no
@@ -52,7 +55,9 @@ run time go through `runtimeStyle()` (a ref that sets them via the CSSOM, which 
 
 **Trap:** Astro inlines small processed scripts under Vite's `assetsInlineLimit`; an inline script
 violates the CSP. `astro.config.mjs` sets `vite.build.assetsInlineLimit: 0` and
-`build.inlineStylesheets: 'never'` for this reason. Never use `is:inline` except for JSON-LD.
+`build.inlineStylesheets: 'never'` for this reason. Never use `is:inline` except for JSON-LD and `<script is:inline src="/theme-init.js">`
+(a same-origin file, not inline code: it must block rendering to apply a stored light choice before
+first paint, which a bundled module script cannot).
 
 ## Content collections
 
@@ -92,7 +97,9 @@ both sides agree. Internal links are written without a trailing slash: `/blog`, 
 
 ## Starlight
 
-- Overrides in `src/components/docs/` (`DocsHead`, `DocsHeader`, `DocsSiteTitle`), registered in
+- Overrides in `src/components/docs/` (`DocsHead`, `DocsHeader`,
+  `DocsThemeProvider` and `DocsThemeSelect`, which replace Starlight's OS-following theme with the
+  site's dark default and shared toggle), registered in
   `astro.config.mjs`. Import Starlight parts from `@astrojs/starlight/components/*.astro`, not from
   `virtual:starlight/*` — the virtual modules don't typecheck in user code.
 - Sidebar groups use `{ label, items: [{ autogenerate: { directory } }] }`; the old

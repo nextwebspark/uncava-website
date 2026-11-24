@@ -1,102 +1,184 @@
 ---
 import Search from '@astrojs/starlight/components/Search.astro';
-import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
+import BrandMark from '~/components/site/BrandMark.astro';
 import { site } from '~/lib/site';
-import DocsSiteTitle from './DocsSiteTitle.astro';
+import DocsThemeSelect from './DocsThemeSelect.astro';
+
+type SidebarEntry = (typeof Astro.locals.starlightRoute.sidebar)[number];
+
+function holdsCurrentPage(entry: SidebarEntry): boolean {
+  return entry.type === 'link' ? entry.isCurrent : entry.entries.some(holdsCurrentPage);
+}
+
+const section = Astro.locals.starlightRoute.sidebar.find(
+  (entry) => entry.type === 'group' && holdsCurrentPage(entry),
+);
 ---
 
-<div class="header">
-  <div class="title-wrapper sl-flex">
-    <DocsSiteTitle />
+<!-- Two columns on desktop: the left one is exactly the sidebar's width, so its border continues the
+     sidebar's edge. The mobile menu toggle sits outside this component, at the right. -->
+<div class="docs-header">
+  <div class="docs-brand">
+    <div class="flex min-w-0 items-center gap-3">
+      <a href="/" class="docs-home" aria-label={`${site.name} home`}>
+        <BrandMark size={26} />
+      </a>
+      <span class="docs-divider" aria-hidden="true"></span>
+      <a href="/docs" class="docs-name">
+        Docs
+      </a>
+    </div>
+    <div class="print:hidden">
+      <Search />
+    </div>
   </div>
-  <div class="sl-flex print:hidden">
-    <Search />
-  </div>
-  <div class="sl-hidden md:sl-flex right-group print:hidden">
-    <a class="header-link" href="/">
-      uncava.com
-    </a>
-    <a class="header-link" href="/blog">
-      Blog
-    </a>
-    <ThemeSelect />
-    <a class="sign-in" href={site.appUrl}>
-      Sign in
-    </a>
+
+  <div class="docs-bar print:hidden">
+    <nav aria-label="Breadcrumb" class="docs-crumbs">
+      {section ? (
+        <>
+          <a href="/docs">Home</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="location">{section.label}</span>
+        </>
+      ) : (
+        <span aria-current="location">Home</span>
+      )}
+    </nav>
+    <div class="flex items-center gap-3">
+      <DocsThemeSelect />
+      <a class="sign-in" href={site.appUrl}>
+        Sign in
+      </a>
+    </div>
   </div>
 </div>
 
 <style>
-  @layer starlight.core {
-    .header {
-      display: flex;
-      gap: var(--sl-nav-gap);
-      justify-content: space-between;
-      align-items: center;
+  .docs-header {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .docs-brand {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .docs-home {
+    display: inline-flex;
+    color: var(--sl-color-white);
+  }
+
+  .docs-divider {
+    width: 1px;
+    height: 1.25rem;
+    background: var(--sl-color-gray-5);
+  }
+
+  .docs-name {
+    color: var(--sl-color-white);
+    font-size: 1.0625rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .docs-bar {
+    display: none;
+  }
+
+  /* The search opens from a round icon button, like the theme switch beside the sign-in. */
+  .docs-brand :global(site-search button[data-open-modal]) {
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--sl-color-gray-2);
+    font-size: 1rem;
+  }
+
+  .docs-brand :global(site-search button[data-open-modal]:hover) {
+    border-color: var(--sl-color-gray-4);
+    color: var(--sl-color-white);
+  }
+
+  .docs-brand :global(site-search button[data-open-modal] > span),
+  .docs-brand :global(site-search button[data-open-modal] > kbd) {
+    display: none;
+  }
+
+  @media (min-width: 50rem) {
+    .docs-brand {
+      flex: none;
+      width: var(--sl-sidebar-width);
       height: 100%;
+      padding-inline: var(--sl-sidebar-pad-x);
+      border-inline-end: 1px solid var(--sl-color-hairline-shade);
     }
 
-    .title-wrapper {
-      overflow: clip;
-      padding: 0.25rem;
-      margin: -0.25rem;
+    .docs-bar {
+      display: flex;
+      flex: 1;
       min-width: 0;
-    }
-
-    .right-group {
-      gap: 1.375rem;
       align-items: center;
-    }
-
-    @media (min-width: 50rem) {
-      :global(:root[data-has-sidebar]) {
-        --__sidebar-pad: calc(2 * var(--sl-nav-pad-x));
-      }
-      :global(:root:not([data-has-toc])) {
-        --__toc-width: 0rem;
-      }
-      .header {
-        --__sidebar-width: max(0rem, var(--sl-content-inline-start, 0rem) - var(--sl-nav-pad-x));
-        --__main-column-fr: calc(
-          (
-              100% + var(--__sidebar-pad, 0rem) - var(--__toc-width, var(--sl-sidebar-width)) -
-                (2 * var(--__toc-width, var(--sl-nav-pad-x))) -
-                var(--sl-content-inline-start, 0rem) - var(--sl-content-width)
-            ) /
-            2
-        );
-        display: grid;
-        grid-template-columns:
-          minmax(
-            calc(var(--__sidebar-width) + max(0rem, var(--__main-column-fr) - var(--sl-nav-gap))),
-            auto
-          )
-          1fr
-          auto;
-        align-content: center;
-      }
+      justify-content: space-between;
+      gap: 1rem;
+      padding-inline: 2rem var(--sl-nav-pad-x);
     }
   }
 
-  .header-link {
-    font-size: 0.875rem;
-    font-weight: 500;
+  .docs-crumbs {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    white-space: nowrap;
+  }
+
+  .docs-crumbs a {
     color: var(--sl-color-gray-2);
     text-decoration: none;
   }
 
-  .header-link:hover {
+  .docs-crumbs a:hover {
     color: var(--sl-color-white);
   }
 
+  .docs-crumbs > span {
+    color: var(--sl-color-gray-3);
+  }
+
+  .docs-crumbs > [aria-current] {
+    overflow: hidden;
+    color: var(--sl-color-white);
+    font-weight: 500;
+    text-overflow: ellipsis;
+  }
+
   .sign-in {
+    display: inline-flex;
+    align-items: center;
+    height: 2.25rem;
+    padding-inline: 1rem;
+    border-radius: 999px;
     background: var(--sl-color-white);
     color: var(--sl-color-black);
-    font-size: 0.84375rem;
-    font-weight: 600;
-    padding: 0.5rem 0.875rem;
-    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
     text-decoration: none;
     white-space: nowrap;
+  }
+
+  .sign-in:hover {
+    background: var(--sl-color-gray-1);
   }
 </style>

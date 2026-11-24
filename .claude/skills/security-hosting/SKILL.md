@@ -11,7 +11,7 @@ description: Security and hosting for uncava.com — Firebase Hosting config, se
 'never'` + `build.format: 'file'` (asserted by `tests/firebase-config.test.ts`).
 - `redirects` is where every retired URL gets its 301. Redirects run before static files.
 - `site: uncava-website` pins the Hosting site (the project hosts other things); `.firebaserc` names
-  `hak-talent-mapping`, and CI still passes `--project` explicitly.
+  `hak-talent-mapping-fe0e5` (not the app's `hak-talent-mapping`), and CI still passes `--project` explicitly.
 
 ## Header rules: order is the mechanism
 
@@ -33,7 +33,8 @@ headers of real paths. Moving a rule above `**` silently loses it — the tests 
   `form-action 'self'`, `frame-ancestors 'none'`, `object-src 'none'`, `base-uri 'self'`. Possible
   because marketing pages ship no inline script or style: `inlineStylesheets: 'never'`,
   `assetsInlineLimit: 0`, no `style=` attributes, JSON-LD only as `application/ld+json`.
-- **Docs:** Starlight emits five static inline scripts (theme, sidebar state, search shortcut) —
+- **Docs:** Starlight emits three static inline scripts (sidebar state, search shortcut; its
+  theme scripts are replaced by `DocsThemeProvider`/`DocsThemeSelect`) —
   allowed by their `sha256` hashes — uses `style="--sl-…"` attributes (`style-src 'unsafe-inline'`),
   and Pagefind search runs WebAssembly (`'wasm-unsafe-eval'`).
 - **Admin:** Sveltia CMS loads from unpkg (pinned + SRI), talks to `api.github.com`, previews blobs,
@@ -82,7 +83,7 @@ Repository (or `production` environment) variables — not secrets, they are ide
 `PUBLIC_NEWSLETTER_FORM_ENDPOINT`. Workflows skip with a notice when the
 first three are unset.
 
-GCP lives in `scripts/gcp-bootstrap.sh` (idempotent, re-runnable): project `hak-talent-mapping`, Hosting
+GCP lives in `scripts/gcp-bootstrap.sh` (idempotent, re-runnable): project `hak-talent-mapping-fe0e5`, Hosting
 site from `hosting.site` in `firebase.json`, the shared `github-pool` with this repo's own provider
 `uncava-website-provider` (condition `assertion.repository == 'nextwebspark/uncava-website'`), and the
 `uncava-website-deployer` account with `roles/firebasehosting.admin` +

@@ -1,7 +1,7 @@
 # Uncava website
 
 The public site for **Uncava** — executive search and talent mapping — at `https://uncava.com`: marketing
-pages, the blog, and the docs. The product itself is a separate codebase at `https://app.uncava.com`;
+pages, the blog, and the docs. The product itself is a separate codebase at `https://beta.uncava.com`;
 nothing here talks to it except links. Static Astro build, served by Firebase Hosting, edited by
 non-technical people through Sveltia CMS at `/admin`. One Cloud Function (`functions/`) receives the
 enquiry form at `/api/enquiry` and emails it to support@uncava.com through Resend.

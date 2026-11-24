@@ -5799,8 +5799,8 @@
   }
   .uv-scrolly .pin {
     position: sticky;
-    top: 0;
-    height: 100vh;
+    top: var(--site-header-height);
+    height: calc(100vh - var(--site-header-height));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -5937,8 +5937,10 @@
     height: auto;
     display: block;
   }
-  .uv-scrolly .pin-done .pin-inner:not(.an-pin) {
-    transform: none;
+  /* Keep the pinned size so the section does not jump; the negative margins give back the space
+     the scale leaves above and below (--pih is the unscaled height, set by home-story.ts). */
+  .uv-scrolly .pin-done .pin-inner {
+    margin-block: calc((var(--ps, 1) - 1) * var(--pih, 0px) / 2);
   }
   .uv-scrolly .pin-done .fx-bar {
     display: none;

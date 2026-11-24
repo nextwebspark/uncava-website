@@ -19,7 +19,7 @@ export function organization(): JsonLdNode {
     url: absoluteUrl('/'),
     legalName: site.legalName,
     logo: absoluteUrl('/apple-touch-icon.png'),
-    email: emails.hello,
+    email: emails.contact,
     ...(site.sameAs.length > 0 ? { sameAs: [...site.sameAs] } : {}),
     founder: {
       '@type': 'Person',
@@ -28,7 +28,7 @@ export function organization(): JsonLdNode {
       sameAs: [site.founder.linkedIn],
     },
     contactPoint: [
-      { '@type': 'ContactPoint', contactType: 'sales', email: emails.hello },
+      { '@type': 'ContactPoint', contactType: 'sales', email: emails.contact },
       { '@type': 'ContactPoint', contactType: 'customer support', email: emails.support },
       { '@type': 'ContactPoint', contactType: 'security', email: emails.security },
     ],

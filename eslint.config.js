@@ -29,7 +29,7 @@ export default defineConfig([
     },
   },
   {
-    files: ['src/**/*.astro'],
+    files: ['src/**/*.astro', 'public/*.js'],
     languageOptions: { globals: { ...globals.browser } },
   },
 ]);
