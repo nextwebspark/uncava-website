@@ -58,8 +58,8 @@ is same-origin and `form-action 'self'` holds. The function never stores anythin
 emails the enquiry to support@uncava.com through **Resend** (the account and verified uncava.com
 domain the app already uses, with the website's own sending-only key in Secret Manager as
 `RESEND_API_KEY`), and answers 303 to `/contact/thanks` or `/contact/error`. Guards: POST only;
-`Sec-Fetch-Site: same-origin` or an allowed `Origin` (uncava.com, www, the preview channels); a 10 KB
-body cap; a honeypot field (`website`) answered with a silent "thanks"; a links-in-message limit;
+`Sec-Fetch-Site: same-origin` or an allowed `Origin` (uncava.com, www, the preview channels); a 40 KB
+body cap; a honeypot field (`leave_blank`, named so no autofill fills it) answered with a silent "thanks"; a links-in-message limit;
 no CR/LF in single-line fields (header injection); five posts per address per ten minutes per
 instance (hashed). Logs carry the outcome only, never what was typed. No auto-reply, so the form
 cannot mail a third party. It runs as `uncava-website-enquiry`, which can read that one secret.

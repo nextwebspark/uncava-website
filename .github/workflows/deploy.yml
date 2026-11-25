@@ -135,7 +135,7 @@ jobs:
           echo "the enquiry endpoint answers, and a bot that fills the honeypot is sent nothing"
           STATUS="$(curl -sS -o /dev/null -w '%{http_code} %{redirect_url}' -X POST "$URL/api/enquiry" \
             -H "Origin: $URL" -H 'Sec-Fetch-Site: same-origin' \
-            --data-urlencode 'website=smoke-test' --data-urlencode 'topic=demo')"
+            --data-urlencode 'leave_blank=smoke-test' --data-urlencode 'topic=demo')"
           grep -q '^303 .*/contact/thanks$' <<<"$STATUS" || { echo "::error::/api/enquiry answered '${STATUS}'."; exit 1; }
 
           echo "the CMS stays out of search"

@@ -3,6 +3,7 @@ import {
   enquiryFields as f,
   enquiryLimits,
   enquiryTopics,
+  emailPattern,
   teamSizes,
   type EnquiryAudience,
   type EnquiryTopic,
@@ -26,7 +27,7 @@ export type ValidationResult =
   | { readonly kind: 'invalid'; readonly fields: readonly string[] };
 
 /* Deliberately simple: one @, a dot in the domain, no spaces. The reply proves the rest. */
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL = new RegExp(`^${emailPattern}$`);
 const LINK = /https?:\/\/|www\./gi;
 /* Control characters other than tab and newline never belong in a form field. */
 // eslint-disable-next-line no-control-regex -- matching control characters is the point
@@ -73,7 +74,8 @@ export function validateEnquiry(form: URLSearchParams): ValidationResult {
   if (message.length > enquiryLimits.message || CONTROL.test(message)) bad.push(f.message);
 
   const links = `${message} ${role}`.match(LINK)?.length ?? 0;
-  if (links > enquiryLimits.links) return { kind: 'spam' };
+  // Not silent spam: someone pasting a few profile links is a person, and must be told it failed.
+  if (links > enquiryLimits.links) bad.push(f.message);
 
   if (bad.length > 0) return { kind: 'invalid', fields: [...new Set(bad)] };
   return {
