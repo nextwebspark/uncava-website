@@ -72,7 +72,7 @@ describe('handleEnquiry', () => {
   it('pretends a filled honeypot succeeded and sends nothing', async () => {
     const { all, sent } = deps();
     const response = await handleEnquiry(
-      request({ ...validForm, website: 'https://spam.example' }),
+      request({ ...validForm, leave_blank: 'https://spam.example' }),
       all,
     );
 
@@ -80,12 +80,32 @@ describe('handleEnquiry', () => {
     expect(sent).toHaveLength(0);
   });
 
-  it('treats a message full of links as spam', async () => {
+  it('tells a person whose message holds too many links that it failed, rather than faking success', async () => {
     const { all, sent } = deps();
     const message = 'https://a.example https://b.example https://c.example https://d.example';
     const response = await handleEnquiry(request({ ...validForm, message }), all);
 
-    expect(response.outcome).toBe('spam');
+    expect(response).toMatchObject({ location: '/contact/error', outcome: 'invalid' });
+    expect(sent).toHaveLength(0);
+  });
+
+  it('accepts the longest message in a script that form-encodes to three times the size', async () => {
+    const { all, sent } = deps();
+    const message = 'م'.repeat(3000);
+    const response = await handleEnquiry(request({ ...validForm, message }), all);
+
+    expect(response.outcome).toBe('sent');
+    expect(sent[0]?.text).toContain(message);
+  });
+
+  it.each([
+    ['an email with no dot in the domain, which a browser accepts', { email: 'a@b' }],
+    ['a company that is only spaces, which a browser accepts', { company: '   ' }],
+  ])('rejects %s', async (_name, change) => {
+    const { all, sent } = deps();
+    const response = await handleEnquiry(request({ ...validForm, ...change }), all);
+
+    expect(response.outcome).toBe('invalid');
     expect(sent).toHaveLength(0);
   });
 
@@ -151,7 +171,7 @@ describe('handleEnquiry', () => {
   it('refuses an oversized body', async () => {
     const { all } = deps();
     const response = await handleEnquiry(
-      request({ ...validForm, message: 'x'.repeat(11_000) }),
+      request({ ...validForm, message: 'x'.repeat(41_000) }),
       all,
     );
 

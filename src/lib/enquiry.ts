@@ -29,7 +29,19 @@ export const teamSizes = [
 export type EnquiryTopic = (typeof enquiryTopics)[number]['value'];
 export type EnquiryAudience = (typeof enquiryAudiences)[number]['value'];
 
-/** Field names as posted. `website` is the honeypot: people never see it, bots fill it in. */
+/**
+ * The two rules a browser can check before posting, written once so the form's `pattern` attributes
+ * and the function's validation cannot drift apart (a browser accepts "a@b" and "   ", the function
+ * would not, and the visitor would lose what they typed on the error page).
+ */
+export const emailPattern = '[^\\s@]+@[^\\s@]+\\.[^\\s@]+';
+export const notBlankPattern = '.*\\S.*';
+
+/**
+ * Field names as posted. `leave_blank` is the honeypot: people never see it, bots fill it in. It is
+ * named for nothing an autofill or password manager recognises: a real visitor whose browser filled
+ * it would have their enquiry silently dropped.
+ */
 export const enquiryFields = {
   topic: 'topic',
   firstName: 'first_name',
@@ -40,7 +52,7 @@ export const enquiryFields = {
   teamSize: 'team_size',
   role: 'role',
   message: 'message',
-  honeypot: 'website',
+  honeypot: 'leave_blank',
 } as const;
 
 export const enquiryLimits = {
@@ -51,6 +63,9 @@ export const enquiryLimits = {
   message: 3000,
   /** More links than this in the message reads as spam. */
   links: 3,
-  /** The largest request body accepted, in bytes. */
-  body: 10_000,
+  /**
+   * The largest request body accepted, in bytes. Form encoding turns each byte of a non-ASCII letter
+   * into three characters, so a full 3,000-character message in Arabic or Chinese is 18–27 KB.
+   */
+  body: 40_000,
 } as const;

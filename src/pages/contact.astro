@@ -4,8 +4,10 @@ import {
   ENQUIRY_ENDPOINT,
   enquiryAudiences,
   enquiryFields as f,
+  emailPattern,
   enquiryLimits,
   enquiryTopics,
+  notBlankPattern,
   teamSizes,
 } from '~/lib/enquiry';
 import { staticPages } from '~/lib/pages';
@@ -140,6 +142,7 @@ const optional = 'font-normal text-d-text-3';
             name={f.firstName}
             type="text"
             required
+            pattern={notBlankPattern}
             maxlength={enquiryLimits.name}
             autocomplete="given-name"
             class={field}
@@ -154,6 +157,7 @@ const optional = 'font-normal text-d-text-3';
             name={f.lastName}
             type="text"
             required
+            pattern={notBlankPattern}
             maxlength={enquiryLimits.name}
             autocomplete="family-name"
             class={field}
@@ -169,7 +173,12 @@ const optional = 'font-normal text-d-text-3';
           id="work-email"
           name={f.email}
           type="email"
+          inputmode="email"
+          autocapitalize="none"
+          spellcheck="false"
           required
+          pattern={emailPattern}
+          title="An email address such as you@firm.com"
           maxlength={enquiryLimits.email}
           autocomplete="email"
           placeholder="you@firm.com"
@@ -187,6 +196,7 @@ const optional = 'font-normal text-d-text-3';
             name={f.company}
             type="text"
             required
+            pattern={notBlankPattern}
             maxlength={enquiryLimits.company}
             autocomplete="organization"
             class={field}
@@ -251,8 +261,8 @@ const optional = 'font-normal text-d-text-3';
       </div>
 
       <div class="enquiry-trap" aria-hidden="true">
-        <label for="website">Leave this field empty</label>
-        <input id="website" name={f.honeypot} type="text" tabindex="-1" autocomplete="off" />
+        <label for="leave-blank">Leave this field empty</label>
+        <input id="leave-blank" name={f.honeypot} type="text" tabindex="-1" autocomplete="off" />
       </div>
 
       <p class="m-0 text-[13.5px] leading-[1.5] text-d-text-2">
@@ -268,7 +278,7 @@ const optional = 'font-normal text-d-text-3';
 
       <button
         type="submit"
-        class="min-h-13 rounded-[6px] bg-d-text px-4 text-base font-semibold text-ink transition-colors hover:bg-white"
+        class="min-h-13 cursor-pointer rounded-[6px] bg-d-text px-4 text-base font-semibold text-ink transition-colors hover:bg-white aria-disabled:cursor-wait aria-disabled:opacity-70"
       >
         Send
       </button>
@@ -277,7 +287,10 @@ const optional = 'font-normal text-d-text-3';
 </BaseLayout>
 
 <script>
+  import { showSendingOnSubmit } from '~/scripts/enquiry-submit';
   import { preselectTopic } from '~/scripts/enquiry-topic';
 
-  preselectTopic(document.querySelector('#enquiry'), window.location.search);
+  const form = document.querySelector('#enquiry');
+  preselectTopic(form, window.location.search);
+  showSendingOnSubmit(form);
 </script>
