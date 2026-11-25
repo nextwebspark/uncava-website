@@ -153,6 +153,11 @@ gcloud projects add-iam-policy-binding "$PROJECT" --condition=None --quiet \
     --member="serviceAccount:${PROJECT_NUMBER}-compute@developer.gserviceaccount.com" \
     --role=roles/cloudbuild.builds.builder >/dev/null
 echo "  ✓ the function build account can build"
+# The function build runs as that account, so the deployer must be allowed to act as it too.
+gcloud iam service-accounts add-iam-policy-binding \
+    "${PROJECT_NUMBER}-compute@developer.gserviceaccount.com" --project="$PROJECT" --quiet \
+    --member="serviceAccount:${DEPLOY_SA_EMAIL}" --role=roles/iam.serviceAccountUser >/dev/null
+echo "  ✓ deployer may act as the function build account"
 
 # ── Workload Identity Federation ──────────────────────────────────────────────
 say "Workload Identity Federation"
