@@ -52,7 +52,7 @@ If you are an executive and have never used Uncava, your information reached it 
 
 Uncava keeps the professional profiles it fetches from providers for up to [30] days so that it does not fetch the same profile twice. A firm that saves you to one of its records becomes the controller of that record.
 
-**When you are told.** The firm that holds your record is responsible for telling you, at the latest when it first contacts you or within one month of obtaining your data. [Whether and where Uncava relies on the exception for disproportionate effort, Art. 14(5)(b) GDPR, is to be confirmed with counsel.]
+**When you are told.** The firm that holds your record is responsible for telling you, at the latest when it first contacts you or within one month of obtaining your data. For the profiles Uncava fetches and keeps itself, our [Privacy notice for executives](/executive-privacy) tells you, and every email sent to you through Uncava links it. [Whether and where Uncava relies on the exception for disproportionate effort, Art. 14(5)(b) GDPR, is to be confirmed with counsel.]
 
 ## How we use information and why we may
 
