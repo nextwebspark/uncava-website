@@ -1,5 +1,5 @@
 ---
-lastUpdated: 2026-11-13
+lastUpdated: 2026-11-26
 reviewedByCounsel: false
 ---
 
@@ -30,7 +30,7 @@ Everyone at Uncava with access to customer personal data is bound by confidentia
 
 ## Sub-processors
 
-You authorise the sub-processors listed on the [Sub-processors](/subprocessors) page. Uncava binds each by written contract to data protection obligations no less protective than these and remains fully responsible to you for them. Uncava gives you [30] days' notice, by [notification mechanism], before adding or replacing one; you may object on reasonable data protection grounds within that period, and if we cannot resolve it you may end the affected service.
+You authorise the sub-processors listed on the [Sub-processors](/subprocessors) page. Uncava binds each by written contract to data protection obligations no less protective than these and remains fully responsible to you for them. Uncava gives you at least 30 days' notice, by email to each of your workspace's admins, before adding or replacing one; you may object on reasonable data protection grounds within that period, from Settings → Data & retention inside Uncava, and if we cannot resolve it you may end the affected service.
 
 ## International transfers
 
