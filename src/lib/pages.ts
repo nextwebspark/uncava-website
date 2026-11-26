@@ -123,6 +123,13 @@ export const staticPages = {
     description:
       'The third parties that process personal data on behalf of Uncava, what each one does, and where the data is processed.',
   },
+  executivePrivacy: {
+    path: '/executive-privacy',
+    title: 'Privacy notice for executives',
+    ogTitle: 'Privacy notice for executives',
+    description:
+      'For executives whose professional details Uncava holds: what we hold, where it comes from, how long it is kept, and how to object.',
+  },
   dpa: {
     path: '/dpa',
     title: 'Data processing addendum',
