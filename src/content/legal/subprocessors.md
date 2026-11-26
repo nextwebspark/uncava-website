@@ -1,5 +1,5 @@
 ---
-lastUpdated: 2026-11-13
+lastUpdated: 2026-11-26
 reviewedByCounsel: false
 ---
 
@@ -47,4 +47,4 @@ These supply professional information about companies and executives, and receiv
 
 ## Changes to this list
 
-We update this page before a new sub-processor starts processing customer data, and tell customers [30] days ahead by [notification mechanism: email list or RSS feed]. Customers with a signed [Data processing addendum](/dpa) can ask to be added to the notifications at [privacy@uncava.com](mailto:privacy@uncava.com) and may object as the addendum describes.
+We update this page before a new sub-processor starts processing customer data, and tell customers at least 30 days before it starts, by email to each workspace's admins. The email names the provider, the data it will receive, why, where it is, the day it starts and this page. An admin can object inside Uncava, in Settings → Data & retention, until that day, as the [Data processing addendum](/dpa) describes.
